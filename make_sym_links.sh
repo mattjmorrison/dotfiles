@@ -44,6 +44,15 @@ for file in $files; do
 done
 
 #==============
+# Clone vundle so we can update vim plugins when we open it 
+# the first time
+#==============
+echo "Cloning vundle to manage vim plugins"
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
+
+#==============
 # Wrap it up with warm fuzzies
 #==============
+echo "====== Finished ======"
+echo "When you first open vim run :BundleInstall to install the plugins"
 echo "All done enjoy"
