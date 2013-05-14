@@ -8,7 +8,7 @@ Q: "But Jarrod is getting this set up difficult?"
 
 A: Don't worry yourself! Jarrod is going to take care of you. Included 
 is a make_sym_links script that will again as the name implies create symlinks
-to all of the files and folders contained in the repo in your home folder.
+to all of the files and folders contained in the repo to your home folder.
 That's all there is to it. Follow the instructions below and you will be set.
 
 Installation
