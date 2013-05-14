@@ -336,30 +336,10 @@ function custom()
 	echo "  root_trash <<-- Empty the trash folder that is created when you delete things as root"
 	echo ""
 	echo "###########--FUNCTIONS--############"
-	echo "   my_ssh <<-- shortcut function to log into my servers"
 	echo " webshare <<-- cd into a directory you want to share and run command"
 	echo "workTimer <<-- A timer to allow focusing on the task at hand"
 	echo "mem_usage <<-- Shows the specified number of the top memory consuming processes"
-	}
-
-#-------------------------------------------------------------------------------
-#  SSH into my servers. So I don't have to recall and look up ip address and usernames
-#  To add more just add another choice and an elif to define the user and server
-#-------------------------------------------------------------------------------
-function my_ssh()
-    {
-		echo "Which one we going to?"
-		echo "1). jarrodTaylorMade @ pythonanywhere"
-		echo "2). jarrod78.com @ pythonanywhere"
-		echo -n "Pick one --> "; read choice
-		if test 1 = $choice; then
-		  user="Jarrod1031"
-		  server="ssh.pythonanywhere.com"
-		elif test 2 = $choice; then
-		  user="Jarrod78"
-		  server="ssh.pythonanywhere.com"
-		fi	
-		ssh $user@$server
+        echo "banner    <<-- Prints a banner containing the public / eth0 ip address and misc information"
 	}
 
 #-------------------------------------------------------------------------------
