@@ -25,7 +25,7 @@
 # Variables
 #==============
 dir=~/dotfiles           # Dotfiles directory
-files="bashrc vimrc vim" # List of files and folders to symlink in our home folder
+files="bashrc vimrc vim" # List of files / folders to symlink in home folder
 
 #==============
 # Change to the dotfiles directory
@@ -49,6 +49,16 @@ done
 #==============
 echo "Cloning vundle to manage vim plugins"
 git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
+
+#==============
+# Ask if user wants to install required packages
+#==============
+echo "We need a few packages for some of the plugins to work"
+echo "Would you like to have then auto installed (Y/n) => "; read answer
+if [ $answer = "Y "] ; then
+    echo "Installing exuberant-ctags..."
+    sudo apt-get install exuberant-ctags
+fi
 
 #==============
 # Wrap it up with warm fuzzies
