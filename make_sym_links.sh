@@ -55,7 +55,7 @@ git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 #==============
 echo "We need a few packages for some of the plugins to work"
 echo "Would you like to have then auto installed (Y/n) => "; read answer
-if [ $answer = "Y "] ; then
+if [[ $answer = "Y "]] ; then
     echo "Installing exuberant-ctags..."
     sudo apt-get install exuberant-ctags
 fi
