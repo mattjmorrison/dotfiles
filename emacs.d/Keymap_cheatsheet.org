@@ -1,0 +1,50 @@
+** Spell Check
+  ss - Spell check the buffer
+  sm - Toggles spell check on and off
+  s[ - Previous misspelled word
+  s] - Next misspelled word
+  z= - Correct word under cursor (Works on second call)
+
+** Code folding
+  za - Fold the entire buffer   
+  zc - Fold the current section
+  zo - Show the current section
+  zO - Show the entire buffer
+
+** Window movement
+  C-l (Ctrl + l) Move cursor to window to the right
+  C-h (Ctrl + h) Move cursor to window to the left
+  C-j (Ctrl + j) Move cursor to window to the below
+  C-k (Ctrl + k) Move cursor to window to the above
+
+** Global leader keys 9 plus keys below
+  ac - Toggle auto complete mode 
+  ll - Highlight over 80 chars, trailing white space
+  sw - Split the screen horizontally
+  sv - Split the screen vertically
+  b - Get list of current buffers to select from
+  d - Open dired defaults to current directory
+  <up> - Swap the current buffer with the one above
+  <down> - Swap the current buffer with the one below
+  <left> - Swap the current buffer with the one to the left
+  <right> - Swap the current buffer with the one to the right
+  <backspace> - Go to the previous file in org mode (kind of works)
+  om - Opem main Org mode file
+  hs - Toggle the hide show minor mode
+
+** Clojure keys
+  9es - Evaluate the last expression before the cursor in the repl
+  9eb - Evaluate the buffer in the repl
+  9ji - Start a clojure repl
+  
+** Python keys
+  Not a key but use M-x term to be able to start a bpython shell
+  9ps - Start the ptython repl
+  9pc - Syntac check with Pylint
+   er - Highlight a region and then er will send it to the repl
+
+** Javascript keys
+  *NOTE* use skewer.log() in the repl like you would console.log() if needed
+  9rs - Start the skewer session allows for eval in buffer and browser
+  9sr - Start the skewer repl
+  9er - Eval the last expression in the repl
