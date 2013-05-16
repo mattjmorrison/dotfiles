@@ -25,7 +25,7 @@
 # Variables
 #==============
 dir=~/dotfiles           # Dotfiles directory
-files="bashrc vimrc vim" # List of files / folders to symlink in home folder
+files="bashrc vimrc vim emacs.d" # List of files / folders to symlink in home folder
 
 #==============
 # Change to the dotfiles directory
