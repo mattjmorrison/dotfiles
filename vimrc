@@ -50,6 +50,7 @@ set nocompatible
  Bundle 'https://github.com/majutsushi/tagbar'
  Bundle 'https://github.com/ervandew/supertab'
  Bundle 'https://github.com/pangloss/vim-javascript'
+ Bundle 'https://github.com/Lokaltog/vim-easymotion'
 "
 "===================================================================================
 " GENERAL SETTINGS
