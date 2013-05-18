@@ -201,6 +201,16 @@ On_IWhite_='\[\e[0;107m\]'   # White
 #              \]     end a sequence of non-printing characters
 #===============================================================================
 
+#-------------------------------------------------------------------------------
+# Git auto completion to show the git status in the prompt
+#-------------------------------------------------------------------------------
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
+fi
+
+# Add symbols to alert is the repo has been modified
+GIT_PS1_SHOWDIRTYSTATE=true        
+
 #===  FUNCTION  ================================================================
 #          NAME:  wide_prompt
 #   DESCRIPTION:  Creates a truncated pwd if the pwd has a length greater than
@@ -296,12 +306,6 @@ cd() {
   fi
 }
 
-#-------------------------------------------------------------------------------
-# Git auto completion from the command line
-#-------------------------------------------------------------------------------
-if [ -f ~/.git-completion.bash ]; then
-  source ~/.git-completion.bash
-fi
 
 #===============================================================================
 #  Aliases
