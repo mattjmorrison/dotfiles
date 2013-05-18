@@ -53,11 +53,15 @@ git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 #==============
 # Ask if user wants to install required packages
 #==============
-echo "We need a few packages for some of the plugins to work"
+echo "We need a few packages for some of the plugins and scripts to work"
 echo "Would you like to have then auto installed (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
     echo "Installing exuberant-ctags..."
     sudo apt-get install exuberant-ctags
+    echo "Downloading and installing git-completion"
+    cd ~/
+    curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
+    mv ~/git-completion.bash ~/.git-completion.bash
 fi
 
 #==============
