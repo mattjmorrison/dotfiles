@@ -6,7 +6,7 @@
 # 
 #        AUTHOR: Jarrod Taylor
 #       CREATED: 06/19/2011 02:48:15 PM CDT
-#      MODIFIED: 05/14/2012 
+#      MODIFIED: 05/18/2012 
 #===============================================================================
 
 #-------------------------------------------------------------------------------
@@ -210,32 +210,32 @@ On_IWhite_='\[\e[0;107m\]'   # White
 #       RETURNS:  Returns nothing but creates updated 'newPWD', and 'fill_chars'
 #                 variables that are used with the PROMPT_COMMAND 
 #===============================================================================
-function wide_prompt() 
-{
-max_pwd=30                                                                                 # This max len of pwd that we want displayed
-if [ $(echo $(pwd) | sed -e "s_${HOME}_~_" | wc -c | tr -d " ") -gt $max_pwd ]             # If the pwd with $HOME replaced by a "~" and spaces removed is greater then max_pwd
-then
-  newPWD="...$(echo $(pwd) | sed -e "s_${HOME}_~_" | sed -e "s/.*\(.\{$max_pwd\}\)/\1/")"  # Replace $HOME with "~" prepend with '...' and truncate the leading characters that make it longer than max_pwd
-else
-  newPWD="$(echo $(pwd) | sed -e "s_${HOME}_~_")"                                          # Else replace $HOME with a '~' to use as pwd
-fi
+function wide_prompt() {
+    max_pwd=30                                                                                 # This max len of pwd that we want displayed
+    if [ $(echo $(pwd) | sed -e "s_${HOME}_~_" | wc -c | tr -d " ") -gt $max_pwd ]             # If the pwd with $HOME replaced by a "~" and spaces removed is greater then max_pwd
+    then
+      newPWD="...$(echo $(pwd) | sed -e "s_${HOME}_~_" | sed -e "s/.*\(.\{$max_pwd\}\)/\1/")"  # Replace $HOME with "~" prepend with '...' and truncate the leading characters that make it longer than max_pwd
+    else
+      newPWD="$(echo $(pwd) | sed -e "s_${HOME}_~_")"                                          # Else replace $HOME with a '~' to use as pwd
+    fi
 
-termwidth=${COLUMNS}                                                                       # The width of the terminal window
-default_info_width="$((22 + ${#newPWD}))"                                                  # This is the length of the text that needs to appear on the line 
-fill="──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
-needed_fillsize=$(($termwidth - $default_info_width))                                      # The width of the screen less the text to appear gives amount of spaces we need to fill
-fill_chars="${fill:0:${needed_fillsize}}"                                                  # The actual characters that are needed to fill the line
+    termwidth=${COLUMNS}                                                                       # The width of the terminal window
+    default_info_width="$((22 + ${#newPWD}))"                                                  # This is the length of the text that needs to appear on the line 
+    fill="──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+    needed_fillsize=$(($termwidth - $default_info_width))                                      # The width of the screen less the text to appear gives amount of spaces we need to fill
+    fill_chars="${fill:0:${needed_fillsize}}"                                                  # The actual characters that are needed to fill the line
+    git_status=$(echo $(__git_ps1) | cut -d "(" -f 2 | cut -d ")" -f 1)                        # The bit status cuts off the leading space and the brackets
 }
 
 # PROMPT_COMMAND (see comments)
-PROMPT_COMMAND=wide_prompt                                                                 # From the bash manual: "The value of the variable PROMPT_COMMAND is examined just before Bash
-                                                                                           #  prints each primary prompt. If PROMPT_COMMAND is set and has a non-null value, then the value 
-										           #  is executed just as if it had been typed on the command line." This allows us to use the variables
-											   #  created in wide_prompt each time the prompt is redrawn
+PROMPT_COMMAND=wide_prompt      # From the bash manual: "The value of the variable PROMPT_COMMAND is examined just before Bash
+                                #  prints each primary prompt. If PROMPT_COMMAND is set and has a non-null value, then the value 
+								#  is executed just as if it had been typed on the command line." This allows us to use the variables
+								#  created in wide_prompt each time the prompt is redrawn
 
 # Set the prompt formatting, a yellow happy face retuned on commands with a 0 exit code and red frown retuned with an error exit code
-PS1="$BGreen_┌─($BWhite_\$newPWD$BGreen_)\$fill_chars(\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`$BGreen_)───($BWhite_\T$BGreen_)\n$BGreen└──($BWhite_! \!$BGreen_)-> $Color_Off_"
-#            ^formating  ^the newPWD      ^the filler ^the smile if then test------------------------------------------------------------------^         ^formatting ^time      ^new line^formatting ^! ^history  ^formatting
+PS1="$BGreen_┌─($BWhite_\$newPWD$BGreen_)\$fill_chars(\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`$BGreen_)───($BWhite_\@$BGreen_)\n$BGreen└──($BWhite_\$git_status$BGreen_)-> $Color_Off_"
+#            ^formating  ^the newPWD      ^the filler ^the smile if then test------------------------------------------------------------------^         ^formatting ^time      ^new line^formatting ^^git info  ^formatting
 
 #-------------------------------------------------------------------------------
 #  A minimal prompt that displays the pwd truncated over 30 chars
