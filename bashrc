@@ -6,7 +6,7 @@
 # 
 #        AUTHOR: Jarrod Taylor
 #       CREATED: 06/19/2011 02:48:15 PM CDT
-#      MODIFIED: 05/18/2012 
+#      MODIFIED: 05/19/2013 
 #===============================================================================
 
 #-------------------------------------------------------------------------------
@@ -209,11 +209,11 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # Add symbols to alert is the repo has been modified
-GIT_PS1_SHOWDIRTYSTATE=true        
-GIT_PS1_SHOWSTASHSTATE=true          # This doesn't always appear to produce a result
-GIT_PS1_SHOWUNTRACKEDFILES=true      # This doesn't always appear to produce a result
-GIT_PS1_DESCRIBE_STYLE="branch"      # This doesn't always appear to produce a result
-GIT_PS1_SHOWUPSTREAM="auto git"      # This doesn't always appear to produce a result
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWUPSTREAM="auto git"
 
 #===  FUNCTION  ================================================================
 #          NAME:  wide_prompt
