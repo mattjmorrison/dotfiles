@@ -333,8 +333,7 @@ alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}
 #-------------------------------------------------------------------------------
 #  Prints out my alias commands and functions
 #-------------------------------------------------------------------------------
-function custom()
-    {
+function custom() {
 	echo "###########--ALIAS--############"
 	echo "         bye <<-- Shut down the computer"
 	echo "      update <<-- sudo apt-get update && sudo apt-get upgrade"
@@ -355,26 +354,19 @@ function custom()
 #                    type webshare. You will be able to connect to that directory
 #                    with other machines on the local net work with IP:8000
 #                    the function will display the current machines ip address
-#                    need to have a host name of either lapForceOne or skynet
 #-------------------------------------------------------------------------------
-function webshare()
-    {
-	if [[ "`hostname`" = "lapForceOne" ]]; then
-		local_ip=`ifconfig eth1 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`
-	elif [[ "`hostname`" = "Skynet" ]]; then
-		local_ip=`ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`
-	fi
+function webshare() {
+    local_ip=`hostname -I | cut -d " " -f 1`
     echo "connect to $local_ip:8000"
-		python -m SimpleHTTPServer
-	  }
+		python -m SimpleHTTPServer > /dev/null 2>&1
+    }
 
 #-------------------------------------------------------------------------------
 # A timer function that will say the message and display a pop-up
 # after the specified amount of time. 
 # REQUIRES: Need to have espeak installed. 
 #-------------------------------------------------------------------------------
-function workTimer()
-{ 
+function workTimer() { 
 	#echo -n "Timer name => "; read name ##<-- We don't really need a name for the timer
 	echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
 	echo -n "What to say when done => "; read say
@@ -384,8 +376,7 @@ function workTimer()
 #-------------------------------------------------------------------------------
 # Shows the specified number of the top memory consuming processes and their PID
 #-------------------------------------------------------------------------------
-function mem_usage()
-	{
+function mem_usage() {
 	echo -n "How many you what to see? "; read number
 	echo ""
 	echo "Mem Size       PID     Process"
@@ -398,23 +389,12 @@ function mem_usage()
 #  Prints a banner with public / private ip addresses, kernel 
 #  Information and uptime also shows three months of calendar.
 #  REQUIREMENTS: figle: for the banner, will need to apt-get on new install
-#  NOTES: You will need to configure the hostname that it looks for unless you
-#         happen to by chance call your machine lapForceOne or skynet
 #-------------------------------------------------------------------------------
-function banner()
-{
+function banner() {
 echo -e "${BYellow}";figlet " #winning!";
-echo -ne "${BRed}public ip address:\t${BBlue}" `wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
-if [[ "`hostname`" = "lapForceOne" ]]; then
-	echo -ne "${BRed}eth1 IP Address:\t${BBlue}" `ifconfig wlan0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`; echo ""
-elif [[ "`hostname`" = "skynet" ]]; then
-	echo -ne "${BRed}eth0 IP Address:\t${BBlue}" `ifconfig eth0 | awk '/inet addr/ {split ($2,A,":"); print A[2]}'`; echo ""
-fi
+echo -ne "${BRed}Public IP address:\t${BBlue}" `wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
+echo -ne "${BRed}Primary local IP:\t${BBlue}" `hostname -I | cut -d " " -f 1`; echo ""
 echo -e "${BRed}Kernel Information: \t${BBlue}" `uname -smr`
-if [[ "`hostname`" = "lapForceOne" ]]; then
-	echo -ne "${BGreen}$HOSTNAME ${BRed}uptime is ${BBlue}   ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
-elif [[ "`hostname`" = "skynet" ]]; then
-	echo -ne "${BGreen}$HOSTNAME ${BRed}uptime is ${BBlue}        ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
-fi
+echo -ne "${BGreen}$HOSTNAME ${BRed}uptime is: \t${BBlue} ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
 echo -e "${BWhite}"; cal -3
 }
