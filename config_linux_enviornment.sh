@@ -81,7 +81,7 @@ if [[ $answer = "Y" ]] ; then
     # jshint will look for node and it seems to be installed as
     # nodejs if that is the case we create a symlink
     if [ ! -f /usr/bin/node ]; then 
-        ln -s /usr/bin/nodejs /usr/bin/node
+        sudo ln -s /usr/bin/nodejs /usr/bin/node
     fi
     echo "Installing pyflakes for python error checking in vim"
     sudo apt-get install pyflakes
