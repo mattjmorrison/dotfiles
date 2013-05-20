@@ -1,21 +1,18 @@
 #!/bin/bash - 
 #===============================================================================
 #
-#              FILE: make_sym_links.sh
+#              FILE: config_linux_environment.sh
 #     
-#             USAGE: ./make_sym_links.sh 
+#             USAGE: ./config_linux_environment.sh 
 #     
-#       DESCRIPTION: Script creates symlinks in the users home folder to all of the 
-#                    dot files that we specify in the files variable found below
+#       DESCRIPTION: Script installs all the packages that I use on the regular 
+#                    and creates symlinks in the users home folder to all of the 
+#                    dot files that we specify in the files variable found below.
 #     
 #             NOTES: For this to work you must have cloned the github repo to your 
 #                    home folder as ~/dotfiles/ 
 #
 #            AUTHOR: Jarrod Taylor
-#
-#           CREATED: 05/14/2013 07:49:06 AM CDT
-#
-#          REVISION: v0.1
 #
 # MAINTENANCE NOTES: To add additional files/folders to be symlinked all that is 
 #                    needed is to include their names in the files variable.
@@ -51,17 +48,43 @@ echo "Cloning vundle to manage vim plugins"
 git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 
 #==============
-# Ask if user wants to install required packages
+# Ask if user wants to install all the required and additional packages
 #==============
-echo "We need a few packages for some of the plugins and scripts to work"
-echo "Would you like to have then auto installed (Y/n) => "; read answer
+echo "Would you like to install all additional packages for this setup (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
+    echo "Installing Vim"
+    sudo apt-get install vim-gnome
+    echo "Installing Emacs"
+    sudo apt-get install emacs24
+    echo "Installing Keepassx"
+    sudo apt-get install keepassx
+    echo "Installing figlet"
+    sudo apt-get install figlet
+    echo "Installing espeak"
+    sudo apt-get install espeak
+    echo "Installing curl"
+    sudo apt-get install curl
     echo "Installing exuberant-ctags..."
     sudo apt-get install exuberant-ctags
     echo "Downloading and installing git-completion"
     cd ~/
     curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
     mv ~/git-completion.bash ~/.git-completion.bash
+    echo "Installing nodejs, npm and jshint for js error checking in vim"
+    # Currently I am only concerned about getting jshint working. It should
+    # be noted that the Debian version fo nodejs is very out of date
+    # so if node development is of interest it would be better to build 
+    # from source
+    sudo apt-get install nodejs
+    sudo apt-get install npm
+    sudo npm install -g jshint
+    # jshint will look for node and it seems to be installed as
+    # nodejs if that is the case we create a symlink
+    if [ ! -f /usr/bin/node ]; then 
+        ln -s /usr/bin/nodejs /usr/bin/node
+    fi
+    echo "Installing pyflakes for python error checking in vim"
+    sudo apt-get install pyflakes
 fi
 
 #==============

@@ -51,6 +51,7 @@ set nocompatible
  Bundle 'https://github.com/ervandew/supertab'
  Bundle 'https://github.com/pangloss/vim-javascript'
  Bundle 'https://github.com/Lokaltog/vim-easymotion'
+ Bundle 'https://github.com/scrooloose/syntastic'
 "
 "===================================================================================
 " GENERAL SETTINGS
@@ -112,18 +113,23 @@ set wildignore=*.bak,*.o,*.e,*~,*.pyc  " wildmenu: ignore these extensions
 set wildmenu                           " command-line completion in an enhanced mode
 "
 "-----------------------------------------------------------------------------------
-" Set a fancy status line
+" My pimped out status line
 "-----------------------------------------------------------------------------------
 set laststatus=2                " Make the second to last line of vim our status line
-set statusline=%F                          " File path
-set statusline+=%m%r%h%w                   " Flags
-set statusline+=\ %{fugitive#statusline()} " Git branch
-set statusline+=\ [FORMAT=%{&ff}]          " File format
-set statusline+=\ [TYPE=%Y]                " File type
-set statusline+=\ [ASCII=\%03.3b]          " ASCII value of character under cursor
-set statusline+=\ [HEX=\%02.2B]            " HEX value of character under cursor
-set statusline+=\ [POS=L%04l,R%04v][%p%%]  " Cursor position in the file line, row "
-set statusline+=\ [LEN=%L]                 " Number of line in the file
+set statusline=%F                            " File path
+set statusline+=%m%r%h%w                     " Flags
+set statusline+=\ %{fugitive#statusline()}   " Git branch
+set statusline+=\ [FORMAT=%{&ff}]            " File format
+set statusline+=\ [TYPE=%Y]                  " File type
+set statusline+=\ [ASCII=\%03.3b]            " ASCII value of character under cursor
+set statusline+=\ [HEX=\%02.2B]              " HEX value of character under cursor
+set statusline+=%=                           " Right align the rest of the status line
+set statusline+=\ [POS=L%04l,R%04v]          " Cursor position in the file line, row
+set statusline+=\ [%p%%]                     " Percentage of the file the active line is
+set statusline+=\ [LEN=%L]                   " Number of line in the file
+set statusline+=%#warningmsg#                " Highlights the syntastic errors in red
+set statusline+=%{SyntasticStatuslineFlag()} " Adds the line number and error count
+set statusline+=%*                           " Fill the width of the vim window
 "
 "-----------------------------------------------------------------------------------
 " Turn off the toolbar that is under the menu in gvim
@@ -174,8 +180,15 @@ nnoremap <leader>sh :split<CR>
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
 "===================================================================================
-" **None currently
-"            
+"-----------------------------------------------------------------------------------
+" Syntastic configurations use :help syntastic.txt
+"-----------------------------------------------------------------------------------
+let g:syntastic_check_on_open=1                " check for errors when file is loaded
+let g:syntastic_loc_list_height=5              " the height of the error list defaults to 10
+let g:syntastic_python_checker = 'pyflakes'    " sets pyflakes as the default for checking python files
+let g:syntastic_javascript_checker = 'jshint'  " sets jshint as our javascript linter
+
+" 
 "===================================================================================
 " BUFFERS, WINDOWS
 "===================================================================================
