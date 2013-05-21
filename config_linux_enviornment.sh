@@ -64,7 +64,7 @@ if [[ $answer = "Y" ]] ; then
     sudo apt-get install espeak
     echo "Installing curl"
     sudo apt-get install curl
-    echo "Installing exuberant-ctags..."
+    echo "Installing exuberant-ctags"
     sudo apt-get install exuberant-ctags
     echo "Downloading and installing git-completion"
     cd ~/
@@ -85,6 +85,9 @@ if [[ $answer = "Y" ]] ; then
     fi
     echo "Installing pyflakes for python error checking in vim"
     sudo apt-get install pyflakes
+    echo "Downloading and installing Installing Ack"
+    curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
+    sudo mv ~/ack /usr/bin/ack
 fi
 
 #==============

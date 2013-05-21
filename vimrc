@@ -3,7 +3,7 @@
 "  DESCRIPTION:  An ever changing work in progress
 "       AUTHOR:  Jarrod Taylor
 "      CREATED:  06.19.2011
-"      UPDATED:  05.15.2013
+"      UPDATED:  05.21.2013
 "===================================================================================
 "
 "-----------------------------------------------------------------------------------
@@ -177,6 +177,10 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>sv :vsplit<CR>
 " --- Split the window horizontally
 nnoremap <leader>sh :split<CR>
+" --- Ack short cut
+nnoremap <leader>a :Ack!
+" --- Toggle Syntastic
+nnoremap <leader>ts :SyntasticToggleMode<CR>
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
 "===================================================================================
