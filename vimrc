@@ -52,6 +52,7 @@ set nocompatible
  Bundle 'https://github.com/pangloss/vim-javascript'
  Bundle 'https://github.com/Lokaltog/vim-easymotion'
  Bundle 'https://github.com/scrooloose/syntastic'
+ Bundle 'https://github.com/vim-scripts/UltiSnips'
 "
 "===================================================================================
 " GENERAL SETTINGS
