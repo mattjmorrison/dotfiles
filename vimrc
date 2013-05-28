@@ -182,6 +182,8 @@ nnoremap <leader>sh :split<CR>
 nnoremap <leader>a :Ack!
 " --- Toggle Syntastic
 nnoremap <leader>ts :SyntasticToggleMode<CR>
+" --- Get python parameter information. I find this faster to type
+"inoremap <leader><space> <C-x><C-o>
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
 "===================================================================================
@@ -192,7 +194,10 @@ let g:syntastic_check_on_open=1                " check for errors when file is l
 let g:syntastic_loc_list_height=5              " the height of the error list defaults to 10
 let g:syntastic_python_checker = 'pyflakes'    " sets pyflakes as the default for checking python files
 let g:syntastic_javascript_checker = 'jshint'  " sets jshint as our javascript linter
-
+"-----------------------------------------------------------------------------------
+" UltiSnips configurations
+"-----------------------------------------------------------------------------------
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 " 
 "===================================================================================
 " BUFFERS, WINDOWS

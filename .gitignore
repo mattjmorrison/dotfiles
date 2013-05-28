@@ -1,0 +1,6 @@
+# Ignore all the files and folders in the bundle directory
+vim/bundle/L9/*
+vim/bundle/AutoComplPop/*
+vim/bundle/bash-support.vim/*
+vim/bundle/vim-buffer-explorer-plugin/*
+vim/bundle/
