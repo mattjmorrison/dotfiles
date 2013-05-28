@@ -7,3 +7,6 @@ vim/bundle/
 
 # Ignore the auto complete files
 emacs.d/ac-comphist.dat
+
+# Ignore auto save files
+emacs.d/auto-save-list/*
