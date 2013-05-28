@@ -4,3 +4,6 @@ vim/bundle/AutoComplPop/*
 vim/bundle/bash-support.vim/*
 vim/bundle/vim-buffer-explorer-plugin/*
 vim/bundle/
+
+# Ignore the auto complete files
+emacs.d/ac-comphist.dat
