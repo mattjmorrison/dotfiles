@@ -105,7 +105,7 @@ set popt=left:8pc,right:3pc            " print options
 set shiftwidth=4                       " number of spaces to use for each step of indent
 set showcmd                            " display incomplete commands in the bottom line of the screen
 set smartcase                          " ignore case if search pattern is all lowercase, case_sensitive otherwise
-set smartindent                        " smart autoindenting when starting a new line
+"set smartindent                        " smart autoindenting when starting a new line
 set tabstop=4                          " number of spaces that a <Tab> counts for
 set expandtab                          " Make vim use spaces and not tabs
 set undolevels=1000                    " never can be too careful when it comes to undoing 
