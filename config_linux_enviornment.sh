@@ -85,9 +85,11 @@ if [[ $answer = "Y" ]] ; then
     fi
     echo "Installing pyflakes for python error checking in vim"
     sudo apt-get install pyflakes
-    echo "Downloading and installing Installing Ack"
+    echo "Downloading and installing Ack"
     curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
     sudo mv ~/ack /usr/bin/ack
+    echo "Installing pip"
+    sudo apt-get install python-pip
 fi
 
 #==============
