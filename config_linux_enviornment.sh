@@ -70,14 +70,15 @@ if [[ $answer = "Y" ]] ; then
     cd ~/
     curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
     mv ~/git-completion.bash ~/.git-completion.bash
-    echo "Installing nodejs, npm and jshint for js error checking in vim"
-    # Currently I am only concerned about getting jshint working. It should
+    echo "Installing nodejs, npm and jshint for js error checking in vim, and coffee script"
+    # Currently I am not doing node development. It should
     # be noted that the Debian version fo nodejs is very out of date
     # so if node development is of interest it would be better to build 
     # from source
     sudo apt-get install nodejs
     sudo apt-get install npm
     sudo npm install -g jshint
+    sudo npm install -g coffee-script
     # jshint will look for node and it seems to be installed as
     # nodejs if that is the case we create a symlink
     if [ ! -f /usr/bin/node ]; then 
