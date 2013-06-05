@@ -3,7 +3,7 @@
 ; Purpose:      Makes emacs useful to me. I couldn't use it without it.
 ; Author:       Jarrod
 ; Notes:        Created using Emacs24
-; Time-stamp:   <05-15-2013 15:05:59 (jrock)>
+; Time-stamp:   <06-05-2013 11:56:16 (jrock)>
 ; Index:
 ; -------- #1:    -- Add plugin directories to the load path
 ; -------- #2:    -- Require Evil and set key bindings
@@ -265,7 +265,7 @@
 ;;====
 ;; #4.1 Font settings
 ;;====
-(set-face-attribute 'default nil :font "Consolas-13")
+(set-face-attribute 'default nil :font "Monospace-12")
 
 ;;====
 ;; #4.2 Highlight active line 
