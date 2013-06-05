@@ -8,6 +8,7 @@
 #       DESCRIPTION: Script installs all the packages that I use on the regular 
 #                    and creates symlinks in the users home folder to all of the 
 #                    dot files that we specify in the files variable found below.
+#                    Also deletes any existing links to these .dotfiles
 #     
 #             NOTES: For this to work you must have cloned the github repo to your 
 #                    home folder as ~/dotfiles/ 
@@ -24,6 +25,17 @@
 dir=~/dotfiles                         # Dotfiles directory
 files="bashrc vimrc vim emacs.d"       # List of files / folders to symlink in home folder
 log_file=~/install_progress_log.txt    # Does what it says on the tin
+
+#==============
+# Delete existing dot files and folders
+#==============
+echo "Would you like to delete any existing dot files (Y/n) => "; read answer
+if [[ $answer = "Y" ]] ; then
+    sudo rm -r ~/.emacs.d > /dev/null 2>&1
+    sudo rm -r ~/.vim > /dev/null 2>&1
+    sudo rm  ~/.vimrc > /dev/null 2>&1
+    sudo rm  ~/.bashrc > /dev/null 2>&1
+fi
 
 #==============
 # Change to the dotfiles directory
@@ -91,9 +103,11 @@ if [[ $answer = "Y" ]] ; then
     cd ~/
     git clone https://github.com/joyent/node
     cd node
-    ./configure --prefix=/usr/local
-    make
+    sudo ./configure --prefix=/usr/local
+    sudo make
     sudo make install
+    cd ~/
+    sudo rm -r node # Remove the node folder in the home directory
     echo "nodejs Installed" >> $log_file
 
     echo "Installing npm" >> $log_file
