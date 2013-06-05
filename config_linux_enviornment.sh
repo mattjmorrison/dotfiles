@@ -123,11 +123,11 @@ if [[ $answer = "Y" ]] ; then
     sudo npm install -g coffee-script
     echo "coffee script Installed" >> $log_file
 
-    # jshint will look for node and it seems to be installed as
-    # nodejs if that is the case we create a symlink
-    ##if [ ! -f /usr/bin/node ]; then 
-    ##    sudo ln -s /usr/bin/nodejs /usr/bin/node
-    ##fi
+    # node it seems is installed as nodejs in Mint if that 
+    # is the case we create a symlink to node
+    if [[ (! -f /usr/bin/node) && (-f /usr/bin/nodejs) ]]; then 
+        sudo ln -s /usr/bin/nodejs /usr/bin/node
+    fi
 
     echo "Installing pyflakes" >> $log_file
     sudo apt-get install pyflakes
