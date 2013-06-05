@@ -93,11 +93,12 @@ if [[ $answer = "Y" ]] ; then
     sudo apt-get install exuberant-ctags
     echo "exuberant-ctags Installed" >> $log_file
 
-    echo "Downloading and installing git-completion" >> $log_file
+    echo "Downloading and installing git-completion and git-prompt" >> $log_file
     cd ~/
     curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
     mv ~/git-completion.bash ~/.git-completion.bash
-    echo "git-completion Installed and Configured" >> $log_file
+    curl https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
+    echo "git-completion and git-prompt Installed and Configured" >> $log_file
 
     echo "Installing nodejs" >> $log_file
     cd ~/
