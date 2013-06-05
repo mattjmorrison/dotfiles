@@ -136,6 +136,7 @@ if [[ $answer = "Y" ]] ; then
     echo "Downloading and installing Ack" >> $log_file
     curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
     sudo mv ~/ack /usr/bin/ack
+    sudo chmod 755 /usr/bin/ack
     echo "Ack Downloaded and Installed" >> $log_file
 
     echo "Installing pip" >> $log_file
