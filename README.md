@@ -16,5 +16,5 @@ Installation
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
 cd ~/dotfiles 
-bash make_sym_links
+bash config_linux_environment.sh
 ```
