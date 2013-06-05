@@ -53,6 +53,7 @@ set nocompatible
  Bundle 'https://github.com/Lokaltog/vim-easymotion'
  Bundle 'https://github.com/scrooloose/syntastic'
  Bundle 'https://github.com/vim-scripts/UltiSnips'
+ Bundle 'https://github.com/kchmck/vim-coffee-script'
 "
 "===================================================================================
 " GENERAL SETTINGS
