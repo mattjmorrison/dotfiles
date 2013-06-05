@@ -44,6 +44,21 @@ echo -n "Changing to the $dir directory ..." >> $log_file
 cd $dir
 
 #==============
+# Create a .gitignore file for the dotfiles
+#==============
+echo "# Ignore all the files and folders in the bundle directory" >> .gitignore
+echo "vim/bundle/L9/*" >> .gitignore
+echo "vim/bundle/bash-support.vim/*" >> .gitignore
+echo "vim/bundle/vim-buffer-explorer-plugin/*" >> .gitignore
+echo "vim/bundle/" >> .gitignore
+echo "" >> .gitignore
+echo "# Ignore the auto complete files" >> .gitignore
+echo "emacs.d/ac-comphist.dat" >> .gitignore
+echo "" >> .gitignore
+echo "# Ignore auto save files" >> .gitignore
+echo "emacs.d/auto-save-list/*" >> .gitignore
+
+#==============
 # Create symlinks in the home folder to any files in the ~/dotfiles folder 
 # that we specified in $files variable.
 #==============
