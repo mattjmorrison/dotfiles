@@ -142,6 +142,14 @@ if [[ $answer = "Y" ]] ; then
     echo "Installing pip" >> $log_file
     sudo apt-get install python-pip
     echo "pip Installed" >> $log_file
+
+    echo "Installing bpython" >> $log_file
+    sudo apt-get install bpython
+    echo "bpython Installed" >> $log_file
+
+    echo "Installing bpython3" >> $log_file
+    sudo apt-get install bpython3
+    echo "bpython3 Installed" >> $log_file
 fi
 
 #==============
