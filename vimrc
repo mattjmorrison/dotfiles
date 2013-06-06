@@ -95,10 +95,12 @@ set history=50                         " keep 50 lines of command line history
 set hlsearch                           " highlight the last used search pattern
 set incsearch                          " do incremental searching
 "set list                              " Toggle manually with set list / set nolist or set list!
-set listchars=tab:>.,trail:@,nbsp:@    " strings to use in 'list' mode tabs >., trailing whitespace @ and invisible spaces @
+set listchars=""                       " Empty the listchars
+set listchars=tab:>.                   " A tab will be displayed as >...
+set listchars+=trail:.                 " Trailing white spaces will be displayed as .
 set mouse=a                            " enable the use of the mouse
 set nobackup                           " don't constantly write backup files
-set noerrorbells                       " don't beep 
+set noerrorbells                       " don't beep
 set nowrap                             " do not wrap lines
 set popt=left:8pc,right:3pc            " print options
 "set ruler                             " shows the cursor position all the time I have a custom status line for this
@@ -108,7 +110,7 @@ set smartcase                          " ignore case if search pattern is all lo
 "set smartindent                        " smart autoindenting when starting a new line
 set tabstop=4                          " number of spaces that a <Tab> counts for
 set expandtab                          " Make vim use spaces and not tabs
-set undolevels=1000                    " never can be too careful when it comes to undoing 
+set undolevels=1000                    " never can be too careful when it comes to undoing
 set visualbell                         " visual bell instead of beeping
 set wildignore=*.bak,*.o,*.e,*~,*.pyc  " wildmenu: ignore these extensions
 set wildmenu                           " command-line completion in an enhanced mode
