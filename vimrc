@@ -2,8 +2,6 @@
 "         FILE:  .vimrc
 "  DESCRIPTION:  An ever changing work in progress
 "       AUTHOR:  Jarrod Taylor
-"      CREATED:  06.19.2011
-"      UPDATED:  05.21.2013
 "===================================================================================
 "
 "-----------------------------------------------------------------------------------
@@ -37,7 +35,8 @@ set nocompatible
 " Github repos for bundles that we want to have installed
 "-----------------------------------------------------------------------------------
  Bundle 'https://github.com/mileszs/ack.vim'
- Bundle 'https://github.com/vim-scripts/AutoComplPop'
+"Bundle 'https://github.com/vim-scripts/AutoComplPop'
+ Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/skammer/vim-css-color'
  Bundle 'https://github.com/Raimondi/delimitMate'
@@ -195,11 +194,23 @@ let g:syntastic_check_on_open=1                " check for errors when file is l
 let g:syntastic_loc_list_height=5              " the height of the error list defaults to 10
 let g:syntastic_python_checker = 'pyflakes'    " sets pyflakes as the default for checking python files
 let g:syntastic_javascript_checker = 'jshint'  " sets jshint as our javascript linter
+"
 "-----------------------------------------------------------------------------------
 " UltiSnips configurations
 "-----------------------------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 " 
+"-----------------------------------------------------------------------------------
+" Neocomplcache configurations
+"-----------------------------------------------------------------------------------
+let g:neocomplcache_enable_at_startup=1
+
+" --- <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+"
 "===================================================================================
 " BUFFERS, WINDOWS
 "===================================================================================
