@@ -184,8 +184,9 @@ nnoremap <leader>sh :split<CR>
 nnoremap <leader>a :Ack!
 " --- Toggle Syntastic
 nnoremap <leader>ts :SyntasticToggleMode<CR>
-" --- Get python parameter information. I find this faster to type
-"inoremap <leader><space> <C-x><C-o>
+" --- Clear the search buffer and highlighted text with enter press
+:nnoremap <CR> :nohlsearch<cr>
+"
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
 "===================================================================================
