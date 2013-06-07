@@ -402,3 +402,8 @@ echo -e "${BRed}Kernel Information: \t${BBlue}" `uname -smr`
 echo -ne "${BGreen}$HOSTNAME ${BRed}uptime is: \t${BBlue} ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
 echo -e "${BWhite}"; cal -3
 }
+
+#------------------------------------------------------------------------------
+# Call banner when a new shell is opened
+#------------------------------------------------------------------------------
+banner()
