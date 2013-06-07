@@ -215,6 +215,22 @@ function! s:my_cr_function()
   return neocomplcache#smart_close_popup() . "\<CR>"
 endfunction
 "
+"-----------------------------------------------------------------------------------
+" Easy motion configurations
+"-----------------------------------------------------------------------------------
+" This changes the default behaviour of EasyMotion which is triggered with 
+" <leader><leader> if this conflicts with any other mappings it can be removed 
+" without impacting anything
+let g:EasyMotion_leader_key = '<leader>'
+"
+"-----------------------------------------------------------------------------------
+" Ctrlp configurations
+"-----------------------------------------------------------------------------------
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|bak)$',
+  \ 'file': '\v\.(pyc|git|swp)$',
+  \ }
+"
 "===================================================================================
 " BUFFERS, WINDOWS
 "===================================================================================
