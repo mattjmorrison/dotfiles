@@ -29,12 +29,27 @@ log_file=~/install_progress_log.txt    # Does what it says on the tin
 #==============
 # Delete existing dot files and folders
 #==============
-echo "Would you like to delete any existing dot files (Y/n) => "; read answer
+echo -n "Would you like to delete any existing dot files (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
     sudo rm -r ~/.emacs.d > /dev/null 2>&1
     sudo rm -r ~/.vim > /dev/null 2>&1
     sudo rm  ~/.vimrc > /dev/null 2>&1
     sudo rm  ~/.bashrc > /dev/null 2>&1
+fi
+
+#==============
+# Set git configuration
+#==============
+echo -n "Would you like to configure you git name and email? (Y/n) => "; read answer
+
+if [[ $answer = "Y" ]] ; then
+    IFS=""
+    echo -n "What is your git user name => "; read name
+    git config --global user.name $name
+    echo -n "What is your git email => "; read email
+    git config --global user.email $email
+
+    git config --global color.ui true
 fi
 
 #==============
@@ -63,7 +78,7 @@ echo "Vundle successfully cloned" >> $log_file
 #==============
 # Ask if user wants to install all the required and additional packages
 #==============
-echo "Would you like to install all additional packages for this setup (Y/n) => "; read answer
+echo -n "Would you like to install all additional packages for this setup (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
     echo "Installing Vim" >> $log_file
     sudo apt-get install vim-gnome
