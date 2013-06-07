@@ -35,7 +35,6 @@ set nocompatible
 " Github repos for bundles that we want to have installed
 "-----------------------------------------------------------------------------------
  Bundle 'https://github.com/mileszs/ack.vim'
-"Bundle 'https://github.com/vim-scripts/AutoComplPop'
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/skammer/vim-css-color'
@@ -43,7 +42,6 @@ set nocompatible
  Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
  Bundle 'https://github.com/JarrodCTaylor/vim-color-menu'
- Bundle 'https://github.com/widox/vim-buffer-explorer-plugin'
  Bundle 'https://github.com/tpope/vim-fugitive'
  " Must have exuberant-ctags for this to work
  Bundle 'https://github.com/majutsushi/tagbar'
@@ -53,6 +51,7 @@ set nocompatible
  Bundle 'https://github.com/scrooloose/syntastic'
  Bundle 'https://github.com/vim-scripts/UltiSnips'
  Bundle 'https://github.com/kchmck/vim-coffee-script'
+ Bundle 'https://github.com/kien/ctrlp.vim'
 "
 "===================================================================================
 " GENERAL SETTINGS
@@ -167,8 +166,10 @@ nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>tb :TagbarToggle<CR>
 " --- open a list of buffers and change to the number selected
 nnoremap <leader>t :buffers<CR>:buffer<Space>
-" --- open minibuffer explorer
-nnoremap <leader>b :BufExplorer<CR>
+" --- open CtrlP buffer explorer
+nnoremap <leader>b :CtrlPBuffer<CR>
+" --- open Ctrlp as a fuzzy finder
+nnoremap <leader>ff :CtrlP<CR>
 " --- Auto completion to get python parameter information
 inoremap <leader><space> <C-x><C-o>
 " --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
