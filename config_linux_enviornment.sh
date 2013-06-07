@@ -43,14 +43,12 @@ fi
 echo -n "Would you like to configure you git name and email? (Y/n) => "; read answer
 
 if [[ $answer = "Y" ]] ; then
-    IFS=""
     echo -n "What is your git user name => "; read name
-    git config --global user.name $name
+    git config --global user.name "$name"
     echo -n "What is your git email => "; read email
-    git config --global user.email $email
+    git config --global user.email "$email"
 
     git config --global color.ui true
-    unset IFS
 fi
 
 #==============
