@@ -50,6 +50,7 @@ if [[ $answer = "Y" ]] ; then
     git config --global user.email $email
 
     git config --global color.ui true
+    unset IFS
 fi
 
 #==============
