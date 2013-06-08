@@ -146,8 +146,8 @@ TEXT
 #  - adjust what is being grepped and displayed as the tempurature as needed
 #-------------------------------------------------------------------------------
     +-- ${font Monospace:style=Bold:size=10}CPU USAGE STATS${font}
-    |   `-- Core 1  Usage: ${cpu cpu1}% Temp: ${if_match ${execi 30 sensors | grep "Core 0" | cut -c18-19} < 40}${color}${else}${color2}$endif${if_match ${execi 30 sensors | grep "Core 0" | cut -c18-19} > 50}${color3}${else}$endif${execi 30 sensors | grep "Core 0" | cut -c18-19}°C${color}
-    |   `-- Core 2  Usage: ${cpu cpu2}% Temp: ${if_match ${execi 30 sensors | grep "Core 1" | cut -c18-19} < 40}${color}${else}${color2}$endif${if_match ${execi 30 sensors | grep "Core 1" | cut -c18-19} > 50}${color3}${else}$endif${execi 30 sensors | grep "Core 1" | cut -c18-19}°C${color}
+    |   `-- Core 1  Usage: ${cpu cpu1}% Temp: ${if_match ${execi 30 sensors | grep "Core 0" | cut -c18-19} < 50}${color}${else}${color2}$endif${if_match ${execi 30 sensors | grep "Core 0" | cut -c18-19} > 65}${color3}${else}$endif${execi 30 sensors | grep "Core 0" | cut -c18-19}°C${color}
+    |   `-- Core 2  Usage: ${cpu cpu2}% Temp: ${if_match ${execi 30 sensors | grep "Core 1" | cut -c18-19} < 50}${color}${else}${color2}$endif${if_match ${execi 30 sensors | grep "Core 1" | cut -c18-19} > 65}${color3}${else}$endif${execi 30 sensors | grep "Core 1" | cut -c18-19}°C${color}
     |
 #-------------------------------------------------------------------------------
 #  RAM & HDD STATS
