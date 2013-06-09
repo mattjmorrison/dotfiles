@@ -57,9 +57,9 @@ fi
 echo -n "Install desktop or laptop conky? (Desk/Lap) => "; read answer
 
 if [[ $answer = "Desk" ]] ; then
-    ln -s ~/dotfiles/_conkyrc_desktop ~/.conky
+    ln -s ~/dotfiles/_conkyrc_desktop ~/.conkyrc
 else
-    ln -s ~/dotfiles/_conkyrc_laptop ~/.conky
+    ln -s ~/dotfiles/_conkyrc_laptop ~/.conkyrc
 fi
 
 #==============
@@ -96,31 +96,31 @@ echo "Vundle successfully cloned" >> $log_file
 echo -n "Would you like to install all additional packages for this setup (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
     echo "Installing Vim" >> $log_file
-    sudo apt-get install vim-gnome
+    sudo apt-get -y install vim-gnome
     echo "Vim Installed" >> $log_file
 
     echo "Installing Emacs" >> $log_file
-    sudo apt-get install emacs24
+    sudo apt-get -y install emacs24
     echo "Emacs Installed" >> $log_file
 
     echo "Installing Keepassx" >> $log_file
-    sudo apt-get install keepassx
+    sudo apt-get -y install keepassx
     echo "Keepassx Installed" >> $log_file
 
     echo "Installing figlet" >> $log_file
-    sudo apt-get install figlet
+    sudo apt-get -y install figlet
     echo "figlet Installed" >> $log_file
 
     echo "Installing espeak" >> $log_file
-    sudo apt-get install espeak
+    sudo apt-get -y install espeak
     echo "espeak Installed" >> $log_file
 
     echo "Installing curl" >> $log_file
-    sudo apt-get install curl
+    sudo apt-get -y install curl
     echo "curl Installed" >> $log_file
 
     echo "Installing exuberant-ctags" >> $log_file
-    sudo apt-get install exuberant-ctags
+    sudo apt-get -y install exuberant-ctags
     echo "exuberant-ctags Installed" >> $log_file
 
     echo "Downloading and installing git-completion and git-prompt" >> $log_file
@@ -139,10 +139,17 @@ if [[ $answer = "Y" ]] ; then
     sudo make install
     cd ~/
     sudo rm -r node # Remove the node folder in the home directory
+
+    # node it seems is installed as nodejs in Mint if that 
+    # is the case we create a symlink to node
+    if [[ (! -f /usr/bin/node) && (-f /usr/bin/nodejs) ]]; then 
+        sudo ln -s /usr/bin/nodejs /usr/bin/node
+    fi
+
     echo "nodejs Installed" >> $log_file
 
     echo "Installing npm" >> $log_file
-    sudo apt-get install npm
+    sudo apt-get -y install npm
     echo "npm Installed" >> $log_file
     
     echo "Installing jshint" >> $log_file
@@ -153,14 +160,8 @@ if [[ $answer = "Y" ]] ; then
     sudo npm install -g coffee-script
     echo "coffee script Installed" >> $log_file
 
-    # node it seems is installed as nodejs in Mint if that 
-    # is the case we create a symlink to node
-    if [[ (! -f /usr/bin/node) && (-f /usr/bin/nodejs) ]]; then 
-        sudo ln -s /usr/bin/nodejs /usr/bin/node
-    fi
-
     echo "Installing pyflakes" >> $log_file
-    sudo apt-get install pyflakes
+    sudo apt-get -y install pyflakes
     echo "pyflakes Installed" >> $log_file
 
     echo "Downloading and installing Ack" >> $log_file
@@ -170,19 +171,19 @@ if [[ $answer = "Y" ]] ; then
     echo "Ack Downloaded and Installed" >> $log_file
 
     echo "Installing pip" >> $log_file
-    sudo apt-get install python-pip
+    sudo apt-get -y install python-pip
     echo "pip Installed" >> $log_file
 
     echo "Installing bpython" >> $log_file
-    sudo apt-get install bpython
+    sudo apt-get -y install bpython
     echo "bpython Installed" >> $log_file
 
     echo "Installing bpython3" >> $log_file
-    sudo apt-get install bpython3
+    sudo apt-get -y install bpython3
     echo "bpython3 Installed" >> $log_file
 
     echo "Installing conky" >> $log_file
-    sudo apt-get install conky
+    sudo apt-get -y install conky
     echo "conkey Installed" >> $log_file
 fi
 
