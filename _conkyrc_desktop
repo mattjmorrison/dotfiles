@@ -140,6 +140,7 @@ TEXT
  ── ${font Monospace:style=Bold:size=12}${nodename}${font}
     ├── ${font Monospace:style=Bold:size=10}UPTIME${font}
     │   └── ${uptime}${font}
+    │ 
 #-------------------------------------------------------------------------------
 #  CPU USAGE STATS 
 #  - Adjust number of cpu's as needed
