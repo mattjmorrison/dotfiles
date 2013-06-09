@@ -52,6 +52,22 @@ if [[ $answer = "Y" ]] ; then
 fi
 
 #==============
+# Select which conky to symlink
+#==============
+echo -n "Install desktop or laptop conky? (Desk/Lap) => "; read answer
+
+if [[ $answer = "Desk" ]] ; then
+    ln -s ~/dotfiles/_conkyrc_desktop ~/.conky
+else
+    ln -s ~/dotfiles/_conkyrc_laptop ~/.conky
+fi
+
+#==============
+# Set the desktop wallpaper
+#==============
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/wallpaper.png
+
+#==============
 # Change to the dotfiles directory
 #==============
 echo -n "Changing to the $dir directory ..." >> $log_file
@@ -164,6 +180,10 @@ if [[ $answer = "Y" ]] ; then
     echo "Installing bpython3" >> $log_file
     sudo apt-get install bpython3
     echo "bpython3 Installed" >> $log_file
+
+    echo "Installing conky" >> $log_file
+    sudo apt-get install conky
+    echo "conkey Installed" >> $log_file
 fi
 
 #==============
