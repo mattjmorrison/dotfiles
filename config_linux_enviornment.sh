@@ -5,10 +5,10 @@
 #     
 #             USAGE: ./config_linux_environment.sh 
 #     
-#       DESCRIPTION: Script installs all the packages that I use on the regular 
-#                    and creates symlinks in the users home folder to all of the 
-#                    dot files that we specify in the files variable found below.
-#                    Also deletes any existing links to these .dotfiles
+#       DESCRIPTION: This script sets up a fresh install of (Mint) to my desired 
+#                    configurations. Everything installed and configured the way 
+#                    I like it
+#                    
 #     
 #             NOTES: For this to work you must have cloned the github repo to your 
 #                    home folder as ~/dotfiles/ 
@@ -22,7 +22,7 @@
 #==============
 # Variables
 #==============
-dir=~/dotfiles                         # Dotfiles directory
+dotfiles_dir=~/dotfiles                # Dotfiles directory
 files="bashrc vimrc vim emacs.d"       # List of files / folders to symlink in home folder
 log_file=~/install_progress_log.txt    # Does what it says on the tin
 
@@ -70,8 +70,7 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/wal
 #==============
 # Change to the dotfiles directory
 #==============
-echo -n "Changing to the $dir directory ..." >> $log_file
-cd $dir
+cd $dotfiles_dir
 
 #==============
 # Create symlinks in the home folder to any files in the ~/dotfiles folder 
@@ -79,14 +78,13 @@ cd $dir
 #==============
 for file in $files; do
     echo "Creating symlink to $file in $HOME" >> $log_file
-    ln -s $dir/$file ~/.$file
+    ln -s $dotfiles_dir/$file ~/.$file
 done
 
 #==============
 # Clone vundle so we can update vim plugins when we open it 
 # the first time
 #==============
-echo "Cloning vundle to manage vim plugins" >> $log_file
 git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 echo "Vundle successfully cloned" >> $log_file
 
@@ -95,42 +93,68 @@ echo "Vundle successfully cloned" >> $log_file
 #==============
 echo -n "Would you like to install all additional packages for this setup (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
-    echo "Installing Vim" >> $log_file
+
     sudo apt-get -y install vim-gnome
-    echo "Vim Installed" >> $log_file
+    if type -p vim > /dev/null; then
+        echo "Vim Installed" >> $log_file
+    else
+        echo "Vim FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing Emacs" >> $log_file
     sudo apt-get -y install emacs24
-    echo "Emacs Installed" >> $log_file
+    if type -p emacs > /dev/null; then
+        echo "Emacs Installed" >> $log_file
+    else
+        echo "Emacs FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing Keepassx" >> $log_file
     sudo apt-get -y install keepassx
-    echo "Keepassx Installed" >> $log_file
+    if type -p keepassx > /dev/null; then
+        echo "Keepassx Installed" >> $log_file
+    else
+        echo "Keepassx FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing figlet" >> $log_file
     sudo apt-get -y install figlet
-    echo "figlet Installed" >> $log_file
+    if type -p figlet > /dev/null; then
+        echo "figlet Installed" >> $log_file
+    else
+        echo "figlet FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing espeak" >> $log_file
     sudo apt-get -y install espeak
-    echo "espeak Installed" >> $log_file
+    if type -p espeak > /dev/null; then
+        echo "espeak Installed" >> $log_file
+    else
+        echo "espeak FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing curl" >> $log_file
     sudo apt-get -y install curl
-    echo "curl Installed" >> $log_file
+    if type -p curl > /dev/null; then
+        echo "curl Installed" >> $log_file
+    else
+        echo "crul FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing exuberant-ctags" >> $log_file
     sudo apt-get -y install exuberant-ctags
-    echo "exuberant-ctags Installed" >> $log_file
+    if type -p ctags-exuberant > /dev/null; then
+        echo "exuberant-ctags Installed" >> $log_file
+    else
+        echo "exuberant-ctags FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Downloading and installing git-completion and git-prompt" >> $log_file
+    # ---
+    # Install git-completion and git-prompt
+    # ---
     cd ~/
     curl -OL https://github.com/git/git/raw/master/contrib/completion/git-completion.bash
     mv ~/git-completion.bash ~/.git-completion.bash
     curl https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
     echo "git-completion and git-prompt Installed and Configured" >> $log_file
 
-    echo "Installing nodejs" >> $log_file
+    # ---
+    # Install node
+    # ---
     cd ~/
     git clone https://github.com/joyent/node
     cd node
@@ -146,45 +170,76 @@ if [[ $answer = "Y" ]] ; then
         sudo ln -s /usr/bin/nodejs /usr/bin/node
     fi
 
-    echo "nodejs Installed" >> $log_file
+    if type -p node > /dev/null; then
+        echo -n "Node version: "; echo -n `node --version`; echo " Installed" >> $log_file
+    else
+        echo "node FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing npm" >> $log_file
     sudo apt-get -y install npm
-    echo "npm Installed" >> $log_file
+    if type -p npm > /dev/null; then
+        echo "npm Installed" >> $log_file
+    else
+        echo "npm FAILED TO INSTALL!!!" >> $log_file
+    fi
     
-    echo "Installing jshint" >> $log_file
     sudo npm install -g jshint
-    echo "jshint Installed" >> $log_file
+    if type -p jshint > /dev/null; then
+        echo "jshint Installed" >> $log_file
+    else
+        echo "jshint FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing coffee script" >> $log_file
     sudo npm install -g coffee-script
-    echo "coffee script Installed" >> $log_file
+    if type -p coffee > /dev/null; then
+        echo "coffee script Installed" >> $log_file
+    else
+        echo "coffee script FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing pyflakes" >> $log_file
     sudo apt-get -y install pyflakes
-    echo "pyflakes Installed" >> $log_file
+    if type -p pyflakes > /dev/null; then
+        echo "pyflakes Installed" >> $log_file
+    else
+        echo "pyflakes FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Downloading and installing Ack" >> $log_file
     curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
     sudo mv ~/ack /usr/bin/ack
     sudo chmod 755 /usr/bin/ack
-    echo "Ack Downloaded and Installed" >> $log_file
+    if type -p ack > /dev/null; then
+        echo "Ack Downloaded and Installed" >> $log_file
+    else
+        echo "Ack FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing pip" >> $log_file
     sudo apt-get -y install python-pip
-    echo "pip Installed" >> $log_file
+    if type -p pip > /dev/null; then
+        echo "pip Installed" >> $log_file
+    else
+        echo "pip FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing bpython" >> $log_file
     sudo apt-get -y install bpython
-    echo "bpython Installed" >> $log_file
+    if type -p bpython > /dev/null; then
+        echo "bpython Installed" >> $log_file
+    else
+        echo "bpython FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing bpython3" >> $log_file
     sudo apt-get -y install bpython3
-    echo "bpython3 Installed" >> $log_file
+    if type -p bpython3 > /dev/null; then
+        echo "bpython3 Installed" >> $log_file
+    else
+        echo "bpython3 FAILED TO INSTALL!!!" >> $log_file
+    fi
 
-    echo "Installing conky" >> $log_file
     sudo apt-get -y install conky
-    echo "conkey Installed" >> $log_file
+    if type -p conky > /dev/null; then
+        echo "conky Installed" >> $log_file
+    else
+        echo "conky FAILED TO INSTALL!!!" >> $log_file
+    fi
 fi
 
 #==============
