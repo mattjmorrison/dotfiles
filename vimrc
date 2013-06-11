@@ -52,6 +52,7 @@ set nocompatible
  Bundle 'https://github.com/vim-scripts/UltiSnips'
  Bundle 'https://github.com/kchmck/vim-coffee-script'
  Bundle 'https://github.com/kien/ctrlp.vim'
+ Bundle 'https://github.com/tpope/vim-commentary'
 "
 "===================================================================================
 " GENERAL SETTINGS
