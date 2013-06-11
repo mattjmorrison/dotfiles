@@ -73,7 +73,7 @@ if has("gui_running")
 	set antialias
 else 
 	set t_Co=256
-    colorscheme evening
+    colorscheme zenburn
 endif
 "
 "-----------------------------------------------------------------------------------

@@ -22,9 +22,9 @@
 #==============
 # Variables
 #==============
-dotfiles_dir=~/dotfiles                # Dotfiles directory
-files="bashrc vimrc vim emacs.d"       # List of files / folders to symlink in home folder
-log_file=~/install_progress_log.txt    # Does what it says on the tin
+dotfiles_dir=~/dotfiles                           # Dotfiles directory
+files="bashrc vimrc vim emacs.d tmux tmux.conf"   # List of files / folders to symlink in home folder
+log_file=~/install_progress_log.txt               # Does what it says on the tin
 
 #==============
 # Delete existing dot files and folders
@@ -239,6 +239,13 @@ if [[ $answer = "Y" ]] ; then
         echo "conky Installed" >> $log_file
     else
         echo "conky FAILED TO INSTALL!!!" >> $log_file
+    fi
+
+    sudo apt-get -y install tmux
+    if type -p tmux > /dev/null; then
+        echo "tmux Installed" >> $log_file
+    else
+        echo "tmux FAILED TO INSTALL!!!" >> $log_file
     fi
 fi
 
