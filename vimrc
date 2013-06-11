@@ -73,7 +73,7 @@ if has("gui_running")
 	set antialias
 else 
 	set t_Co=256
-	colorscheme zenburn
+    colorscheme evening
 endif
 "
 "-----------------------------------------------------------------------------------
@@ -116,6 +116,20 @@ set wildmenu                           " command-line completion in an enhanced 
 "
 "-----------------------------------------------------------------------------------
 " My pimped out status line
+"-----------------------------------------------------------------------------------
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Green ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+"
 "-----------------------------------------------------------------------------------
 set laststatus=2                " Make the second to last line of vim our status line
 set statusline=%F                            " File path
@@ -194,10 +208,10 @@ nnoremap <leader>ts :SyntasticToggleMode<CR>
 "-----------------------------------------------------------------------------------
 " Syntastic configurations use :help syntastic.txt
 "-----------------------------------------------------------------------------------
-let g:syntastic_check_on_open=1                " check for errors when file is loaded
-let g:syntastic_loc_list_height=5              " the height of the error list defaults to 10
-let g:syntastic_python_checker = 'pyflakes'    " sets pyflakes as the default for checking python files
-let g:syntastic_javascript_checker = 'jshint'  " sets jshint as our javascript linter
+let g:syntastic_check_on_open=1                   " check for errors when file is loaded
+let g:syntastic_loc_list_height=5                 " the height of the error list defaults to 10
+let g:syntastic_python_checkers = ['pyflakes']    " sets pyflakes as the default for checking python files
+let g:syntastic_javascript_checkers = ['jshint']  " sets jshint as our javascript linter
 "
 "-----------------------------------------------------------------------------------
 " UltiSnips configurations
