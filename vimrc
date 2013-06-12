@@ -118,20 +118,6 @@ set wildmenu                           " command-line completion in an enhanced 
 "-----------------------------------------------------------------------------------
 " My pimped out status line
 "-----------------------------------------------------------------------------------
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Green ctermfg=6 guifg=Black ctermbg=0
-  elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-"
-"-----------------------------------------------------------------------------------
 set laststatus=2                " Make the second to last line of vim our status line
 set statusline=%F                            " File path
 set statusline+=%m%r%h%w                     " Flags
@@ -148,6 +134,24 @@ set statusline+=%#warningmsg#                " Highlights the syntastic errors i
 set statusline+=%{SyntasticStatuslineFlag()} " Adds the line number and error count
 set statusline+=%*                           " Fill the width of the vim window
 "
+"-----------------------------------------------------------------------------------
+" Change the background color of the status line based on the mode. 
+" Insert mode = Green, Replace = Purple, command = Gray
+"-----------------------------------------------------------------------------------
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Green ctermfg=34 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=DarkRed ctermfg=124 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+"
+"-----------------------------------------------------------------------------------
 "-----------------------------------------------------------------------------------
 " Turn off the toolbar that is under the menu in gvim
 "-----------------------------------------------------------------------------------
