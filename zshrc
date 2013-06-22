@@ -146,10 +146,10 @@ fi
 #-------------------------------------------------------------------------------
 # Automatically do an ls after each cd
 #-------------------------------------------------------------------------------
-function chpwd() {
-    emulate -L zsh
-    ls --group-directories-first --color
-}
+# function chpwd() {
+#     emulate -L zsh
+#     ls --group-directories-first --color
+# }
 
 #===============================================================================
 #  Aliases
