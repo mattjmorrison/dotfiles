@@ -84,6 +84,11 @@ export LC_ALL=$LANG
 export LC_COLLATE=C
 
 #-------------------------------------------------------------------------------
+# Set grepoptions
+#-------------------------------------------------------------------------------
+export GREP_OPTIONS='--color=auto'
+
+#-------------------------------------------------------------------------------
 # Editor and display configurations
 #-------------------------------------------------------------------------------
 export EDITOR='vim'
@@ -100,6 +105,12 @@ export BROWSER='chromium-browser'
 #-------------------------------------------------------------------------------
 export WINEDEBUG=-all
 
+#-------------------------------------------------------------------------------
+# Specify virtualenv directories
+#-------------------------------------------------------------------------------
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/VirtualDevEnvs
+source /usr/local/bin/virtualenvwrapper.sh
 
 #-------------------------------------------------------------------------------
 #
@@ -145,6 +156,7 @@ function chpwd() {
 #===============================================================================
 alias ls='ls -F --color'
 alias ll='ls -lh'
+alias la='ls -la'
 alias lls='ll -Sr'
 alias less='less -imJMW'
 alias update='sudo apt-get update && sudo apt-get upgrade'
@@ -156,6 +168,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 
 #===============================================================================
 # FUNCTIONS
@@ -212,32 +225,38 @@ echo -ne $fg[green]"$HOST $fg[red]uptime is: \t "$fg[blue];uptime | awk /'up/ {p
 echo -e  $fg[white];cal -3
 }
 
-
-#------------------------------------------------------------------------------
-# work on virtualenv
-#------------------------------------------------------------------------------
-function workon(){
-    local vchkdirs
-
-    for vchkdirs in $1/bin/activate $SRCDIR/$1/bin/activate ; do
-        if [[ -f $vchkdirs ]] ; then
-            source $vchkdirs
-            break
-        fi
-    done
-
-    [[ -n $VIRTUAL_ENV ]] || error 1 "virtualenv activate script not found"
-
-    VIRTUAL_ENV_LIB="$(python -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')"
-    alias cdsitepackages="cd $VIRTUAL_ENV_LIB"
-}
-
 #------------------------------------------------------------------------------
 # Because, well I need to spell check a lot :\
 #------------------------------------------------------------------------------
 spell (){
     echo $1 | aspell -a
 }
+
+#------------------------------------------------------------------------------
+# Auto activate virtualenv's when we cd into a directory that has one
+# This kind of works but I am not sure of its value
+#------------------------------------------------------------------------------
+# virtualenv_auto_activate() {
+#       if [ -e ".venv" ]; then
+#           # Check to see if already activated to avoid redundant activating
+#           if [ "$VIRTUAL_ENV" = "" ]; then
+#               _VENV_NAME=$(basename `pwd`)
+#               echo Activating virtualenv \"$_VENV_NAME\"...
+#               VIRTUAL_ENV_DISABLE_PROMPT=1
+#               source .venv/bin/activate
+#            fi
+#      else
+#        if [ "$VIRTUAL_ENV" != "" ]; then
+#          echo deactivating VirtualEnv
+#          deactivate
+#        fi
+#      fi
+#    }
+
+# venv_cd () {
+#     cd "$@" && virtualenv_auto_activate
+# }
+# alias cd="venv_cd"
 
 #------------------------------------------------------------------------------
 # Run precmd functions so we get our pimped out prompt
