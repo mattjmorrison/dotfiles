@@ -35,6 +35,9 @@ if [[ $answer = "Y" ]] ; then
     sudo rm -r ~/.vim > /dev/null 2>&1
     sudo rm  ~/.vimrc > /dev/null 2>&1
     sudo rm  ~/.bashrc > /dev/null 2>&1
+    sudo rm  ~/.tmux > /dev/null 2>&1
+    sudo rm  ~/.tmux.conf > /dev/null 2>&1
+    sudo rm  ~/.conkyrc > /dev/null 2>&1
 fi
 
 #==============
