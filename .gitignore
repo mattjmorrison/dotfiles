@@ -1,9 +1,17 @@
 # Ignore all the files and folders in the bundle directory
+vim/bundle/
 vim/bundle/L9/*
 vim/bundle/AutoComplPop/*
 vim/bundle/bash-support.vim/*
 vim/bundle/vim-buffer-explorer-plugin/*
-vim/bundle/
+vim/bundle/delimitMate/*
+vim/bundle/supertab/*
+vim/bundle/syntastic/*
+vim/bundle/tagbar/*
+vim/bundle/vim-fugitive/*
+vim/bundle/vim-javascript/*
+vim/bundle/vundle/*
+
 
 # Ignore the auto complete files
 emacs.d/ac-comphist.dat
