@@ -15,15 +15,12 @@
 #
 #            AUTHOR: Jarrod Taylor
 #
-# MAINTENANCE NOTES: To add additional files/folders to be symlinked all that is 
-#                    needed is to include their names in the files variable.
 #===============================================================================
 
 #==============
 # Variables
 #==============
 dotfiles_dir=~/dotfiles                           # Dotfiles directory
-files="bashrc vimrc vim emacs.d tmux tmux.conf"   # List of files / folders to symlink in home folder
 log_file=~/install_progress_log.txt               # Does what it says on the tin
 
 #==============
@@ -39,6 +36,21 @@ if [[ $answer = "Y" ]] ; then
     sudo rm  ~/.tmux.conf > /dev/null 2>&1
     sudo rm  ~/.conkyrc > /dev/null 2>&1
 fi
+
+#==============
+# Create symlinks in the home folder
+#==============
+echo "Creating symlink to $file in $HOME" >> $log_file
+ln -s $dotfiles_dir/vimrc ~/.vimrc
+ln -s $dotfiles_dir/bashrc ~/.bashrc
+ln -s $dotfiles_dir/vim ~/.vim/
+ln -s $dotfiles_dir/emacs.d ~/.emacs.d/
+ln -s $dotfiles_dir/tmux ~/.tmux/
+ln -s $dotfiles_dir/tmux.conf ~/.tmux.conf
+ln -s $dotfiles_dir/zsh-syntax-highlighting.zsh
+ln -s $dotfiles_dir/zsh_prompt ~/.zsh_prompt
+ln -s $dotfiles_dir/zshrc ~/.zshrc
+ln -s $dotfiles_dir/highlighters ~/highlighters/
 
 #==============
 # Set git configuration
@@ -74,15 +86,6 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/wal
 # Change to the dotfiles directory
 #==============
 cd $dotfiles_dir
-
-#==============
-# Create symlinks in the home folder to any files in the ~/dotfiles folder 
-# that we specified in $files variable.
-#==============
-for file in $files; do
-    echo "Creating symlink to $file in $HOME" >> $log_file
-    ln -s $dotfiles_dir/$file ~/.$file
-done
 
 #==============
 # Clone vundle so we can update vim plugins when we open it 
@@ -249,6 +252,13 @@ if [[ $answer = "Y" ]] ; then
         echo "tmux Installed" >> $log_file
     else
         echo "tmux FAILED TO INSTALL!!!" >> $log_file
+    fi
+
+    sudo pip install virtualenvwrapper
+    if type -p virtualenvwrapper > /dev/null; then
+        echo "virtualenvwrapper Installed" >> $log_file
+    else
+        echo "virtualenvwrapper FAILED TO INSTALL!!!" >> $log_file
     fi
 fi
 
