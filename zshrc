@@ -28,6 +28,7 @@ local -a precmd_functions
 setopt  auto_cd                 
 # Make cd push the old directory onto the directory stack. 
 setopt  auto_pushd              
+# Safty for overwriting files use >| instead of > to over write files
 setopt  noclobber               
 # Prevents aliases on the command line from being internally substituted before 
 # completion is attempted. The effect is to make the alias a distinct command 
