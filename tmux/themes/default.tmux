@@ -16,5 +16,5 @@ set -g status-left '#[fg=colour235,bg=colour252,bold]'
 set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour39]#[fg=colour25,bg=colour39,noreverse,bold] #I #W #[fg=colour39,bg=colour234,nobold]"
 
-set -g status-right '#[bg=colour240,fg=white]#(hostname)@#(host `hostname` | cut -d " " -f 4) #[bg=white,fg=colour240] %H:%M #[bg=colour240,fg=white] %Y-%m-%d '
+set -g status-right '#[bg=colour240,fg=white]#(hostname)@#(hostname -I | cut -d " " -f 1) #[bg=white,fg=colour240] %H:%M #[bg=colour240,fg=white] %Y-%m-%d '
 set -g status-utf8 on
