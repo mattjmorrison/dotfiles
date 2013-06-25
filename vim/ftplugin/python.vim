@@ -20,7 +20,10 @@ map <buffer> <F3> :!/usr/bin/python3 %
 map <buffer> <F2> :!/usr/bin/python2.7 % 
 
 " Color the 80th column as a reminder of proper line length
-set colorcolumn=80
+set colorcolumn=120
 highlight colorcolumn ctermbg=7
 highlight ColorColumn guibg=thistle4
 " highlight ColorColumn ctermbg=green guibg=orange
+
+" Python mode plugin turns numbers on by default
+set nonumber
