@@ -53,6 +53,7 @@ set nocompatible
  Bundle 'https://github.com/kchmck/vim-coffee-script'
  Bundle 'https://github.com/kien/ctrlp.vim'
  Bundle 'https://github.com/tpope/vim-commentary'
+ Bundle 'https://github.com/davidhalter/jedi-vim'
 "
 "===================================================================================
 " GENERAL SETTINGS
@@ -152,7 +153,6 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 "
 "-----------------------------------------------------------------------------------
-"-----------------------------------------------------------------------------------
 " Turn off the toolbar that is under the menu in gvim
 "-----------------------------------------------------------------------------------
 set guioptions-=T
@@ -206,6 +206,10 @@ nnoremap <leader>a :Ack!
 nnoremap <leader>ts :SyntasticToggleMode<CR>
 " --- Clear the search buffer and highlighted text with enter press
 :nnoremap <CR> :nohlsearch<cr>
+" --- Search the ctags index file for anything by class or method name
+map <leader>fs :CtrlPTag<CR>
+" --- Re-index the ctags file
+nnoremap <leader>ri :call RenewTagsFile()<cr>
 "
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
@@ -227,12 +231,13 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 " Neocomplcache configurations
 "-----------------------------------------------------------------------------------
 let g:neocomplcache_enable_at_startup=1
-
-" --- <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
+" To make compatible with jedi
+autocmd FileType python setlocal omnifunc=jedi#complete
+let g:jedi#auto_vim_configuration = 0
+if !exists('g:neocomplcache_force_omni_patterns')
+      let g:neocomplcache_force_omni_patterns = {}
+  endif
+let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 "
 "-----------------------------------------------------------------------------------
 " Ctrlp configurations
@@ -242,6 +247,19 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(pyc|git|swp)$',
   \ }
 "
+"-----------------------------------------------------------------------------------
+" Exuberant ctags configurations
+"-----------------------------------------------------------------------------------
+" Enable ctags support
+set tags=./.ctags,.ctags;
+
+"-----------------------------------------------------------------------------------
+" Jedi configurations
+"-----------------------------------------------------------------------------------
+let g:jedi#goto_command = "<leader>j"
+let g:jedi#get_definition_command = "<leader>gd"
+let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
+
 "===================================================================================
 " BUFFERS, WINDOWS
 "===================================================================================
@@ -265,3 +283,14 @@ if has("autocmd")
         \ endif
 endif " has("autocmd")
 "
+"===================================================================================
+" Misc Functions
+"===================================================================================
+"
+function! RenewTagsFile()
+    exe 'silent !rm -rf .ctags'
+    exe 'silent !coffeetags --include-vars -Rf .ctags'
+    exe 'silent !ctags -a -Rf .ctags --languages=python --python-kinds=-iv --exclude=build --exclude=dist ' . system('python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"')''
+    exe 'silent !ctags -a -Rf .ctags --extra=+f --exclude=.git --languages=python --python-kinds=-iv --exclude=build --exclude=dist 2>/dev/null'
+    exe 'redraw!'
+endfunction
