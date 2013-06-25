@@ -260,7 +260,19 @@ if [[ $answer = "Y" ]] ; then
     else
         echo "virtualenvwrapper FAILED TO INSTALL!!!" >> $log_file
     fi
+
+    sudo pip install jedi
+    if type -p jedi > /dev/null; then
+        echo "jedi Installed" >> $log_file
+    else
+        echo "jedi FAILED TO INSTALL!!!" >> $log_file
+    fi
 fi
+
+#==============
+# Set zsh as the default shell
+#==============
+sudo chsh -s /bin/zsh
 
 #==============
 # Give the user a summary of what has been installed
