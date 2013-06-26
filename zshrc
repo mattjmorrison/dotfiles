@@ -1,7 +1,7 @@
 #!/bin/zsh
 #===============================================================================
 #
-#          FILE:  .zshrc
+#          FILE: .zshrc
 # 
 #   DESCRIPTION: Configure zsh in a pleasing manner
 # 
@@ -177,7 +177,6 @@ alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 # FUNCTIONS
 #===============================================================================
 
-
 #-------------------------------------------------------------------------------
 #  Python webserver: cd into a directory you want to share and then 
 #                    type webshare. You will be able to connect to that directory
@@ -260,6 +259,41 @@ spell (){
 #     cd "$@" && virtualenv_auto_activate
 # }
 # alias cd="venv_cd"
+
+#-------------------------------------------------------------------
+# Search for running processes
+# -------------------------------------------------------------------
+any() {
+    emulate -L zsh
+    unsetopt KSH_ARRAYS
+    if [[ -z "$1" ]] ; then
+        echo "any - grep for process(es) by keyword" >&2
+        echo "Usage: any " >&2 ; return 1
+    else
+        echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+        ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
+    fi
+}
+
+# -------------------------------------------------------------------
+# Display a neatly formatted path good for debugging
+# -------------------------------------------------------------------
+path() {
+echo $PATH | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
+           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
+           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
+           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
+           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
+           print }"
+  }
+
+#-------------------------------------------------------------------
+# Displays mounted drive information in a nicely formatted manner
+# -------------------------------------------------------------------
+function nicemount() { 
+    (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ; 
+}
 
 #------------------------------------------------------------------------------
 # Run precmd functions so we get our pimped out prompt
