@@ -35,22 +35,26 @@ if [[ $answer = "Y" ]] ; then
     sudo rm  ~/.tmux > /dev/null 2>&1
     sudo rm  ~/.tmux.conf > /dev/null 2>&1
     sudo rm  ~/.conkyrc > /dev/null 2>&1
+    sudo rm  -r ~/highlighters > /dev/null 2>&1
+    sudo rm  ~/.zsh_prompt > /dev/null 2>&1
+    sudo rm  ~/zsh-syntax-highlighting.zsh > /dev/null 2>&1
+    sudo rm  ~/.zshrc > /dev/null 2>&1
 fi
 
 #==============
 # Create symlinks in the home folder
 #==============
 echo "Creating symlink to $file in $HOME" >> $log_file
+ln -s $dotfiles_dir/emacs.d ~/.emacs.d
+ln -s $dotfiles_dir/vim ~/.vim
 ln -s $dotfiles_dir/vimrc ~/.vimrc
 ln -s $dotfiles_dir/bashrc ~/.bashrc
-ln -s $dotfiles_dir/vim ~/.vim/
-ln -s $dotfiles_dir/emacs.d ~/.emacs.d/
-ln -s $dotfiles_dir/tmux ~/.tmux/
+ln -s $dotfiles_dir/tmux ~/.tmux
 ln -s $dotfiles_dir/tmux.conf ~/.tmux.conf
-ln -s $dotfiles_dir/zsh-syntax-highlighting.zsh
+ln -s $dotfiles_dir/highlighters ~/highlighters
 ln -s $dotfiles_dir/zsh_prompt ~/.zsh_prompt
+ln -s $dotfiles_dir/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
 ln -s $dotfiles_dir/zshrc ~/.zshrc
-ln -s $dotfiles_dir/highlighters ~/highlighters/
 
 #==============
 # Set git configuration
