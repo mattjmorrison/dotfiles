@@ -79,6 +79,13 @@ if [[ $answer = "Desk" ]] ; then
     ln -s ~/dotfiles/_conkyrc_desktop ~/.conkyrc
 else
     ln -s ~/dotfiles/_conkyrc_laptop ~/.conkyrc
+    # Used to get battery status
+    sudo apt-get -y install acpi
+    if type -p acpi > /dev/null; then
+        echo "acpi Installed" >> $log_file
+    else
+        echo "acpi FAILED TO INSTALL!!!" >> $log_file
+    fi
 fi
 
 #==============
