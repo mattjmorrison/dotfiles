@@ -220,7 +220,7 @@ function mem_usage() {
 #-------------------------------------------------------------------------------
 function banner() {
 echo -e  $fg[yellow];figlet " #winning!";
-echo -ne $fg[red]"Public IP address:\t" $fg[blue]`wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
+# echo -ne $fg[red]"Public IP address:\t" $fg[blue]`wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
 echo -ne $fg[red]"Primary local IP:\t" $fg[blue]`hostname -I | cut -d " " -f 1`; echo ""
 echo -e  $fg[red]"Kernel Information: \t" $fg[blue]`uname -smr`
 echo -ne $fg[green]"$HOST $fg[red]uptime is: \t "$fg[blue];uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'

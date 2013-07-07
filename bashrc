@@ -397,7 +397,7 @@ function mem_usage() {
 #-------------------------------------------------------------------------------
 function banner() {
 echo -e "${BYellow}";figlet " #winning!";
-echo -ne "${BRed}Public IP address:\t${BBlue}" `wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
+# echo -ne "${BRed}Public IP address:\t${BBlue}" `wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
 echo -ne "${BRed}Primary local IP:\t${BBlue}" `hostname -I | cut -d " " -f 1`; echo ""
 echo -e "${BRed}Kernel Information: \t${BBlue}" `uname -smr`
 echo -ne "${BGreen}$HOSTNAME ${BRed}uptime is: \t${BBlue} ";uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
