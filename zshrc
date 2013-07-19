@@ -1,13 +1,4 @@
 #!/bin/zsh
-#===============================================================================
-#
-#          FILE: .zshrc
-# 
-#   DESCRIPTION: Configure zsh in a pleasing manner
-# 
-#        AUTHOR: Jarrod Taylor
-#       CREATED: 06/21/2013
-#===============================================================================
 
 #-------------------------------------------------------------------------------
 # Autoload colors and tab completion
@@ -25,48 +16,48 @@ local -a precmd_functions
 # Set the desired setup options man zshoptions
 #-------------------------------------------------------------------------------
 # If command can't be executed, and command is name of a directory, cd to directory
-setopt  auto_cd                 
+setopt  auto_cd
 # Make cd push the old directory onto the directory stack. 
-setopt  auto_pushd              
+setopt  auto_pushd
 # Safty for overwriting files use >| instead of > to over write files
-setopt  noclobber               
+setopt  noclobber
 # Prevents aliases on the command line from being internally substituted before 
 # completion is attempted. The effect is to make the alias a distinct command 
 # for completion purposes.
-setopt  complete_aliases        
+setopt  complete_aliases
 # Treat the #, ~ and ^ characters as part of patterns for filename 
 # generation, etc.  (An initial unquoted `~' always produces named directory 
 # expansion.)
-setopt  extended_glob           
+setopt  extended_glob
 # If a new command line being added to the history list duplicates an older one, 
 # the older command is removed from the list (even if it is not the pre‐ vious event). 
-setopt  hist_ignore_all_dups    
+setopt  hist_ignore_all_dups
 #  Remove command lines from the history list when the first character on the line 
 #  is a space, or when one of the expanded aliases contains a leading space.
-setopt  hist_ignore_space       
+setopt  hist_ignore_space
 # Do not exit on end-of-file. Require the use of exit or logout instead.
-setopt  ignore_eof              
+setopt  ignore_eof
 # This  option  both  imports new commands from the history file, and also 
 # causes your typed commands to be appended to the history file
-setopt  share_history           
-setopt  noflowcontrol           
-# When listing files that are possible completions, show the type of each file 
+setopt  share_history
+setopt  noflowcontrol
+# When listing files that are possible completions, show the type of each file
 # with a trailing identifying mark.
-setopt  list_types              
-# Append a trailing / to all directory names resulting from filename 
+setopt  list_types
+# Append a trailing / to all directory names resulting from filename
 # generation (globbing).
-setopt  mark_dirs               
-# Perform a path search even on command names with slashes in them.  
-# Thus if /usr/local/bin is in the user's path, and he or she types 
-# X11/xinit, the  command /usr/local/bin/X11/xinit will be executed 
+setopt  mark_dirs
+# Perform a path search even on command names with slashes in them.
+# Thus if /usr/local/bin is in the user's path, and he or she types
+# X11/xinit, the  command /usr/local/bin/X11/xinit will be executed
 # (assuming it exists).
-setopt  path_dirs               
+setopt  path_dirs
 # If set, `%' is treated specially in prompt expansion.
-setopt  prompt_percent          
-# If set, parameter expansion, command substitution and arithmetic 
-# expansion are performed in prompts.  
+setopt  prompt_percent
+# If set, parameter expansion, command substitution and arithmetic
+# expansion are performed in prompts.
 # Substitutions within prompts do not affect the command status.
-setopt  prompt_subst            
+setopt  prompt_subst
 
 #-------------------------------------------------------------------------------
 # History settings
@@ -260,6 +251,59 @@ spell (){
 #     cd "$@" && virtualenv_auto_activate
 # }
 # alias cd="venv_cd"
+
+#--------------------------------------------------------------------
+# If we cd into a directory that is named the same as a virtualenv
+# auto activate that cirtualenv
+# -------------------------------------------------------------------
+[[ -a /usr/local/share/python/virtualenvwrapper.sh ]] && source /usr/local/share/python/virtualenvwrapper.sh
+[[ -a /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
+
+workon_virtualenv() {
+  if [[ -d .git ]]
+  then
+     VENV_CUR_DIR="${PWD##*/}"
+     if [[ -a ~/.virtualenvs/$VENV_CUR_DIR ]]
+     then
+       deactivate > /dev/null 2>&1
+       source ~/.virtualenvs/$VENV_CUR_DIR/bin/activate
+     fi
+  fi
+}
+
+alias builtin_cd=cd
+virtualenv_cd() {
+  builtin_cd "$@" && workon_virtualenv
+}
+alias cd=virtualenv_cd
+
+#--------------------------------------------------------------------
+# Auto actiavted node?
+# -------------------------------------------------------------------
+workon_node_env() {
+  if [[ -d "node_modules" ]]
+  then
+
+    export NPM_ORIGINAL_PATH=$PATH
+
+    for f in `ls $(pwd)/node_modules/`
+    do
+      export PATH="${PATH}:$(pwd)/node_modules/${f}/bin"
+    done
+
+    deactivatenode(){
+      export PATH=$NPM_ORIGINAL_PATH
+      unset -f deactivatenode
+    }
+
+  fi
+}
+
+alias before_node_env_cd=cd
+node_cd(){
+  before_node_env_cd "$@" && workon_node_env
+}
+alias cd=node_cd
 
 #--------------------------------------------------------------------
 # Search for running processes
