@@ -197,9 +197,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " --- Split the window vertically
-nnoremap <leader>sv :vsplit<CR>
+nnoremap <leader>\ :vsplit<CR>
 " --- Split the window horizontally
-nnoremap <leader>sh :split<CR>
+nnoremap <leader>- :split<CR>
 " --- Ack short cut
 nnoremap <leader>a :Ack!
 " --- Toggle Syntastic
