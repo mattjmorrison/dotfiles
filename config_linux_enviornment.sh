@@ -278,6 +278,13 @@ if [[ $answer = "Y" ]] ; then
     else
         echo "jedi FAILED TO INSTALL!!!" >> $log_file
     fi
+
+    sudo pip install chromelogger
+    if type -p chromelogger > /dev/null; then
+        echo "chromelogger Installed" >> $log_file
+    else
+        echo "chromelogger FAILED TO INSTALL!!!" >> $log_file
+    fi
 fi
 
 #==============
