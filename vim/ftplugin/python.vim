@@ -16,3 +16,6 @@ map <buffer> <F3> :!/usr/bin/python3 %
 
 " Execute file being edited with <F2> using Python2.7
 map <buffer> <F2> :!/usr/bin/python2.7 % 
+
+" Make sure we use the correct comment string in vim-commentary plug-in
+set commentstring=#\ %s
