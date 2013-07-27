@@ -160,6 +160,21 @@ if [[ $answer = "Y" ]] ; then
         echo "exuberant-ctags FAILED TO INSTALL!!!" >> $log_file
     fi
 
+    sudo apt-get -y install python-nose
+    if type -p python-nose > /dev/null; then
+        echo "python-nose Installed" >> $log_file
+    else
+        echo "python-nose FAILED TO INSTALL!!!" >> $log_file
+    fi
+ 
+    sudo apt-get -y install python-django-nose
+    if type -p python-django-nose > /dev/null; then
+        echo "python-django-nose Installed" >> $log_file
+    else
+        echo "python-django-nose FAILED TO INSTALL!!!" >> $log_file
+    fi
+
+
     # ---
     # Install git-completion and git-prompt
     # ---
