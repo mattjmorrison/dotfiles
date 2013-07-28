@@ -6,6 +6,10 @@
 autoload -U colors && colors
 autoload -U compinit
 compinit -C
+#-------------------------------------------------------------------------------
+## case-insensitive (all),partial-word and then substring completion
+#-------------------------------------------------------------------------------
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 #-------------------------------------------------------------------------------
 # Local array variable
@@ -278,11 +282,11 @@ virtualenv_cd() {
 alias cd=virtualenv_cd
 
 #--------------------------------------------------------------------
-# Auto actiavted node?
+# If the folder we cd into has a directory 'node_modules' we add it 
+# to the path
 # -------------------------------------------------------------------
 workon_node_env() {
-  if [[ -d "node_modules" ]]
-  then
+  if [[ -d "node_modules" ]]; then
 
     export NPM_ORIGINAL_PATH=$PATH
 

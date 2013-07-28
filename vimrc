@@ -54,8 +54,6 @@ set nocompatible
  Bundle 'https://github.com/kien/ctrlp.vim'
  Bundle 'https://github.com/tpope/vim-commentary'
  Bundle 'https://github.com/davidhalter/jedi-vim'
- Bundle 'https://github.com/ameade/qtpy-vim'
- Bundle 'https://github.com/toranb/vim-django-support.git'
  Bundle 'https://github.com/alfredodeza/pytest.vim'
  Bundle 'https://github.com/jmcantrell/vim-virtualenv'
  Bundle 'https://github.com/mhinz/vim-startify'
@@ -234,11 +232,6 @@ nnoremap <Leader>yf :let @"=expand("%:t")<cr>:echo "Copied file name to clipboar
 nnoremap <Leader>yd :let @"=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 " --- Strip trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-" --- python unit testing shortcuts to show the session + test by file/class/method
-map <leader>ts :QTPY session<cr>
-map <leader>tf :w<cr> :QTPY file verbose<cr>
-map <leader>tc :w<cr> :QTPY class verbose<cr>
-map <leader>tm :w<cr> :QTPY method verbose<cr>
 "
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
@@ -286,6 +279,7 @@ set tags=./.ctags,.ctags;
 "-----------------------------------------------------------------------------------
 " Make NERDTree ignore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
+
 "-----------------------------------------------------------------------------------
 " Jedi configurations
 "-----------------------------------------------------------------------------------

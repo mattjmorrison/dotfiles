@@ -7,11 +7,6 @@
 #   DESCRIPTION: In my opinion which I respect very much this may be one of the 
 #                best zsh prompts on the planet.
 # 
-#         NOTES: Standing on the shoulders of giants. Havily inspired by
-#                https://github.com/whiteinge/dotfiles
-#        AUTHOR: Jarrod Taylor
-#       CREATED: 06/20/2013
-#       VERSION: 0.0.1
 #===============================================================================
 
 autoload -U colors && colors
@@ -215,10 +210,10 @@ function +vi-git-st() {
         --symbolic-full-name --abbrev-ref 2>/dev/null)}
 
     if [[ -n ${remote} ]] ; then
-        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
         (( $ahead )) && gitstatus+=( "${green}+${ahead}${gray}" )
 
-        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
         (( $behind )) && gitstatus+=( "${red}-${behind}${gray}" )
 
         user_data[gitstatus]=${gitstatus}
@@ -237,7 +232,7 @@ function +vi-git-stash() {
     local -a stashes
 
     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
-        stashes=$(git stash list 2>/dev/null | wc -l)
+        stashes=$(git stash list 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
         hook_com[misc]+=" (${stashes} stashed)"
     fi
 }
