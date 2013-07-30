@@ -57,6 +57,7 @@ set nocompatible
  Bundle 'https://github.com/alfredodeza/pytest.vim'
  Bundle 'https://github.com/jmcantrell/vim-virtualenv'
  Bundle 'https://github.com/mhinz/vim-startify'
+ Bundle 'https://github.com/tmhedberg/SimpylFold'
 "
 "===================================================================================
 " GENERAL SETTINGS
