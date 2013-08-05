@@ -54,7 +54,6 @@ set nocompatible
  Bundle 'https://github.com/kien/ctrlp.vim'
  Bundle 'https://github.com/tpope/vim-commentary'
  Bundle 'https://github.com/davidhalter/jedi-vim'
- Bundle 'https://github.com/alfredodeza/pytest.vim'
  Bundle 'https://github.com/jmcantrell/vim-virtualenv'
  Bundle 'https://github.com/mhinz/vim-startify'
  Bundle 'https://github.com/tmhedberg/SimpylFold'
@@ -90,36 +89,33 @@ syntax on
 "-----------------------------------------------------------------------------------
 " Various settings
 "-----------------------------------------------------------------------------------
-set autoindent                         " copy indent from current line
-set autoread                           " read open files again when changed outside Vim
-set autowrite                          " write a modified buffer on each :next , ...
-set backspace=indent,eol,start         " backspacing over everything in insert mode
-set browsedir=current                  " which directory to use for the file browser
-set complete+=k                        " scan the files given with the 'dictionary' option
-set history=50                         " keep 50 lines of command line history
-set hlsearch                           " highlight the last used search pattern
-set incsearch                          " do incremental searching
+set autoindent                         " Copy indent from current line
+set autoread                           " Read open files again when changed outside Vim
+set autowrite                          " Write a modified buffer on each :next , ...
+set backspace=indent,eol,start         " Backspacing over everything in insert mode
+set history=50                         " Keep 50 lines of command line history
+set hlsearch                           " Highlight the last used search pattern
+set incsearch                          " Do incremental searching
 "set list                              " Toggle manually with set list / set nolist or set list!
 set listchars=""                       " Empty the listchars
 set listchars=tab:>.                   " A tab will be displayed as >...
 set listchars+=trail:.                 " Trailing white spaces will be displayed as .
-set mouse=a                            " enable the use of the mouse
-set nobackup                           " don't constantly write backup files
-set noswapfile                         " ain't nobody got time for swap files
-set noerrorbells                       " don't beep
-set nowrap                             " do not wrap lines
-set popt=left:8pc,right:3pc            " print options
-"set ruler                             " shows the cursor position all the time I have a custom status line for this
-set shiftwidth=4                       " number of spaces to use for each step of indent
-set showcmd                            " display incomplete commands in the bottom line of the screen
-set smartcase                          " ignore case if search pattern is all lowercase, case_sensitive otherwise
-"set smartindent                        " smart autoindenting when starting a new line
-set tabstop=4                          " number of spaces that a <Tab> counts for
+set mouse=a                            " Enable the use of the mouse
+set nobackup                           " Don't constantly write backup files
+set noswapfile                         " Ain't nobody got time for swap files
+set noerrorbells                       " Don't beep
+set nowrap                             " Do not wrap lines
+set popt=left:8pc,right:3pc            " Print options
+set shiftwidth=4                       " Number of spaces to use for each step of indent
+set showcmd                            " Display incomplete commands in the bottom line of the screen
+set smartcase                          " Ignore case if search pattern is all lowercase, case_sensitive otherwise
+set tabstop=4                          " Number of spaces that a <Tab> counts for
 set expandtab                          " Make vim use spaces and not tabs
-set undolevels=1000                    " never can be too careful when it comes to undoing
-set visualbell                         " visual bell instead of beeping
+set undolevels=1000                    " Never can be too careful when it comes to undoing
+set hidden                             " Don't unload the buffer when we switch between them. Saves undo history
+set visualbell                         " Visual bell instead of beeping
 set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore these extensions
-set wildmenu                           " command-line completion in an enhanced mode
+set wildmenu                           " Command-line completion in an enhanced mode
 set shell=bash                         " Required to let zsh know how to run things on command line 
 "
 "-----------------------------------------------------------------------------------
@@ -131,8 +127,8 @@ set statusline+=%m%r%h%w                     " Flags
 " set statusline+=\ %{fugitive#statusline()}   " Git branch
 " set statusline+=\ [FORMAT=%{&ff}]            " File format
 set statusline+=\ [TYPE=%Y]                  " File type
-" set statusline+=\ [ASCII=\%03.3b]            " ASCII value of character under cursor
-" set statusline+=\ [HEX=\%02.2B]              " HEX value of character under cursor
+set statusline+=\ [ASCII=\%03.3b]            " ASCII value of character under cursor
+set statusline+=\ [HEX=\%02.2B]              " HEX value of character under cursor
 set statusline+=%=                           " Right align the rest of the status line
 set statusline+=\ [R%04l,C%04v]              " Cursor position in the file row, column
 " set statusline+=\ [%p%%]                     " Percentage of the file the active line is
@@ -242,8 +238,10 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "-----------------------------------------------------------------------------------
 let g:syntastic_check_on_open=1                   " check for errors when file is loaded
 let g:syntastic_loc_list_height=5                 " the height of the error list defaults to 10
-let g:syntastic_python_checkers = ['pyflakes']    " sets pyflakes as the default for checking python files
+let g:syntastic_python_checkers = ['flake8']      " sets flake8 as the default for checking python files
 let g:syntastic_javascript_checkers = ['jshint']  " sets jshint as our javascript linter
+" Ignore line width for syntax checking in python
+let g:syntastic_python_flake8_post_args='--ignore=E501'
 "
 "-----------------------------------------------------------------------------------
 " UltiSnips configurations
@@ -267,10 +265,13 @@ let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 " Ctrlp configurations
 "-----------------------------------------------------------------------------------
 let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
+let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 18
 "
 "-----------------------------------------------------------------------------------
 " Exuberant ctags configurations
+" Vim will look for a ctags file in the current directory and continue 
+" up the file path until it finds one
 "-----------------------------------------------------------------------------------
 " Enable ctags support
 set tags=./.ctags,.ctags;
@@ -288,7 +289,7 @@ let g:jedi#get_definition_command = "<leader>j"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 
 "-----------------------------------------------------------------------------------
-" Startify constantly
+" Startify configurations
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with red font
 hi StartifyHeader ctermfg=76   
@@ -307,7 +308,7 @@ let g:startify_custom_header = [
             \ '       $$                  $$$$$ $$$$        $$$  $$$$       $$$$      $$$$        $$$$ $$$$         $$$$               ',
             \ '       $$         $$     $$$$$$  $$$$       $$$$  $$$$       $$$$       $$$$      $$$$   $$$$       $$$$$               ',
             \ '       $$         $$$$$$$$$$$$   $$$$$$$$$$$$$$$  $$$$       $$$$       $$$$$$$$$$$$$     $$$$$$$$$$$$$$$               ',
-            \ '       $$         $$$$$$$$$$       $$$$$$$$  $$$  $$$$       $$$           $$$$$$$$         $$$$$$$  $$$$               ',
+            \ '       $$         $$$$$$$$$$       $$$$$$$$  $$$  $$$$       $$$$          $$$$$$$$         $$$$$$$  $$$$               ',
             \ '       $$    $                                                                                                          ',
             \ '       $$    $$                                                                                                         ',
             \ '       $$    $$$                                                                                                        ',
@@ -332,13 +333,6 @@ let g:startify_bookmarks = [ '~/.vimrc' ]
 "===================================================================================
 "
 "-----------------------------------------------------------------------------------
-" The current directory is the directory of the file in the current window.
-"-----------------------------------------------------------------------------------
-if has("autocmd")
-  autocmd BufEnter * :lchdir %:p:h
-endif
-"
-"-----------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
@@ -361,3 +355,10 @@ function! RenewTagsFile()
     exe 'silent !ctags -a -Rf .ctags --extra=+f --exclude=.git --languages=python --python-kinds=-iv --exclude=build --exclude=dist 2>/dev/null'
     exe 'redraw!'
 endfunction
+
+function! SortLines() range
+    execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
+    execute a:firstline . "," . a:lastline . 'sort n'
+    execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
+endfunction
+

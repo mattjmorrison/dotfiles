@@ -282,8 +282,8 @@ virtualenv_cd() {
 alias cd=virtualenv_cd
 
 #--------------------------------------------------------------------
-# If the folder we cd into has a directory 'node_modules' we add it 
-# to the path
+# If we cd into a directory that contains a directory named node_modules
+# we automatically recursively add it to the $PATH
 # -------------------------------------------------------------------
 workon_node_env() {
   if [[ -d "node_modules" ]]; then

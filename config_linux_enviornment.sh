@@ -229,13 +229,6 @@ if [[ $answer = "Y" ]] ; then
         echo "coffee script FAILED TO INSTALL!!!" >> $log_file
     fi
 
-    sudo apt-get -y install pyflakes
-    if type -p pyflakes > /dev/null; then
-        echo "pyflakes Installed" >> $log_file
-    else
-        echo "pyflakes FAILED TO INSTALL!!!" >> $log_file
-    fi
-
     curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
     sudo mv ~/ack /usr/bin/ack
     sudo chmod 755 /usr/bin/ack
@@ -299,6 +292,13 @@ if [[ $answer = "Y" ]] ; then
         echo "chromelogger Installed" >> $log_file
     else
         echo "chromelogger FAILED TO INSTALL!!!" >> $log_file
+    fi
+
+    sudo pip install flake8
+    if type -p flake8 > /dev/null; then
+        echo "flake8 Installed" >> $log_file
+    else
+        echo "flake8 FAILED TO INSTALL!!!" >> $log_file
     fi
 fi
 
