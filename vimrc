@@ -54,9 +54,9 @@ set nocompatible
  Bundle 'https://github.com/kien/ctrlp.vim'
  Bundle 'https://github.com/tpope/vim-commentary'
  Bundle 'https://github.com/davidhalter/jedi-vim'
- Bundle 'https://github.com/jmcantrell/vim-virtualenv'
  Bundle 'https://github.com/mhinz/vim-startify'
  Bundle 'https://github.com/tmhedberg/SimpylFold'
+ Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
 "
 "===================================================================================
 " GENERAL SETTINGS
@@ -131,7 +131,7 @@ set statusline+=\ [ASCII=\%03.3b]            " ASCII value of character under cu
 set statusline+=\ [HEX=\%02.2B]              " HEX value of character under cursor
 set statusline+=%=                           " Right align the rest of the status line
 set statusline+=\ [R%04l,C%04v]              " Cursor position in the file row, column
-" set statusline+=\ [%p%%]                     " Percentage of the file the active line is
+" set statusline+=\ [%p%%]                     " Percentage of the file the active line is on
 set statusline+=\ [LEN=%L]                   " Number of line in the file
 set statusline+=%#warningmsg#                " Highlights the syntastic errors in red
 set statusline+=%{SyntasticStatuslineFlag()} " Adds the line number and error count
@@ -193,20 +193,13 @@ imap jk <Esc>
 " --- ss will toggle spell checking
 map ss :setlocal spell!<CR>
 " --- toggle NERDTree 
-nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
 " --- toggle Tagbar 
 nnoremap <leader>tb :TagbarToggle<CR>
-" --- open a list of buffers and change to the number selected
-nnoremap <leader>t :buffers<CR>:buffer<Space>
 " --- open CtrlP buffer explorer
 nnoremap <leader>b :CtrlPBuffer<CR>
 " --- open Ctrlp as a fuzzy finder
 nnoremap <leader>ff :CtrlP<CR>
-" --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
-nnoremap <C-j> <C-w>j  
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 " --- Split the window vertically
 nnoremap <leader>\ :vsplit<CR>
 " --- Split the window horizontally
@@ -216,19 +209,26 @@ nnoremap <leader>a :Ack!<space>
 " --- Toggle Syntastic
 nnoremap <leader>ts :SyntasticToggleMode<CR>
 " --- Clear the search buffer and highlighted text with enter press
-:nnoremap <CR> :nohlsearch<cr>
+:nnoremap <CR> :nohlsearch<CR>
 " --- Search the ctags index file for anything by class or method name
-map <leader>fs :CtrlPTag<CR>
-" --- Re-index the ctags file
-nnoremap <leader>ri :call RenewTagsFile()<cr>
-" Copy current buffer path relative to root of VIM session to system clipboard
-nnoremap <leader>yp :let @" = expand("%:p")"<cr>:echo "Copied file path to clipboard"<cr>
-" Copy current filename to system clipboard
-nnoremap <Leader>yf :let @"=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
-" Copy current buffer path without filename to system clipboard
-nnoremap <Leader>yd :let @"=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+map <leader>st :CtrlPTag<CR>
+" --- Refresh the ctags file
+nnoremap <leader>rt :call RenewTagsFile()<CR>
 " --- Strip trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+" --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
+nnoremap <C-j> <C-w>j  
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+" --- Shortcuts for test running commands 
+nnoremap<Leader>da :DjangoTestApp<CR>
+nnoremap<Leader>dc :DjangoTestClass<CR>
+nnoremap<Leader>dm :DjangoTestMethod<CR>
+nnoremap<Leader>nf :NosetestFile<CR>
+nnoremap<Leader>nc :NosetestClass<CR>
+nnoremap<Leader>nm :NosetestMethod<CR>
+
 "
 "===================================================================================
 " VARIOUS PLUGIN CONFIGURATIONS
@@ -247,7 +247,6 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 " UltiSnips configurations
 "-----------------------------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
-let g:UltiSnipsExpandTrigger='`'
 " 
 "-----------------------------------------------------------------------------------
 " Neocomplcache configurations
@@ -361,4 +360,3 @@ function! SortLines() range
     execute a:firstline . "," . a:lastline . 'sort n'
     execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
 endfunction
-
