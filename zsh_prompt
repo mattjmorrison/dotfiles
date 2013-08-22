@@ -160,7 +160,7 @@ function +pr-venv() {
     local -a v_venv
 
     [[ -n ${VIRTUAL_ENV} ]] && v_venv=(
-        ${gray}
+        ${blue}
         $(basename ${VIRTUAL_ENV})
         ${reset}
     )

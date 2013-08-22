@@ -257,8 +257,8 @@ spell (){
 # alias cd="venv_cd"
 
 #--------------------------------------------------------------------
-# If we cd into a directory that is a git repository and named the 
-# same as a virtualenv auto activate that virtualenv
+# If we cd into a directory that is named the same as a virtualenv
+# auto activate that virtualenv
 # -------------------------------------------------------------------
 [[ -a /usr/local/share/python/virtualenvwrapper.sh ]] && source /usr/local/share/python/virtualenvwrapper.sh
 [[ -a /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
