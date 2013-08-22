@@ -1,17 +1,27 @@
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
 "===================================================================================
-"         FILE:  .vimrc
 "  DESCRIPTION:  An ever changing work in progress
 "       AUTHOR:  Jarrod Taylor
+" ____   ____.__                  .__               __                
+" \   \ /   /|__| _____           |__| ____ _____ _/  |_  ___________ 
+"  \   Y   / |  |/     \   ______ |  |/    \\__  \\   __\/  _ \_  __ \
+"   \     /  |  |  Y Y  \ /_____/ |  |   |  \/ __ \|  | (  <_> )  | \/
+"    \___/   |__|__|_|  /         |__|___|  (____  /__|  \____/|__|   
+"                     \/                  \/     \/                   
+" 
 "===================================================================================
-"
+" 
+ 
+" Set nocompatible {
 "-----------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings. This must be first, because it changes
 " other options as a side effect.
 "-----------------------------------------------------------------------------------
 set nocompatible
-"
+" }
+ 
+" Vundle Package Management {
 "===================================================================================
-" Vundle package management
 "
 " Help
 " :BundleList          - list configured bundles
@@ -56,11 +66,11 @@ set nocompatible
  Bundle 'https://github.com/davidhalter/jedi-vim'
  Bundle 'https://github.com/mhinz/vim-startify'
  Bundle 'https://github.com/tmhedberg/SimpylFold'
+ Bundle 'https://github.com/nono/vim-handlebars'
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
-"
-"===================================================================================
-" GENERAL SETTINGS
-"===================================================================================
+" }
+ 
+" General Settings {
 "
 "-----------------------------------------------------------------------------------
 " Enable file type detection. Use the default filetype settings.
@@ -117,9 +127,38 @@ set visualbell                         " Visual bell instead of beeping
 set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore these extensions
 set wildmenu                           " Command-line completion in an enhanced mode
 set shell=bash                         " Required to let zsh know how to run things on command line 
-"
+
 "-----------------------------------------------------------------------------------
-" My pimped out status line
+" Turn off the toolbar that is under the menu in gvim
+"-----------------------------------------------------------------------------------
+set guioptions-=T
+"
+
+"-----------------------------------------------------------------------------------
+" Treat JSON files like JavaScript
+"-----------------------------------------------------------------------------------
+au BufNewFile,BufRead *.json set ft=javascript
+
+"-----------------------------------------------------------------------------------
+" Make pasting done without any indentation break
+"-----------------------------------------------------------------------------------
+set pastetoggle=<F3>
+
+"-----------------------------------------------------------------------------------
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+"-----------------------------------------------------------------------------------
+if has("autocmd")
+  autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+endif " has("autocmd")
+
+" }
+ 
+" My pimped out status line {
 "-----------------------------------------------------------------------------------
 set laststatus=2                " Make the second to last line of vim our status line
 set statusline=%F                            " File path
@@ -153,25 +192,10 @@ endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
-"
-"-----------------------------------------------------------------------------------
-" Turn off the toolbar that is under the menu in gvim
-"-----------------------------------------------------------------------------------
-set guioptions-=T
-"
+" }
 
-"-----------------------------------------------------------------------------------
-" Treat JSON files like JavaScript
-"-----------------------------------------------------------------------------------
-au BufNewFile,BufRead *.json set ft=javascript
-
-"-----------------------------------------------------------------------------------
-" Make pasting done without any indentation break
-"-----------------------------------------------------------------------------------
-set pastetoggle=<F3>
-
+"  Remapped Keys {
 "===================================================================================
-"  REMAPPED KEYS 
 "  (nore) prefix -- non-recursive
 "  (un)   prefix -- Remove a mode-specific map 
 "  Commands                        Mode
@@ -223,16 +247,16 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " --- Shortcuts for test running commands 
 nnoremap<Leader>da :DjangoTestApp<CR>
+nnoremap<Leader>df :DjangoTestFile<CR>
 nnoremap<Leader>dc :DjangoTestClass<CR>
 nnoremap<Leader>dm :DjangoTestMethod<CR>
 nnoremap<Leader>nf :NosetestFile<CR>
 nnoremap<Leader>nc :NosetestClass<CR>
 nnoremap<Leader>nm :NosetestMethod<CR>
+" }
+ 
+" Plugin Configurations {
 
-"
-"===================================================================================
-" VARIOUS PLUGIN CONFIGURATIONS
-"===================================================================================
 "-----------------------------------------------------------------------------------
 " Syntastic configurations use :help syntastic.txt
 "-----------------------------------------------------------------------------------
@@ -327,26 +351,10 @@ let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
 let g:startify_bookmarks = [ '~/.vimrc' ]
 
-"===================================================================================
-" BUFFERS, WINDOWS
-"===================================================================================
-"
-"-----------------------------------------------------------------------------------
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-"-----------------------------------------------------------------------------------
-if has("autocmd")
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal! g`\"" |
-        \ endif
-endif " has("autocmd")
-"
-"===================================================================================
-" Misc Functions
-"===================================================================================
-"
+" }
+
+" Misc Functions {
+
 function! RenewTagsFile()
     exe 'silent !rm -rf .ctags'
     exe 'silent !coffeetags --include-vars -Rf .ctags'
@@ -360,3 +368,5 @@ function! SortLines() range
     execute a:firstline . "," . a:lastline . 'sort n'
     execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
 endfunction
+
+" }
