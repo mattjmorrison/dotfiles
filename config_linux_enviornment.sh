@@ -229,7 +229,7 @@ if [[ $answer = "Y" ]] ; then
         echo "coffee script FAILED TO INSTALL!!!" >> $log_file
     fi
 
-    curl http://beyondgrep.com/ack-2.04-single-file > ~/ack && chmod 0755 !#:3 
+    curl http://beyondgrep.com/ack-2.08-single-file > ~/ack && chmod 0755 !#:3 
     sudo mv ~/ack /usr/bin/ack
     sudo chmod 755 /usr/bin/ack
     if type -p ack > /dev/null; then
