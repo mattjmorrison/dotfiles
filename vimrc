@@ -277,7 +277,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 "-----------------------------------------------------------------------------------
 let g:neocomplcache_enable_at_startup=1
 " To make compatible with jedi
-autocmd FileType python setlocal omnifunc=jedi#complete
+"autocmd FileType python setlocal omnifunc=jedi#complete
 let g:jedi#auto_vim_configuration = 0
 if !exists('g:neocomplcache_force_omni_patterns')
       let g:neocomplcache_force_omni_patterns = {}
@@ -308,7 +308,7 @@ let NERDTreeIgnore = ['\.pyc$']
 "-----------------------------------------------------------------------------------
 " Jedi configurations
 "-----------------------------------------------------------------------------------
-let g:jedi#get_definition_command = "<leader>j"
+let g:jedi#goto_definitions_command = "<leader>j"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 
 "-----------------------------------------------------------------------------------
