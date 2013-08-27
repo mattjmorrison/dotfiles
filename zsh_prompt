@@ -46,9 +46,9 @@ zstyle ':vcs_info:(git*):*' check-for-changes true                        # We w
 # %b - Information about the current branch.
 # %m - A "misc" replacement. It is at the discretion of the backend to decide what this replacement expands to. 
 #      It is currently used by the hg and git backends to display patch information from the mq and stgit extensions.
-zstyle ':vcs_info:(git*)' formats "(%s) %10.10i %c%u %b%m" # Length of SHA to display
+zstyle ':vcs_info:(git*)' formats "(%s) %c%u %b%m"
 # Format of what we will display during a special action on the repo (Ex. Interactive rebase or merge conflict)
-zstyle ':vcs_info:(git*)' actionformats "(%s|${white}%a${gray}) %10.10i %c%u %b%m"
+zstyle ':vcs_info:(git*)' actionformats "(%s|${white}%a${gray}) %c%u %b%m"
 zstyle ':vcs_info:(git*):*' stagedstr "${green}Staged ${gray}"              # Set the text to display for stated changes
 zstyle ':vcs_info:(git*):*' unstagedstr "${red}Unstaged${gray}"            # Set the text to display for unstated changes
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked # We will use hooks to inject the stashed and untracked info
