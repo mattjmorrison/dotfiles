@@ -39,8 +39,6 @@ setopt  hist_ignore_all_dups
 #  Remove command lines from the history list when the first character on the line 
 #  is a space, or when one of the expanded aliases contains a leading space.
 setopt  hist_ignore_space
-# Do not exit on end-of-file. Require the use of exit or logout instead.
-setopt  ignore_eof
 # This  option  both  imports new commands from the history file, and also 
 # causes your typed commands to be appended to the history file
 setopt  share_history
@@ -229,32 +227,6 @@ echo -e  $fg[white];cal -3
 spell (){
     echo $1 | aspell -a
 }
-
-#------------------------------------------------------------------------------
-# Auto activate virtualenv's when we cd into a directory that has one
-# This kind of works but I am not sure of its value
-#------------------------------------------------------------------------------
-# virtualenv_auto_activate() {
-#       if [ -e ".venv" ]; then
-#           # Check to see if already activated to avoid redundant activating
-#           if [ "$VIRTUAL_ENV" = "" ]; then
-#               _VENV_NAME=$(basename `pwd`)
-#               echo Activating virtualenv \"$_VENV_NAME\"...
-#               VIRTUAL_ENV_DISABLE_PROMPT=1
-#               source .venv/bin/activate
-#            fi
-#      else
-#        if [ "$VIRTUAL_ENV" != "" ]; then
-#          echo deactivating VirtualEnv
-#          deactivate
-#        fi
-#      fi
-#    }
-
-# venv_cd () {
-#     cd "$@" && virtualenv_auto_activate
-# }
-# alias cd="venv_cd"
 
 #--------------------------------------------------------------------
 # If we cd into a directory that is named the same as a virtualenv
