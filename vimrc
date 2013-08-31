@@ -253,6 +253,8 @@ nnoremap<Leader>dm :DjangoTestMethod<CR>
 nnoremap<Leader>nf :NosetestFile<CR>
 nnoremap<Leader>nc :NosetestClass<CR>
 nnoremap<Leader>nm :NosetestMethod<CR>
+" --- grunt-karma test runner shortcut
+map <Leader>q :!grunt test<CR>"
 " }
  
 " Plugin Configurations {
@@ -277,7 +279,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
 "-----------------------------------------------------------------------------------
 let g:neocomplcache_enable_at_startup=1
 " To make compatible with jedi
-"autocmd FileType python setlocal omnifunc=jedi#complete
 let g:jedi#auto_vim_configuration = 0
 if !exists('g:neocomplcache_force_omni_patterns')
       let g:neocomplcache_force_omni_patterns = {}
@@ -310,12 +311,18 @@ let NERDTreeIgnore = ['\.pyc$']
 "-----------------------------------------------------------------------------------
 let g:jedi#goto_definitions_command = "<leader>j"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
+let g:jedi#popup_on_dot = 0
 
 "-----------------------------------------------------------------------------------
 " Startify configurations
 "-----------------------------------------------------------------------------------
-" Highlight the acsii banner with red font
+" Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76   
+" Make startify not open ctrlp in a new buffer
+let g:ctrlp_reuse_window = 'startify'
+" Don't change the directory when opening a recent file with a shortcut
+let g:startify_change_to_dir = 0
+
 " Set the contents of the banner
 let g:startify_custom_header = [
             \ '                                                                                                                        ',

@@ -104,7 +104,6 @@ export WINEDEBUG=-all
 #-------------------------------------------------------------------------------
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/VirtualDevEnvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 #-------------------------------------------------------------------------------
 #
@@ -166,6 +165,9 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias ad='add_current_directory_to_path'
+alias gs='git status'
+alias gd='git diff'
+alias ts='tig status'
 
 #===============================================================================
 # FUNCTIONS
