@@ -255,6 +255,8 @@ nnoremap<Leader>nc :NosetestClass<CR>
 nnoremap<Leader>nm :NosetestMethod<CR>
 " --- grunt-karma test runner shortcut
 map <Leader>q :!grunt test<CR>"
+" --- Toggle relative line numbering
+nnoremap<Leader>tn :set relativenumber!<CR>
 " }
  
 " Plugin Configurations {
