@@ -1,5 +1,19 @@
 #!/bin/zsh
+# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker:
+#===================================================================================
+#  DESCRIPTION:  Damn if feels good to be a gangster
+#       AUTHOR:  Jarrod Taylor
+#                 .__                   
+#  ________  _____|  |_________   ____  
+#  \___   / /  ___/  |  \_  __ \_/ ___\ 
+#   /    /  \___ \|   Y  \  | \/\  \___ 
+#  /_____ \/____  >___|  /__|    \___  >
+#        \/     \/     \/            \/ 
+#
+#===================================================================================
+# 
 
+# General Settings {{
 #-------------------------------------------------------------------------------
 # Autoload colors and tab completion
 #-------------------------------------------------------------------------------
@@ -83,6 +97,11 @@ export LC_COLLATE=C
 export GREP_OPTIONS='--color=auto'
 
 #-------------------------------------------------------------------------------
+# Allow the use of exuberant ctags
+#-------------------------------------------------------------------------------
+PATH="/usr/local/bin:$PATH"
+
+#-------------------------------------------------------------------------------
 # Editor and display configurations
 #-------------------------------------------------------------------------------
 export EDITOR='vim'
@@ -112,6 +131,9 @@ zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
     reply=( ${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**} )'
 
+# }}
+
+# Key Bindings {{
 #-------------------------------------------------------------------------------
 # Set vi-mode and create a few additional Vim-like mappings
 #-------------------------------------------------------------------------------
@@ -121,8 +143,9 @@ bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
 
-#-------------------------------------------------------------------------------
-# Set up prompt
+# }}
+
+# Source the prompt {{
 #-------------------------------------------------------------------------------
 if [[ ! -n "$ZSHRUN" ]]; then
     source $HOME/.zsh_prompt
@@ -138,17 +161,10 @@ if [[ ! -n "$ZSHRUN" ]]; then
     fi
 fi
 
-#-------------------------------------------------------------------------------
-# Automatically do an ls after each cd
-#-------------------------------------------------------------------------------
-# function chpwd() {
-#     emulate -L zsh
-#     ls --group-directories-first --color
-# }
+# }}
 
-#===============================================================================
-#  Aliases
-#===============================================================================
+# Aliases {{
+#-------------------------------------------------------------------------------
 alias ls='ls -F --color'
 alias ll='ls -lh'
 alias la='ls -la'
@@ -169,9 +185,10 @@ alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
 
-#===============================================================================
-# FUNCTIONS
-#===============================================================================
+# }}
+
+# FUNCTIONS {{
+#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 #  Python webserver: cd into a directory you want to share and then 
@@ -325,9 +342,13 @@ add_current_directory_to_path() {
     path+=(`pwd`)
 }
 
-#------------------------------------------------------------------------------
-# Run precmd functions so we get our pimped out prompt
+# }}
+
+# Run precmd functions so we get our pimped out prompt {{
 #------------------------------------------------------------------------------
 precmd_functions=( precmd_prompt )
 banner
+
+# }}
+
 # EOF
