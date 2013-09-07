@@ -266,12 +266,6 @@ workon_virtualenv() {
   fi
 }
 
-alias builtin_cd=cd
-virtualenv_cd() {
-  builtin_cd "$@" && workon_virtualenv
-}
-alias cd=virtualenv_cd
-
 #--------------------------------------------------------------------
 # If we cd into a directory that contains a directory named node_modules
 # we automatically recursively add it to the $PATH
@@ -280,25 +274,31 @@ workon_node_env() {
   if [[ -d "node_modules" ]]; then
 
     export NPM_ORIGINAL_PATH=$PATH
+    eval NODE_NAME=$(basename $(pwd))
 
     for f in `ls $(pwd)/node_modules/`
     do
       export PATH="${PATH}:$(pwd)/node_modules/${f}/bin"
     done
 
-    deactivatenode(){
+    deactivatenode() {
       export PATH=$NPM_ORIGINAL_PATH
       unset -f deactivatenode
+      unset NODE_NAME
     }
 
   fi
 }
 
-alias before_node_env_cd=cd
-node_cd(){
-  before_node_env_cd "$@" && workon_node_env
+#--------------------------------------------------------------------
+# Run the virtual environments functions for the prompt on each cd
+# -------------------------------------------------------------------
+cd() {
+  builtin cd "$@" 
+  unset NODE_NAME
+  workon_virtualenv
+  workon_node_env
 }
-alias cd=node_cd
 
 #--------------------------------------------------------------------
 # Search for running processes

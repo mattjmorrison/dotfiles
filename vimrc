@@ -127,6 +127,7 @@ set visualbell                         " Visual bell instead of beeping
 set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore these extensions
 set wildmenu                           " Command-line completion in an enhanced mode
 set shell=bash                         " Required to let zsh know how to run things on command line 
+set clipboard=unnamed                  " Yank and paste with the system clipboard
 
 "-----------------------------------------------------------------------------------
 " Turn off the toolbar that is under the menu in gvim
@@ -257,6 +258,7 @@ nnoremap<Leader>nm :NosetestMethod<CR>
 map <Leader>q :!grunt test<CR>"
 " --- Toggle relative line numbering
 nnoremap<Leader>tn :set relativenumber!<CR>
+
 " }
  
 " Plugin Configurations {

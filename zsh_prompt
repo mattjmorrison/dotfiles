@@ -31,7 +31,7 @@ local -a prompt_left_lines # Array parameters
 
 
 zstyle ":pr_jrock:" mode full
-zstyle ':pr_jrock:*' hooks pwd usr vcs venv jobs prompt
+zstyle ':pr_jrock:*' hooks pwd usr vcs venv npm jobs prompt
 zstyle ':pr_jrock:*' pwd "%~"
 
 # Set vcs_info options
@@ -46,11 +46,11 @@ zstyle ':vcs_info:(git*):*' check-for-changes true                        # We w
 # %b - Information about the current branch.
 # %m - A "misc" replacement. It is at the discretion of the backend to decide what this replacement expands to. 
 #      It is currently used by the hg and git backends to display patch information from the mq and stgit extensions.
-zstyle ':vcs_info:(git*)' formats "(%s) %c%u %b%m"
+zstyle ':vcs_info:(git*)' formats "(%b%c%u%m)"
 # Format of what we will display during a special action on the repo (Ex. Interactive rebase or merge conflict)
-zstyle ':vcs_info:(git*)' actionformats "(%s|${white}%a${gray}) %c%u %b%m"
-zstyle ':vcs_info:(git*):*' stagedstr "${green}Staged ${gray}"              # Set the text to display for stated changes
-zstyle ':vcs_info:(git*):*' unstagedstr "${red}Unstaged${gray}"            # Set the text to display for unstated changes
+zstyle ':vcs_info:(git*)' actionformats "(%b|${red}%a${gray}%c%u%m)"
+zstyle ':vcs_info:(git*):*' stagedstr "${green} Staged${gray}"              # Set the text to display for stated changes
+zstyle ':vcs_info:(git*):*' unstagedstr "${red} Unstaged${gray}"            # Set the text to display for unstated changes
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked # We will use hooks to inject the stashed and untracked info
 
 # Run all the prompt hook functions
@@ -83,12 +83,27 @@ function pr_run_hooks() {
 # This is our prompt, this is a compressed example it will expand
 # to the width of the console
 # ┌──(~/src/dotfiles)v(dotfiles)──────(✔)─
-# ├──(git) d2a3f82fe9c5 Unstaged master [origin/master ]
+# ├──(master [origin/master ] Unstaged)
 # └───>
 function +pr-mode-full() {
-    local i info_line_width return_status_width filler shim
+    local i info_line_width return_status_width filler venv_shim npm_shim
 
     infoline=( ${pr_com[pwd]} ${pr_com[usr]} )
+
+    # If we are in a directory that has a node_modules subdirectory we want to 
+    # display that on the info line
+     [[ -n ${pr_com[npm]} ]] && infoline[1]=(
+         ${infoline[1]}
+         "${cyan} n${gray}(${pr_com[npm]}${gray})${reset}"
+     )
+ 
+    # The prompt was not taking up the full width of the terminal when displaying npm info
+    # So if we are in a npm directory then we add a one character shim to the width of the filler
+     npm_shim=0
+     if [[ -n ${pr_com[npm]} ]]; then
+         npm_shim+=1
+     fi
+
     # If we are in a virtualenv we want to display that on the info line
     [[ -n ${pr_com[venv]} ]] && infoline[1]=(
         ${infoline[1]}
@@ -97,9 +112,9 @@ function +pr-mode-full() {
 
     # The prompt was not taking up the full width of the terminal when in a virtualenv
     # If we are in a virtualenv then we add a one character shim to the width of the filler
-    shim=0
+    venv_shim=0
     if [[ -n ${pr_com[venv]} ]]; then
-        shim+=1 # Shim the filler to take up the entire width of the prompt
+        venv_shim+=1 # Shim the filler to take up the entire width of the prompt
     fi
 
     # Full-width filler; search/replace color wraps to find real text width
@@ -108,7 +123,7 @@ function +pr-mode-full() {
     return_status_width=3 # We will take up three spaces to display the return code (✔)
 
     # Set the text string that will be used to fill the width of the terminal filler
-    filler="${gray}${(l:$(( $COLUMNS - $info_line_width - $return_status_width + $shim ))::─:)}${reset}"
+    filler="${gray}${(l:$(( $COLUMNS - $info_line_width - $return_status_width + $venv_shim + $npm_shim))::─:)}${reset}"
     infoline[-1]=( ${filler} ${infoline[-1]} )
 
     # --------------------------
@@ -166,6 +181,21 @@ function +pr-venv() {
     )
 
     pr_com[venv]=${(j::)v_venv}
+}
+
+# Show npm information
+function +pr-npm() {
+    local -a v_npm
+
+    if [[ ${NODE_NAME}  != "" ]]; then
+        v_npm=(
+            ${cyan}
+            ${NODE_NAME}
+            ${reset}
+        )
+    fi
+
+    pr_com[npm]=${(j::)v_npm}
 }
 
 # Show number of background jobs, or hide if none
