@@ -68,6 +68,7 @@ set nocompatible
  Bundle 'https://github.com/tmhedberg/SimpylFold'
  Bundle 'https://github.com/nono/vim-handlebars'
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
+ Bundle 'https://github.com/goldfeld/vim-seek.git'
 " }
  
 " General Settings {
@@ -258,6 +259,10 @@ nnoremap<Leader>nm :NosetestMethod<CR>
 map <Leader>q :!grunt test<CR>"
 " --- Toggle relative line numbering
 nnoremap<Leader>tn :set relativenumber!<CR>
+" --- Shortcut to RenameFile function defined below
+map <Leader>rf :call RenameFile()<CR>
+" --- Shortcut to CopyFile function defined below
+map <Leader>cf :call CopyFile()<CR>
 
 " }
  
@@ -374,10 +379,23 @@ function! RenewTagsFile()
     exe 'redraw!'
 endfunction
 
-function! SortLines() range
-    execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
-    execute a:firstline . "," . a:lastline . 'sort n'
-    execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
+function! CopyFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        redraw!
+    endif
+endfunction
+
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
 endfunction
 
 " }
