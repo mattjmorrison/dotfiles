@@ -111,6 +111,13 @@ echo "Vundle successfully cloned" >> $log_file
 echo -n "Would you like to install all additional packages for this setup (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
 
+    sudo apt-get -y install zsh
+    if type -p zsh > /dev/null; then
+        echo "zsh Installed" >> $log_file
+    else
+        echo "zsh FAILED TO INSTALL!!!" >> $log_file
+    fi
+
     sudo apt-get -y install vim-gnome
     if type -p vim > /dev/null; then
         echo "Vim Installed" >> $log_file
@@ -158,20 +165,6 @@ if [[ $answer = "Y" ]] ; then
         echo "exuberant-ctags Installed" >> $log_file
     else
         echo "exuberant-ctags FAILED TO INSTALL!!!" >> $log_file
-    fi
-
-    sudo apt-get -y install python-nose
-    if type -p python-nose > /dev/null; then
-        echo "python-nose Installed" >> $log_file
-    else
-        echo "python-nose FAILED TO INSTALL!!!" >> $log_file
-    fi
- 
-    sudo apt-get -y install python-django-nose
-    if type -p python-django-nose > /dev/null; then
-        echo "python-django-nose Installed" >> $log_file
-    else
-        echo "python-django-nose FAILED TO INSTALL!!!" >> $log_file
     fi
 
 
@@ -285,13 +278,6 @@ if [[ $answer = "Y" ]] ; then
         echo "jedi Installed" >> $log_file
     else
         echo "jedi FAILED TO INSTALL!!!" >> $log_file
-    fi
-
-    sudo pip install chromelogger
-    if type -p chromelogger > /dev/null; then
-        echo "chromelogger Installed" >> $log_file
-    else
-        echo "chromelogger FAILED TO INSTALL!!!" >> $log_file
     fi
 
     sudo pip install flake8
