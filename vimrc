@@ -2,16 +2,16 @@
 "===================================================================================
 "  DESCRIPTION:  An ever changing work in progress
 "       AUTHOR:  Jarrod Taylor
-" ____   ____.__                  .__               __                
-" \   \ /   /|__| _____           |__| ____ _____ _/  |_  ___________ 
+" ____   ____.__                  .__               __
+" \   \ /   /|__| _____           |__| ____ _____ _/  |_  ___________
 "  \   Y   / |  |/     \   ______ |  |/    \\__  \\   __\/  _ \_  __ \
 "   \     /  |  |  Y Y  \ /_____/ |  |   |  \/ __ \|  | (  <_> )  | \/
-"    \___/   |__|__|_|  /         |__|___|  (____  /__|  \____/|__|   
-"                     \/                  \/     \/                   
-" 
+"    \___/   |__|__|_|  /         |__|___|  (____  /__|  \____/|__|
+"                     \/                  \/     \/
+"
 "===================================================================================
-" 
- 
+"
+
 " Set nocompatible {
 "-----------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings. This must be first, because it changes
@@ -19,7 +19,7 @@
 "-----------------------------------------------------------------------------------
 set nocompatible
 " }
- 
+
 " Vundle Package Management {
 "===================================================================================
 "
@@ -36,7 +36,7 @@ set nocompatible
 "-----------------------------------------------------------------------------------
 " Required for vundle to work
 "-----------------------------------------------------------------------------------
- filetype off                   
+ filetype off
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
  Bundle 'gmarik/vundle'
@@ -69,8 +69,14 @@ set nocompatible
  Bundle 'https://github.com/nono/vim-handlebars'
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
  Bundle 'https://github.com/goldfeld/vim-seek.git'
+ Bundle 'https://github.com/tpope/vim-surround'
+ " Delete the shit out of this when I have this working
+ "" Bundle 'https://github.com/Lokaltog/vim-powerline'
+ "" let g:Powerline_symbols = 'compatible'
+ "" set fillchars+=stl:\ ,stlnc:\"
+ " /Delete the shit out of this when I have this working
 " }
- 
+
 " General Settings {
 "
 "-----------------------------------------------------------------------------------
@@ -85,9 +91,9 @@ filetype  indent on
 "-----------------------------------------------------------------------------------
 if has("gui_running")
 	colorscheme mustang
-	set guifont=Monospace\ 12 
+	set guifont=Monospace\ 12
 	set antialias
-else 
+else
 	set t_Co=256
     colorscheme zenburn
 endif
@@ -95,7 +101,7 @@ endif
 "-----------------------------------------------------------------------------------
 " Switch syntax highlighting on.
 "-----------------------------------------------------------------------------------
-syntax on            
+syntax on
 "
 "-----------------------------------------------------------------------------------
 " Various settings
@@ -127,7 +133,7 @@ set hidden                             " Don't unload the buffer when we switch 
 set visualbell                         " Visual bell instead of beeping
 set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore these extensions
 set wildmenu                           " Command-line completion in an enhanced mode
-set shell=bash                         " Required to let zsh know how to run things on command line 
+set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 
 "-----------------------------------------------------------------------------------
@@ -145,6 +151,11 @@ au BufNewFile,BufRead *.json set ft=javascript
 " Make pasting done without any indentation break
 "-----------------------------------------------------------------------------------
 set pastetoggle=<F3>
+imap <F3> <C-o>:call SetPasteMode()<CR>
+function! SetPasteMode()
+    set invpaste paste?
+    call InsertStatuslineColor(mode())
+endfunction
 
 "-----------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
@@ -156,15 +167,66 @@ if has("autocmd")
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endif
-endif " has("autocmd")
+endif
 
 " }
- 
+
 " My pimped out status line {
+
 "-----------------------------------------------------------------------------------
-set laststatus=2                " Make the second to last line of vim our status line
-set statusline=%F                            " File path
-set statusline+=%m%r%h%w                     " Flags
+" Get the vim mode
+"-----------------------------------------------------------------------------------
+function! VimMode()
+    if mode() == 'i'
+        return 'INSERT '
+    elseif mode() == 'R'
+        return 'REPLACE'
+    elseif mode() == 'n'
+        return 'NORMAL '
+    elseif mode() == "\<C-V>"
+        return 'V⋅BLOCK '
+    elseif mode() == "V"
+        return 'V⋅LINE '
+    elseif mode() == "v"
+        return 'VISUAL '
+    endif
+endfunction
+
+function! PasteMode()
+    if &paste
+        return 'PASTE '
+    else 
+        return ''
+    endif
+endfunction
+"-----------------------------------------------------------------------------------
+" Define custom highlighting groups to use in the status line
+"-----------------------------------------------------------------------------------
+" Base color
+"hi User1 ctermbg=240 ctermfg=231 guibg=240 guifg=231
+hi User1 ctermbg=8 ctermfg=15 guibg=240 guifg=231
+" Alert color
+hi User2 ctermbg=240 ctermfg=red guibg=240 guifg=red
+" Insert Mode color
+hi User3 ctermbg=65   ctermfg=15  guibg=34   guifg=15
+" Fliping paste mode
+hi User4 ctermbg=17  ctermfg=11 guibg=17  guifg=11
+hi User5 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
+hi User6 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
+hi User7 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
+hi User8 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
+hi User9 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
+"-----------------------------------------------------------------------------------
+set laststatus=2      " Make the second to last line of vim our status line
+set statusline+=\ %{VimMode()}          " If in paste mode display a message
+set statusline+=%4*  "switch to User1 highlight"
+set statusline+=\%{PasteMode()}          " If in paste mode display a message
+set statusline+=%1*   "switch to base colors"
+set statusline+=%f    " File path
+set statusline+=%2*  "switch to User1 highlight"
+set statusline+=%m   " File modified indicator
+set statusline+=%1*  "switch to User1 highlight"
+set statusline+=%r%h%w                       " Flags
 " set statusline+=\ %{fugitive#statusline()}   " Git branch
 " set statusline+=\ [FORMAT=%{&ff}]            " File format
 set statusline+=\ [TYPE=%Y]                  " File type
@@ -179,27 +241,38 @@ set statusline+=%{SyntasticStatuslineFlag()} " Adds the line number and error co
 set statusline+=%*                           " Fill the width of the vim window
 "
 "-----------------------------------------------------------------------------------
-" Change the background color of the status line based on the mode. 
+" Change the background color of the status line based on the mode.
 " Insert mode = Green, Replace = Purple, command = Gray
 "-----------------------------------------------------------------------------------
 function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi statusline guibg=Green ctermfg=34 guifg=Black ctermbg=0
+  echo a:mode
+  if &paste
+    hi statusline ctermbg=11 ctermfg=17 guibg=15 guifg=34
+  elseif a:mode == 'i'
+    hi statusline ctermbg=15 ctermfg=19 guibg=15 guifg=19
   elseif a:mode == 'r'
-    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
-  else
-    hi statusline guibg=DarkRed ctermfg=124 guifg=Black ctermbg=0
+    hi statusline ctermbg=15 ctermfg=196 guibg=15 guifg=196 
+  elseif a:mode == 'n'
+    hi statusline ctermbg=15 ctermfg=65 guibg=15 guifg=65
+  elseif a:mode == "\<C-V>"
+    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
+  elseif a:mode == "V"
+    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
+  elseif a:mode == "v"
+    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
   endif
 endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
+au InsertLeave * call InsertStatuslineColor(mode())
+au CursorMoved * call InsertStatuslineColor(mode())
+au CursorMovedI * call InsertStatuslineColor(mode())
 " }
 
 "  Remapped Keys {
 "===================================================================================
 "  (nore) prefix -- non-recursive
-"  (un)   prefix -- Remove a mode-specific map 
+"  (un)   prefix -- Remove a mode-specific map
 "  Commands                        Mode
 "  --------                        ----
 "  map                             Normal, Visual, Select, Operator Pending modes
@@ -213,14 +286,14 @@ au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 "===================================================================================
 "
 " --- change mapleader from \ to 9 as I find that easier to type
-let mapleader="9"  
-" --- jk mapped to <Esc> so we can keep our fingers on the home row 
+let mapleader="9"
+" --- jk mapped to <Esc> so we can keep our fingers on the home row
 imap jk <Esc>
 " --- ss will toggle spell checking
 map ss :setlocal spell!<CR>
-" --- toggle NERDTree 
+" --- toggle NERDTree
 nnoremap <leader>nt :NERDTreeToggle<CR>
-" --- toggle Tagbar 
+" --- toggle Tagbar
 nnoremap <leader>tb :TagbarToggle<CR>
 " --- open CtrlP buffer explorer
 nnoremap <leader>b :CtrlPBuffer<CR>
@@ -243,11 +316,11 @@ nnoremap <leader>rt :call RenewTagsFile()<CR>
 " --- Strip trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
-nnoremap <C-j> <C-w>j  
+nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-" --- Shortcuts for test running commands 
+" --- Shortcuts for test running commands
 nnoremap<Leader>da :DjangoTestApp<CR>
 nnoremap<Leader>df :DjangoTestFile<CR>
 nnoremap<Leader>dc :DjangoTestClass<CR>
@@ -265,7 +338,7 @@ map <Leader>rf :call RenameFile()<CR>
 map <Leader>cf :call CopyFile()<CR>
 
 " }
- 
+
 " Plugin Configurations {
 
 "-----------------------------------------------------------------------------------
@@ -282,7 +355,7 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 " UltiSnips configurations
 "-----------------------------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
-" 
+"
 "-----------------------------------------------------------------------------------
 " Neocomplcache configurations
 "-----------------------------------------------------------------------------------
@@ -303,7 +376,7 @@ let g:ctrlp_max_height = 18
 "
 "-----------------------------------------------------------------------------------
 " Exuberant ctags configurations
-" Vim will look for a ctags file in the current directory and continue 
+" Vim will look for a ctags file in the current directory and continue
 " up the file path until it finds one
 "-----------------------------------------------------------------------------------
 " Enable ctags support
@@ -326,7 +399,7 @@ let g:jedi#popup_on_dot = 0
 " Startify configurations
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
-hi StartifyHeader ctermfg=76   
+hi StartifyHeader ctermfg=76
 " Make startify not open ctrlp in a new buffer
 let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
