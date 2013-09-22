@@ -70,11 +70,7 @@ set nocompatible
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
  Bundle 'https://github.com/goldfeld/vim-seek.git'
  Bundle 'https://github.com/tpope/vim-surround'
- " Delete the shit out of this when I have this working
- "" Bundle 'https://github.com/Lokaltog/vim-powerline'
- "" let g:Powerline_symbols = 'compatible'
- "" set fillchars+=stl:\ ,stlnc:\"
- " /Delete the shit out of this when I have this working
+ Bundle 'https://github.com/JarrodCTaylor/vim-airline'
 " }
 
 " General Settings {
@@ -90,11 +86,11 @@ filetype  indent on
 " Color scheme and fonts if gui (gvim) then mustang if command line zenburn
 "-----------------------------------------------------------------------------------
 if has("gui_running")
-	colorscheme mustang
-	set guifont=Monospace\ 12
-	set antialias
+    colorscheme mustang
+    set guifont=Monospace\ 12
+    set antialias
 else
-	set t_Co=256
+    set t_Co=256
     colorscheme zenburn
 endif
 "
@@ -135,12 +131,12 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore the
 set wildmenu                           " Command-line completion in an enhanced mode
 set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
+set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
 
 "-----------------------------------------------------------------------------------
 " Turn off the toolbar that is under the menu in gvim
 "-----------------------------------------------------------------------------------
 set guioptions-=T
-"
 
 "-----------------------------------------------------------------------------------
 " Treat JSON files like JavaScript
@@ -151,11 +147,6 @@ au BufNewFile,BufRead *.json set ft=javascript
 " Make pasting done without any indentation break
 "-----------------------------------------------------------------------------------
 set pastetoggle=<F3>
-imap <F3> <C-o>:call SetPasteMode()<CR>
-function! SetPasteMode()
-    set invpaste paste?
-    call InsertStatuslineColor(mode())
-endfunction
 
 "-----------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
@@ -173,100 +164,17 @@ endif
 
 " My pimped out status line {
 
-"-----------------------------------------------------------------------------------
-" Get the vim mode
-"-----------------------------------------------------------------------------------
-function! VimMode()
-    if mode() == 'i'
-        return 'INSERT '
-    elseif mode() == 'R'
-        return 'REPLACE'
-    elseif mode() == 'n'
-        return 'NORMAL '
-    elseif mode() == "\<C-V>"
-        return 'V⋅BLOCK '
-    elseif mode() == "V"
-        return 'V⋅LINE '
-    elseif mode() == "v"
-        return 'VISUAL '
-    endif
-endfunction
-
-function! PasteMode()
-    if &paste
-        return 'PASTE '
-    else 
-        return ''
-    endif
-endfunction
-"-----------------------------------------------------------------------------------
-" Define custom highlighting groups to use in the status line
-"-----------------------------------------------------------------------------------
-" Base color
-"hi User1 ctermbg=240 ctermfg=231 guibg=240 guifg=231
-hi User1 ctermbg=8 ctermfg=15 guibg=240 guifg=231
-" Alert color
-hi User2 ctermbg=240 ctermfg=red guibg=240 guifg=red
-" Insert Mode color
-hi User3 ctermbg=65   ctermfg=15  guibg=34   guifg=15
-" Fliping paste mode
-hi User4 ctermbg=17  ctermfg=11 guibg=17  guifg=11
-hi User5 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
-hi User6 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
-hi User7 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
-hi User8 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
-hi User9 ctermbg=blue  ctermfg=green guibg=blue  guifg=green
-"-----------------------------------------------------------------------------------
-set laststatus=2      " Make the second to last line of vim our status line
-set statusline+=\ %{VimMode()}          " If in paste mode display a message
-set statusline+=%4*  "switch to User1 highlight"
-set statusline+=\%{PasteMode()}          " If in paste mode display a message
-set statusline+=%1*   "switch to base colors"
-set statusline+=%f    " File path
-set statusline+=%2*  "switch to User1 highlight"
-set statusline+=%m   " File modified indicator
-set statusline+=%1*  "switch to User1 highlight"
-set statusline+=%r%h%w                       " Flags
-" set statusline+=\ %{fugitive#statusline()}   " Git branch
-" set statusline+=\ [FORMAT=%{&ff}]            " File format
-set statusline+=\ [TYPE=%Y]                  " File type
-set statusline+=\ [ASCII=\%03.3b]            " ASCII value of character under cursor
-set statusline+=\ [HEX=\%02.2B]              " HEX value of character under cursor
-set statusline+=%=                           " Right align the rest of the status line
-set statusline+=\ [R%04l,C%04v]              " Cursor position in the file row, column
-" set statusline+=\ [%p%%]                     " Percentage of the file the active line is on
-set statusline+=\ [LEN=%L]                   " Number of line in the file
-set statusline+=%#warningmsg#                " Highlights the syntastic errors in red
-set statusline+=%{SyntasticStatuslineFlag()} " Adds the line number and error count
-set statusline+=%*                           " Fill the width of the vim window
-"
-"-----------------------------------------------------------------------------------
-" Change the background color of the status line based on the mode.
-" Insert mode = Green, Replace = Purple, command = Gray
-"-----------------------------------------------------------------------------------
-function! InsertStatuslineColor(mode)
-  echo a:mode
-  if &paste
-    hi statusline ctermbg=11 ctermfg=17 guibg=15 guifg=34
-  elseif a:mode == 'i'
-    hi statusline ctermbg=15 ctermfg=19 guibg=15 guifg=19
-  elseif a:mode == 'r'
-    hi statusline ctermbg=15 ctermfg=196 guibg=15 guifg=196 
-  elseif a:mode == 'n'
-    hi statusline ctermbg=15 ctermfg=65 guibg=15 guifg=65
-  elseif a:mode == "\<C-V>"
-    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
-  elseif a:mode == "V"
-    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
-  elseif a:mode == "v"
-    hi statusline ctermbg=15 ctermfg=8 guibg=17 guifg=15
-  endif
-endfunction
-
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * call InsertStatuslineColor(mode())
-au CursorMoved * call InsertStatuslineColor(mode())
-au CursorMovedI * call InsertStatuslineColor(mode())
+set laststatus=2                                    " Make the second to last line of vim our status line
+let g:airline_theme='understated'                   " Use the custom theme I wrote
+let g:airline_left_sep=''                           " No separator as they seem to look funky
+let g:airline_right_sep=''                          " No separator as they seem to look funky
+let g:airline#extensions#branch#enabled = 0         " Do not show the git branch in the status line
+let g:airline#extensions#syntastic#enabled = 1      " Do show syntastic warnings in the status line
+let g:airline#extensions#tabline#show_buffers = 0   " Do not list buffers in the status line
+let g:airline_section_x = ''                        " Do not list the filetype or virtualenv in the status line
+let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
+let g:airline_section_z = ''                        " Do not show the default file position info
+"let g:airline_section_warning = ''                 " Do not show the syntastic information in the status line
 " }
 
 "  Remapped Keys {
