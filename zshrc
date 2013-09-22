@@ -3,15 +3,15 @@
 #===================================================================================
 #  DESCRIPTION:  Damn if feels good to be a gangster
 #       AUTHOR:  Jarrod Taylor
-#                 .__                   
-#  ________  _____|  |_________   ____  
-#  \___   / /  ___/  |  \_  __ \_/ ___\ 
-#   /    /  \___ \|   Y  \  | \/\  \___ 
+#                 .__
+#  ________  _____|  |_________   ____
+#  \___   / /  ___/  |  \_  __ \_/ ___\
+#   /    /  \___ \|   Y  \  | \/\  \___
 #  /_____ \/____  >___|  /__|    \___  >
-#        \/     \/     \/            \/ 
+#        \/     \/     \/            \/
 #
 #===================================================================================
-# 
+#
 
 # General Settings {{
 #-------------------------------------------------------------------------------
@@ -35,25 +35,25 @@ local -a precmd_functions
 #-------------------------------------------------------------------------------
 # If command can't be executed, and command is name of a directory, cd to directory
 setopt  auto_cd
-# Make cd push the old directory onto the directory stack. 
+# Make cd push the old directory onto the directory stack.
 setopt  auto_pushd
 # Safty for overwriting files use >| instead of > to over write files
 setopt  noclobber
-# Prevents aliases on the command line from being internally substituted before 
-# completion is attempted. The effect is to make the alias a distinct command 
+# Prevents aliases on the command line from being internally substituted before
+# completion is attempted. The effect is to make the alias a distinct command
 # for completion purposes.
 setopt  complete_aliases
-# Treat the #, ~ and ^ characters as part of patterns for filename 
-# generation, etc.  (An initial unquoted `~' always produces named directory 
+# Treat the #, ~ and ^ characters as part of patterns for filename
+# generation, etc.  (An initial unquoted `~' always produces named directory
 # expansion.)
 setopt  extended_glob
-# If a new command line being added to the history list duplicates an older one, 
-# the older command is removed from the list (even if it is not the pre‐ vious event). 
+# If a new command line being added to the history list duplicates an older one,
+# the older command is removed from the list (even if it is not the pre‐ vious event).
 setopt  hist_ignore_all_dups
-#  Remove command lines from the history list when the first character on the line 
+#  Remove command lines from the history list when the first character on the line
 #  is a space, or when one of the expanded aliases contains a leading space.
 setopt  hist_ignore_space
-# This  option  both  imports new commands from the history file, and also 
+# This  option  both  imports new commands from the history file, and also
 # causes your typed commands to be appended to the history file
 setopt  share_history
 setopt  noflowcontrol
@@ -191,7 +191,7 @@ alias ts='tig status'
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-#  Python webserver: cd into a directory you want to share and then 
+#  Python webserver: cd into a directory you want to share and then
 #                    type webshare. You will be able to connect to that directory
 #                    with other machines on the local net work with IP:8000
 #                    the function will display the current machines ip address
@@ -204,10 +204,10 @@ function webshare() {
 
 #-------------------------------------------------------------------------------
 # A timer function that will say the message and display a pop-up
-# after the specified amount of time. 
-# REQUIRES: Need to have espeak installed. 
+# after the specified amount of time.
+# REQUIRES: Need to have espeak installed.
 #-------------------------------------------------------------------------------
-function workTimer() { 
+function workTimer() {
 	#echo -n "Timer name => "; read name ##<-- We don't really need a name for the timer
 	echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
 	echo -n "What to say when done => "; read say
@@ -227,7 +227,7 @@ function mem_usage() {
 
 
 #------------------------------------------------------------------------------
-#  Prints a banner with public / private ip addresses, kernel 
+#  Prints a banner with public / private ip addresses, kernel
 #  Information and uptime also shows three months of calendar.
 #  REQUIREMENTS: figle: for the banner, will need to apt-get on new install
 #-------------------------------------------------------------------------------
@@ -294,7 +294,7 @@ workon_node_env() {
 # Run the virtual environments functions for the prompt on each cd
 # -------------------------------------------------------------------
 cd() {
-  builtin cd "$@" 
+  builtin cd "$@"
   unset NODE_NAME
   workon_virtualenv
   workon_node_env
@@ -331,8 +331,8 @@ echo $PATH | tr ":" "\n" | \
 #--------------------------------------------------------------------
 # Displays mounted drive information in a nicely formatted manner
 # -------------------------------------------------------------------
-function nicemount() { 
-    (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ; 
+function nicemount() {
+    (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ;
 }
 
 #--------------------------------------------------------------------

@@ -70,7 +70,7 @@ set nocompatible
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
  Bundle 'https://github.com/goldfeld/vim-seek.git'
  Bundle 'https://github.com/tpope/vim-surround'
- Bundle 'https://github.com/JarrodCTaylor/vim-airline'
+ Bundle 'https://github.com/bling/vim-airline'
 " }
 
 " General Settings {
@@ -174,7 +174,6 @@ let g:airline#extensions#tabline#show_buffers = 0   " Do not list buffers in the
 let g:airline_section_x = ''                        " Do not list the filetype or virtualenv in the status line
 let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
 let g:airline_section_z = ''                        " Do not show the default file position info
-"let g:airline_section_warning = ''                 " Do not show the syntastic information in the status line
 " }
 
 "  Remapped Keys {
@@ -200,29 +199,29 @@ imap jk <Esc>
 " --- ss will toggle spell checking
 map ss :setlocal spell!<CR>
 " --- toggle NERDTree
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 " --- toggle Tagbar
-nnoremap <leader>tb :TagbarToggle<CR>
+nnoremap <Leader>tb :TagbarToggle<CR>
 " --- open CtrlP buffer explorer
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
 " --- open Ctrlp as a fuzzy finder
-nnoremap <leader>ff :CtrlP<CR>
+nnoremap <Leader>ff :CtrlP<CR>
 " --- Split the window vertically
-nnoremap <leader>\ :vsplit<CR>
+nnoremap <Leader>\ :vsplit<CR>
 " --- Split the window horizontally
-nnoremap <leader>- :split<CR>
+nnoremap <Leader>- :split<CR>
 " --- Ack short cut
-nnoremap <leader>a :Ack!<space>
+nnoremap <Leader>a :Ack!<space>
 " --- Toggle Syntastic
-nnoremap <leader>ts :SyntasticToggleMode<CR>
+nnoremap <Leader>ts :SyntasticToggleMode<CR>
 " --- Clear the search buffer and highlighted text with enter press
 :nnoremap <CR> :nohlsearch<CR>
 " --- Search the ctags index file for anything by class or method name
-map <leader>st :CtrlPTag<CR>
+map <Leader>st :CtrlPTag<CR>
 " --- Refresh the ctags file
-nnoremap <leader>rt :call RenewTagsFile()<CR>
+nnoremap <Leader>rt :call RenewTagsFile()<CR>
 " --- Strip trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -299,7 +298,7 @@ let NERDTreeIgnore = ['\.pyc$']
 "-----------------------------------------------------------------------------------
 " Jedi configurations
 "-----------------------------------------------------------------------------------
-let g:jedi#goto_definitions_command = "<leader>j"
+let g:jedi#goto_definitions_command = "<Leader>j"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 let g:jedi#popup_on_dot = 0
 
