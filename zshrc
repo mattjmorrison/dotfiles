@@ -278,7 +278,7 @@ workon_node_env() {
 
     for f in `ls $(pwd)/node_modules/`
     do
-      export PATH="${PATH}:$(pwd)/node_modules/${f}/bin"
+      export PATH="${PATH}:$(pwd)/node_modules/${f}bin"
     done
 
     deactivatenode() {
