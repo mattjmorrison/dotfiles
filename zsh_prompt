@@ -1,12 +1,12 @@
 #===============================================================================
 #
 #          FILE: .zsh_prompt
-# 
+#
 #         USAGE: Sourced automatically in .zshrc
-# 
-#   DESCRIPTION: In my opinion which I respect very much this may be one of the 
+#
+#   DESCRIPTION: In my opinion which I respect very much this may be one of the
 #                best zsh prompts on the planet.
-# 
+#
 #===============================================================================
 
 autoload -U colors && colors
@@ -14,7 +14,7 @@ autoload -U promptinit
 autoload -Uz vcs_info
 
 # Make the colors easier to reference
-local reset white gray green red yellow blue cyan magenta black 
+local reset white gray green red yellow blue cyan magenta black
 reset="%{${reset_color}%}"
 white="%{$fg[white]%}"
 gray="%{$fg_bold[black]%}"
@@ -36,7 +36,6 @@ zstyle ':pr_jrock:*' pwd "%~"
 
 # Set vcs_info options
 zstyle ':vcs_info:*' enable git                                           # We are only concerned with git VCS, so enable it
-zstyle ':vcs_info:(git*):*' get-revision true                             # Allows us to get the SHA of the current branch
 zstyle ':vcs_info:(git*):*' check-for-changes true                        # We want to monitor changes to the repository's
 # Format of what we will display for the git repo information.
 # %s - The VCS in use (git, hg, svn, etc.).
@@ -44,14 +43,12 @@ zstyle ':vcs_info:(git*):*' check-for-changes true                        # We w
 # %c - The string from the stagedstr style if there are staged changes in the repository.
 # %u - The number of unapplied patches (unapplied-string).
 # %b - Information about the current branch.
-# %m - A "misc" replacement. It is at the discretion of the backend to decide what this replacement expands to. 
+# %m - A "misc" replacement. It is at the discretion of the backend to decide what this replacement expands to.
 #      It is currently used by the hg and git backends to display patch information from the mq and stgit extensions.
-zstyle ':vcs_info:(git*)' formats "(%b%c%u%m)"
 # Format of what we will display during a special action on the repo (Ex. Interactive rebase or merge conflict)
-zstyle ':vcs_info:(git*)' actionformats "(%b|${red}%a${gray}%c%u%m)"
-zstyle ':vcs_info:(git*):*' stagedstr "${green} Staged${gray}"              # Set the text to display for stated changes
-zstyle ':vcs_info:(git*):*' unstagedstr "${red} Unstaged${gray}"            # Set the text to display for unstated changes
-zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-untracked # We will use hooks to inject the stashed and untracked info
+zstyle ':vcs_info:(git*)' actionformats "(%b|${red}%a${gray}%m)"
+zstyle ':vcs_info:(git*)' formats "(%b%m)"
+zstyle ':vcs_info:git*+set-message:*' hooks git-statuses git-st
 
 # Run all the prompt hook functions
 # (stolen, wholesale, from the excellent hook system in vcs_info)
@@ -90,13 +87,13 @@ function +pr-mode-full() {
 
     infoline=( ${pr_com[pwd]} ${pr_com[usr]} )
 
-    # If we are in a directory that has a node_modules subdirectory we want to 
+    # If we are in a directory that has a node_modules subdirectory we want to
     # display that on the info line
      [[ -n ${pr_com[npm]} ]] && infoline[1]=(
          ${infoline[1]}
          "${cyan} n${gray}(${pr_com[npm]}${gray})${reset}"
      )
- 
+
     # The prompt was not taking up the full width of the terminal when displaying npm info
     # So if we are in a npm directory then we add a one character shim to the width of the filler
      npm_shim=0
@@ -142,7 +139,7 @@ function +pr-mode-full() {
 
     )
 
-    # Add some connecting lines to the beginning of our prompts 
+    # Add some connecting lines to the beginning of our prompts
     if [[ -n ${pr_com[vcs]} ]]; then
         lines[1]="${gray}┌──${lines[1]}${gray}─${reset}"
         lines[2]="${gray}├──${lines[2]}${reset}"
@@ -219,7 +216,7 @@ function +pr-prompt() {
     pr_com[pwd]=${(j::)v_pwd}${reset}
 
 
-    # Add exit status check or x logic 
+    # Add exit status check or x logic
     exit_status=( ${gray}\( )
     exit_status+="%(0?.${green}✔.${red}✘)"
     exit_status+=( ${gray}\) )
@@ -257,27 +254,30 @@ function +vi-git-st-compact() {
         && hook_com[misc]="@{u}${(j:/:)user_data[gitstatus]}"
 }
 
-# Show count of stashed changes
-function +vi-git-stash() {
-    local -a stashes
+function +vi-git-statuses() {
+    git status -s >| /tmp/gitstatus.txt
+    staged=$( cat /tmp/gitstatus.txt | grep -c "^[MARCD]")
+    unstaged=$( cat /tmp/gitstatus.txt | grep -c "^.[MARCD]")
+    untracked=$( cat /tmp/gitstatus.txt | grep -c "^\?")
+    stashes=$(git stash list 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
 
-    if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
-        stashes=$(git stash list 2>/dev/null | wc -l | sed -e 's/^[ \t]*//')
-        hook_com[misc]+=" (${stashes} stashed)"
+    if [[ ${staged} != 0 ]] ; then
+        hook_com[misc]+=" ${green}${staged}${gray}"
+    fi
+
+    if [[ ${unstaged} != 0 ]] ; then
+        hook_com[misc]+=" ${red}${unstaged}${gray}"
+    fi
+
+    if [[ ${untracked} != 0 ]] ; then
+        hook_com[misc]+=" ${yellow}${untracked}${gray}"
+    fi
+
+    if [[ ${stashes} != 0 ]] ; then
+        hook_com[misc]+=" ${gray}${stashes}${gray}"
     fi
 }
 
-# Indicate if there are any untracked files present
-function +vi-git-untracked() {
-    local untracked
-
-    #check if there's at least 1 untracked file
-    untracked=${$(git ls-files --exclude-standard --others | head -n 1)}
-
-    if [[ -n ${untracked} ]] ; then
-        hook_com[unstaged]="${hook_com[unstaged]}${yellow} Untracked${gray}"
-    fi
-}
 
 # --------------------------
 # Finally we execute the above prompt functions
@@ -302,25 +302,3 @@ function precmd_prompt {
     # Set the prompts
     PROMPT="${(F)prompt_left_lines} "
 }
-
-# --------------------------
-# Right prompt which displays the vim mode
-# Pulling this out for now since it is killing 
-# rows above it for some odd reason. 
-# --------------------------
-## vim_ins_mode=""
-## vim_cmd_mode="${red}[CMD]${reset}"
-## vim_mode=$vim_ins_mode
-## 
-## function zle-keymap-select {
-##     vim_mode="${${KEYMAP/vicmd/${vim_cmd_mode}}/(main|viins)/${vim_ins_mode}}"
-##     zle reset-prompt
-## }
-## zle -N zle-keymap-select
-## 
-## function zle-line-finish {
-##     vim_mode=$vim_ins_mode
-## }
-## zle -N zle-line-finish
-## 
-## RPROMPT='${vim_mode}'
