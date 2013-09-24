@@ -235,6 +235,7 @@ nnoremap<Leader>dm :DjangoTestMethod<CR>
 nnoremap<Leader>nf :NosetestFile<CR>
 nnoremap<Leader>nc :NosetestClass<CR>
 nnoremap<Leader>nm :NosetestMethod<CR>
+nnoremap<Leader>rr :RerunLastTests<CR>
 " --- grunt-karma test runner shortcut
 map <Leader>q :!grunt test<CR>"
 " --- Toggle relative line numbering
