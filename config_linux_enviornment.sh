@@ -30,15 +30,16 @@ echo -n "Would you like to delete any existing dot files (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
     sudo rm -r ~/.emacs.d > /dev/null 2>&1
     sudo rm -r ~/.vim > /dev/null 2>&1
-    sudo rm  ~/.vimrc > /dev/null 2>&1
-    sudo rm  ~/.bashrc > /dev/null 2>&1
-    sudo rm  ~/.tmux > /dev/null 2>&1
-    sudo rm  ~/.tmux.conf > /dev/null 2>&1
-    sudo rm  ~/.conkyrc > /dev/null 2>&1
-    sudo rm  -r ~/highlighters > /dev/null 2>&1
-    sudo rm  ~/.zsh_prompt > /dev/null 2>&1
-    sudo rm  ~/zsh-syntax-highlighting.zsh > /dev/null 2>&1
-    sudo rm  ~/.zshrc > /dev/null 2>&1
+    sudo rm ~/.vimrc > /dev/null 2>&1
+    sudo rm ~/.bashrc > /dev/null 2>&1
+    sudo rm ~/.tmux > /dev/null 2>&1
+    sudo rm ~/.tmux.conf > /dev/null 2>&1
+    sudo rm ~/.conkyrc > /dev/null 2>&1
+    sudo rm -r ~/highlighters > /dev/null 2>&1
+    sudo rm ~/.zsh_prompt > /dev/null 2>&1
+    sudo rm ~/zsh-syntax-highlighting.zsh > /dev/null 2>&1
+    sudo rm ~/.zshrc > /dev/null 2>&1
+    sudo rm ~/.gitconfig
 fi
 
 #==============
@@ -55,20 +56,7 @@ ln -s $dotfiles_dir/highlighters ~/highlighters
 ln -s $dotfiles_dir/zsh_prompt ~/.zsh_prompt
 ln -s $dotfiles_dir/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
 ln -s $dotfiles_dir/zshrc ~/.zshrc
-
-#==============
-# Set git configuration
-#==============
-echo -n "Would you like to configure you git name and email? (Y/n) => "; read answer
-
-if [[ $answer = "Y" ]] ; then
-    echo -n "What is your git user name => "; read name
-    git config --global user.name "$name"
-    echo -n "What is your git email => "; read email
-    git config --global user.email "$email"
-
-    git config --global color.ui true
-fi
+ln -s $dotfiles_dir/gitconfig ~/.gitconfig
 
 #==============
 # Select which conky to symlink
