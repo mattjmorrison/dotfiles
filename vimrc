@@ -71,6 +71,11 @@ set nocompatible
  Bundle 'https://github.com/goldfeld/vim-seek.git'
  Bundle 'https://github.com/tpope/vim-surround'
  Bundle 'https://github.com/bling/vim-airline'
+ " This will no longer be needed in vim 7.4
+ Bundle 'https://github.com/guns/vim-clojure-static'
+ Bundle 'https://github.com/tpope/vim-fireplace'
+ Bundle 'https://github.com/kien/rainbow_parentheses.vim'
+ Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
 " }
 
 " General Settings {
@@ -200,6 +205,7 @@ imap jk <Esc>
 map ss :setlocal spell!<CR>
 " --- toggle NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>no :NERDTreeFind<CR>
 " --- toggle Tagbar
 nnoremap <Leader>tb :TagbarToggle<CR>
 " --- open CtrlP buffer explorer
@@ -274,6 +280,7 @@ if !exists('g:neocomplcache_force_omni_patterns')
       let g:neocomplcache_force_omni_patterns = {}
   endif
 let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
+let g:neocomplcache_force_overwrite_completefunc=1
 "
 "-----------------------------------------------------------------------------------
 " Ctrlp configurations
@@ -347,6 +354,30 @@ let g:startify_show_files = 1
 let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
 let g:startify_bookmarks = [ '~/.vimrc' ]
+
+"-----------------------------------------------------------------------------------
+" Rainbow Parentheses settings
+"-----------------------------------------------------------------------------------
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 
 " }
 
