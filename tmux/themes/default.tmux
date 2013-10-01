@@ -42,6 +42,6 @@ setw -g window-status-content-attr bold
 # -------------
 set -g status-left ''
 set -g status-right-length 150
-set -g status-right '#[fg=colour105] #(hostname)@#(hostname -I | cut -d " " -f 1) | ♥ #(acpi -b | cut -d" " -f4 | cut -d"%" -f1)% | %H:%M | %Y-%m-%d '
+set -g status-right '#[fg=colour105] #(hostname)@#(hostname -I | cut -d " " -f 1) | #[fg=colour160]♥ #[fg=colour105]#(acpi -b | cut -d" " -f4 | cut -d"%" -f1)% | %H:%M | %Y-%m-%d '
 set -g status-utf8 on
 
