@@ -165,6 +165,11 @@ if has("autocmd")
         \ endif
 endif
 
+"-----------------------------------------------------------------------------------
+" Abbreviations
+"-----------------------------------------------------------------------------------
+:iabbr teh the
+
 " }
 
 " My pimped out status line {
@@ -196,6 +201,28 @@ let g:airline_section_z = ''                        " Do not show the default fi
 "  smap, snoremap, sunmap          Select mode
 "  cmap, cnoremap, cunmap          Command-line mode
 "  omap, onoremap, ounmap          Operator pending mode
+"
+" Keys         Notation
+" -----        ---------
+" <C-s>        Ctrl + s
+" <A-s>        Alt + s
+" <M-s>        Meta + s
+" <BS>         Backspace
+" <Tab>        Tab
+" <CR>         Enter
+" <Esc>        Escape
+" <Space>      Space
+" <Up>         Up arrow
+" <Down>       Down arrow
+" <Left>       Left arrow
+" <Right>      Right arrow
+" <F1> - <F12> Function keys 1 to 12
+" <Insert>     Insert
+" <Del>        Delete
+" <Home>       Home
+" <End>        End
+
+
 "===================================================================================
 "
 " --- change mapleader from \ to 9 as I find that easier to type
