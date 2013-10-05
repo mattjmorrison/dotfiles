@@ -290,7 +290,8 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 "-----------------------------------------------------------------------------------
 " UltiSnips configurations
 "-----------------------------------------------------------------------------------
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mySnippets"]
+let g:UltiSnipsSnippetDirectories=["mySnippets"] " UltiSnips
+let g:UltiSnipsExpandTrigger="`"
 "
 "-----------------------------------------------------------------------------------
 " Neocomplcache configurations
