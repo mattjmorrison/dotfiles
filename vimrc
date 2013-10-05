@@ -51,7 +51,7 @@ set nocompatible
  Bundle 'https://github.com/Raimondi/delimitMate'
  Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
- Bundle 'https://github.com/JarrodCTaylor/vim-color-menu'
+ Bundle 'https://github.com/JarrodCTaylor/vim-256-color-schemes'
  Bundle 'https://github.com/tpope/vim-fugitive'
  " Must have exuberant-ctags for tagbar to work
  Bundle 'https://github.com/majutsushi/tagbar'
@@ -88,16 +88,10 @@ filetype  plugin on
 filetype  indent on
 "
 "-----------------------------------------------------------------------------------
-" Color scheme and fonts if gui (gvim) then mustang if command line zenburn
+" Color scheme
 "-----------------------------------------------------------------------------------
-if has("gui_running")
-    colorscheme mustang
-    set guifont=Monospace\ 12
-    set antialias
-else
-    set t_Co=256
-    colorscheme zenburn
-endif
+set t_Co=256
+colorscheme tomorrow-night
 "
 "-----------------------------------------------------------------------------------
 " Switch syntax highlighting on.
