@@ -1,4 +1,5 @@
 " vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+
 "===================================================================================
 "  DESCRIPTION:  An ever changing work in progress
 "       AUTHOR:  Jarrod Taylor
@@ -12,15 +13,16 @@
 "===================================================================================
 "
 
-" Set nocompatible {
+" Set nocompatible {1
 "-----------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings. This must be first, because it changes
 " other options as a side effect.
 "-----------------------------------------------------------------------------------
 set nocompatible
-" }
+" }1
 
-" Vundle Package Management {
+" Vundle Package Management {1
+" Notes {2
 "===================================================================================
 "
 " Help
@@ -32,17 +34,15 @@ set nocompatible
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 "===================================================================================
-"
-"-----------------------------------------------------------------------------------
-" Required for vundle to work
+" }2
+" Required for vundle to work {2
 "-----------------------------------------------------------------------------------
  filetype off
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
  Bundle 'gmarik/vundle'
-"
-"-----------------------------------------------------------------------------------
-" Github repos for bundles that we want to have installed
+" }2
+" Github repos for bundles that we want to have installed {2
 "-----------------------------------------------------------------------------------
  Bundle 'https://github.com/mileszs/ack.vim'
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
@@ -76,30 +76,28 @@ set nocompatible
  Bundle 'https://github.com/tpope/vim-fireplace'
  Bundle 'https://github.com/kien/rainbow_parentheses.vim'
  Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
-" }
+" }2
+" }1
 
-" General Settings {
-"
+" General Settings {1
+" File Type Detection {2
 "-----------------------------------------------------------------------------------
 " Enable file type detection. Use the default filetype settings.
 " Load indent files, to automatically do language-dependent indenting.
 "-----------------------------------------------------------------------------------
 filetype  plugin on
 filetype  indent on
-"
-"-----------------------------------------------------------------------------------
-" Color scheme
+" }2
+" Color scheme {2
 "-----------------------------------------------------------------------------------
 set t_Co=256
-colorscheme tomorrow-night
-"
-"-----------------------------------------------------------------------------------
-" Switch syntax highlighting on.
+colorscheme pop-rocks
+" }2
+" Switch syntax highlighting on. {2
 "-----------------------------------------------------------------------------------
 syntax on
-"
-"-----------------------------------------------------------------------------------
-" Various settings
+" }2
+" Various settings {2
 "-----------------------------------------------------------------------------------
 set autoindent                         " Copy indent from current line
 set autoread                           " Read open files again when changed outside Vim
@@ -131,22 +129,20 @@ set wildmenu                           " Command-line completion in an enhanced 
 set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
-
-"-----------------------------------------------------------------------------------
-" Turn off the toolbar that is under the menu in gvim
+" }2
+" Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
 set guioptions-=T
-
-"-----------------------------------------------------------------------------------
-" Treat JSON files like JavaScript
+" }2
+" Treat JSON files like JavaScript {2
 "-----------------------------------------------------------------------------------
 au BufNewFile,BufRead *.json set ft=javascript
-
-"-----------------------------------------------------------------------------------
-" Make pasting done without any indentation break
+" }2
+" Make pasting done without any indentation break {2
 "-----------------------------------------------------------------------------------
 set pastetoggle=<F3>
-
+" }2
+" Last cursos position {2
 "-----------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -158,15 +154,14 @@ if has("autocmd")
         \   exe "normal! g`\"" |
         \ endif
 endif
-
-"-----------------------------------------------------------------------------------
-" Abbreviations
+" }2
+" Abbreviations {2
 "-----------------------------------------------------------------------------------
 :iabbr teh the
+" }2
+" }1
 
-" }
-
-" My pimped out status line {
+" My pimped out status line {1
 
 set laststatus=2                                    " Make the second to last line of vim our status line
 let g:airline_theme='understated'                   " Use the custom theme I wrote
@@ -179,9 +174,10 @@ let g:airline_section_x = ''                        " Do not list the filetype o
 "let g:airline_section_y = '[TYPE=%Y] [Format=%{&ff}] [ASCII=%03.3b] [HEX=%02.2B] [R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
 let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
 let g:airline_section_z = ''                        " Do not show the default file position info
-" }
+" }1
 
-"  Remapped Keys {
+"  Remapped Keys {1
+" Notes {2
 "===================================================================================
 "  (nore) prefix -- non-recursive
 "  (un)   prefix -- Remove a mode-specific map
@@ -215,10 +211,9 @@ let g:airline_section_z = ''                        " Do not show the default fi
 " <Del>        Delete
 " <Home>       Home
 " <End>        End
-
-
 "===================================================================================
-"
+" }2
+" Key mappings {2
 " --- change mapleader from \ to 9 as I find that easier to type
 let mapleader="9"
 " --- jk mapped to <Esc> so we can keep our fingers on the home row
@@ -272,13 +267,11 @@ nnoremap<Leader>tn :set relativenumber!<CR>
 map <Leader>rf :call RenameFile()<CR>
 " --- Shortcut to CopyFile function defined below
 map <Leader>cf :call CopyFile()<CR>
+" }2
+" }1
 
-" }
-
-" Plugin Configurations {
-
-"-----------------------------------------------------------------------------------
-" Syntastic configurations use :help syntastic.txt
+" Plugin Configurations {1
+" Syntastic configurations use :help syntastic.txt {2
 "-----------------------------------------------------------------------------------
 let g:syntastic_check_on_open=1                   " check for errors when file is loaded
 let g:syntastic_loc_list_height=5                 " the height of the error list defaults to 10
@@ -286,15 +279,13 @@ let g:syntastic_python_checkers = ['flake8']      " sets flake8 as the default f
 let g:syntastic_javascript_checkers = ['jshint']  " sets jshint as our javascript linter
 " Ignore line width for syntax checking in python
 let g:syntastic_python_flake8_post_args='--ignore=E501'
-"
-"-----------------------------------------------------------------------------------
-" UltiSnips configurations
+" }2
+" UltiSnips configurations {2
 "-----------------------------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories=["mySnippets"] " UltiSnips
 let g:UltiSnipsExpandTrigger="`"
-"
-"-----------------------------------------------------------------------------------
-" Neocomplcache configurations
+" }2
+" Neocomplcache configurations {2
 "-----------------------------------------------------------------------------------
 let g:neocomplcache_enable_at_startup=1
 " To make compatible with jedi
@@ -304,37 +295,33 @@ if !exists('g:neocomplcache_force_omni_patterns')
   endif
 let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 let g:neocomplcache_force_overwrite_completefunc=1
-"
-"-----------------------------------------------------------------------------------
-" Ctrlp configurations
+" }2
+" Ctrlp configurations {2
 "-----------------------------------------------------------------------------------
 let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 18
-"
+" }2
+" Exuberant ctags configurations {2
 "-----------------------------------------------------------------------------------
-" Exuberant ctags configurations
 " Vim will look for a ctags file in the current directory and continue
 " up the file path until it finds one
 "-----------------------------------------------------------------------------------
 " Enable ctags support
 set tags=./.ctags,.ctags;
-
-"-----------------------------------------------------------------------------------
-" NERDTree configurations
+" }2
+" NERDTree configurations {2
 "-----------------------------------------------------------------------------------
 " Make NERDTree ignore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
-
-"-----------------------------------------------------------------------------------
-" Jedi configurations
+" }2
+" Jedi configurations {2
 "-----------------------------------------------------------------------------------
 let g:jedi#goto_definitions_command = "<Leader>j"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 let g:jedi#popup_on_dot = 0
-
-"-----------------------------------------------------------------------------------
-" Startify configurations
+" }2
+" Startify configurations {2
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76
@@ -342,7 +329,6 @@ hi StartifyHeader ctermfg=76
 let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
 let g:startify_change_to_dir = 0
-
 " Set the contents of the banner
 let g:startify_custom_header = [
             \ '                                                                                                                        ',
@@ -370,16 +356,14 @@ let g:startify_custom_header = [
             \ '             $                                                                                                          ',
             \ '',
             \]
-
 " List recently used files using viminfo.
 let g:startify_show_files = 1
 " The number of files to list.
 let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
 let g:startify_bookmarks = [ '~/.vimrc' ]
-
-"-----------------------------------------------------------------------------------
-" Rainbow Parentheses settings
+" }2
+" Rainbow Parentheses settings {2
 "-----------------------------------------------------------------------------------
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -401,11 +385,15 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
+" }2
+" SuperTab {2
+"-----------------------------------------------------------------------------------
+let g:SuperTabDefaultCompletionType = "<c-n>"
+" }2
+" }1
 
-" }
-
-" Misc Functions {
-
+" Misc Functions {1
+" Renewtagsfile {2
 function! RenewTagsFile()
     exe 'silent !rm -rf .ctags'
     exe 'silent !coffeetags --include-vars -Rf .ctags'
@@ -413,7 +401,8 @@ function! RenewTagsFile()
     exe 'silent !ctags -a -Rf .ctags --extra=+f --exclude=.git --languages=python --python-kinds=-iv --exclude=build --exclude=dist 2>/dev/null'
     exe 'redraw!'
 endfunction
-
+" }2
+" Copyfile {2
 function! CopyFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
@@ -422,7 +411,8 @@ function! CopyFile()
         redraw!
     endif
 endfunction
-
+" }2
+" Renamefile {2
 function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
@@ -432,5 +422,5 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-
-" }
+" }2
+" }1
