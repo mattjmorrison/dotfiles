@@ -76,6 +76,7 @@ set nocompatible
  Bundle 'https://github.com/tpope/vim-fireplace'
  Bundle 'https://github.com/kien/rainbow_parentheses.vim'
  Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
+ Bundle 'https://github.com/sjl/gundo.vim'
 " }2
 " }1
 
@@ -267,6 +268,8 @@ nnoremap<Leader>tn :set relativenumber!<CR>
 map <Leader>rf :call RenameFile()<CR>
 " --- Shortcut to CopyFile function defined below
 map <Leader>cf :call CopyFile()<CR>
+" --- Shortcut to toggle visual undok
+nnoremap<Leader>ud :GundoToggle<CR>
 " }2
 " }1
 
@@ -389,6 +392,10 @@ let g:rbpt_loadcmd_toggle = 0
 " SuperTab {2
 "-----------------------------------------------------------------------------------
 let g:SuperTabDefaultCompletionType = "<c-n>"
+" }2
+" Gundo {2
+"-----------------------------------------------------------------------------------
+let g:gundo_preview_bottom = 1
 " }2
 " }1
 
