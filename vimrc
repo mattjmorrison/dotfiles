@@ -131,6 +131,7 @@ set wildmenu                           " Command-line completion in an enhanced 
 set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
+set iskeyword-=_                       " Make underscores keyword boundaries 
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
