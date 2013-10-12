@@ -108,10 +108,10 @@ set incsearch                          " Do incremental searching
 set ignorecase                         " Ignore case when searching....
 set smartcase                          " ...unless uppercase letter are used
 set hlsearch                           " Highlight the last used search pattern
-"set list                              " Toggle manually with set list / set nolist or set list!
+set list                              " Toggle manually with set list / set nolist or set list!
 set listchars=""                       " Empty the listchars
 set listchars=tab:>.                   " A tab will be displayed as >...
-set listchars+=trail:.                 " Trailing white spaces will be displayed as .
+"set listchars+=trail:.                 " Trailing white spaces will be displayed as .
 set mouse=a                            " Enable the use of the mouse
 set nobackup                           " Don't constantly write backup files
 set noswapfile                         " Ain't nobody got time for swap files
@@ -130,7 +130,7 @@ set wildmenu                           " Command-line completion in an enhanced 
 set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
-set iskeyword-=_                       " Make underscores keyword boundaries 
+"set iskeyword-=_                       " Make underscores keyword boundaries 
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
