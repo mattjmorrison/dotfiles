@@ -105,8 +105,10 @@ set autoread                           " Read open files again when changed outs
 set autowrite                          " Write a modified buffer on each :next , ...
 set backspace=indent,eol,start         " Backspacing over everything in insert mode
 set history=50                         " Keep 50 lines of command line history
-set hlsearch                           " Highlight the last used search pattern
 set incsearch                          " Do incremental searching
+set ignorecase                         " Ignore case when searching....
+set smartcase                          " ...unless uppercase letter are used
+set hlsearch                           " Highlight the last used search pattern
 "set list                              " Toggle manually with set list / set nolist or set list!
 set listchars=""                       " Empty the listchars
 set listchars=tab:>.                   " A tab will be displayed as >...
@@ -119,7 +121,6 @@ set nowrap                             " Do not wrap lines
 set popt=left:8pc,right:3pc            " Print options
 set shiftwidth=4                       " Number of spaces to use for each step of indent
 set showcmd                            " Display incomplete commands in the bottom line of the screen
-set smartcase                          " Ignore case if search pattern is all lowercase, case_sensitive otherwise
 set tabstop=4                          " Number of spaces that a <Tab> counts for
 set expandtab                          " Make vim use spaces and not tabs
 set undolevels=1000                    " Never can be too careful when it comes to undoing
@@ -429,5 +430,23 @@ function! RenameFile()
         redraw!
     endif
 endfunction
+" }2
+" Highlight matches when jumping to next {2
+
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+    function! HLNext (blinktime)
+        highlight HighlightStyle ctermfg=none ctermbg=none cterm=reverse
+        let [bufnum, lnum, col, off] = getpos('.')
+        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+        let target_pat = '\c\%#'.@/
+        let ring = matchadd('HighlightStyle', target_pat, 101)
+        redraw
+        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+        call matchdelete(ring)
+        redraw
+    endfunction
 " }2
 " }1
