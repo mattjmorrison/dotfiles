@@ -3,7 +3,7 @@
 ; Purpose:      Makes emacs useful to me. I couldn't use it without it.
 ; Author:       Jarrod
 ; Notes:        Created using Emacs24
-; Time-stamp:   <06-05-2013 11:56:16 (jrock)>
+; Time-stamp:   <10-13-2013 20:05:40 (jrock)>
 ; Index:
 ; -------- #1:    -- Add plugin directories to the load path
 ; -------- #2:    -- Require Evil and set key bindings
@@ -108,7 +108,7 @@
 (evil-leader/set-key "<backspace>" 'org-mark-ring-goto)   ; Go to the previous file in org mode (kind of works)
 (defun open-org ()
     (interactive)
-    (find-file "~/Dropbox/Org/Gateway.org"))
+    (find-file "~/Dropbox/Org/Home.org"))
 (evil-leader/set-key "om" 'open-org)                      ; Open main Org mode file
 (evil-leader/set-key "hs" 'hs-minor-mode)                 ; Toggle the hide show minor mode
 
