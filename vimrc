@@ -76,6 +76,7 @@ set nocompatible
  Bundle 'https://github.com/kien/rainbow_parentheses.vim'
  Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
  Bundle 'https://github.com/sjl/gundo.vim'
+ Bundle 'https://github.com/Rykka/riv.vim'
 " }2
 " }1
 
@@ -130,7 +131,7 @@ set wildmenu                           " Command-line completion in an enhanced 
 set shell=bash                         " Required to let zsh know how to run things on command line
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
-"set iskeyword-=_                       " Make underscores keyword boundaries 
+"set iskeyword-=_                       " Make underscores keyword boundaries
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
@@ -287,7 +288,7 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 " UltiSnips configurations {2
 "-----------------------------------------------------------------------------------
 let g:UltiSnipsSnippetDirectories=["mySnippets"] " UltiSnips
-let g:UltiSnipsExpandTrigger="`"
+let g:UltiSnipsExpandTrigger="<Leader>`"
 " }2
 " Neocomplcache configurations {2
 "-----------------------------------------------------------------------------------
@@ -397,6 +398,11 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " Gundo {2
 "-----------------------------------------------------------------------------------
 let g:gundo_preview_bottom = 1
+" }2
+" Riv {2
+let project1 = { 'path': '~/Dropbox/PKB/rst',}
+let g:riv_file_link_style=1
+let g:riv_fold_blank=1
 " }2
 " }1
 
