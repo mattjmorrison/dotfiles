@@ -179,7 +179,7 @@ let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and 
 let g:airline_section_z = ''                        " Do not show the default file position info
 " }1
 
-"  Remapped Keys {1
+"  Key mapings {1
 " Notes {2
 "===================================================================================
 "  (nore) prefix -- non-recursive
@@ -400,6 +400,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:gundo_preview_bottom = 1
 " }2
 " Riv {2
+"-----------------------------------------------------------------------------------
 let project1 = { 'path': '~/Dropbox/PKB/rst',}
 let g:riv_file_link_style=1
 let g:riv_fold_blank=1
@@ -438,21 +439,20 @@ function! RenameFile()
 endfunction
 " }2
 " Highlight matches when jumping to next {2
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
-    " This rewires n and N to do the highlighing...
-    nnoremap <silent> n   n:call HLNext(0.4)<cr>
-    nnoremap <silent> N   N:call HLNext(0.4)<cr>
-
-    function! HLNext (blinktime)
-        highlight HighlightStyle ctermfg=none ctermbg=none cterm=reverse
-        let [bufnum, lnum, col, off] = getpos('.')
-        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-        let target_pat = '\c\%#'.@/
-        let ring = matchadd('HighlightStyle', target_pat, 101)
-        redraw
-        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-        call matchdelete(ring)
-        redraw
-    endfunction
+function! HLNext (blinktime)
+    highlight HighlightStyle ctermfg=none ctermbg=none cterm=reverse
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('HighlightStyle', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
 " }2
 " }1
