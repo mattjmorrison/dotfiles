@@ -184,6 +184,7 @@ alias ad='add_current_directory_to_path'
 alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
+alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
 
 # }}
 
