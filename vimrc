@@ -145,6 +145,9 @@ au BufNewFile,BufRead *.json set ft=javascript
 "-----------------------------------------------------------------------------------
 set pastetoggle=<F3>
 " }2
+" Reduce lag when trying to matchparen in large files 5ms timeout {2
+let g:matchparen_insert_timeout=5
+" }2
 " Last cursos position {2
 "-----------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
