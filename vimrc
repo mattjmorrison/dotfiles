@@ -56,27 +56,24 @@ set nocompatible
  Bundle 'https://github.com/majutsushi/tagbar'
  Bundle 'https://github.com/ervandew/supertab'
  Bundle 'https://github.com/pangloss/vim-javascript'
- Bundle 'https://github.com/Lokaltog/vim-easymotion'
  Bundle 'https://github.com/scrooloose/syntastic'
  Bundle 'https://github.com/vim-scripts/UltiSnips'
- Bundle 'https://github.com/kchmck/vim-coffee-script'
  Bundle 'https://github.com/kien/ctrlp.vim'
  Bundle 'https://github.com/tpope/vim-commentary'
  Bundle 'https://github.com/davidhalter/jedi-vim'
  Bundle 'https://github.com/mhinz/vim-startify'
  Bundle 'https://github.com/tmhedberg/SimpylFold'
- Bundle 'https://github.com/nono/vim-handlebars'
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
- Bundle 'https://github.com/goldfeld/vim-seek.git'
  Bundle 'https://github.com/tpope/vim-surround'
  Bundle 'https://github.com/bling/vim-airline'
  " This will no longer be needed in vim 7.4
  Bundle 'https://github.com/guns/vim-clojure-static'
  Bundle 'https://github.com/tpope/vim-fireplace'
  Bundle 'https://github.com/kien/rainbow_parentheses.vim'
- Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
  Bundle 'https://github.com/sjl/gundo.vim'
- Bundle 'https://github.com/Rykka/riv.vim'
+ Bundle 'https://github.com/nelstrom/vim-markdown-folding'
+ Bundle 'https://github.com/tpope/vim-markdown'
+ Bundle 'https://github.com/mmai/wikilink'
 " }2
 " }1
 
@@ -162,6 +159,12 @@ endif
 "-----------------------------------------------------------------------------------
 :iabbr teh the
 " }2
+" Make arrowkey resize viewports {2
+nnoremap <Left> :vertical resize +1<CR>
+nnoremap <Right> :vertical resize -1<CR>
+nnoremap <Up> :resize +1<CR>
+nnoremap <Down> :resize -1<CR>
+" }2
 " }1
 
 " My pimped out status line {1
@@ -173,9 +176,10 @@ let g:airline_right_sep=''                          " No separator as they seem 
 let g:airline#extensions#branch#enabled = 0         " Do not show the git branch in the status line
 let g:airline#extensions#syntastic#enabled = 1      " Do show syntastic warnings in the status line
 let g:airline#extensions#tabline#show_buffers = 0   " Do not list buffers in the status line
+let g:airline_section_b = ''                        " Do not show git hunks or branch
 let g:airline_section_x = ''                        " Do not list the filetype or virtualenv in the status line
-"let g:airline_section_y = '[TYPE=%Y] [Format=%{&ff}] [ASCII=%03.3b] [HEX=%02.2B] [R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
-let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
+let g:airline_section_y = '[TYPE=%Y] [Format=%{&ff}] [ASCII=%03.3b] [HEX=%02.2B] [R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
+"let g:airline_section_y = '[R%04l,C%04v] [LEN=%L]'  " Replace file encoding and file format info with file position
 let g:airline_section_z = ''                        " Do not show the default file position info
 " }1
 
@@ -241,7 +245,7 @@ nnoremap <Leader>a :Ack!<space>
 " --- Toggle Syntastic
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 " --- Clear the search buffer and highlighted text with enter press
-:nnoremap <CR> :nohlsearch<CR>
+:nnoremap <Space> :nohlsearch<CR>
 " --- Search the ctags index file for anything by class or method name
 map <Leader>st :CtrlPTag<CR>
 " --- Refresh the ctags file
@@ -399,12 +403,14 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "-----------------------------------------------------------------------------------
 let g:gundo_preview_bottom = 1
 " }2
-" Riv {2
+" Vim-Markdown-Folding {2
 "-----------------------------------------------------------------------------------
-let project1 = { 'path': '~/Dropbox/PKB/rst',}
-let g:riv_file_link_style=1
-let g:riv_fold_blank=1
+let g:markdown_fold_style = 'nested'
 " }2
+" Vim-Markdown {2
+"-----------------------------------------------------------------------------------
+ let g:markdown_fenced_languages = ['python', 'sh', 'vim', 'javascript', 'html', 'clojure']
+"}2
 " }1
 
 " Misc Functions {1
@@ -454,5 +460,29 @@ function! HLNext (blinktime)
     call matchdelete(ring)
     redraw
 endfunction
+" }2
+
+" Custom Fold Text{2
+"function! CustomFoldText()
+"    "get first non-blank line
+"    let fs = v:foldstart
+"    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+"    endwhile
+"    if fs > v:foldend
+"        let line = getline(v:foldstart)
+"    else
+"        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+"    endif
+"
+"    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+"    let foldSize = 1 + v:foldend - v:foldstart
+"    let foldSizeStr = " " . foldSize . " lines "
+"    let foldLevelStr = repeat("+--", v:foldlevel)
+"    let lineCount = line("$")
+"    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+"    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+"    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+"endf
+"set foldtext=CustomFoldText()
 " }2
 " }1
