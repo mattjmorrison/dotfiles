@@ -73,7 +73,8 @@ set nocompatible
  Bundle 'https://github.com/sjl/gundo.vim'
  Bundle 'https://github.com/nelstrom/vim-markdown-folding'
  Bundle 'https://github.com/tpope/vim-markdown'
- Bundle 'https://github.com/mmai/wikilink'
+ Bundle 'https://github.com/JarrodCTaylor/wikilink'
+ Bundle 'https://github.com/justinmk/vim-sneak'
 " }2
 " }1
 
@@ -129,6 +130,8 @@ set shell=bash                         " Required to let zsh know how to run thi
 set clipboard=unnamed                  " Yank and paste with the system clipboard
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
 "set iskeyword-=_                       " Make underscores keyword boundaries
+set relativenumber                     " Turn on the relative line numbering
+set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
@@ -274,7 +277,7 @@ nnoremap<Leader>tn :set relativenumber!<CR>
 map <Leader>rf :call RenameFile()<CR>
 " --- Shortcut to CopyFile function defined below
 map <Leader>cf :call CopyFile()<CR>
-" --- Shortcut to toggle visual undok
+" --- Shortcut to toggle visual undo
 nnoremap<Leader>ud :GundoToggle<CR>
 " }2
 " }1
@@ -409,7 +412,13 @@ let g:markdown_fold_style = 'nested'
 " }2
 " Vim-Markdown {2
 "-----------------------------------------------------------------------------------
- let g:markdown_fenced_languages = ['python', 'sh', 'vim', 'javascript', 'html', 'clojure']
+ let g:markdown_fenced_languages = ['python', 'sh', 'vim', 'javascript', 'html', 'clojure', 'css', 'c', 'sql', 'java']
+"}2
+" Vim-sneak {2
+"-----------------------------------------------------------------------------------
+" Replace the default f command
+nmap f <Plug>SneakForward
+nmap F <Plug>SneakBackward
 "}2
 " }1
 
