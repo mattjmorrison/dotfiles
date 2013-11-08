@@ -2,19 +2,15 @@ snippet # "comment line"
 <!-- $0 -->
 endsnippet
 
-snippet _# "begin a comment"
+snippet #b "begin a comment"
 <!--
 endsnippet
 
-snippet #_ "end a comment"
+snippet #e "end a comment"
 -->
 endsnippet
 
-snippet js_source "javascript source file"
-<script src="$0"></script>
-endsnippet
-
-snippet css_source "link to css file"
+snippet css_s "link to css file"
 <link rel="stylesheet" type="text/css" href="$0">
 endsnippet
 
@@ -41,6 +37,31 @@ snippet html5 "My HTML5 Template"
 </html>
 endsnippet
 
+snippet h1 "Headding level 1"
+<h1>$0</h1>
+endsnippet
+
 snippet h2 "Headding level 2"
 <h2>$0</h2>
+endsnippet
+
+snippet ul "Unordered list"
+<ul>
+  <li>${1}</li>
+  <li></li>
+</ul>
+endsnippet
+
+snippet li "List item"
+<li>${1}</li>
+endsnippet
+
+snippet tag "A multipurpose html tag"
+<${1:div}>
+  ${2}
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet todo "An informative todo line"
+<!-- TODO: `echo $USER` ${1:desc} `!v strftime("%m-%d")` -->
 endsnippet
