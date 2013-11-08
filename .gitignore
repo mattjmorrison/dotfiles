@@ -1,13 +1,13 @@
 # Ignore all the files and folders in the bundle directory
-vim/bundle/
-vim/bundle/L9/*
-vim/bundle/AutoComplPop/*
-vim/bundle/bash-support.vim/*
-vim/bundle/vim-buffer-explorer-plugin/*
-vim/bundle/delimitMate/*
-vim/bundle/supertab/*
-vim/bundle/syntastic/*
-vim/bundle/tagbar/*
-vim/bundle/vim-fugitive/*
-vim/bundle/vim-javascript/*
-vim/bundle/vundle/*
+Linux/vim/bundle/
+Linux/vim/bundle/L9/*
+Linux/vim/bundle/AutoComplPop/*
+Linux/vim/bundle/bash-support.vim/*
+Linux/vim/bundle/vim-buffer-explorer-plugin/*
+Linux/vim/bundle/delimitMate/*
+Linux/vim/bundle/supertab/*
+Linux/vim/bundle/syntastic/*
+Linux/vim/bundle/tagbar/*
+Linux/vim/bundle/vim-fugitive/*
+Linux/vim/bundle/vim-javascript/*
+Linux/vim/bundle/vundle/*
