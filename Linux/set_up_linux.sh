@@ -1,19 +1,8 @@
-#!/bin/bash - 
+#!/bin/bash -
 #===============================================================================
 #
-#              FILE: config_linux_environment.sh
-#     
-#             USAGE: ./config_linux_environment.sh 
-#     
-#       DESCRIPTION: This script sets up a fresh install of (Mint) to my desired 
-#                    configurations. Everything installed and configured the way 
-#                    I like it
-#                    
-#     
-#             NOTES: For this to work you must have cloned the github repo to your 
-#                    home folder as ~/dotfiles/ 
-#
-#            AUTHOR: Jarrod Taylor
+#             NOTES: For this to work you must have cloned the github repo to your
+#                    home folder as ~/dotfiles/
 #
 #===============================================================================
 
@@ -53,7 +42,7 @@ ln -s $dotfiles_dir/Linux/tmux.conf ~/.tmux.conf
 ln -s $dotfiles_dir/Linux/zsh/highlighters ~/highlighters
 ln -s $dotfiles_dir/Linux/zsh/zsh_prompt ~/.zsh_prompt
 ln -s $dotfiles_dir/Linux/zsh/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
-ln -s $dotfiles_dir/Linux//zsh/zshrc ~/.zshrc
+ln -s $dotfiles_dir/Linux/zsh/zshrc ~/.zshrc
 ln -s $dotfiles_dir/Linux/gitconfig ~/.gitconfig
 
 #==============
@@ -85,10 +74,10 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/Lin
 cd $dotfiles_dir
 
 #==============
-# Clone vundle so we can update vim plugins when we open it 
+# Clone vundle so we can update vim plugins when we open it
 # the first time
 #==============
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/Linux/vim/bundle/vundle
 echo "Vundle successfully cloned" >> $log_file
 
 #==============
@@ -168,9 +157,9 @@ if [[ $answer = "Y" ]] ; then
     cd ~/
     sudo rm -r node # Remove the node folder in the home directory
 
-    # node it seems is installed as nodejs in Mint if that 
+    # node it seems is installed as nodejs in Mint if that
     # is the case we create a symlink to node
-    if [[ (! -f /usr/bin/node) && (-f /usr/bin/nodejs) ]]; then 
+    if [[ (! -f /usr/bin/node) && (-f /usr/bin/nodejs) ]]; then
         sudo ln -s /usr/bin/nodejs /usr/bin/node
     fi
 
@@ -186,7 +175,7 @@ if [[ $answer = "Y" ]] ; then
     else
         echo "npm FAILED TO INSTALL!!!" >> $log_file
     fi
-    
+
     sudo npm install -g jshint
     if type -p jshint > /dev/null; then
         echo "jshint Installed" >> $log_file
@@ -201,7 +190,7 @@ if [[ $answer = "Y" ]] ; then
         echo "coffee script FAILED TO INSTALL!!!" >> $log_file
     fi
 
-    curl http://beyondgrep.com/ack-2.08-single-file > ~/ack && chmod 0755 !#:3 
+    curl http://beyondgrep.com/ack-2.08-single-file > ~/ack && chmod 0755 !#:3
     sudo mv ~/ack /usr/bin/ack
     sudo chmod 755 /usr/bin/ack
     if type -p ack > /dev/null; then
