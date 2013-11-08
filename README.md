@@ -1,22 +1,19 @@
-dotfiles
-========
-Like Jarrod, if I could be like Jarrod. I hear it all the time. Well it's your
-lucky day. This repository contains (as the name implies) my dotfiles. This
-should be cloned to your home directory as `~/dotfiles/`. 
+# dotfiles
 
-Q: "But Jarrod is getting this set up difficult?"
+The whole shooting match in two flavours. Mac and Linux complete with
+an installer for each. Stay tuned for a fourthcomming wiki that breaks 
+down all of the goodies.
 
-A: Don't worry yourself! Jarrod is going to take care of you. Included 
-is a config_linux_environment script that will again as the name implies 
-take care of all the configuration for you. It will create symlinks in your 
-home folder to all of the files and folders contained in the repo.  And 
-optionally install all of the packages that I commonly use. That's all 
-there is to it. Follow the instructions below and you will be set.
+## Installation
 
-Installation
-------------
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
-cd ~/dotfiles 
-bash config_linux_environment.sh
+cd ~/dotfiles/Linux 
+bash set_up_linux.sh
+
+# or
+
+git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
+cd ~/dotfiles/Mac
+bash set_up_osx.sh
 ```

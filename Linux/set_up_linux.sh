@@ -28,7 +28,6 @@ log_file=~/install_progress_log.txt               # Does what it says on the tin
 #==============
 echo -n "Would you like to delete any existing dot files (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
-    sudo rm -r ~/.emacs.d > /dev/null 2>&1
     sudo rm -r ~/.vim > /dev/null 2>&1
     sudo rm ~/.vimrc > /dev/null 2>&1
     sudo rm ~/.bashrc > /dev/null 2>&1
@@ -46,17 +45,16 @@ fi
 # Create symlinks in the home folder
 #==============
 echo "Creating symlink to $file in $HOME" >> $log_file
-ln -s $dotfiles_dir/emacs.d ~/.emacs.d
-ln -s $dotfiles_dir/vim ~/.vim
-ln -s $dotfiles_dir/vimrc ~/.vimrc
-ln -s $dotfiles_dir/bashrc ~/.bashrc
-ln -s $dotfiles_dir/tmux ~/.tmux
-ln -s $dotfiles_dir/tmux.conf ~/.tmux.conf
-ln -s $dotfiles_dir/highlighters ~/highlighters
-ln -s $dotfiles_dir/zsh_prompt ~/.zsh_prompt
-ln -s $dotfiles_dir/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
-ln -s $dotfiles_dir/zshrc ~/.zshrc
-ln -s $dotfiles_dir/gitconfig ~/.gitconfig
+ln -s $dotfiles_dir/Linux/vim ~/.vim
+ln -s $dotfiles_dir/Linux/vimrc ~/.vimrc
+ln -s $dotfiles_dir/Linux/bashrc ~/.bashrc
+ln -s $dotfiles_dir/Linux/tmux ~/.tmux
+ln -s $dotfiles_dir/Linux/tmux.conf ~/.tmux.conf
+ln -s $dotfiles_dir/Linux/zsh/highlighters ~/highlighters
+ln -s $dotfiles_dir/Linux/zsh/zsh_prompt ~/.zsh_prompt
+ln -s $dotfiles_dir/Linux/zsh/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
+ln -s $dotfiles_dir/Linux//zsh/zshrc ~/.zshrc
+ln -s $dotfiles_dir/Linux/gitconfig ~/.gitconfig
 
 #==============
 # Select which conky to symlink
@@ -64,9 +62,9 @@ ln -s $dotfiles_dir/gitconfig ~/.gitconfig
 echo -n "Install desktop or laptop conky? (Desk/Lap) => "; read answer
 
 if [[ $answer = "Desk" ]] ; then
-    ln -s ~/dotfiles/_conkyrc_desktop ~/.conkyrc
+    ln -s ~/dotfiles/Linux/conky/_conkyrc_desktop ~/.conkyrc
 else
-    ln -s ~/dotfiles/_conkyrc_laptop ~/.conkyrc
+    ln -s ~/dotfiles/Linux/conky/_conkyrc_laptop ~/.conkyrc
     # Used to get battery status
     sudo apt-get -y install acpi
     if type -p acpi > /dev/null; then
@@ -79,7 +77,7 @@ fi
 #==============
 # Set the desktop wallpaper
 #==============
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/wallpaper.png
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/Linux/wallpaper.png
 
 #==============
 # Change to the dotfiles directory
@@ -111,13 +109,6 @@ if [[ $answer = "Y" ]] ; then
         echo "Vim Installed" >> $log_file
     else
         echo "Vim FAILED TO INSTALL!!!" >> $log_file
-    fi
-
-    sudo apt-get -y install emacs24
-    if type -p emacs > /dev/null; then
-        echo "Emacs Installed" >> $log_file
-    else
-        echo "Emacs FAILED TO INSTALL!!!" >> $log_file
     fi
 
     sudo apt-get -y install keepassx
