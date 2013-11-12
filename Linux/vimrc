@@ -44,7 +44,7 @@ set nocompatible
 " }2
 " Github repos for bundles that we want to have installed {2
 "-----------------------------------------------------------------------------------
- Bundle 'https://github.com/mileszs/ack.vim'
+ Bundle 'https://github.com/JarrodCTaylor/vim-ack'
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/Raimondi/delimitMate'
@@ -73,7 +73,7 @@ set nocompatible
  Bundle 'https://github.com/sjl/gundo.vim'
  Bundle 'https://github.com/nelstrom/vim-markdown-folding'
  Bundle 'https://github.com/tpope/vim-markdown'
- Bundle 'https://github.com/JarrodCTaylor/wikilink'
+ Bundle 'https://github.com/JarrodCTaylor/vim-wiki-links'
  Bundle 'https://github.com/justinmk/vim-sneak'
 " }2
 " }1
@@ -102,7 +102,7 @@ set autoindent                         " Copy indent from current line
 set autoread                           " Read open files again when changed outside Vim
 set autowrite                          " Write a modified buffer on each :next , ...
 set backspace=indent,eol,start         " Backspacing over everything in insert mode
-set history=50                         " Keep 50 lines of command line history
+set history=200                        " Keep 200 lines of command line history
 set incsearch                          " Do incremental searching
 set ignorecase                         " Ignore case when searching....
 set smartcase                          " ...unless uppercase letter are used
@@ -131,6 +131,7 @@ set clipboard=unnamed                  " Yank and paste with the system clipboar
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
 "set iskeyword-=_                       " Make underscores keyword boundaries
 set relativenumber                     " Turn on the relative line numbering
+set number                             " Used with relativenumber to show the number of the current line
 set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
@@ -272,7 +273,7 @@ nnoremap<Leader>rr :RerunLastTests<CR>
 " --- grunt-karma test runner shortcut
 map <Leader>q :!grunt test<CR>"
 " --- Toggle relative line numbering
-nnoremap<Leader>tn :set relativenumber!<CR>
+nnoremap<Leader>tn :set relativenumber!<CR>:set number!<CR>
 " --- Shortcut to RenameFile function defined below
 map <Leader>rf :call RenameFile()<CR>
 " --- Shortcut to CopyFile function defined below
@@ -421,6 +422,10 @@ let g:markdown_fold_style = 'nested'
 nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
 "}2
+" Vim-ack {2
+let g:ack_autoclose = 1
+"-----------------------------------------------------------------------------------
+" }2
 " }1
 
 " Misc Functions {1
