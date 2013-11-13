@@ -42,7 +42,7 @@ fi
 #==============
 # Clone vundle to manage vim plugins
 #==============
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/Linux/vim/bundle/vundle
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/Mac/vim/bundle/vundle
 
 #==============
 # Install all the packages

@@ -24,8 +24,7 @@ compinit -C
 #-------------------------------------------------------------------------------
 export LSCOLORS=gxfxcxdxbxegedabagacad
 # >>2
-# case-insensitive (all),partial-word and then substring completion
-# <<2
+# case-insensitive (all),partial-word and then substring completion <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # >>2
@@ -119,7 +118,7 @@ export WINEDEBUG=-all
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/VirtualDevEnvs
 # >>2
-# <<2 completion settings
+# completion settings <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
@@ -153,7 +152,6 @@ if [[ ! -n "$ZSHRUN" ]]; then
         echo "No highlighting Son!!"
     fi
 fi
-
 # >>1
 
 #  Aliases <<1
@@ -178,7 +176,6 @@ alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
 alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
-
 # >>1
 
 # Functions <<1
@@ -197,7 +194,7 @@ function webshare() {
         python -m SimpleHTTPServer > /dev/null 2>&1
     }
 # >>2
-# <<2 Work Timer
+# Work Timer <<2
 #-------------------------------------------------------------------------------
 # A timer function that will say the message and display a pop-up
 # after the specified amount of time.
@@ -208,7 +205,7 @@ function workTimer() {
     sleep $duration && say "$words_to_say"
 }
 # >>2
-# <<2 Memory Usage
+# Memory Usage <<2
 #-------------------------------------------------------------------------------
 # Shows the specified number of the top memory consuming processes and their PID
 #-------------------------------------------------------------------------------
@@ -220,7 +217,7 @@ function mem_usage() {
     ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head -n $number
     }
 # >>2
-# <<2 Spell Check
+# Spell Check <<2
 #------------------------------------------------------------------------------
 # Because, well I need to spell check a lot :\
 #------------------------------------------------------------------------------
@@ -311,6 +308,7 @@ function nicemount() {
 #--------------------------------------------------------------------
 include () {
     [[ -s "$1" ]] && source "$1"
+}
 # >>2
 # >>1
 
