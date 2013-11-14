@@ -200,7 +200,7 @@ alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
 function webshare() {
     local_ip=`hostname -I | cut -d " " -f 1`
     echo "connect to $local_ip:8000"
-		python -m SimpleHTTPServer > /dev/null 2>&1
+        python -m SimpleHTTPServer > /dev/null 2>&1
     }
 
 #-------------------------------------------------------------------------------
@@ -209,22 +209,22 @@ function webshare() {
 # REQUIRES: Need to have espeak installed.
 #-------------------------------------------------------------------------------
 function workTimer() {
-	#echo -n "Timer name => "; read name ##<-- We don't really need a name for the timer
-	echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
-	echo -n "What to say when done => "; read say
-	sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
+    #echo -n "Timer name => "; read name ##<-- We don't really need a name for the timer
+    echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
+    echo -n "What to say when done => "; read say
+    sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
 }
 
 #-------------------------------------------------------------------------------
 # Shows the specified number of the top memory consuming processes and their PID
 #-------------------------------------------------------------------------------
 function mem_usage() {
-	echo -n "How many you what to see? "; read number
-	echo ""
-	echo "Mem Size       PID     Process"
-	echo "============================================================================="
-	ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
-	}
+    echo -n "How many you what to see? "; read number
+    echo ""
+    echo "Mem Size       PID     Process"
+    echo "============================================================================="
+    ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
+}
 
 
 #------------------------------------------------------------------------------
