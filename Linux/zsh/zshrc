@@ -1,5 +1,5 @@
 #!/bin/zsh
-# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker:
+# vim: set foldmarker=<<,>> foldlevel=1 foldmethod=marker:
 #===================================================================================
 #  DESCRIPTION:  Damn if feels good to be a gangster
 #       AUTHOR:  Jarrod Taylor
@@ -13,25 +13,23 @@
 #===================================================================================
 #
 
-# General Settings {{
-#-------------------------------------------------------------------------------
-# Autoload colors and tab completion
+# General Settings <<1
+# Autoload colors and tab completion <<2
 #-------------------------------------------------------------------------------
 autoload -U colors && colors
 autoload -U compinit
 compinit -C
+# >> 2
 #-------------------------------------------------------------------------------
-## case-insensitive (all),partial-word and then substring completion
+# case-insensitive (all),partial-word and then substring completion <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-#-------------------------------------------------------------------------------
-# Local array variable
+# >>2
+# Local array variable <<2
 #-------------------------------------------------------------------------------
 local -a precmd_functions
-
-#-------------------------------------------------------------------------------
-# Set the desired setup options man zshoptions
+# >>2
+# Set the desired setup options man zshoptions <<2
 #-------------------------------------------------------------------------------
 # If command can't be executed, and command is name of a directory, cd to directory
 setopt  auto_cd
@@ -74,35 +72,30 @@ setopt  prompt_percent
 # expansion are performed in prompts.
 # Substitutions within prompts do not affect the command status.
 setopt  prompt_subst
-
-#-------------------------------------------------------------------------------
-# History settings
+# >>2
+# History settings <<2
 #-------------------------------------------------------------------------------
 HISTFILE=$HOME/.zsh_history
 HISTFILESIZE=65536  # search this with `grep | sort -u`
 HISTSIZE=4096
 SAVEHIST=4096
 REPORTTIME=60       # Report time statistics for progs that take more than a minute to run
-
-#-------------------------------------------------------------------------------
-# utf-8 in the terminal, will break stuff if your term isn't utf aware
+# >>2
+# utf-8 in the terminal, will break stuff if your term isn't utf aware <<2
 #-------------------------------------------------------------------------------
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export LC_COLLATE=C
-
-#-------------------------------------------------------------------------------
-# Set grepoptions
+# >>2
+# Set grepoptions <<2
 #-------------------------------------------------------------------------------
 export GREP_OPTIONS='--color=auto'
-
-#-------------------------------------------------------------------------------
-# Allow the use of exuberant ctags
+# >>2
+# Allow the use of exuberant ctags <<2
 #-------------------------------------------------------------------------------
 PATH="/usr/local/bin:$PATH"
-
-#-------------------------------------------------------------------------------
-# Editor and display configurations
+# >>2
+# Editor and display configurations <<2
 #-------------------------------------------------------------------------------
 export EDITOR='vim'
 export VISUAL='vim'
@@ -112,28 +105,25 @@ export PAGER="less $LESS"
 export MANPAGER=$PAGER
 export GIT_PAGER=$PAGER
 export BROWSER='chromium-browser'
-
-#-------------------------------------------------------------------------------
-# Silence Wine debugging output
+# >>2
+# Silence Wine debugging output <<2
 #-------------------------------------------------------------------------------
 export WINEDEBUG=-all
-
-#-------------------------------------------------------------------------------
-# Specify virtualenv directories
+# >>2
+# Specify virtualenv directories <<2
 #-------------------------------------------------------------------------------
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/VirtualDevEnvs
-
-#-------------------------------------------------------------------------------
-#
+# >>2
+# completion settings <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
     reply=( ${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**} )'
+# >>2
+# >>1
 
-# }}
-
-# Key Bindings {{
+# Key Bindings <<1
 #-------------------------------------------------------------------------------
 # Set vi-mode and create a few additional Vim-like mappings
 #-------------------------------------------------------------------------------
@@ -142,10 +132,9 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
+# >>1
 
-# }}
-
-# Source the prompt {{
+# Set up the prompt <<1
 #-------------------------------------------------------------------------------
 if [[ ! -n "$ZSHRUN" ]]; then
     source $HOME/.zsh_prompt
@@ -160,10 +149,9 @@ if [[ ! -n "$ZSHRUN" ]]; then
         echo "No highlighting Son!!"
     fi
 fi
+# >>1
 
-# }}
-
-# Aliases {{
+#  Aliases <<1
 #-------------------------------------------------------------------------------
 alias ls='ls -F --color'
 alias ll='ls -lh'
@@ -185,24 +173,25 @@ alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
 alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
+# >>1
 
-# }}
+# Functions <<1
+#===============================================================================
 
-# FUNCTIONS {{
+# Python webserver <<2
 #-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-#  Python webserver: cd into a directory you want to share and then
-#                    type webshare. You will be able to connect to that directory
-#                    with other machines on the local net work with IP:8000
-#                    the function will display the current machines ip address
+#  cd into a directory you want to share and then
+#  type webshare. You will be able to connect to that directory
+#  with other machines on the local net work with IP:8000
+#  the function will display the current machines ip address
 #-------------------------------------------------------------------------------
 function webshare() {
     local_ip=`hostname -I | cut -d " " -f 1`
     echo "connect to $local_ip:8000"
         python -m SimpleHTTPServer > /dev/null 2>&1
     }
-
+# >>2
+# Work Timer <<2
 #-------------------------------------------------------------------------------
 # A timer function that will say the message and display a pop-up
 # after the specified amount of time.
@@ -214,7 +203,8 @@ function workTimer() {
     echo -n "What to say when done => "; read say
     sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
 }
-
+# >>2
+# Memory Usage <<2
 #-------------------------------------------------------------------------------
 # Shows the specified number of the top memory consuming processes and their PID
 #-------------------------------------------------------------------------------
@@ -225,29 +215,16 @@ function mem_usage() {
     echo "============================================================================="
     ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
 }
-
-
-#------------------------------------------------------------------------------
-#  Prints a banner with public / private ip addresses, kernel
-#  Information and uptime also shows three months of calendar.
-#  REQUIREMENTS: figle: for the banner, will need to apt-get on new install
-#-------------------------------------------------------------------------------
-function banner() {
-echo -e  $fg[yellow];figlet " #winning!";
-# echo -ne $fg[red]"Public IP address:\t" $fg[blue]`wget -qO- ip.nu |grep IP | cut -d " " -f 5`; echo ""
-echo -ne $fg[red]"Primary local IP:\t" $fg[blue]`hostname -I | cut -d " " -f 1`; echo ""
-echo -e  $fg[red]"Kernel Information: \t" $fg[blue]`uname -smr`
-echo -ne $fg[green]"$HOST $fg[red]uptime is: \t "$fg[blue];uptime | awk /'up/ {print $3,$4,$5,$6,$7,$8,$9,$10}'
-echo -e  $fg[white];cal -3
-}
-
+# >>2
+# Spell Check <<2
 #------------------------------------------------------------------------------
 # Because, well I need to spell check a lot :\
 #------------------------------------------------------------------------------
 spell (){
     echo $1 | aspell -a
 }
-
+# >>2
+# Workon virtualenv <<2
 #--------------------------------------------------------------------
 # If we cd into a directory that is named the same as a virtualenv
 # auto activate that virtualenv
@@ -256,43 +233,36 @@ spell (){
 [[ -a /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
 
 workon_virtualenv() {
-  if [[ -d .git ]]
-  then
+  if [[ -d .git ]]; then
      VENV_CUR_DIR="${PWD##*/}"
-     if [[ -a ~/.virtualenvs/$VENV_CUR_DIR ]]
-     then
+     if [[ -a ~/.virtualenvs/$VENV_CUR_DIR ]]; then
        deactivate > /dev/null 2>&1
        source ~/.virtualenvs/$VENV_CUR_DIR/bin/activate
      fi
   fi
 }
-
+# >>2
+# Workon node env <<2
 #--------------------------------------------------------------------
 # If we cd into a directory that contains a directory named node_modules
-# we automatically recursively add it to the $PATH
+# we automatically add it to the $PATH
 # -------------------------------------------------------------------
 workon_node_env() {
   if [[ -d "node_modules" ]]; then
 
     export NPM_ORIGINAL_PATH=$PATH
     eval NODE_NAME=$(basename $(pwd))
+    export PATH="${PATH}:$(pwd)/node_modules/.bin"
 
-    for f in `ls $(pwd)/node_modules/`
-    do
-      export PATH="${PATH}:$(pwd)/node_modules/${f}bin"
-    done
-
-    deactivatenode() {
+    deactivatenode(){
       export PATH=$NPM_ORIGINAL_PATH
       unset -f deactivatenode
       unset NODE_NAME
     }
-
   fi
 }
-
-#--------------------------------------------------------------------
-# Run the virtual environments functions for the prompt on each cd
+# >>2
+# Run the virtual environments functions for the prompt on each cd <<2
 # -------------------------------------------------------------------
 cd() {
   builtin cd "$@"
@@ -300,9 +270,8 @@ cd() {
   workon_virtualenv
   workon_node_env
 }
-
-#--------------------------------------------------------------------
-# Search for running processes
+# >>2
+# Search for running processes <<2
 # -------------------------------------------------------------------
 any() {
     emulate -L zsh
@@ -315,9 +284,8 @@ any() {
         ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
     fi
 }
-
-# -------------------------------------------------------------------
-# Display a neatly formatted path good for debugging
+# >>2
+# Display a neatly formatted path <<2
 # -------------------------------------------------------------------
 path() {
 echo $PATH | tr ":" "\n" | \
@@ -328,28 +296,26 @@ echo $PATH | tr ":" "\n" | \
            sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
            print }"
   }
-
-#--------------------------------------------------------------------
-# Displays mounted drive information in a nicely formatted manner
+# >>2
+# Displays mounted drive information in a nicely formatted manner <<2
 # -------------------------------------------------------------------
 function nicemount() {
     (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2="";1') | column -t ;
 }
-
+# >>2
+# Source file if it exists <<2
 #--------------------------------------------------------------------
-# Add the current working directory to the path
-# -------------------------------------------------------------------
-add_current_directory_to_path() {
-    path+=(`pwd`)
+include () {
+    [[ -s "$1" ]] && source "$1"
 }
+# >>2
+# >>1
 
-# }}
-
-# Run precmd functions so we get our pimped out prompt {{
+# Precmd functions <<1
+#------------------------------------------------------------------------------
+# Run precmd functions so we get our pimped out prompt
 #------------------------------------------------------------------------------
 precmd_functions=( precmd_prompt )
-banner
 
-# }}
-
+# >>1
 # EOF
