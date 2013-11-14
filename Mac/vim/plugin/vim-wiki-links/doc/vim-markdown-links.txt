@@ -1,0 +1,16 @@
+*VIM-MARKDOWN-LINKS*
+
+A Vim plugin which eases the navigation between files in a personal wiki.
+This project is forked from wikilink and adapted for my own personal wiki
+which I maintain in Vim.
+
+1. USAGE                                                           *usage*
+
+Hit the ENTER key when the cursor is on a wiki link
+The corresponding file is loaded in the current buffer
+
+2. LINK FORMAT                                               *link-format*
+
+`[[Text to display|path/to/file]]`
+
+

@@ -44,7 +44,6 @@ set nocompatible
 " }2
 " Github repos for bundles that we want to have installed {2
 "-----------------------------------------------------------------------------------
- Bundle 'https://github.com/JarrodCTaylor/vim-ack'
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/Raimondi/delimitMate'
@@ -73,7 +72,6 @@ set nocompatible
  Bundle 'https://github.com/sjl/gundo.vim'
  Bundle 'https://github.com/nelstrom/vim-markdown-folding'
  Bundle 'https://github.com/tpope/vim-markdown'
- Bundle 'https://github.com/JarrodCTaylor/vim-wiki-links'
  Bundle 'https://github.com/justinmk/vim-sneak'
 " }2
 " }1
@@ -422,10 +420,6 @@ let g:markdown_fold_style = 'nested'
 nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
 "}2
-" Vim-ack {2
-let g:ack_autoclose = 1
-"-----------------------------------------------------------------------------------
-" }2
 " }1
 
 " Misc Functions {1
