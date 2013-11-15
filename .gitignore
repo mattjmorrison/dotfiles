@@ -1,3 +1,6 @@
 # Ignore all the files and folders in the bundle directory
 Linux/vim/bundle/
 Mac/vim/bundle/
+
+# Ignore Mac
+.DS_Store
