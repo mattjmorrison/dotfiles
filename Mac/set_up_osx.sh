@@ -58,9 +58,6 @@ if [[ $answer = "Y" ]] ; then
     echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
     source ~/.bashrc
 
-    ## ????
-    # sudo ln -s /usr/bin/gcc /usr/bin/gcc-4.2
-
     brew install tig
     brew install node
     brew install ack
