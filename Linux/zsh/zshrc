@@ -173,6 +173,7 @@ alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
 alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
+alias c='clear'
 # >>1
 
 # Functions <<1
