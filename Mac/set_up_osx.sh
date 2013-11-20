@@ -59,11 +59,11 @@ if [[ $answer = "Y" ]] ; then
     source ~/.bashrc
 
     brew install tig
+    brew install aspell
     brew install node
     brew install ack
     brew install tmux
     brew install mysql
-    brew install mongo
     brew install vim
     brew install zsh
     brew install ctags
