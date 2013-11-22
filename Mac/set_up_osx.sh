@@ -58,6 +58,9 @@ if [[ $answer = "Y" ]] ; then
     echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
     source ~/.bashrc
 
+    # ===
+    # The regular brew installable packages
+    # ===
     brew install tig
     brew install aspell
     brew install node
@@ -66,14 +69,29 @@ if [[ $answer = "Y" ]] ; then
     brew install mysql
     brew install vim
     brew install zsh
+
+    # ===
+    # Get Ctags properly setup
+    # Brew install and do away with the busted default version of ctags
+    # ===
     brew install ctags
-    # Do away with the busted default version of ctags
     sudo mv /usr/bin/ctags /usr/bin/ctags_orig
 
+    # ===
+    # Install pip and global pip packages
+    # ===
     sudo easy_install pip
     sudo pip install virtualenvwrapper
     sudo pip install jedi
     sudo pip install flake8
+
+    # ===
+    # Gollum set up
+    # ===
+    brew install icu4c
+    sudo gem install gollum
+    sudo gem install redcarpet
+
 fi
 
 #==============
