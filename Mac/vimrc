@@ -471,26 +471,27 @@ function! HLNext (blinktime)
 endfunction
 " }2
 " Custom Fold Text{2
-"function! CustomFoldText()
-"    "get first non-blank line
-"    let fs = v:foldstart
-"    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-"    endwhile
-"    if fs > v:foldend
-"        let line = getline(v:foldstart)
-"    else
-"        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-"    endif
-"
-"    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-"    let foldSize = 1 + v:foldend - v:foldstart
-"    let foldSizeStr = " " . foldSize . " lines "
-"    let foldLevelStr = repeat("+--", v:foldlevel)
-"    let lineCount = line("$")
-"    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-"    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-"    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-"endf
-"set foldtext=CustomFoldText()
+function! CustomFoldText()
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage
+    " Add fold level indication at the end of the line
+    "let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    "return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endf
+set foldtext=CustomFoldText()
 " }2
 " }1
