@@ -329,7 +329,7 @@ let NERDTreeIgnore = ['\.pyc$']
 " }2
 " Jedi configurations {2
 "-----------------------------------------------------------------------------------
-let g:jedi#goto_definitions_command = "<Leader>j"
+let g:jedi#goto_definitions_command = "<Leader>gt"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 let g:jedi#popup_on_dot = 0
 " }2
@@ -459,18 +459,17 @@ nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
 function! HLNext (blinktime)
-    highlight HighlightStyle ctermfg=none ctermbg=none cterm=reverse
+    highlight HighlightStyle ctermfg=none ctermbg=160 cterm=none
     let [bufnum, lnum, col, off] = getpos('.')
     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
     let target_pat = '\c\%#'.@/
     let ring = matchadd('HighlightStyle', target_pat, 101)
     redraw
-    exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
     call matchdelete(ring)
     redraw
 endfunction
 " }2
-
 " Custom Fold Text{2
 "function! CustomFoldText()
 "    "get first non-blank line
