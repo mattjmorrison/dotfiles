@@ -14,9 +14,8 @@
 #
 
 # General Settings <<1
-# Autoload colors and tab completion <<2
+# Autoload tab completion <<2
 #-------------------------------------------------------------------------------
-autoload -U colors && colors
 autoload -U compinit
 compinit -C
 # >> 2
@@ -37,7 +36,7 @@ local -a precmd_functions
 setopt  auto_cd
 # Make cd push the old directory onto the directory stack.
 setopt  auto_pushd
-# Safty for overwriting files use >| instead of > to over write files
+# Safety for overwriting files use >| instead of > to over write files
 setopt  noclobber
 # Prevents aliases on the command line from being internally substituted before
 # completion is attempted. The effect is to make the alias a distinct command
@@ -107,10 +106,6 @@ export PAGER="less $LESS"
 export MANPAGER=$PAGER
 export GIT_PAGER=$PAGER
 export BROWSER='chromium-browser'
-# >>2
-# Silence Wine debugging output <<2
-#-------------------------------------------------------------------------------
-export WINEDEBUG=-all
 # >>2
 # Specify virtualenv directories <<2
 #-------------------------------------------------------------------------------
