@@ -1,5 +1,5 @@
 #!/bin/zsh
-# vim: set foldmarker=<<,>> foldlevel=1 foldmethod=marker:
+# vim: set foldmarker=<<,>> foldlevel=0 foldmethod=marker:
 #===================================================================================
 #  DESCRIPTION:  Damn if feels good to be a gangster
 #       AUTHOR:  Jarrod Taylor
@@ -24,9 +24,12 @@ compinit -C
 #-------------------------------------------------------------------------------
 export LSCOLORS=gxfxcxdxbxegedabagacad
 # >>2
-# case-insensitive (all),partial-word and then substring completion <<2
+# Completion settings <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors "$LS_COLORS"
+zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
+    reply=( ${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**} )'
 # >>2
 # Local array variable <<2
 #-------------------------------------------------------------------------------
@@ -118,12 +121,6 @@ export WINEDEBUG=-all
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/VirtualDevEnvs
 # >>2
-# completion settings <<2
-#-------------------------------------------------------------------------------
-zstyle ':completion:*' list-colors "$LS_COLORS"
-zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
-    reply=( ${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**} )'
-# >>2
 # >>1
 
 # Key Bindings <<1
@@ -137,21 +134,25 @@ bindkey '^?' backward-delete-char
 bindkey '^H' backward-delete-char
 # >>1
 
-# Set up the prompt <<1
+# Source the prompt <<1
 #-------------------------------------------------------------------------------
 if [[ ! -n "$ZSHRUN" ]]; then
     source $HOME/.zsh_prompt
-
-    # Fish shell like syntax highlighting for Zsh:
-    # git clone git://github.com/nicoulaj/zsh-syntax-highlighting.git \
-    #   $HOME/.zsh-syntax-highlighting/
-    if [[ -f $HOME/zsh-syntax-highlighting.zsh ]]; then
-        source $HOME/zsh-syntax-highlighting.zsh
-        ZSH_HIGHLIGHT_HIGHLIGHTERS+=( brackets pattern cursor )
-    else
-        echo "No highlighting Son!!"
-    fi
 fi
+# >>1
+
+# Source antigen <<1
+#-------------------------------------------------------------------------------
+if [[ ! -s ~/.antigen.zsh ]]
+then
+    curl https://raw.github.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
+fi
+source ~/.antigen.zsh
+# >>1
+
+# Set antigen bundles <<1
+#-------------------------------------------------------------------------------
+antigen bundle zsh-users/zsh-syntax-highlighting
 # >>1
 
 #  Aliases <<1

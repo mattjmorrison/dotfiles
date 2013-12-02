@@ -19,9 +19,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.bashrc > /dev/null 2>&1
     sudo rm ~/.tmux > /dev/null 2>&1
     sudo rm ~/.tmux.conf > /dev/null 2>&1
-    sudo rm -r ~/highlighters > /dev/null 2>&1
     sudo rm ~/.zsh_prompt > /dev/null 2>&1
-    sudo rm ~/zsh-syntax-highlighting.zsh > /dev/null 2>&1
     sudo rm ~/.zshrc > /dev/null 2>&1
     sudo rm ~/.gitconfig
     #==============
@@ -32,9 +30,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/Mac/bashrc ~/.bashrc
     ln -s ~/dotfiles/Mac/tmux ~/.tmux
     ln -s ~/dotfiles/Mac/tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/Mac/zsh/highlighters ~/highlighters
     ln -s ~/dotfiles/Mac/zsh/zsh_prompt ~/.zsh_prompt
-    ln -s ~/dotfiles/Mac/zsh/zsh-syntax-highlighting.zsh ~/zsh-syntax-highlighting.zsh
     ln -s ~/dotfiles/Mac/zsh/zshrc ~/.zshrc
     ln -s ~/dotfiles/Mac/gitconfig ~/.gitconfig
 fi
