@@ -1,8 +1,8 @@
 #!/bin/bash -
 #===============================================================================
 #
-#             NOTES: For this to work you must have cloned the github repo to your
-#                    home folder as ~/dotfiles/
+#             NOTES: For this to work you must have cloned the github
+#                    repo to your home folder as ~/dotfiles/
 #
 #===============================================================================
 
@@ -26,6 +26,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.zsh_prompt > /dev/null 2>&1
     sudo rm ~/.zshrc > /dev/null 2>&1
     sudo rm ~/.gitconfig
+    sudo rm ~/.ackrc
 fi
 
 #==============
@@ -40,6 +41,7 @@ ln -s $dotfiles_dir/Linux/tmux.conf ~/.tmux.conf
 ln -s $dotfiles_dir/Linux/zsh/zsh_prompt ~/.zsh_prompt
 ln -s $dotfiles_dir/Linux/zsh/zshrc ~/.zshrc
 ln -s $dotfiles_dir/Linux/gitconfig ~/.gitconfig
+ln -s $dotfiles_dir/Linux/ackrc ~/.ackrc
 
 #==============
 # Select which conky to symlink

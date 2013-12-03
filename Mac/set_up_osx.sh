@@ -22,6 +22,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.zsh_prompt > /dev/null 2>&1
     sudo rm ~/.zshrc > /dev/null 2>&1
     sudo rm ~/.gitconfig
+    sudo rm ~/.ackrc
     #==============
     # Create symlinks in the home folder
     #==============
@@ -33,6 +34,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/Mac/zsh/zsh_prompt ~/.zsh_prompt
     ln -s ~/dotfiles/Mac/zsh/zshrc ~/.zshrc
     ln -s ~/dotfiles/Mac/gitconfig ~/.gitconfig
+    ln -s ~/dotfiles/Mac/ackrc ~/.ackrc
 fi
 
 #==============

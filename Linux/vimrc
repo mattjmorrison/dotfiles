@@ -290,6 +290,10 @@ let g:syntastic_python_checkers = ['flake8']      " sets flake8 as the default f
 let g:syntastic_javascript_checkers = ['jshint']  " sets jshint as our javascript linter
 " Ignore line width for syntax checking in python
 let g:syntastic_python_flake8_post_args='--ignore=E501'
+" Disable syntastic in html files because it pretty well blows there
+let g:syntastic_mode_map={ 'mode': 'active',
+                     \ 'active_filetypes': [],
+                     \ 'passive_filetypes': ['html'] }
 " }2
 " UltiSnips configurations {2
 "-----------------------------------------------------------------------------------

@@ -138,8 +138,7 @@ fi
 
 # Source antigen <<1
 #-------------------------------------------------------------------------------
-if [[ ! -s ~/.antigen.zsh ]]
-then
+if [[ ! -s ~/.antigen.zsh ]]; then
     curl https://raw.github.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
 fi
 source ~/.antigen.zsh
@@ -152,22 +151,30 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 
 #  Aliases <<1
 #-------------------------------------------------------------------------------
-alias ls='ls -FHG'
+if [ "$(uname)" = "Darwin" ]; then
+    alias ls='ls -FHG'
+    alias update='brew update && brew upgrade'
+    alias upgrade='brew upgrade'
+    alias clean='brew doctor'
+    alias startdb='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+    alias stopdb='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+else
+    alias ls='ls -F --color'
+    alias update='sudo apt-get update && sudo apt-get upgrade'
+    alias upgrade='sudo apt-get upgrade'
+    alias clean='sudo apt-get autoclean && sudo apt-get autoremove'
+    alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}/*"'
+fi
 alias ll='ls -lh'
 alias la='ls -la'
 alias lls='ll -Sr'
 alias less='less -imJMW'
-alias update='brew update && brew upgrade'
-alias upgrade='brew upgrade'
-alias clean='brew doctor'
-alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}/*"'
 alias tmux="TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
-alias ad='add_current_directory_to_path'
 alias gs='git status'
 alias gd='git diff'
 alias ts='tig status'
