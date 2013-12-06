@@ -27,21 +27,23 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.zshrc > /dev/null 2>&1
     sudo rm ~/.gitconfig
     sudo rm ~/.ackrc
+    sudo rm ~/.antigen
+    sudo rm ~/.antigen.zsh
 fi
 
 #==============
 # Create symlinks in the home folder
 #==============
 echo "Creating symlink to $file in $HOME" >> $log_file
-ln -s $dotfiles_dir/Linux/vim ~/.vim
-ln -s $dotfiles_dir/Linux/vimrc ~/.vimrc
-ln -s $dotfiles_dir/Linux/bashrc ~/.bashrc
-ln -s $dotfiles_dir/Linux/tmux ~/.tmux
-ln -s $dotfiles_dir/Linux/tmux.conf ~/.tmux.conf
-ln -s $dotfiles_dir/Linux/zsh/zsh_prompt ~/.zsh_prompt
-ln -s $dotfiles_dir/Linux/zsh/zshrc ~/.zshrc
-ln -s $dotfiles_dir/Linux/gitconfig ~/.gitconfig
-ln -s $dotfiles_dir/Linux/ackrc ~/.ackrc
+ln -s $dotfiles_dir/vim ~/.vim
+ln -s $dotfiles_dir/vimrc ~/.vimrc
+ln -s $dotfiles_dir/bashrc ~/.bashrc
+ln -s $dotfiles_dir/linux_tmux ~/.tmux
+ln -s $dotfiles_dir/tmux.conf ~/.tmux.conf
+ln -s $dotfiles_dir/zsh/zsh_prompt ~/.zsh_prompt
+ln -s $dotfiles_dir/zsh/zshrc ~/.zshrc
+ln -s $dotfiles_dir/gitconfig ~/.gitconfig
+ln -s $dotfiles_dir/ackrc ~/.ackrc
 
 #==============
 # Select which conky to symlink
@@ -49,9 +51,9 @@ ln -s $dotfiles_dir/Linux/ackrc ~/.ackrc
 echo -n "Install desktop or laptop conky? (Desk/Lap) => "; read answer
 
 if [[ $answer = "Desk" ]] ; then
-    ln -s ~/dotfiles/Linux/conky/_conkyrc_desktop ~/.conkyrc
+    ln -s ~/dotfiles/conky/_conkyrc_desktop ~/.conkyrc
 else
-    ln -s ~/dotfiles/Linux/conky/_conkyrc_laptop ~/.conkyrc
+    ln -s ~/dotfiles/conky/_conkyrc_laptop ~/.conkyrc
     # Used to get battery status
     sudo apt-get -y install acpi
     if type -p acpi > /dev/null; then
@@ -70,7 +72,7 @@ cd $dotfiles_dir
 # Clone vundle so we can update vim plugins when we open it
 # the first time
 #==============
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/Linux/vim/bundle/vundle
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 echo "Vundle successfully cloned" >> $log_file
 
 #==============

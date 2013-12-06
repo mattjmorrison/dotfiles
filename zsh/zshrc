@@ -13,6 +13,23 @@
 #===================================================================================
 #
 
+# Source the prompt <<1
+#-------------------------------------------------------------------------------
+if [[ ! -n "$ZSHRUN" ]]; then
+    source $HOME/.zsh_prompt
+fi
+# Precmd functions local array variable <<2
+#-------------------------------------------------------------------------------
+local -a precmd_functions
+# >>2
+# Precmd functions <<2
+#------------------------------------------------------------------------------
+# Run precmd functions so we get our pimped out prompt
+#------------------------------------------------------------------------------
+precmd_functions=( precmd_prompt )
+# >>2
+# >>1
+
 # General Settings <<1
 # Autoload tab completion <<2
 #-------------------------------------------------------------------------------
@@ -29,10 +46,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*' list-colors "$LS_COLORS"
 zstyle -e ':completion:*:(ssh|scp|sshfs|ping|telnet|nc|rsync):*' hosts '
     reply=( ${=${${(M)${(f)"$(<~/.ssh/config)"}:#Host*}#Host }:#*\**} )'
-# >>2
-# Local array variable <<2
-#-------------------------------------------------------------------------------
-local -a precmd_functions
 # >>2
 # Set the desired setup options man zshoptions <<2
 #-------------------------------------------------------------------------------
@@ -118,24 +131,6 @@ export PROJECT_HOME=$HOME/VirtualDevEnvs
 # >>2
 # >>1
 
-# Key Bindings <<1
-#-------------------------------------------------------------------------------
-# Set vi-mode and create a few additional Vim-like mappings
-#-------------------------------------------------------------------------------
-bindkey -v
-bindkey '^R' history-incremental-search-backward
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^?' backward-delete-char
-bindkey '^H' backward-delete-char
-# >>1
-
-# Source the prompt <<1
-#-------------------------------------------------------------------------------
-if [[ ! -n "$ZSHRUN" ]]; then
-    source $HOME/.zsh_prompt
-fi
-# >>1
-
 # Source antigen <<1
 #-------------------------------------------------------------------------------
 if [[ ! -s ~/.antigen.zsh ]]; then
@@ -147,6 +142,17 @@ source ~/.antigen.zsh
 # Set antigen bundles <<1
 #-------------------------------------------------------------------------------
 antigen bundle zsh-users/zsh-syntax-highlighting
+# >>1
+
+# Key Bindings <<1
+#-------------------------------------------------------------------------------
+# Set vi-mode and create a few additional Vim-like mappings
+#-------------------------------------------------------------------------------
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
 # >>1
 
 #  Aliases <<1
@@ -324,11 +330,4 @@ include () {
 # >>2
 # >>1
 
-# Precmd functions <<1
-#------------------------------------------------------------------------------
-# Run precmd functions so we get our pimped out prompt
-#------------------------------------------------------------------------------
-precmd_functions=( precmd_prompt )
-
-# >>1
 # EOF
