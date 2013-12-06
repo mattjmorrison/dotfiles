@@ -23,24 +23,26 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.zshrc > /dev/null 2>&1
     sudo rm ~/.gitconfig
     sudo rm ~/.ackrc
+    sudo rm ~/.antigen
+    sudo rm ~/.antigen.zsh
     #==============
     # Create symlinks in the home folder
     #==============
-    ln -s ~/dotfiles/Mac/vim ~/.vim
-    ln -s ~/dotfiles/Mac/vimrc ~/.vimrc
-    ln -s ~/dotfiles/Mac/bashrc ~/.bashrc
-    ln -s ~/dotfiles/Mac/tmux ~/.tmux
-    ln -s ~/dotfiles/Mac/tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/Mac/zsh/zsh_prompt ~/.zsh_prompt
-    ln -s ~/dotfiles/Mac/zsh/zshrc ~/.zshrc
-    ln -s ~/dotfiles/Mac/gitconfig ~/.gitconfig
-    ln -s ~/dotfiles/Mac/ackrc ~/.ackrc
+    ln -s ~/dotfiles/vim ~/.vim
+    ln -s ~/dotfiles/vimrc ~/.vimrc
+    ln -s ~/dotfiles/bashrc ~/.bashrc
+    ln -s ~/dotfiles/mac_tmux ~/.tmux
+    ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
+    ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+    ln -s ~/dotfiles/gitconfig ~/.gitconfig
+    ln -s ~/dotfiles/ackrc ~/.ackrc
 fi
 
 #==============
 # Clone vundle to manage vim plugins
 #==============
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/Mac/vim/bundle/vundle
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 
 #==============
 # Install all the packages

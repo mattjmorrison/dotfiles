@@ -19,6 +19,10 @@
 autoload -U compinit
 compinit -C
 # >> 2
+# Modify default zsh directory coloring on ls commands <<2
+#-------------------------------------------------------------------------------
+export LSCOLORS=gxfxcxdxbxegedabagacad
+# >>2
 # Completion settings <<2
 #-------------------------------------------------------------------------------
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -47,7 +51,7 @@ setopt  complete_aliases
 # expansion.)
 setopt  extended_glob
 # If a new command line being added to the history list duplicates an older one,
-# the older command is removed from the list (even if it is not the pre‐ vious event).
+# the older command is removed from the list (even if it is not the previous event).
 setopt  hist_ignore_all_dups
 #  Remove command lines from the history list when the first character on the line
 #  is a space, or when one of the expanded aliases contains a leading space.
@@ -92,7 +96,7 @@ export LC_COLLATE=C
 #-------------------------------------------------------------------------------
 export GREP_OPTIONS='--color=auto'
 # >>2
-# Allow the use of exuberant ctags <<2
+# Use the correct ctags <<2
 #-------------------------------------------------------------------------------
 PATH="/usr/local/bin:$PATH"
 # >>2
@@ -198,13 +202,15 @@ function webshare() {
 #-------------------------------------------------------------------------------
 # A timer function that will say the message and display a pop-up
 # after the specified amount of time.
-# REQUIRES: Need to have espeak installed.
 #-------------------------------------------------------------------------------
 function workTimer() {
-    #echo -n "Timer name => "; read name ##<-- We don't really need a name for the timer
     echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
-    echo -n "What to say when done => "; read say
-    sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
+    echo -n "What to words_to_say when done => "; read words_to_say
+    if [ "$(uname)" = "Darwin" ]; then
+      sleep $duration && say "$words_to_say"
+    else
+      sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
+    fi
 }
 # >>2
 # Memory Usage <<2
@@ -216,8 +222,12 @@ function mem_usage() {
     echo ""
     echo "Mem Size       PID     Process"
     echo "============================================================================="
-    ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
-}
+    if [ "$(uname)" = "Darwin" ]; then
+      ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head -n $number
+    else
+      ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
+    fi
+    }
 # >>2
 # Spell Check <<2
 #------------------------------------------------------------------------------

@@ -62,11 +62,6 @@ else
 fi
 
 #==============
-# Set the desktop wallpaper
-#==============
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/dotfiles/Linux/wallpaper.png
-
-#==============
 # Change to the dotfiles directory
 #==============
 cd $dotfiles_dir
