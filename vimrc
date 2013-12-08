@@ -51,7 +51,6 @@ set nocompatible
  Bundle 'https://github.com/scrooloose/nerdtree'
  Bundle 'https://github.com/JarrodCTaylor/vim-256-color-schemes'
  Bundle 'https://github.com/tpope/vim-fugitive'
- " Must have exuberant-ctags for tagbar to work
  Bundle 'https://github.com/majutsushi/tagbar'
  Bundle 'https://github.com/ervandew/supertab'
  Bundle 'https://github.com/pangloss/vim-javascript'
