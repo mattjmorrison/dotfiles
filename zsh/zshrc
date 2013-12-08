@@ -324,8 +324,16 @@ function nicemount() {
 # >>2
 # Source file if it exists <<2
 #--------------------------------------------------------------------
-include () {
+include() {
     [[ -s "$1" ]] && source "$1"
+}
+# >>2
+# ackvim open ack results in vim <<2
+#--------------------------------------------------------------------
+ackv() {
+   pattern=$1
+   shift
+   vim +"Ack '$pattern' $*"
 }
 # >>2
 # >>1
