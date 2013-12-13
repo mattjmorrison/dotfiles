@@ -73,6 +73,7 @@ set nocompatible
  Bundle 'https://github.com/tpope/vim-markdown'
  Bundle 'https://github.com/justinmk/vim-sneak'
  Bundle 'https://github.com/JarrodCTaylor/vim-shell-executor'
+ Bundle 'https://github.com/mattn/emmet-vim/'
 " }2
 " }1
 
@@ -422,6 +423,12 @@ let g:markdown_fold_style = 'nested'
 " Replace the default f command
 nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
+"}2
+" Emmet Vim {2
+"-----------------------------------------------------------------------------------
+" Enable just in html files
+let g:user_emmet_install_global = 0
+autocmd FileType html EmmetInstall
 "}2
 " }1
 
