@@ -92,6 +92,26 @@ if [[ $answer = "Y" ]] ; then
     sudo gem install gollum
     sudo gem install redcarpet
 
+    # ===
+    # brew-cask installs
+    # ===
+    brew tap phinze/homebrew-cask
+    brew install brew-cask
+
+    echo "install chrome"
+    brew cask install google-chrome
+
+    echo "install firefox"
+    brew cask install firefox
+
+    echo "install iterm2"
+    brew cask install iterm2
+
+    echo "install alfred"
+    brew cask install alfred
+
+    echo "install virtualbox"
+    brew cask install virtualbox
 fi
 
 #==============
