@@ -185,7 +185,7 @@ let g:airline_section_y = '[TYPE=%Y] [Format=%{&ff}] [ASCII=%03.3b] [HEX=%02.2B]
 let g:airline_section_z = ''                        " Do not show the default file position info
 " }1
 
-"  Key mapings {1
+" Key mapings {1
 " Notes {2
 "===================================================================================
 "  (nore) prefix -- non-recursive
@@ -428,7 +428,7 @@ nmap F <Plug>SneakBackward
 "-----------------------------------------------------------------------------------
 " Enable just in html files
 let g:user_emmet_install_global = 0
-autocmd FileType html EmmetInstall
+autocmd FileType html,htmldjango EmmetInstall
 "}2
 " }1
 
