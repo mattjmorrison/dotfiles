@@ -528,4 +528,16 @@ augroup unimpaired_paste
         \ endif
 augroup END
 " }2
+" Increment a column of number {2
+fu! Incr()
+    let a = line('.') - line("'<")
+    let c = virtcol("'<")
+    if a > 0
+        execute 'normal! '.c.'|'.a."\<C-a>"
+    endif
+    normal `<
+endfu
+
+vnoremap <C-a> :call Incr()<CR>
+" }2
 " }1
