@@ -74,6 +74,7 @@ set nocompatible
  Bundle 'https://github.com/justinmk/vim-sneak'
  Bundle 'https://github.com/JarrodCTaylor/vim-shell-executor'
  Bundle 'https://github.com/mattn/emmet-vim/'
+ Bundle 'https://github.com/junegunn/vim-easy-align'
 " }2
 " }1
 
@@ -430,6 +431,11 @@ nmap F <Plug>SneakBackward
 let g:user_emmet_install_global = 0
 autocmd FileType html,htmldjango EmmetInstall
 "}2
+" Easy ALign {2
+"-----------------------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode
+vmap <Enter> <Plug>(EasyAlign)
+"}2
 " }1
 
 " Misc Functions {1
@@ -440,27 +446,6 @@ function! RenewTagsFile()
     exe 'silent !ctags -a -Rf .ctags --languages=python --python-kinds=-iv --exclude=build --exclude=dist ' . system('python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"')''
     exe 'silent !ctags -a -Rf .ctags --extra=+f --exclude=.git --languages=python --python-kinds=-iv --exclude=build --exclude=dist 2>/dev/null'
     exe 'redraw!'
-endfunction
-" }2
-" Copyfile {2
-function! CopyFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        redraw!
-    endif
-endfunction
-" }2
-" Renamefile {2
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
 endfunction
 " }2
 " Highlight matches when jumping to next {2
