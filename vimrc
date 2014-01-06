@@ -47,7 +47,7 @@ set nocompatible
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/Raimondi/delimitMate'
- Bundle 'https://github.com/vim-scripts/L9'
+ " Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
  Bundle 'https://github.com/JarrodCTaylor/vim-256-color-schemes'
  Bundle 'https://github.com/tpope/vim-fugitive'
@@ -64,10 +64,6 @@ set nocompatible
  Bundle 'https://github.com/JarrodCTaylor/vim-python-test-runner'
  Bundle 'https://github.com/tpope/vim-surround'
  Bundle 'https://github.com/bling/vim-airline'
- " This will no longer be needed in vim 7.4
- Bundle 'https://github.com/guns/vim-clojure-static'
- Bundle 'https://github.com/tpope/vim-fireplace'
- Bundle 'https://github.com/kien/rainbow_parentheses.vim'
  Bundle 'https://github.com/sjl/gundo.vim'
  Bundle 'https://github.com/nelstrom/vim-markdown-folding'
  Bundle 'https://github.com/tpope/vim-markdown'
@@ -89,8 +85,14 @@ filetype  indent on
 " }2
 " Color scheme {2
 "-----------------------------------------------------------------------------------
-set t_Co=256
-colorscheme harlem-nights
+if has("gui_running")
+    colorscheme desert
+    set guifont=Monospace\ 12
+    set antialias
+else
+    set t_Co=256
+    colorscheme harlem-nights
+endif
 " }2
 " Switch syntax highlighting on. {2
 "-----------------------------------------------------------------------------------
@@ -379,29 +381,6 @@ let g:startify_show_files = 1
 let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
 let g:startify_bookmarks = [ '~/.vimrc' ]
-" }2
-" Rainbow Parentheses settings {2
-"-----------------------------------------------------------------------------------
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
 " }2
 " SuperTab {2
 "-----------------------------------------------------------------------------------
