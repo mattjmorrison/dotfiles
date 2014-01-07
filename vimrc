@@ -50,7 +50,6 @@ set nocompatible
  " Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
  Bundle 'https://github.com/JarrodCTaylor/vim-256-color-schemes'
- Bundle 'https://github.com/tpope/vim-fugitive'
  Bundle 'https://github.com/majutsushi/tagbar'
  Bundle 'https://github.com/ervandew/supertab'
  Bundle 'https://github.com/pangloss/vim-javascript'
@@ -410,7 +409,7 @@ nmap F <Plug>SneakBackward
 let g:user_emmet_install_global = 0
 autocmd FileType html,htmldjango EmmetInstall
 "}2
-" Easy ALign {2
+" Easy Align {2
 "-----------------------------------------------------------------------------------
 " Start interactive EasyAlign in visual mode
 vmap <Enter> <Plug>(EasyAlign)
