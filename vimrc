@@ -319,6 +319,10 @@ let g:neocomplcache_force_overwrite_completefunc=1
 let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 18
+let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+func! MyCtrlPMappings()
+    nnoremap <buffer> <silent> <c-@> :call <sid>DeleteBuffer()<cr>
+endfunc
 " }2
 " Exuberant ctags configurations {2
 "-----------------------------------------------------------------------------------
@@ -413,6 +417,17 @@ autocmd FileType html,htmldjango EmmetInstall
 "-----------------------------------------------------------------------------------
 " Start interactive EasyAlign in visual mode
 vmap <Enter> <Plug>(EasyAlign)
+"}2
+" DeleteBuffer {2
+"-----------------------------------------------------------------------------------
+" Custom function to delete buffers from within Ctrl-P
+func! s:DeleteBuffer()
+    let line = getline('.')
+    let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
+        \ : fnamemodify(line[2:], ':p')
+    exec "bd" bufid
+    exec "norm \<F5>"
+endfunc
 "}2
 " }1
 
