@@ -229,6 +229,8 @@ if [[ $answer = "Y" ]] ; then
         echo "tmux FAILED TO INSTALL!!!" >> $log_file
     fi
 
+    sudo apt-get -y install python-dev
+
     sudo pip install virtualenvwrapper
     if type -p virtualenvwrapper > /dev/null; then
         echo "virtualenvwrapper Installed" >> $log_file
