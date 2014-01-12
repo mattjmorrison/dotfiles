@@ -142,6 +142,7 @@ source ~/.antigen.zsh
 # Set antigen bundles <<1
 #-------------------------------------------------------------------------------
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle robbyrussell/oh-my-zsh plugins/django
 # >>1
 
 # Key Bindings <<1
