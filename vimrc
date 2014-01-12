@@ -108,7 +108,7 @@ set incsearch                          " Do incremental searching
 set ignorecase                         " Ignore case when searching....
 set smartcase                          " ...unless uppercase letter are used
 set hlsearch                           " Highlight the last used search pattern
-set list                              " Toggle manually with set list / set nolist or set list!
+set list                               " Toggle manually with set list / set nolist or set list!
 set listchars=""                       " Empty the listchars
 set listchars=tab:>.                   " A tab will be displayed as >...
 "set listchars+=trail:.                 " Trailing white spaces will be displayed as .
@@ -117,6 +117,7 @@ set nobackup                           " Don't constantly write backup files
 set noswapfile                         " Ain't nobody got time for swap files
 set noerrorbells                       " Don't beep
 set nowrap                             " Do not wrap lines
+set showbreak=↪\                       " Character to precede line wraps for the times I turn it on
 set popt=left:8pc,right:3pc            " Print options
 set shiftwidth=4                       " Number of spaces to use for each step of indent
 set showcmd                            " Display incomplete commands in the bottom line of the screen
@@ -133,6 +134,7 @@ set ttimeoutlen=50                     " Fix delay when escaping from insert wit
 set relativenumber                     " Turn on the relative line numbering
 set number                             " Used with relativenumber to show the number of the current line
 set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set synmaxcol=256                      " Don't syntax highlight long lines
 " }2
 " Turn off the toolbar that is under the menu in gvim {2
 "-----------------------------------------------------------------------------------
