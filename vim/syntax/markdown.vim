@@ -10,3 +10,7 @@ syntax match WikiLinkLabel /\[\[.\+ <at> <=\%(|\) <at> =/ contained containedin=
 syntax match WikiLinkName /\%(|\) <at> <=[^ ]\+\]\] <at> =/ contained containedin=WikiLinkEnd
 syntax match WikiLinkStart /\[\[/ conceal contained containedin=WikiLink
 syntax match WikiLinkEnd /|[^ ]\+\]\]/ conceal contained containedin=WikiLink
+
+" Highlighting for TODO's
+syntax match TodoDone "@done.*$"
+highlight link TodoDone String

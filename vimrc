@@ -282,6 +282,8 @@ map <Leader>rf :call RenameFile()<CR>
 map <Leader>cf :call CopyFile()<CR>
 " --- Shortcut to toggle visual undo
 nnoremap<Leader>ud :GundoToggle<CR>
+" --- Toggle Checkboxs
+nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
 " }2
 " }1
 
@@ -509,15 +511,28 @@ augroup unimpaired_paste
 augroup END
 " }2
 " Increment a column of number {2
-fu! Incr()
+function! Incr()
     let a = line('.') - line("'<")
     let c = virtcol("'<")
     if a > 0
         execute 'normal! '.c.'|'.a."\<C-a>"
     endif
     normal `<
-endfu
+endfunction
 
 vnoremap <C-a> :call Incr()<CR>
+" }2
+" Toggle checkboxs {2
+function! ToggleTodoCheckbox()
+        let line = getline('.')
+        if(match(line, "\\[ \\]") != -1)
+          let line = substitute(line, "\\[ \\]", "[√]", "")
+          let line = substitute(line, "$", " @done (" . strftime("%d/%m/%y %H:%M") . ")", "")
+        elseif(match(line, "\\[√\\]") != -1)
+          let line = substitute(line, "\\[√\\]", "[ ]", "")
+          let line = substitute(line, " @done.*$", "", "")
+        endif
+        call setline('.', line)
+endfunction
 " }2
 " }1
