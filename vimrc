@@ -45,7 +45,6 @@ set nocompatible
 " Github repos for bundles that we want to have installed {2
 "-----------------------------------------------------------------------------------
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
- Bundle 'https://github.com/vim-scripts/bash-support.vim'
  Bundle 'https://github.com/Raimondi/delimitMate'
  " Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
@@ -227,63 +226,42 @@ let g:airline_section_z = ''                        " Do not show the default fi
 "===================================================================================
 " }2
 " Key mappings {2
-" --- change mapleader from \ to 9 as I find that easier to type
 let mapleader="9"
-" --- jk mapped to <Esc> so we can keep our fingers on the home row
 imap jk <Esc>
-" --- ss will toggle spell checking
 map ss :setlocal spell!<CR>
-" --- toggle NERDTree
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>no :NERDTreeFind<CR>
-" --- toggle Tagbar
 nnoremap <Leader>tb :TagbarToggle<CR>
-" --- open CtrlP buffer explorer
 nnoremap <Leader>b :CtrlPBuffer<CR>
-" --- open Ctrlp as a fuzzy finder
 nnoremap <Leader>ff :CtrlP<CR>
-" --- Split the window vertically
 nnoremap <Leader>\ :vsplit<CR>
-" --- Split the window horizontally
 nnoremap <Leader>- :split<CR>
-" --- Ack short cut
 nnoremap <Leader>a :Ack!<space>
-" --- Toggle Syntastic
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
-" --- Clear the search buffer and highlighted text with enter press
 :nnoremap <Space> :nohlsearch<CR>
-" --- Search the ctags index file for anything by class or method name
-map <Leader>st :CtrlPTag<CR>
-" --- Refresh the ctags file
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
 " --- Strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-" --- Better window navigation E.g. now use Ctrl+j instead of Ctrl+W+j
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-" --- Shortcuts for test running commands
-nnoremap<Leader>da :DjangoTestApp<CR>
-nnoremap<Leader>df :DjangoTestFile<CR>
-nnoremap<Leader>dc :DjangoTestClass<CR>
-nnoremap<Leader>dm :DjangoTestMethod<CR>
-nnoremap<Leader>nf :NosetestFile<CR>
-nnoremap<Leader>nc :NosetestClass<CR>
-nnoremap<Leader>nm :NosetestMethod<CR>
-nnoremap<Leader>rr :RerunLastTests<CR>
-" --- grunt-karma test runner shortcut
-map <Leader>q :!grunt test<CR>"
-" --- Toggle relative line numbering
-nnoremap<Leader>tn :set relativenumber!<CR>:set number!<CR>
-" --- Shortcut to RenameFile function defined below
-map <Leader>rf :call RenameFile()<CR>
-" --- Shortcut to CopyFile function defined below
-map <Leader>cf :call CopyFile()<CR>
-" --- Shortcut to toggle visual undo
-nnoremap<Leader>ud :GundoToggle<CR>
-" --- Toggle Checkboxs
+nnoremap <Leader>da :DjangoTestApp<CR>
+nnoremap <Leader>df :DjangoTestFile<CR>
+nnoremap <Leader>dc :DjangoTestClass<CR>
+nnoremap <Leader>dm :DjangoTestMethod<CR>
+nnoremap <Leader>nf :NosetestFile<CR>
+nnoremap <Leader>nc :NosetestClass<CR>
+nnoremap <Leader>nm :NosetestMethod<CR>
+nnoremap <Leader>rr :RerunLastTests<CR>
+nnoremap <Leader>q :!grunt test<CR>"
+nnoremap <Leader>tn :set relativenumber!<CR>:set number!<CR>
+nnoremap <Leader>ud :GundoToggle<CR>
 nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
+nnoremap \ :call QuickfixToggle()<cr>
+" --- Shortcuts for quickfix as it was broken for some reason
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
+autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
 " }2
 " }1
 
@@ -533,6 +511,21 @@ function! ToggleTodoCheckbox()
           let line = substitute(line, " @done.*$", "", "")
         endif
         call setline('.', line)
+endfunction
+" }2
+" Toggle Quickfix {2
+let g:quickfix_is_open = 0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen
+        let g:quickfix_is_open = 1
+    endif
 endfunction
 " }2
 " }1
