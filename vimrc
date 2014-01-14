@@ -258,7 +258,7 @@ nnoremap <Leader>q :!grunt test<CR>"
 nnoremap <Leader>tn :set relativenumber!<CR>:set number!<CR>
 nnoremap <Leader>ud :GundoToggle<CR>
 nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
-nnoremap \ :call QuickfixToggle()<cr>
+nnoremap 9q :call QuickfixToggle()<cr>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
