@@ -260,7 +260,7 @@ nnoremap <Leader>ud :GundoToggle<CR>
 nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
 nnoremap 9q :call QuickfixToggle()<cr>
 " --- Shortcuts for quickfix as it was broken for some reason
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.ccl<CR>
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
 " }2
 " }1
