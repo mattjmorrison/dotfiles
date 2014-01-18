@@ -46,7 +46,6 @@ set nocompatible
 "-----------------------------------------------------------------------------------
  Bundle 'https://github.com/Shougo/neocomplcache.vim'
  Bundle 'https://github.com/Raimondi/delimitMate'
- " Bundle 'https://github.com/vim-scripts/L9'
  Bundle 'https://github.com/scrooloose/nerdtree'
  Bundle 'https://github.com/JarrodCTaylor/vim-256-color-schemes'
  Bundle 'https://github.com/majutsushi/tagbar'
@@ -388,6 +387,7 @@ let g:markdown_fold_style = 'nested'
 " Replace the default f command
 nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
+let g:sneak#streak = 1
 "}2
 " Emmet Vim {2
 "-----------------------------------------------------------------------------------
@@ -505,7 +505,7 @@ function! ToggleTodoCheckbox()
         let line = getline('.')
         if(match(line, "\\[ \\]") != -1)
           let line = substitute(line, "\\[ \\]", "[√]", "")
-          let line = substitute(line, "$", " @done (" . strftime("%d/%m/%y %H:%M") . ")", "")
+          let line = substitute(line, "$", " @done (" . strftime("%m/%d/%y %H:%M") . ")", "")
         elseif(match(line, "\\[√\\]") != -1)
           let line = substitute(line, "\\[√\\]", "[ ]", "")
           let line = substitute(line, " @done.*$", "", "")
