@@ -1,0 +1,14 @@
+[distutils]
+index-servers=
+    pypi
+    test
+
+[test]
+repository = https://testpypi.python.org/pypi
+username = JarrodCTaylor
+password = P455word1
+
+[pypi]
+repository = https://pypi.python.org/pypi
+username = JarrodCTaylor
+password = <ENTER PASSWORD>
