@@ -37,6 +37,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
     ln -s ~/dotfiles/gitconfig ~/.gitconfig
     ln -s ~/dotfiles/ackrc ~/.ackrc
+    ln -s ~/dotfiles/tigrc ~/.tigrc
 fi
 
 #==============

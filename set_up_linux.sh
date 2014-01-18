@@ -44,6 +44,7 @@ ln -s $dotfiles_dir/zsh/zsh_prompt ~/.zsh_prompt
 ln -s $dotfiles_dir/zsh/zshrc ~/.zshrc
 ln -s $dotfiles_dir/gitconfig ~/.gitconfig
 ln -s $dotfiles_dir/ackrc ~/.ackrc
+ln -s $dotfiles_dir/tigrc ~/.tigrc
 
 #==============
 # Select which conky to symlink
