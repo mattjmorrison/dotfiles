@@ -68,6 +68,8 @@ set nocompatible
  Bundle 'https://github.com/JarrodCTaylor/vim-shell-executor'
  Bundle 'https://github.com/mattn/emmet-vim/'
  Bundle 'https://github.com/junegunn/vim-easy-align'
+ " tern requires you to do a npm install once you BundleInstall
+ Bundle 'https://github.com/marijnh/tern_for_vim'
 " }2
 " }1
 
@@ -294,6 +296,7 @@ if !exists('g:neocomplcache_force_omni_patterns')
   endif
 let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 let g:neocomplcache_force_overwrite_completefunc=1
+let g:neocomplcache_min_syntax_length = 3
 " }2
 " Ctrlp configurations {2
 "-----------------------------------------------------------------------------------
