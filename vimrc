@@ -391,6 +391,8 @@ let g:markdown_fold_style = 'nested'
 nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
 let g:sneak#streak = 1
+" We need 52 characters for this
+let g:sneak#target_labels = "sdfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM123456789rx"
 "}2
 " Emmet Vim {2
 "-----------------------------------------------------------------------------------
@@ -530,5 +532,11 @@ function! QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
+" }2
+" Format JSON {2
+function! FormatJSON()
+    :'<,'>!python -m json.tool
+endfunction
+command! -range FormatJSON call FormatJSON()
 " }2
 " }1
