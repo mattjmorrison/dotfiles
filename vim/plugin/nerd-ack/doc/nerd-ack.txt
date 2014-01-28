@@ -1,0 +1,23 @@
+*nerd-ack.txt*  Add on for NERDTree allowing dir specific acking
+
+==============================================================================
+CONTENTS                                                     *nerd-ack-contents*
+
+    1. Intro .................................................. |nerd-ack-intro|
+    2. Usage .................................................. |nerd-ack-usage|
+
+==============================================================================
+1. INTRODUCTION                                                *nerd-ack-intro*
+
+This is an add on plugin for NERDTree which adds a new option to the NERDTree
+menu (s)earch. This new option allows the user to do directory specific ack
+searches.
+
+==============================================================================
+2. Usage                                                       *nerd-ack-usage*
+
+Open NERDTree highlight the desired directory and the press m. The NERDTRee
+menu will open and you will be able to press s to trigger the Ack prompt.
+You many then directory specific ack away.
+
+" vim: filetype=help

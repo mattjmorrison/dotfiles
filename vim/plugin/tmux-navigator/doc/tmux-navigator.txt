@@ -1,0 +1,23 @@
+*tmux-navigator.txt*  Move between vim and tmux splits
+
+==============================================================================
+CONTENTS                                              *tmux-navigator-contents*
+
+    1. Intro ........................................... |tmux-navigator-intro|
+    2. Usage ........................................... |tmux-navigator-usage|
+
+==============================================================================
+1. INTRODUCTION                                          *tmux-navigator-intro*
+
+Gone are the days of needing separate keys to move between tmux and vim
+splits. It's all the same terminal (am I right?)
+
+==============================================================================
+1. USAGE                                                 *tmux-navigator-usage*
+
+This plugin maps <C-h> <C-j> <C-k> <C-l> to switch vim splits in the given
+direction. If there are no more windows in that direction, forwards the
+operation to tmux.  Additionally, <C-\> toggles between last active vim
+splits/tmux panes.
+
+" vim: filetype=help

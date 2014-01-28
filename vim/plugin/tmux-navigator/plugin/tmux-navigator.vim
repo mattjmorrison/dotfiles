@@ -1,7 +1,3 @@
-" Maps <C-h/j/k/l> to switch vim splits in the given direction. If there are
-" no more windows in that direction, forwards the operation to tmux.
-" Additionally, <C-\> toggles between last active vim splits/tmux panes.
-
 if exists("g:loaded_tmux_navigator") || &cp || v:version < 700
   finish
 endif

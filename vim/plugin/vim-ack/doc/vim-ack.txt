@@ -4,8 +4,8 @@
 CONTENTS                                                    *vim-ack-contents*
 
     1. Intro ................................................. |vim-ack-intro|
-    4. Usage ................................................. |vim-ack-usage|
-    2. Mappings ........................................... |vim-ack-mappings|
+    2. Usage ................................................. |vim-ack-usage|
+    3. Mappings ........................................... |vim-ack-mappings|
 
 ==============================================================================
 1. INTRODUCTION                                                *vim-ack-intro*
@@ -62,7 +62,7 @@ a line in this window will open the file, and place the cursor on the matching
 line.
 
 ==============================================================================
-3. Usage                                                       *vim-ack-usage*
+2. Usage                                                       *vim-ack-usage*
 
 `:Ack [options] {pattern} [{directory}]`
 
@@ -87,3 +87,5 @@ H                   open in horizontal split silently.
 v                   open in vertical split.
 gv                  open in vertical split silently.
 q                   close the quickfix window.
+
+" vim: filetype=help

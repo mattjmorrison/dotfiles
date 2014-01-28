@@ -239,10 +239,8 @@ nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
-:nnoremap <Space> :nohlsearch<CR>
+nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
-" --- Strip trailing whitespace
-nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -263,6 +261,10 @@ nnoremap 9q :call QuickfixToggle()<cr>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
+" --- Strip trailing whitespace
+nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+" --- Save changes to a readonly file with sudo
+cmap w!! w !sudo tee %
 " }2
 " }1
 
@@ -405,21 +407,22 @@ autocmd FileType html,htmldjango EmmetInstall
 " Start interactive EasyAlign in visual mode
 vmap <Enter> <Plug>(EasyAlign)
 "}2
+" }1
+
+" Misc Functions {1
 " DeleteBuffer {2
 "-----------------------------------------------------------------------------------
 " Custom function to delete buffers from within Ctrl-P
-func! s:DeleteBuffer()
+function! s:DeleteBuffer()
     let line = getline('.')
     let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
         \ : fnamemodify(line[2:], ':p')
     exec "bd" bufid
     exec "norm \<F5>"
-endfunc
+endfunction
 "}2
-" }1
-
-" Misc Functions {1
 " Renewtagsfile {2
+"-----------------------------------------------------------------------------------
 function! RenewTagsFile()
     exe 'silent !rm -rf .ctags'
     exe 'silent !coffeetags --include-vars -Rf .ctags'
@@ -429,6 +432,7 @@ function! RenewTagsFile()
 endfunction
 " }2
 " Highlight matches when jumping to next {2
+"-----------------------------------------------------------------------------------
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
@@ -446,6 +450,7 @@ function! HLNext (blinktime)
 endfunction
 " }2
 " Custom Fold Text{2
+"-----------------------------------------------------------------------------------
 function! CustomFoldText()
     let fs = v:foldstart
     while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
@@ -470,6 +475,7 @@ endf
 set foldtext=CustomFoldText()
 " }2
 " Nohassle Paste {2
+"-----------------------------------------------------------------------------------
 " Code totally boosted from Tim Pope
 function! s:setup_paste() abort
   let s:paste = &paste
@@ -494,6 +500,7 @@ augroup unimpaired_paste
 augroup END
 " }2
 " Increment a column of number {2
+"-----------------------------------------------------------------------------------
 function! Incr()
     let a = line('.') - line("'<")
     let c = virtcol("'<")
@@ -506,6 +513,7 @@ endfunction
 vnoremap <C-a> :call Incr()<CR>
 " }2
 " Toggle checkboxs {2
+"-----------------------------------------------------------------------------------
 function! ToggleTodoCheckbox()
         let line = getline('.')
         if(match(line, "\\[ \\]") != -1)
@@ -519,6 +527,7 @@ function! ToggleTodoCheckbox()
 endfunction
 " }2
 " Toggle Quickfix {2
+"-----------------------------------------------------------------------------------
 let g:quickfix_is_open = 0
 
 function! QuickfixToggle()

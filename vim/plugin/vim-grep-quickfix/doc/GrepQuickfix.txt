@@ -7,7 +7,7 @@ Help on using GrepQuickfix
   2. USAGE .................................................. |GrepQuickfix-usage|
 
 ================================================================================
-DISCLAIMER                                              *GrepQuickfix-disclaimer*
+1. DISCLAIMER                                            *GrepQuickfix-disclaimer*
 
 I ran across a version of this code in a sketchy seemingly unmaintained github
 repo. I slightly modified it to suit my needs and pulled it into my vim config.
@@ -16,10 +16,12 @@ burn the calories at this point to make it pretty. As always pull requests are
 well sucker.
 
 ================================================================================
-USAGE                                                         *GrepQuickfix-usage*
+2. USAGE                                                      *GrepQuickfix-usage*
 
 |GrepQuickfix| commands and mappings work only in the |Quickfix| buffer.
 
 <Leader>g filter entries, you will be asked for pattern
 <Leader>v inverted filter entries, you will be asked for pattern (like grep -v)
 <Leader>r to restore original quickfix entires.
+
+" vim: filetype=help
