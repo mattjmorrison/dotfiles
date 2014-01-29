@@ -322,6 +322,8 @@ set tags=./.ctags,.ctags;
 "-----------------------------------------------------------------------------------
 " Make NERDTree ignore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeMapJumpNextSibling = ''
+let g:NERDTreeMapJumpPrevSibling = ''
 " }2
 " Jedi configurations {2
 "-----------------------------------------------------------------------------------
