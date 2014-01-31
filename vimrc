@@ -396,7 +396,7 @@ nmap f <Plug>SneakForward
 nmap F <Plug>SneakBackward
 let g:sneak#streak = 1
 " We need 52 characters for this
-let g:sneak#target_labels = "sdfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM123456789rx"
+let g:sneak#target_labels = "sfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM1234567890rx"
 "}2
 " Emmet Vim {2
 "-----------------------------------------------------------------------------------
