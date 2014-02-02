@@ -70,6 +70,8 @@ set nocompatible
  Bundle 'https://github.com/junegunn/vim-easy-align'
  " tern requires you to do a npm install once you BundleInstall
  Bundle 'https://github.com/marijnh/tern_for_vim'
+ Bundle 'https://github.com/kchmck/vim-coffee-script'
+ Bundle 'https://github.com/JarrodCTaylor/vim-qunit-special-blend'
 " }2
 " }1
 
@@ -253,11 +255,15 @@ nnoremap <Leader>nf :NosetestFile<CR>
 nnoremap <Leader>nc :NosetestClass<CR>
 nnoremap <Leader>nm :NosetestMethod<CR>
 nnoremap <Leader>rr :RerunLastTests<CR>
-nnoremap <Leader>q :!grunt test<CR>"
 nnoremap <Leader>tn :set relativenumber!<CR>:set number!<CR>
 nnoremap <Leader>ud :GundoToggle<CR>
 nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
-nnoremap 9q :call QuickfixToggle()<cr>
+nnoremap <Leader>q :call QuickfixToggle()<CR>
+nnoremap <Leader>eb :ExecuteBuffer<CR>
+nnoremap <Leader>es :ExecuteSelection<CR>
+nnoremap <Leader>ja :RunAllQunitTests<CR>
+nnoremap <Leader>jt :RunSingleQunitTest<CR>
+nnoremap <Leader>jm :RunSingleQunitModule<CR>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
