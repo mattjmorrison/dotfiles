@@ -232,6 +232,7 @@ let g:airline_section_z = ''                        " Do not show the default fi
 let mapleader="9"
 imap jk <Esc>
 map ss :setlocal spell!<CR>
+map Y y$
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>no :NERDTreeFind<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
