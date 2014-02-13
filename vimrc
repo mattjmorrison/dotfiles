@@ -133,8 +133,6 @@ set wildmenu                           " Command-line completion in an enhanced 
 set shell=bash                         " Required to let zsh know how to run things on command line
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
 "set iskeyword-=_                       " Make underscores keyword boundaries
-set relativenumber                     " Turn on the relative line numbering
-set number                             " Used with relativenumber to show the number of the current line
 set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set synmaxcol=256                      " Don't syntax highlight long lines
 " }2
@@ -305,7 +303,8 @@ if !exists('g:neocomplcache_force_omni_patterns')
   endif
 let g:neocomplcache_force_omni_patterns.python = '[^. \t]\.\w*'
 let g:neocomplcache_force_overwrite_completefunc=1
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_auto_completion_start_length = 99
+set completeopt-=preview
 " }2
 " Ctrlp configurations {2
 "-----------------------------------------------------------------------------------
@@ -409,7 +408,8 @@ let g:sneak#target_labels = "sfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM1234567890r
 "-----------------------------------------------------------------------------------
 " Enable just in html files
 let g:user_emmet_install_global = 0
-autocmd FileType html,htmldjango EmmetInstall
+let g:user_emmet_leader_key=','
+autocmd FileType html,htmldjango,handlebars EmmetInstall
 "}2
 " Easy Align {2
 "-----------------------------------------------------------------------------------
