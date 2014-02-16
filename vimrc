@@ -72,6 +72,7 @@ set nocompatible
  Bundle 'https://github.com/marijnh/tern_for_vim'
  Bundle 'https://github.com/kchmck/vim-coffee-script'
  Bundle 'https://github.com/JarrodCTaylor/vim-qunit-special-blend'
+ Bundle 'https://github.com/mustache/vim-mustache-handlebars'
 " }2
 " }1
 
@@ -416,6 +417,11 @@ autocmd FileType html,htmldjango,handlebars EmmetInstall
 " Start interactive EasyAlign in visual mode
 vmap <Enter> <Plug>(EasyAlign)
 "}2
+" Handlebars {2
+"-----------------------------------------------------------------------------------
+" Enable handlebars shortcuts
+let g:mustache_abbreviations = 1
+" }2
 " }1
 
 " Misc Functions {1
