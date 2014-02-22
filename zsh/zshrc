@@ -1,7 +1,7 @@
 #!/bin/zsh
 # vim: set foldmarker=<<,>> foldlevel=0 foldmethod=marker:
 #===================================================================================
-#  DESCRIPTION:  Damn if feels good to be a gangster
+#  DESCRIPTION:  You realize, Dr. Angelo, that my intelligence has surpassed yours. 
 #       AUTHOR:  Jarrod Taylor
 #                 .__
 #  ________  _____|  |_________   ____
@@ -209,14 +209,23 @@ function pyserve() {
 # >>2
 # Work Timer <<2
 #-------------------------------------------------------------------------------
-# A timer function that will say the message and display a pop-up
-# after the specified amount of time.
+# A timer function that will say the message after the specified amount of time.
 #-------------------------------------------------------------------------------
 function workTimer() {
     echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
     echo -n "What to words_to_say when done => "; read words_to_say
     if [ "$(uname)" = "Darwin" ]; then
-      sleep $duration && say "$words_to_say"
+      if [ $duration[-1] = "h" ]; then
+          (( durationInHours = $duration[1,-2] * 60 * 60))
+          sleep $durationInHours && say "$words_to_say"
+      elif [ $duration[-1] = "m" ]; then
+          (( durationInMinutes = $duration[1,-2] * 60))
+          sleep $durationInMinutes && say "$words_to_say"
+      elif [ $duration[-1] = "s" ]; then
+          sleep $duration && say "$words_to_say"
+      else
+        echo "You must specify; Hours, Min or Seconds.."
+      fi
     else
       sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
     fi
@@ -302,7 +311,11 @@ any() {
         echo "any - grep for process(es) by keyword" >&2
         echo "Usage: any " >&2 ; return 1
     else
-        echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+        if [ "$(uname)" = "Darwin" ]; then
+            echo "USER            PID     %CPU %MEM VSZ       RSS  TTY   STAT START     TIME    COMMAND"
+        else
+            echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+        fi
         ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
     fi
 }
