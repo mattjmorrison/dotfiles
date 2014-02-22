@@ -73,6 +73,7 @@ set nocompatible
  Bundle 'https://github.com/kchmck/vim-coffee-script'
  Bundle 'https://github.com/JarrodCTaylor/vim-qunit-special-blend'
  Bundle 'https://github.com/mustache/vim-mustache-handlebars'
+ Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
 " }2
 " }1
 
