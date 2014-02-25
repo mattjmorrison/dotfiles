@@ -25,10 +25,11 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.conkyrc > /dev/null 2>&1
     sudo rm ~/.zsh_prompt > /dev/null 2>&1
     sudo rm ~/.zshrc > /dev/null 2>&1
-    sudo rm ~/.gitconfig
-    sudo rm ~/.ackrc
-    sudo rm ~/.antigen
-    sudo rm ~/.antigen.zsh
+    sudo rm ~/.gitconfig > /dev/null 2>&1
+    sudo rm ~/.ackrc > /dev/null 2>&1
+    sudo rm ~/.antigen > /dev/null 2>&1
+    sudo rm ~/.antigen.zsh > /dev/null 2>&1
+    sudo rm ~/.psqlrc > /dev/null 2>&1
 fi
 
 #==============
@@ -45,6 +46,7 @@ ln -s $dotfiles_dir/zsh/zshrc ~/.zshrc
 ln -s $dotfiles_dir/gitconfig ~/.gitconfig
 ln -s $dotfiles_dir/ackrc ~/.ackrc
 ln -s $dotfiles_dir/tigrc ~/.tigrc
+ln -s $dotfiles_dir/psqlrc ~/.psqlrc
 
 #==============
 # Select which conky to symlink

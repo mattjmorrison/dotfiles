@@ -21,10 +21,11 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.tmux.conf > /dev/null 2>&1
     sudo rm ~/.zsh_prompt > /dev/null 2>&1
     sudo rm ~/.zshrc > /dev/null 2>&1
-    sudo rm ~/.gitconfig
-    sudo rm ~/.ackrc
-    sudo rm ~/.antigen
-    sudo rm ~/.antigen.zsh
+    sudo rm ~/.gitconfig > /dev/null 2>&1
+    sudo rm ~/.ackrc > /dev/null 2>&1
+    sudo rm ~/.antigen > /dev/null 2>&1
+    sudo rm ~/.antigen.zsh > /dev/null 2>&1
+    sudo rm ~/.psqlrc > /dev/null 2>&1
     #==============
     # Create symlinks in the home folder
     #==============
@@ -38,6 +39,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/gitconfig ~/.gitconfig
     ln -s ~/dotfiles/ackrc ~/.ackrc
     ln -s ~/dotfiles/tigrc ~/.tigrc
+    ln -s ~/dotfiles/psqlrc ~/.psqlrc
 fi
 
 #==============
