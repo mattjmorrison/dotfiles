@@ -129,6 +129,18 @@ export BROWSER='chromium-browser'
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/VirtualDevEnvs
 # >>2
+# Add postgress to the path on osx <<2
+#-------------------------------------------------------------------------------
+if [ "$(uname)" = "Darwin" ]; then
+    PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+fi
+# >>2
+# Add Heroku Toolbelt to the path on osx <<2
+#-------------------------------------------------------------------------------
+if [ "$(uname)" = "Darwin" ]; then
+    PATH="/usr/local/heroku/bin:$PATH"
+fi
+# >>2
 # >>1
 
 # Source antigen <<1
