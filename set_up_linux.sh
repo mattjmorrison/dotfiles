@@ -133,6 +133,13 @@ if [[ $answer = "Y" ]] ; then
         echo "exuberant-ctags FAILED TO INSTALL!!!" >> $log_file
     fi
 
+    sudo apt-get -y gtk-redshift 
+    if type -p redshift > /dev/null; then
+        echo "redshift Installed" >> $log_file
+    else
+        echo "redshift FAILED TO INSTALL!!!" >> $log_file
+    fi
+
 
     # ---
     # Install git-completion and git-prompt

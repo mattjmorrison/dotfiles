@@ -74,6 +74,9 @@ set nocompatible
  Bundle 'https://github.com/JarrodCTaylor/vim-qunit-special-blend'
  Bundle 'https://github.com/mustache/vim-mustache-handlebars'
  Bundle 'https://github.com/JarrodCTaylor/vim-js2coffee'
+ Bundle 'https://github.com/osyo-manga/vim-over'
+ Bundle 'https://github.com/groenewege/vim-less'
+ Bundle 'https://github.com/nathanaelkane/vim-indent-guides'
 " }2
 " }1
 
@@ -92,6 +95,7 @@ if has("gui_running")
     colorscheme desert
     set guifont=Monospace\ 12
     set antialias
+    set guioptions=
 else
     set t_Co=256
     colorscheme harlem-nights
@@ -166,6 +170,7 @@ endif
 " Abbreviations {2
 "-----------------------------------------------------------------------------------
 :iabbr teh the
+:iabbr condole console
 " }2
 " Make arrowkey resize viewports {2
 nnoremap <Left> :vertical resize +1<CR>
@@ -265,6 +270,7 @@ nnoremap <Leader>es :ExecuteSelection<CR>
 nnoremap <Leader>ja :RunAllQunitTests<CR>
 nnoremap <Leader>jt :RunSingleQunitTest<CR>
 nnoremap <Leader>jm :RunSingleQunitModule<CR>
+inoremap <Leader>w <Esc>:wa<CR>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -422,6 +428,17 @@ vmap <Enter> <Plug>(EasyAlign)
 "-----------------------------------------------------------------------------------
 " Enable handlebars shortcuts
 let g:mustache_abbreviations = 1
+" }2
+" Vim-over {2
+"-----------------------------------------------------------------------------------
+nnoremap g/r :<c-u>OverCommandLine<cr>%s/
+xnoremap g/r :<c-u>OverCommandLine<cr>%s/\%V
+" }2
+" Indent Guides {2
+"-------------------------------------------------------------------------
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 " }2
 " }1
 
