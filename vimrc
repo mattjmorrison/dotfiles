@@ -271,6 +271,8 @@ nnoremap <Leader>ja :RunAllQunitTests<CR>
 nnoremap <Leader>jt :RunSingleQunitTest<CR>
 nnoremap <Leader>jm :RunSingleQunitModule<CR>
 inoremap <Leader>w <Esc>:wa<CR>
+nnoremap <Leader>fr :<c-u>OverCommandLine<cr>%s/
+xnoremap <Leader>fr :<c-u>OverCommandLine<cr>%s/\%V
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -429,16 +431,14 @@ vmap <Enter> <Plug>(EasyAlign)
 " Enable handlebars shortcuts
 let g:mustache_abbreviations = 1
 " }2
-" Vim-over {2
-"-----------------------------------------------------------------------------------
-nnoremap g/r :<c-u>OverCommandLine<cr>%s/
-xnoremap g/r :<c-u>OverCommandLine<cr>%s/\%V
-" }2
 " Indent Guides {2
 "-------------------------------------------------------------------------
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=249
 " }2
 " }1
 
