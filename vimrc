@@ -576,20 +576,35 @@ function! QuickfixToggle()
 endfunction
 " }2
 " Format JSON {2
+"-----------------------------------------------------------------------------------
 function! FormatJSON()
     :'<,'>!python -m json.tool
 endfunction
 command! -range FormatJSON call FormatJSON()
 " }2
 " Visual Find and Replace {2
+"-----------------------------------------------------------------------------------
 function! VisualFindAndReplace()
     :OverCommandLine%s/
     :w
 endfunction
 " }2
 " Visual Find and Replace With Selection {2
+"-----------------------------------------------------------------------------------
 function! VisualFindAndReplaceWithSelection() range
     :'<,'>OverCommandLine s/
     :w
 endfunction
+" Doesn't replace buffer contents when pasting {2
+"-----------------------------------------------------------------------------------
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+" }2
 " }1
