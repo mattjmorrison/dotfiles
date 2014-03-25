@@ -296,6 +296,7 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:syntastic_mode_map={ 'mode': 'active',
                      \ 'active_filetypes': [],
                      \ 'passive_filetypes': ['html'] }
+let g:syntastic_coffee_coffeelint_args="--csv --file ~/coffeelint.json"
 " }2
 " UltiSnips configurations {2
 "-----------------------------------------------------------------------------------
