@@ -26,13 +26,13 @@ set nocompatible
 "===================================================================================
 "
 " Help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install(update) plugins
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after plugin command are not allowed..
 "===================================================================================
 " }2
 " Required for vundle to work {2
@@ -42,7 +42,7 @@ set nocompatible
  call vundle#rc()
  Bundle 'gmarik/vundle'
 " }2
-" Github repos for bundles that we want to have installed {2
+" Github repos for plugins that we want to have installed {2
 "-----------------------------------------------------------------------------------
  Plugin 'Shougo/neocomplcache.vim'
  Plugin 'Raimondi/delimitMate'
@@ -78,6 +78,8 @@ set nocompatible
  Plugin 'groenewege/vim-less'
  Plugin 'nathanaelkane/vim-indent-guides'
  Plugin 'wellle/targets.vim'
+ Plugin 'tpope/vim-fireplace'
+ Plugin 'kien/rainbow_parentheses.vim'
 " }2
 " }1
 
@@ -440,6 +442,29 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=238
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=249
+" }2
+" Rainbow Parentheses settings {2
+"-------------------------------------------------------------------------
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 " }2
 " }1
 
