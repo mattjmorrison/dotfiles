@@ -70,7 +70,7 @@ if [[ $answer = "Y" ]] ; then
     brew install ack
     brew install tmux
     brew install mysql
-    brew install vim
+    brew install vim --with-lua
     brew install zsh
 
     # ===

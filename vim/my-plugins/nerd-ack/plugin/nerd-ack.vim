@@ -5,12 +5,6 @@ endif
 
 let g:loaded_nerdtree_ack = 1
 
-" add the new menu item via NERD_Tree's API
-call NERDTreeAddMenuItem({
-    \ 'text': '(s)earch directory',
-    \ 'shortcut': 's',
-    \ 'callback': 'NERDTreeAck' })
-
 function! NERDTreeAck()
     " get the current dir from NERDTree
     let cd = g:NERDTreeDirNode.GetSelected().path.str()
@@ -23,3 +17,9 @@ function! NERDTreeAck()
     endif
     exec "Ack! ".pattern." ".cd
 endfunction
+
+" add the new menu item via NERD_Tree's API
+call NERDTreeAddMenuItem({
+    \ 'text': '(s)earch directory',
+    \ 'shortcut': 's',
+    \ 'callback': 'NERDTreeAck' })
