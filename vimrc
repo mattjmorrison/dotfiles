@@ -502,6 +502,13 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
+augroup rainbow_parentheses
+  au!
+  au BufEnter *.clj RainbowParenthesesActivate
+  au BufEnter *.clj RainbowParenthesesLoadRound
+  au BufEnter *.clj RainbowParenthesesLoadSquare
+  au BufEnter *.clj RainbowParenthesesLoadBraces
+augroup END
 " }}}2
 " Unite {{{2
 "-------------------------------------------------------------------------
