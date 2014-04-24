@@ -268,7 +268,7 @@ let g:airline_section_z = ''                        " Do not show the default fi
 " }}}2
 " Key mappings {{{2
 let mapleader="9"
-let maplocalleader= '\'
+let maplocalleader= '|'
 map ss :setlocal spell!<CR>
 map Y y$
 nnoremap <Leader>nt :NERDTreeToggle<CR>
@@ -520,6 +520,7 @@ let g:unite_winheight = 15
 let g:unite_source_history_yank_enable = 1
 let g:unite_prompt = '──➤  '
 let g:unite_update_time = 200
+let g:unite_source_file_rec_max_cache_files = 0
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
@@ -527,7 +528,14 @@ let g:unite_source_directory_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join(['\.DS_Store/', 'node_modules/', '\.git/', '\.bak', '\.swp', '\.pyc'], '\|'))
+      \ 'ignore_pattern', join([
+      \ '\.DS_Store/', 
+      \ 'node_modules/', 
+      \ '\.git/', 
+      \ '\.bak', 
+      \ '\.swp', 
+      \ '\.pyc',
+      \ ], '\|'))
 " }}}3
 " Unite autocmd FileType settings {{{3
 autocmd FileType unite call s:unite_buffer_settings()
@@ -565,17 +573,17 @@ nmap <LocalLeader> [menu]
 nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
 " }}}4
 " Files and Buffers {{{4
-let g:unite_source_menu_menus.Files = {'description': 'Find and switch files and buffers                  \f'}
+let g:unite_source_menu_menus.Files = {'description': 'Find and switch files and buffers                  |f'}
 let g:unite_source_menu_menus.Files.command_candidates = [
     \['➤ Find files,                                                 9ff', 'Unite -silent -buffer-name=files file_rec/async'],
     \['➤ Buffer list                                                  9b', 'Unite buffer'],
-    \['➤ Most recently used files                                    9ru', 'Unite file_mru'],
+    \['➤ Most recently used files                                     9m', 'Unite file_mru'],
     \['➤ Save as root                                               :w!!', 'exe "write !sudo tee % >/dev/null"'],
     \]
 nnoremap <silent>[menu]f :Unite -silent -winheight=17 -start-insert menu:Files<CR>
 " }}}4
 " Windows {{{4
-let g:unite_source_menu_menus.Windows = {'description': 'creation and management                          \w'}
+let g:unite_source_menu_menus.Windows = {'description': 'creation and management                          |w'}
 let g:unite_source_menu_menus.Windows.command_candidates = [
     \['➤ Toggle quickfix                                              9q', 'call QuickfixToggle()'],
     \['➤ Resize windows                                       Arrow keys', 'echo "Use the arrow keys to resize windows"'],
@@ -585,7 +593,7 @@ let g:unite_source_menu_menus.Windows.command_candidates = [
 nnoremap <silent>[menu]w :Unite -silent menu:Windows<CR>
 " }}}4
 " Searching and Finding {{{4
-let g:unite_source_menu_menus.Searching = {'description': 'buffers, words, folds, yanks, jumps            \se'}
+let g:unite_source_menu_menus.Searching = {'description': 'buffers, words, folds, yanks, jumps            |se'}
 let g:unite_source_menu_menus.Searching.command_candidates = [
     \['➤ Search lines in the current buffer                         9sb', 'Unite line'],
     \['➤ Search word under the cursor in current file                9*', 'UniteWithCursorWord line'],
@@ -596,7 +604,7 @@ let g:unite_source_menu_menus.Searching.command_candidates = [
 nnoremap <silent>[menu]sp :Unite -silent menu:Searching<CR>
 " }}}4
 " Misc editor shortcuts {{{4
-let g:unite_source_menu_menus.Misc = {'description': 'Editor Shortcuts                                    \m'}
+let g:unite_source_menu_menus.Misc = {'description': 'Editor Shortcuts                                    |m'}
 let g:unite_source_menu_menus.Misc.command_candidates = [
     \['➤ undo tree      (gundo)                                     9ud', 'GundoToggle'],
     \['➤ Turn off search highlighting                             space', 'nohlsearch'],
@@ -621,7 +629,7 @@ let g:unite_source_menu_menus.Misc.command_candidates = [
 nnoremap <silent>[menu]m :Unite -silent menu:Misc<CR>
 " }}}4
 " Running tests {{{4
-let g:unite_source_menu_menus.Tests = {'description': 'Running tests                                      \t'}
+let g:unite_source_menu_menus.Tests = {'description': 'Running tests                                      |t'}
 let g:unite_source_menu_menus.Tests.command_candidates = [
     \['➤ Test Django Method                                         9dm', 'normal 9dm'],
     \['➤ Test Django Class                                          9dc', 'normal 9dc'],
@@ -638,7 +646,7 @@ let g:unite_source_menu_menus.Tests.command_candidates = [
 nnoremap <silent>[menu]s :Unite -silent menu:Tests<CR>
 " }}}4
 " Spelling {{{4
-let g:unite_source_menu_menus.Spelling = {'description': 'Spell checking shortcuts                        \sp'}
+let g:unite_source_menu_menus.Spelling = {'description': 'Spell checking shortcuts                        |sp'}
 let g:unite_source_menu_menus.Spelling.command_candidates = [
     \['➤ Turn on spell checking                                      ss', 'setlocal spell!'],
     \['➤ Turn off spell checking                                     ss', 'setlocal spell!'],
