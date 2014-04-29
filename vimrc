@@ -494,11 +494,11 @@ let g:rbpt_colorpairs = [
     \ ['gray',        'RoyalBlue3'],
     \ ['black',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
     \ ['darkred',     'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkcyan',    'SeaGreen3'],
     \ ['red',         'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
     \ ]
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -552,7 +552,7 @@ endfunction
 " }}}3
 " Unite Key Mappings {{{3
 nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>ff :Unite -buffer-name=files file_rec/async<CR>
+nnoremap <Leader>ff :Unite -buffer-name=files file_rec/async:!<CR>
 nnoremap <Leader>m :Unite file_mru<CR>
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
@@ -612,7 +612,7 @@ let g:unite_source_menu_menus.Misc.command_candidates = [
     \['➤ Enter paste mode [Exit with Esc]                            yp', 'normal yp'],
     \['➤ Remove trailing whitespaces                                 9W', 'normal 9W'],
     \['➤ Show current char info                                      ga', 'normal ga'],
-    \['➤ choose colorscheme                                          \c', 'Unite colorscheme -auto-preview'],
+    \['➤ choose colorscheme                                          |c', 'Unite colorscheme -auto-preview'],
     \['➤ Edit configuration file (vimrc)                            9ev', 'edit $MYVIMRC'],
     \['➤ Toggle NERDTree                                            9nt', 'NERDTreeToggle'],
     \['➤ Open NERDTree focused in current directory                 9no', 'NERDTreeFind'],
