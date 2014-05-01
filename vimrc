@@ -62,6 +62,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'JarrodCTaylor/vim-256-color-schemes'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'ervandew/supertab'
@@ -277,6 +278,7 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
+nnoremap <Leader>ff :CtrlP<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
@@ -393,6 +395,8 @@ let g:jedi#popup_on_dot = 0
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76
+" Make startify not open ctrlp in a new buffer
+let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
 let g:startify_change_to_dir = 0
 " Set the contents of the banner
@@ -454,6 +458,16 @@ let g:sneak#streak = 1
 " We need 52 characters for this
 let g:sneak#target_labels = "sfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM1234567890rx"
 "}}}2
+" Ctrlp configurations {{{2
+"-----------------------------------------------------------------------------------
+let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_max_height = 18
+let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+func! MyCtrlPMappings()
+    nnoremap <buffer> <silent> <F6> :call <sid>DeleteBuffer()<cr>
+endfunc
+" }}}2
 " Emmet Vim {{{2
 "-----------------------------------------------------------------------------------
 " Enable just in html files
@@ -552,7 +566,6 @@ endfunction
 " }}}3
 " Unite Key Mappings {{{3
 nnoremap <Leader>b :Unite buffer<CR>
-nnoremap <Leader>ff :Unite -buffer-name=files file_rec/async:!<CR>
 nnoremap <Leader>m :Unite file_mru<CR>
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
@@ -575,7 +588,7 @@ nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
 " Files and Buffers {{{4
 let g:unite_source_menu_menus.Files = {'description': 'Find and switch files and buffers                  |f'}
 let g:unite_source_menu_menus.Files.command_candidates = [
-    \['➤ Find files,                                                 9ff', 'Unite -silent -buffer-name=files file_rec/async'],
+    \['➤ Find files,                                                 9ff', 'normal 9ff'],
     \['➤ Buffer list                                                  9b', 'Unite buffer'],
     \['➤ Most recently used files                                     9m', 'Unite file_mru'],
     \['➤ Save as root                                               :w!!', 'exe "write !sudo tee % >/dev/null"'],
