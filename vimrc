@@ -94,6 +94,7 @@ NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'wellle/targets.vim'
 NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'thinca/vim-qfreplace'
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}
@@ -599,6 +600,7 @@ nnoremap <silent>[menu]f :Unite -silent -winheight=17 -start-insert menu:Files<C
 let g:unite_source_menu_menus.Windows = {'description': 'creation and management                          |w'}
 let g:unite_source_menu_menus.Windows.command_candidates = [
     \['➤ Toggle quickfix                                              9q', 'call QuickfixToggle()'],
+    \['➤ Replace in quickfix                                  :Qfreplace', 'echo "Use :Qfreplace"'],
     \['➤ Resize windows                                       Arrow keys', 'echo "Use the arrow keys to resize windows"'],
     \['➤ New vertical split                                           9|', 'vsplit'],
     \['➤ New horizontal window                                        9-', 'split'],
