@@ -272,6 +272,7 @@ let g:airline_section_z = ''                        " Do not show the default fi
 let mapleader="9"
 let maplocalleader= '|'
 map ss :setlocal spell!<CR>
+map z= :Unite spell_suggest<CR>
 map Y y$
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>no :NERDTreeFind<CR>
@@ -308,6 +309,7 @@ inoremap <Leader>w <Esc>:wa<CR>
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>sc :!aspell -c %<CR>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -668,6 +670,7 @@ let g:unite_source_menu_menus.Spelling.command_candidates = [
     \['➤ Jumps to next spelling error and show suggestions          9sp', 'normal 9sp'],
     \['➤ Jumps to next bad spell word                                ]s', 'normal ]s'],
     \['➤ Suggestions                                                 z=', 'normal z='],
+    \['➤ Spell check entire file with aspell                        9sc', 'normal 9sc'],
     \]
 nnoremap <silent>[menu]sp :Unite -silent menu:Spelling<CR>
 " }}}3
