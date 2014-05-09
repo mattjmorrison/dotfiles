@@ -145,8 +145,8 @@ fi
 
 # Source antigen <<1
 #-------------------------------------------------------------------------------
-if [[ ! -s ~/.antigen.zsh ]]; then
-    curl https://raw.github.com/zsh-users/antigen/master/antigen.zsh > .antigen.zsh
+if [[ ! -f ~/.antigen.zsh ]]; then
+    curl https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen.zsh
 fi
 source ~/.antigen.zsh
 # >>1
