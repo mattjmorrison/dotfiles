@@ -64,14 +64,14 @@ if [[ $answer = "Y" ]] ; then
     # ===
     # The regular brew installable packages
     # ===
+    brew install zsh
+    brew install vim --with-lua
     brew install tig
     brew install aspell
     brew install node
+    brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste
     brew install ack
     brew install tmux
-    brew install mysql
-    brew install vim --with-lua
-    brew install zsh
 
     # ===
     # Get Ctags properly setup
@@ -95,26 +95,6 @@ if [[ $answer = "Y" ]] ; then
     sudo gem install gollum
     sudo gem install redcarpet
 
-    # ===
-    # brew-cask installs
-    # ===
-    brew tap phinze/homebrew-cask
-    brew install brew-cask
-
-    echo "install chrome"
-    brew cask install google-chrome
-
-    echo "install firefox"
-    brew cask install firefox
-
-    echo "install iterm2"
-    brew cask install iterm2
-
-    echo "install alfred"
-    brew cask install alfred
-
-    echo "install virtualbox"
-    brew cask install virtualbox
 fi
 
 #==============

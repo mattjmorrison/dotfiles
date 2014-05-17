@@ -72,13 +72,6 @@ fi
 cd $dotfiles_dir
 
 #==============
-# Clone vundle so we can update vim plugins when we open it
-# the first time
-#==============
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
-echo "Vundle successfully cloned" >> $log_file
-
-#==============
 # Ask if user wants to install all the required and additional packages
 #==============
 echo -n "Would you like to install all additional packages for this setup (Y/n) => "; read answer
