@@ -93,10 +93,10 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'wellle/targets.vim'
 NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
+NeoBundle 'amdt/vim-niji'
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}
@@ -498,36 +498,6 @@ let g:indentLine_char = '¦' "'┊'
 let g:indentLine_color_term = 239
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'start*']
 let g:indentLine_fileTypeExclude = ['text']
-" }}}2
-" Rainbow Parentheses settings {{{2
-"-------------------------------------------------------------------------
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-augroup rainbow_parentheses
-  au!
-  au BufEnter *.clj RainbowParenthesesActivate
-  au BufEnter *.clj RainbowParenthesesLoadRound
-  au BufEnter *.clj RainbowParenthesesLoadSquare
-  au BufEnter *.clj RainbowParenthesesLoadBraces
-augroup END
 " }}}2
 " Unite {{{2
 "-------------------------------------------------------------------------
