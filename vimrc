@@ -550,6 +550,7 @@ nnoremap <Leader>sf :Unite fold<CR>
 nnoremap <Leader>sj :Unite jump<CR>
 nnoremap <Leader>sp ]s :Unite spell_suggest<CR>
 nnoremap <LocalLeader>c :Unite colorscheme -auto-preview<CR>
+nnoremap <Leader>nu :<C-u>Unite neobundle/update -log -vertical -auto-quit<CR>
 " }}}3
 " Unite Menus {{{3
 let g:unite_source_menu_menus = {}
@@ -613,7 +614,8 @@ let g:unite_source_menu_menus.Misc.command_candidates = [
     \['➤ Execute Current Selection                                  9es', 'ExecuteSelection'],
     \['➤ Exit insert mode and write all files                        9w', 'echo use 9w'],
     \['➤ Visual find and replace over full file                     9fr', 'call VisualFindAndReplace()'],
-    \['➤ Visual find and replace over current visual selection      9fr', 'call VisualFindAndReplaceWithSelection()']
+    \['➤ Visual find and replace over current visual selection      9fr', 'call VisualFindAndReplaceWithSelection()'],
+    \['➤ Update Neobundle Packages                                  9nu', 'normal 9nu']
     \]
 nnoremap <silent>[menu]m :Unite -silent menu:Misc<CR>
 " }}}4
