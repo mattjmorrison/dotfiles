@@ -94,6 +94,7 @@ if [[ $answer = "Y" ]] ; then
     brew install icu4c
     sudo gem install gollum
     sudo gem install redcarpet
+    sudo gem install CoffeeTags
 
 fi
 
