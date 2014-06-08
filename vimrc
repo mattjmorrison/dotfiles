@@ -96,7 +96,7 @@ NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
-NeoBundle 'amdt/vim-niji'
+NeoBundle 'kien/rainbow_parentheses.vim'
 NeoBundle 'lukaszkorecki/CoffeeTags'
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}
@@ -499,6 +499,37 @@ let g:indentLine_char = '¦' "'┊'
 let g:indentLine_color_term = 239
 let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'start*']
 let g:indentLine_fileTypeExclude = ['text']
+" }}}2
+" Rainbow Parentheses settings {{{2
+"-------------------------------------------------------------------------
+" Color pairs are ctermfg, guifg
+let g:rbpt_colorpairs = [
+    \ [32 , 66],
+    \ [209, 66],
+    \ [86 , 66],
+    \ [18 , 66],
+    \ [154, 66],
+    \ [58 , 66],
+    \ [166, 66],
+    \ [34,  66],
+    \ [191, 66],
+    \ [57,  66],
+    \ [161, 66],
+    \ [48,  66],
+    \ [208, 66],
+    \ [20,  66],
+    \ [197, 66],
+    \ [49,  66],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+augroup rainbow_parentheses
+  au!
+  au BufEnter *.clj RainbowParenthesesActivate
+  au BufEnter *.clj RainbowParenthesesLoadRound
+  au BufEnter *.clj RainbowParenthesesLoadSquare
+  au BufEnter *.clj RainbowParenthesesLoadBraces
+augroup END
 " }}}2
 " Unite {{{2
 "-------------------------------------------------------------------------
