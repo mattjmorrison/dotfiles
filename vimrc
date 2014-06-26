@@ -284,6 +284,7 @@ nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
 nnoremap <Leader>ff :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
@@ -542,11 +543,11 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
-      \ '\.DS_Store/', 
-      \ 'node_modules/', 
-      \ '\.git/', 
-      \ '\.bak', 
-      \ '\.swp', 
+      \ '\.DS_Store/',
+      \ 'node_modules/',
+      \ '\.git/',
+      \ '\.bak',
+      \ '\.swp',
       \ '\.pyc',
       \ ], '\|'))
 " }}}3
@@ -564,7 +565,6 @@ function! s:unite_buffer_settings()
 endfunction
 " }}}3
 " Unite Key Mappings {{{3
-nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>m :Unite file_mru<CR>
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
