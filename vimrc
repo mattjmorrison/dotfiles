@@ -288,6 +288,7 @@ nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
+nnoremap <Leader>us :call MakeUnderscore()<CR>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -856,4 +857,27 @@ function! ToggleNeoComplete()
 endfunction
 nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
 " }}}2
+" Under score test name {2
+"-----------------------------------------------------------------------------------
+function! MakeUnderscore()
+python << endPython
+
+import vim
+
+def underscore_test_name():
+    current_line = vim.current.line
+    test_start = current_line.find("test")
+    test_end = current_line.find("(")
+    test_name = current_line[test_start:test_end]
+    test_name_underscored = test_name.replace(" ", "_")
+    cursor_pos = vim.current.window.cursor
+    vim.current.buffer[cursor_pos[0] - 1] = current_line.replace(test_name, test_name_underscored)
+
+underscore_test_name()
+
+endPython
+endfunction
+
+command! UnderscoreTest call MakeUnderscore()
+" }2
 " }}}1
