@@ -858,7 +858,7 @@ function! ToggleNeoComplete()
 endfunction
 nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
 " }}}2
-" Under score test name {2
+" Under score test name {{{2
 "-----------------------------------------------------------------------------------
 function! MakeUnderscore()
 python << endPython
@@ -880,5 +880,5 @@ endPython
 endfunction
 
 command! UnderscoreTest call MakeUnderscore()
-" }2
+" }}}2
 " }}}1
