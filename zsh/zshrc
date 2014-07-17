@@ -403,30 +403,6 @@ function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 #--------------------------------------------------------------------
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
 # >>2
-# Start the postgress server <<2
-#--------------------------------------------------------------------
-function pg_start() {
-  /usr/local/bin/pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start
-}
-# >>2
-# Stop the postgress sever <<2
-#--------------------------------------------------------------------
-function pg_stop() {
-  /usr/local/bin/pg_ctl -D /usr/local/var/postgres stop -s -m fast
-}
-# >>2
-# Start mysql server <<2
-#--------------------------------------------------------------------
-function mysql_start() {
-  mysql.server start
-}
-# >>2
-# Stop the mysql server <<2
-#--------------------------------------------------------------------
-function mysql_stop() {
-  mysql.server stop
-}
-# >>2
 # >>1
 
 # EOF
