@@ -98,6 +98,7 @@ NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 NeoBundle 'amdt/vim-niji'
 NeoBundle 'lukaszkorecki/CoffeeTags'
+NeoBundle 'tpope/vim-dispatch'
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}
@@ -316,6 +317,9 @@ xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
+nnoremap <Leader>gt :call MyJumpTo()<CR>
+" --- Select tag if more than one option exists else jump to tag
+nnoremap <Leader>ts g<C-]><CR>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -396,7 +400,6 @@ let g:NERDTreeMapJumpPrevSibling = ''
 " }}}2
 " Jedi configurations {{{2
 "-----------------------------------------------------------------------------------
-let g:jedi#goto_definitions_command = "<Leader>gt"
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 let g:jedi#popup_on_dot = 0
 " }}}2
@@ -881,4 +884,12 @@ endfunction
 
 command! UnderscoreTest call MakeUnderscore()
 " }}}2
+function! MyJumpTo()
+    let filetype=&ft
+    if filetype == "python"
+        exe ":call jedi#goto_definitions()"
+    else
+        :exe "norm \g<C-]>"
+    endif
+endfunction
 " }}}1
