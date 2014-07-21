@@ -276,7 +276,7 @@ let g:airline_section_z = ''                        " Do not show the default fi
 let mapleader="9"
 let maplocalleader= '|'
 map ss :setlocal spell!<CR>
-map z= :Unite spell_suggest<CR>
+map z= :Unite spell_suggest<CR><ESC>
 map Y y$
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>no :NERDTreeFind<CR>
