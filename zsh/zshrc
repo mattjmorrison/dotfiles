@@ -1,7 +1,7 @@
 #!/bin/zsh
 # vim: set foldmarker=<<,>> foldlevel=0 foldmethod=marker:
 #===================================================================================
-#  DESCRIPTION:  You realize, Dr. Angelo, that my intelligence has surpassed yours. 
+#  DESCRIPTION:  You realize, Dr. Angelo, that my intelligence has surpassed yours.
 #       AUTHOR:  Jarrod Taylor
 #                 .__
 #  ________  _____|  |_________   ____
@@ -402,6 +402,30 @@ function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 # Create a ZIP archive of a file or folder <<2
 #--------------------------------------------------------------------
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+# >>2
+# Get info about an ip or url <<2
+#--------------------------------------------------------------------
+# Usage:
+# ipinfo -i 199.59.150.7
+# ipinfo -u github.com
+#--------------------------------------------------------------------
+ipinfo() {
+    if [ $# -lt 2 ]; then
+      echo "Usage: `basename $0` -i ipaddress" 1>&2
+      echo "Usage: `basename $0` -u url" 1>&2
+      return
+    fi
+    if [ "$1" = "-i" ]; then
+        desiredIP=$2
+    fi
+    if [ "$1" = "-u" ]; then
+        # Aleternate ways to get desired IP
+        # desitedIP=$(host unix.stackexchange.com | awk '/has address/ { print $4 ; exit }')
+        # desiredIP=$(nslookup google.com | awk '/^Address: / { print $2 ; exit }')
+        desiredIP=$(dig +short $2)
+    fi
+    curl freegeoip.net/json/$desiredIP | python -mjson.tool
+}
 # >>2
 # >>1
 
