@@ -884,12 +884,15 @@ endfunction
 
 command! UnderscoreTest call MakeUnderscore()
 " }}}2
+" Jump to the appropriate tags for Python and Everything else {{{2
+"-----------------------------------------------------------------------------------
 function! MyJumpTo()
     let filetype=&ft
     if filetype == "python"
         exe ":call jedi#goto_definitions()"
     else
-        :exe "norm \g<C-]>"
+        :exe "norm \<C-]>"
     endif
 endfunction
+" }}}2
 " }}}1
