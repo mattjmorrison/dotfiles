@@ -62,7 +62,6 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'JarrodCTaylor/vim-256-color-schemes'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'ervandew/supertab'
@@ -284,8 +283,9 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
-nnoremap <Leader>ff :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
+" nnoremap<Leader>ff :<C-u>Unite -start-insert file_rec/async<cr>
+nnoremap<Leader>ff :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
@@ -408,8 +408,6 @@ let g:jedi#popup_on_dot = 0
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76
-" Make startify not open ctrlp in a new buffer
-let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
 let g:startify_change_to_dir = 0
 " Set the contents of the banner
@@ -471,16 +469,6 @@ let g:sneak#streak = 1
 " We need 52 characters for this
 let g:sneak#target_labels = "sfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM1234567890rx"
 "}}}2
-" Ctrlp configurations {{{2
-"-----------------------------------------------------------------------------------
-let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_max_height = 18
-let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-func! MyCtrlPMappings()
-    nnoremap <buffer> <silent> <F6> :call <sid>DeleteBuffer()<cr>
-endfunc
-" }}}2
 " Emmet Vim {{{2
 "-----------------------------------------------------------------------------------
 " Enable just in html files
@@ -546,6 +534,7 @@ let g:unite_source_buffer_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
