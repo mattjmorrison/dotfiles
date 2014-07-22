@@ -314,7 +314,8 @@ nnoremap <Leader>jm :RunSingleQunitModule<CR>
 inoremap <Leader>w <Esc>:wa<CR>
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader>gt :call MyJumpTo()<CR>
@@ -588,15 +589,22 @@ nnoremap [menu] <Nop>
 nmap <LocalLeader> [menu]
 
 " Menus {{{4
-nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
+nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 " }}}4
 " Files and Buffers {{{4
 let g:unite_source_menu_menus.Files = {'description': 'Find and switch files and buffers                  |f'}
 let g:unite_source_menu_menus.Files.command_candidates = [
-    \['➤ Find files,                                                 9ff', 'normal 9ff'],
-    \['➤ Buffer list                                                  9b', 'Unite buffer'],
-    \['➤ Most recently used files                                     9m', 'Unite file_mru'],
-    \['➤ Save as root                                               :w!!', 'exe "write !sudo tee % >/dev/null"'],
+    \['➤ Find files,                                                  9ff', 'normal 9ff'],
+    \['➤ Buffer list                                                   9b', 'Unite buffer'],
+    \['➤ Most recently used files                                      9m', 'Unite file_mru'],
+    \['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"'],
+    \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
+    \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9tn'],
+    \['➤ Enter paste mode [Exit with Esc]                              yp', 'normal yp'],
+    \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
+    \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
+    \['➤ Visual find and replace over full file                       9fr', 'call VisualFindAndReplace()'],
+    \['➤ Visual find and replace over current visual selection        9fr', 'call VisualFindAndReplaceWithSelection()'],
     \]
 nnoremap <silent>[menu]f :Unite -silent -winheight=17 -start-insert menu:Files<CR>
 " }}}4
@@ -627,23 +635,17 @@ let g:unite_source_menu_menus.Misc = {'description': 'Editor Shortcuts          
 let g:unite_source_menu_menus.Misc.command_candidates = [
     \['➤ undo tree      (gundo)                                     9ud', 'GundoToggle'],
     \['➤ Turn off search highlighting                             space', 'nohlsearch'],
-    \['➤ Toggle line numbers                                        9tn', 'normal 9tn'],
-    \['➤ Enter paste mode [Exit with Esc]                            yp', 'normal yp'],
-    \['➤ Remove trailing whitespaces                                 9W', 'normal 9W'],
     \['➤ Show current char info                                      ga', 'normal ga'],
     \['➤ choose colorscheme                                          |c', 'Unite colorscheme -auto-preview'],
     \['➤ Edit configuration file (vimrc)                            9ev', 'edit $MYVIMRC'],
     \['➤ Toggle NERDTree                                            9nt', 'NERDTreeToggle'],
     \['➤ Open NERDTree focused in current directory                 9no', 'NERDTreeFind'],
-    \['➤ Toggle Tagbar                                              9tb', 'TagbarToggle'],
     \['➤ Ack                                                         9a', 'echo "User 9a to start the Ack prompt"'],
     \['➤ Toggle Syntastic                                           9ts', 'SyntasticToggleMode'],
     \['➤ Refresh Ctags                                              9rt', 'call RenewTagsFile()'],
     \['➤ Execute Current Buffer                                     9eb', 'ExecuteBuffer'],
     \['➤ Execute Current Selection                                  9es', 'ExecuteSelection'],
     \['➤ Exit insert mode and write all files                        9w', 'echo use 9w'],
-    \['➤ Visual find and replace over full file                     9fr', 'call VisualFindAndReplace()'],
-    \['➤ Visual find and replace over current visual selection      9fr', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Update Neobundle Packages                                  9nu', 'normal 9nu']
     \]
 nnoremap <silent>[menu]m :Unite -silent menu:Misc<CR>
