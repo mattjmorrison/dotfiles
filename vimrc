@@ -534,7 +534,7 @@ let g:unite_source_buffer_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
+" call unite#custom#source('file_rec,file_rec/async', 'max_candidates', 0)
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
       \ 'ignore_pattern', join([
