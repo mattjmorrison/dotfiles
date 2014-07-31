@@ -52,57 +52,54 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'Shougo/unite.vim'
 " Unite sources
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload': {'unite_sources': 'locate'}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload': {'unite_sources': 'fold'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources': ['file_mru', 'directory_mru']}}
-NeoBundle 'majkinetor/unite-cmdmatch'
-NeoBundle 'kopischke/unite-spell-suggest'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'JarrodCTaylor/vim-256-color-schemes'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/UltiSnips'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'mhinz/vim-startify'
-NeoBundle 'tmhedberg/SimpylFold'
-NeoBundle 'JarrodCTaylor/vim-python-test-runner'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'JarrodCTaylor/vim-shell-executor'
-NeoBundle 'https://github.com/mattn/emmet-vim/'
-NeoBundle 'junegunn/vim-easy-align'
-" tern requires you to do a npm install
-NeoBundle 'marijnh/tern_for_vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'JarrodCTaylor/vim-qunit-special-blend'
-NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'JarrodCTaylor/vim-js2coffee'
-NeoBundle 'osyo-manga/vim-over'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'wellle/targets.vim'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'thinca/vim-qfreplace'
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
-NeoBundle 'amdt/vim-niji'
-NeoBundle 'lukaszkorecki/CoffeeTags'
-NeoBundle 'tpope/vim-dispatch'
-NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}
-NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}
-NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}
-NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}
-NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}
+NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload': {'unite_sources': 'colorscheme'}}          " Allows unite to auto switch between colorschemes
+NeoBundleLazy 'osyo-manga/unite-fold', {'autoload': {'unite_sources': 'fold'}}                     " Allows unite to get a list of folds in the current buffer
+NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources': ['file_mru', 'directory_mru']}}   " Allows unite to create a list of mru files
+NeoBundle 'kopischke/unite-spell-suggest'                                                          " Allows spell check to use the unite plugin for finding suggestions
+NeoBundle 'Shougo/neocomplete.vim'                                                                 " Auto completion framework. Requires that vim be compiled with lua support
+NeoBundle 'davidhalter/jedi-vim'                                                                   " Python autocompletion
+NeoBundle 'Raimondi/delimitMate'                                                                   " Auto close quotes, parens, brackets, etc
+NeoBundle 'scrooloose/nerdtree'                                                                    " File tree explorer and manager
+NeoBundle 'JarrodCTaylor/vim-256-color-schemes'                                                    " A variety of terminal based colorschemes
+NeoBundle 'majutsushi/tagbar'                                                                      " Display tags in a buffer ordered by class
+NeoBundle 'ervandew/supertab'                                                                      " Use tab for all completions
+NeoBundle 'pangloss/vim-javascript'                                                                " Improved indentation and syntax support
+NeoBundle 'scrooloose/syntastic'                                                                   " Syntax checking
+NeoBundle 'vim-scripts/UltiSnips'                                                                  " Ultimate solution for snippets
+NeoBundle 'tpope/vim-commentary'                                                                   " Comment stuff out
+NeoBundle 'mhinz/vim-startify'                                                                     " Fancy splash screen
+NeoBundle 'tmhedberg/SimpylFold'                                                                   " Fold Python source code
+NeoBundle 'JarrodCTaylor/vim-python-test-runner'                                                   " Run Python tests from Vim
+NeoBundle 'tpope/vim-surround'                                                                     " Surround objects with all manor of things
+NeoBundle 'bling/vim-airline'                                                                      " Pretty up the status line
+NeoBundle 'sjl/gundo.vim'                                                                          " Visual undo
+NeoBundle 'nelstrom/vim-markdown-folding'                                                          " Does what it says on the tin
+NeoBundle 'tpope/vim-markdown'                                                                     " Syntax highlighting for markdown (Perhaps optional with new versions of Vim)
+NeoBundle 'justinmk/vim-sneak'                                                                     " Vim motion plugin
+NeoBundle 'JarrodCTaylor/vim-shell-executor'                                                       " Execute any code from within vim buffers
+NeoBundle 'https://github.com/mattn/emmet-vim/'                                                    " Formally zen coding
+NeoBundle 'junegunn/vim-easy-align'                                                                " Simple easy to use alignment plugin
+NeoBundle 'marijnh/tern_for_vim'                                                                   " Auto complete for JavaScript requires tern npm install
+NeoBundle 'kchmck/vim-coffee-script'                                                               " CoffeeScript support syntax, indenting, etc
+NeoBundle 'JarrodCTaylor/vim-qunit-special-blend'                                                  " Run qunit tests
+NeoBundle 'mustache/vim-mustache-handlebars'                                                       " Handlebars syntax highlighting
+NeoBundle 'JarrodCTaylor/vim-js2coffee'                                                            " Convert JS to CoffeeScript and vice versa
+NeoBundle 'osyo-manga/vim-over'                                                                    " Visual find and replace
+NeoBundle 'groenewege/vim-less'                                                                    " Syntax highlighting for less files
+NeoBundle 'Yggdroot/indentLine'                                                                    " Indent guides
+NeoBundle 'wellle/targets.vim'                                                                     " Provide additional text objects
+NeoBundle 'tpope/vim-fireplace'                                                                    " Clojure REPL support
+NeoBundle 'thinca/vim-qfreplace'                                                                   " Easy replace in the quick fix buffer
+NeoBundle 'guns/vim-sexp'                                                                          " Precision editing for S-expressions
+NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'                                             " Make sexp usable
+NeoBundle 'amdt/vim-niji'                                                                          " Rainbow parentheses
+NeoBundle 'lukaszkorecki/CoffeeTags'                                                               " Ctags generator for CoffeScript
+NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
+NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}                                 " Ack in a specific directory from within nerdtree
+NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
+NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}                                  " Ack son
+NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}                        " Add grep functionality to the quickfix buffer
+NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}                           " Add the ability to link between wiki (markdown) files
 " }}}2
 " Auto install the plugins {{{2
 
@@ -187,10 +184,6 @@ set guioptions-=T
 " Treat JSON files like JavaScript {{{2
 "-----------------------------------------------------------------------------------
 au BufNewFile,BufRead *.json set ft=javascript
-" }}}2
-" Make pasting done without any indentation break {{{2
-"-----------------------------------------------------------------------------------
-set pastetoggle=<F3>
 " }}}2
 " Last cursor position {{{2
 "-----------------------------------------------------------------------------------
@@ -349,7 +342,7 @@ let g:syntastic_coffee_coffeelint_args="--csv --file ~/coffeelint.json"
 " }}}2
 " UltiSnips configurations {{{2
 "-----------------------------------------------------------------------------------
-let g:UltiSnipsSnippetDirectories=["mySnippets"] " UltiSnips
+let g:UltiSnipsSnippetDirectories=["mySnippets"]
 let g:UltiSnipsExpandTrigger="<Leader><Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
 " }}}2
@@ -357,6 +350,7 @@ let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
 "-----------------------------------------------------------------------------------
 let g:neocomplete#enable_at_startup = 1
 let g:jedi#auto_vim_configuration = 0
+
 " To make compatible with jedi
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
@@ -730,9 +724,6 @@ function! CustomFoldText()
     let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
     let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldPercentage))
     return line . expansionString . foldSizeStr . foldPercentage
-    " Add fold level indication at the end of the line
-    "let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    "return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 set foldtext=CustomFoldText()
 " }}}2
@@ -836,22 +827,6 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }}}2
-" Toggle the auto select feature {{{2
-"-----------------------------------------------------------------------------------
-function! ToggleNeoComplete()
-  if !g:neocomplete#disable_auto_complete && g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 0
-      let g:neocomplete#enable_auto_select = 0
-  elseif !g:neocomplete#disable_auto_complete && !g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 1
-      let g:neocomplete#enable_auto_select = 0
-  elseif g:neocomplete#disable_auto_complete && !g:neocomplete#enable_auto_select
-      let g:neocomplete#disable_auto_complete = 0
-      let g:neocomplete#enable_auto_select = 1
-  endif
-endfunction
-nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
-" }}}2
 " Under score test name {{{2
 "-----------------------------------------------------------------------------------
 function! MakeUnderscore()
@@ -876,7 +851,7 @@ endfunction
 command! UnderscoreTest call MakeUnderscore()
 " }}}2
 " Wrap WORD {{{2
-"-----------------------------------------------------------------------------------
+" -----------------------------------------------------------------------------------
 function! WrapWordWith()
 python << endPython
 
