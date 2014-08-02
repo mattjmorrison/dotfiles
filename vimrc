@@ -12,7 +12,6 @@
 "
 "===================================================================================
 "
-
 " Set nocompatible {{{1
 "-----------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings. This must be first, because it changes
@@ -126,15 +125,8 @@ filetype  indent on
 " }}}2
 " Color scheme {{{2
 "-----------------------------------------------------------------------------------
-if has("gui_running")
-    colorscheme desert
-    set guifont=Monospace\ 12
-    set antialias
-    set guioptions=
-else
-    set t_Co=256
-    colorscheme harlem-nights
-endif
+set t_Co=256
+colorscheme harlem-nights
 " }}}2
 " Switch syntax highlighting on. {{{2
 "-----------------------------------------------------------------------------------
@@ -173,13 +165,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules/**  " wildmenu: ignore the
 set wildmenu                           " Command-line completion in an enhanced mode
 set shell=bash                         " Required to let zsh know how to run things on command line
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
-"set iskeyword-=_                       " Make underscores keyword boundaries
 set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set synmaxcol=256                      " Don't syntax highlight long lines
-" }}}2
-" Turn off the toolbar that is under the menu in gvim {{{2
-"-----------------------------------------------------------------------------------
-set guioptions-=T
 " }}}2
 " Treat JSON files like JavaScript {{{2
 "-----------------------------------------------------------------------------------
@@ -204,6 +191,7 @@ endif
 :iabbr condole console
 " }}}2
 " Make arrowkey resize viewports {{{2
+"-----------------------------------------------------------------------------------
 nnoremap <Left> :vertical resize +1<CR>
 nnoremap <Right> :vertical resize -1<CR>
 nnoremap <Up> :resize +1<CR>
@@ -212,7 +200,7 @@ nnoremap <Down> :resize -1<CR>
 " }}}1
 
 " My pimped out status line {{{1
-
+"-----------------------------------------------------------------------------------
 set laststatus=2                                    " Make the second to last line of vim our status line
 let g:airline_theme='understated'                   " Use the custom theme I wrote
 let g:airline_left_sep=''                           " No separator as they seem to look funky
@@ -269,14 +257,12 @@ let mapleader="9"
 let maplocalleader= '|'
 map ss :setlocal spell!<CR>
 map z= :Unite spell_suggest<CR><ESC>
-map Y y$
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>no :NERDTreeFind<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
-" nnoremap<Leader>ff :<C-u>Unite -start-insert file_rec/async<cr>
 nnoremap<Leader>ff :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
@@ -300,11 +286,10 @@ nnoremap <Leader>ud :GundoToggle<CR>
 nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
 nnoremap <Leader>q :call QuickfixToggle()<CR>
 nnoremap <Leader>eb :ExecuteBuffer<CR>
-nnoremap <Leader>es :ExecuteSelection<CR>
+vnoremap <Leader>es :ExecuteSelection<CR>
 nnoremap <Leader>ja :RunAllQunitTests<CR>
 nnoremap <Leader>jt :RunSingleQunitTest<CR>
 nnoremap <Leader>jm :RunSingleQunitModule<CR>
-inoremap <Leader>w <Esc>:wa<CR>
 nnoremap <Leader>ww :WrapWith<CR>
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
@@ -314,7 +299,7 @@ nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader>gt :call MyJumpTo()<CR>
 " --- Select tag if more than one option exists else jump to tag
-nnoremap <Leader>ts g<C-]><CR>
+nnoremap <Leader>st g<C-]><CR>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -337,7 +322,7 @@ let g:syntastic_python_flake8_post_args='--ignore=E501'
 " Disable syntastic in html files because it pretty well blows there
 let g:syntastic_mode_map={ 'mode': 'active',
                      \ 'active_filetypes': [],
-                     \ 'passive_filetypes': ['html'] }
+                     \ 'passive_filetypes': ['html', 'handlebars'] }
 let g:syntastic_coffee_coffeelint_args="--csv --file ~/coffeelint.json"
 " }}}2
 " UltiSnips configurations {{{2
@@ -557,110 +542,101 @@ endfunction
 nnoremap <Leader>m :Unite file_mru<CR>
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
-nnoremap <Leader>* :UniteWithCursorWord line<CR>
-nnoremap <Leader>y :Unite history/yank<CR>
+nnoremap <Leader>y :Unite history/yank<CR><Esc>
 nnoremap <Leader>sf :Unite fold<CR>
 nnoremap <Leader>sj :Unite jump<CR>
-nnoremap <Leader>sp ]s :Unite spell_suggest<CR>
 nnoremap <LocalLeader>c :Unite colorscheme -auto-preview<CR>
 nnoremap <Leader>nu :<C-u>Unite neobundle/update -log -vertical -auto-quit<CR>
 " }}}3
 " Unite Menus {{{3
+" Setup Unit Menu {{{4
 let g:unite_source_menu_menus = {}
 nnoremap [menu] <Nop>
 " menu prefix key (for all Unite menus)
 nmap <LocalLeader> [menu]
-
+" }}}4
 " Menus {{{4
 nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
-" }}}4
-" Files and Buffers {{{4
-let g:unite_source_menu_menus.Files = {'description': 'Find and switch files and buffers                  |f'}
-let g:unite_source_menu_menus.Files.command_candidates = [
-    \['➤ Find files,                                                  9ff', 'normal 9ff'],
+" Keyboard Shortcuts {{{5
+let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |k'}
+let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
+    \['➤ Ack                                                           9a', 'echo "User 9a to start the Ack prompt"'],
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
-    \['➤ Most recently used files                                      9m', 'Unite file_mru'],
-    \['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"'],
-    \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
-    \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9tn'],
+    \['➤ Edit configuration file (vimrc)                              9ev', 'edit $MYVIMRC'],
+    \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Enter paste mode [Exit with Esc]                              yp', 'normal yp'],
+    \['➤ Execute Current Buffer                                       9eb', 'ExecuteBuffer'],
+    \['➤ Execute Current Selection                                    9es', 'ExecuteSelection'],
+    \['➤ Exit insert mode and write all files                          9w', 'echo use 9w'],
+    \['➤ Find files,                                                  9ff', 'normal 9ff'],
+    \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9tn'],
+    \['➤ Jumps to next bad spell word                                  ]s', 'normal ]s'],
+    \['➤ Jumps to next spelling error and show suggestions            9sp', 'normal 9sp'],
+    \['➤ Most recently used files                                      9m', 'Unite file_mru'],
+    \['➤ New horizontal split                                          9-', 'split'],
+    \['➤ New vertical split                                            9\', 'vsplit'],
+    \['➤ Open NERDTree focused in current directory                   9no', 'NERDTreeFind'],
+    \['➤ Refresh Ctags                                                9rt', 'call RenewTagsFile()'],
+    \['➤ Undersocre Python test name                                  9us', 'normal 9us'],
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
+    \['➤ Rerun Last Python Test                                       9rr', 'RerunLastTests'],
+    \['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"'],
+    \['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"'],
+    \['➤ Search folds                                                 9sf', 'Unite fold'],
+    \['➤ Search jumps                                                 9sj', 'Unite jump'],
+    \['➤ Search lines in the current buffer                           9sb', 'Unite line'],
+    \['➤ Spell check entire file with aspell                          9sc', 'normal 9sc'],
+    \['➤ Suggest correctly spelled word                                z=', 'normal z='],
+    \['➤ Test Django App                                              9da', 'normal 9da'],
+    \['➤ Test Django Class                                            9dc', 'normal 9dc'],
+    \['➤ Test Django File                                             9df', 'normal 9df'],
+    \['➤ Test Django Method                                           9dm', 'normal 9dm'],
+    \['➤ Test JavaScript Single Method (Qunit)                        9jm', 'normal 9jm'],
+    \['➤ Test JavaScript all Tests (Qunit)                            9ja', 'normal 9ja'],
+    \['➤ Test JavaScript Single Test (Qunit)                          9jt', 'normal 9jt'],
+    \['➤ Test Python Class with Nose                                  9nc', 'normal 9nc'],
+    \['➤ Test Python File with Nose                                   9nf', 'normal 9nf'],
+    \['➤ Test Python Method with Nose                                 9nm', 'normal 9nm'],
+    \['➤ Toggle NERDTree (open/close)                                 9nt', 'NERDTreeToggle'],
+    \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
+    \['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st'],
+    \['➤ Jump to ctag for word under the cursor                       9gt', 'normal 9gt'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
+    \['➤ Toggle indentation guildes                                   9ig', 'normal 9ig'],
+    \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
+    \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
+    \['➤ Toggle quickfix                                               9q', 'call QuickfixToggle()'],
+    \['➤ Turn off search highlighting                               space', 'nohlsearch'],
+    \['➤ Turn off spell checking                                       ss', 'setlocal spell!'],
+    \['➤ Turn on spell checking                                        ss', 'setlocal spell!'],
+    \['➤ Update Neobundle Packages                                    9nu', 'normal 9nu'],
+    \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
+    \['➤ Visual find and replace over visual selection                9fr', 'call VisualFindAndReplaceWithSelection()'],
+    \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Visual find and replace over full file                       9fr', 'call VisualFindAndReplace()'],
-    \['➤ Visual find and replace over current visual selection        9fr', 'call VisualFindAndReplaceWithSelection()'],
+    \['➤ Yank history                                                  9y', 'Unite history/yank'],
+    \['➤ choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
+    \['➤ Toggle visual undo tree                                      9ud', 'GundoToggle'],
+    \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
     \]
-nnoremap <silent>[menu]f :Unite -silent -winheight=17 -start-insert menu:Files<CR>
+nnoremap <silent>[menu]k :Unite -silent -winheight=17 -start-insert menu:LeaderKeyMaps<CR>
+" }}}5
+" Plugin Keyboard Shortcuts {{{5
+let g:unite_source_menu_menus.PluginKeyMaps = {'description': 'Keyboard shortcuts mapped by 3rd party plugins     |p'}
+let g:unite_source_menu_menus.PluginKeyMaps.command_candidates = [
+    \['➤ Replace in quickfix                                   :Qfreplace', 'echo "Use :Qfreplace"'],
+    \['➤ Activate EasyAlign in visual mode (<C-x> for regex)        Enter', 'echo "Press Enter"'],
+    \]
+nnoremap <silent>[menu]p :Unite -silent -winheight=17 -start-insert menu:PluginKeyMaps<CR>
+" }}}5
+" Default Vim Keyboard Shortcuts {{{5
+let g:unite_source_menu_menus.BuiltInKeyMaps = {'description': 'Lesser known/used builtin vim keybindings         |b'}
+let g:unite_source_menu_menus.BuiltInKeyMaps.command_candidates = [
+    \['➤ Show current char info                                        ga', 'normal ga'],
+    \]
+nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltInKeyMaps<CR>
+" }}}5
 " }}}4
-" Windows {{{4
-let g:unite_source_menu_menus.Windows = {'description': 'creation and management                          |w'}
-let g:unite_source_menu_menus.Windows.command_candidates = [
-    \['➤ Toggle quickfix                                              9q', 'call QuickfixToggle()'],
-    \['➤ Replace in quickfix                                  :Qfreplace', 'echo "Use :Qfreplace"'],
-    \['➤ Resize windows                                       Arrow keys', 'echo "Use the arrow keys to resize windows"'],
-    \['➤ New vertical split                                           9|', 'vsplit'],
-    \['➤ New horizontal window                                        9-', 'split'],
-    \]
-nnoremap <silent>[menu]w :Unite -silent menu:Windows<CR>
-" }}}4
-" Searching and Finding {{{4
-let g:unite_source_menu_menus.Searching = {'description': 'buffers, words, folds, yanks, jumps            |se'}
-let g:unite_source_menu_menus.Searching.command_candidates = [
-    \['➤ Search lines in the current buffer                         9sb', 'Unite line'],
-    \['➤ Search word under the cursor in current file                9*', 'UniteWithCursorWord line'],
-    \['➤ Yanks                                                       9y', 'Unite history/yank'],
-    \['➤ Search folds                                               9sf', 'Unite fold'],
-    \['➤ Search jumps                                               9sj', 'Unite jump'],
-    \]
-nnoremap <silent>[menu]sp :Unite -silent menu:Searching<CR>
-" }}}4
-" Misc editor shortcuts {{{4
-let g:unite_source_menu_menus.Misc = {'description': 'Editor Shortcuts                                    |m'}
-let g:unite_source_menu_menus.Misc.command_candidates = [
-    \['➤ undo tree      (gundo)                                     9ud', 'GundoToggle'],
-    \['➤ Turn off search highlighting                             space', 'nohlsearch'],
-    \['➤ Show current char info                                      ga', 'normal ga'],
-    \['➤ choose colorscheme                                          |c', 'Unite colorscheme -auto-preview'],
-    \['➤ Edit configuration file (vimrc)                            9ev', 'edit $MYVIMRC'],
-    \['➤ Toggle NERDTree                                            9nt', 'NERDTreeToggle'],
-    \['➤ Open NERDTree focused in current directory                 9no', 'NERDTreeFind'],
-    \['➤ Ack                                                         9a', 'echo "User 9a to start the Ack prompt"'],
-    \['➤ Toggle Syntastic                                           9ts', 'SyntasticToggleMode'],
-    \['➤ Refresh Ctags                                              9rt', 'call RenewTagsFile()'],
-    \['➤ Execute Current Buffer                                     9eb', 'ExecuteBuffer'],
-    \['➤ Execute Current Selection                                  9es', 'ExecuteSelection'],
-    \['➤ Exit insert mode and write all files                        9w', 'echo use 9w'],
-    \['➤ Update Neobundle Packages                                  9nu', 'normal 9nu']
-    \]
-nnoremap <silent>[menu]m :Unite -silent menu:Misc<CR>
-" }}}4
-" Running tests {{{4
-let g:unite_source_menu_menus.Tests = {'description': 'Running tests                                      |t'}
-let g:unite_source_menu_menus.Tests.command_candidates = [
-    \['➤ Test Django Method                                         9dm', 'normal 9dm'],
-    \['➤ Test Django Class                                          9dc', 'normal 9dc'],
-    \['➤ Test Django File                                           9df', 'normal 9df'],
-    \['➤ Test Django App                                            9da', 'normal 9da'],
-    \['➤ Test Python Method with Nose                               9nm', 'normal 9nm'],
-    \['➤ Test Python Class with Nose                                9nc', 'normal 9nc'],
-    \['➤ Test Python File with Nose                                 9nf', 'normal 9nf'],
-    \['➤ Rerun Last Python Test                                     9rr', 'RerunLastTests'],
-    \['➤ Test JavaScript Single Test (Qunit)                        9jt', 'normal 9jt'],
-    \['➤ Test JavaScript Single Method (Qunit)                      9jm', 'normal 9jm'],
-    \['➤ Run All JavaScript Tests (Qunit)                           9ja', 'normal 9ja'],
-    \]
-nnoremap <silent>[menu]s :Unite -silent menu:Tests<CR>
-" }}}4
-" Spelling {{{4
-let g:unite_source_menu_menus.Spelling = {'description': 'Spell checking shortcuts                        |sp'}
-let g:unite_source_menu_menus.Spelling.command_candidates = [
-    \['➤ Turn on spell checking                                      ss', 'setlocal spell!'],
-    \['➤ Turn off spell checking                                     ss', 'setlocal spell!'],
-    \['➤ Jumps to next spelling error and show suggestions          9sp', 'normal 9sp'],
-    \['➤ Jumps to next bad spell word                                ]s', 'normal ]s'],
-    \['➤ Suggestions                                                 z=', 'normal z='],
-    \['➤ Spell check entire file with aspell                        9sc', 'normal 9sc'],
-    \]
-nnoremap <silent>[menu]sp :Unite -silent menu:Spelling<CR>
 " }}}3
 " }}}2
 " }}}1
