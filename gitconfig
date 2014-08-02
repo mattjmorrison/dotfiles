@@ -12,3 +12,5 @@
 [user]
     name = JarrodCTaylor
     email = jarrod.c.taylor@gmail.com
+[push]
+    default = matching
