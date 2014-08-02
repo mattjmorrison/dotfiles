@@ -1,7 +1,5 @@
 "===================================================================================
-"         FILE:  javascript.vim
 "  DESCRIPTION:  Settings that load only for files with the .js extension
-"       AUTHOR:  Jarrod Taylor
 "===================================================================================
 "
 " Settings for proper indentation
