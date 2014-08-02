@@ -1,0 +1,44 @@
+snippet # "comment line"
+<!-- $0 -->
+endsnippet
+
+snippet css "link to css file"
+<link rel="stylesheet" type="text/css" href="$0">
+endsnippet
+
+snippet html5 "HTML5 Template"
+<!DOCTYPE html>
+<html>
+<head>
+  <title>${1}</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <header>
+      ${2}
+  </header>
+  <content>
+      ${3}
+  </content>
+  <footer>
+      ${4}
+  </footer>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
+endsnippet
+
+snippet tag "A multipurpose html tag"
+<${1:div}>
+  ${2}
+</${1/(\w+).*/$1/}>
+endsnippet
+
+snippet todo "An informative todo line"
+<!-- TODO: `echo $USER` ${1:desc} `!v strftime("%m-%d")` -->
+endsnippet
+
+snippet a "Link"
+<a href="${1:http://www.${2:url.com}}"${3: target="_blank"}>${4:Anchor Text}</a>
+endsnippet

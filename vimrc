@@ -327,9 +327,11 @@ let g:syntastic_coffee_coffeelint_args="--csv --file ~/coffeelint.json"
 " }}}2
 " UltiSnips configurations {{{2
 "-----------------------------------------------------------------------------------
-let g:UltiSnipsSnippetDirectories=["mySnippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 let g:UltiSnipsExpandTrigger="<Leader><Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Leader><Tab>"
+let g:UltiSnipsEditSplit="vertical"
+nnoremap <Leader>ue :UltiSnipsEdit<CR>
 " }}}2
 " Neocomplete {{{2
 "-----------------------------------------------------------------------------------
@@ -562,22 +564,24 @@ let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped key
 let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Ack                                                           9a', 'echo "User 9a to start the Ack prompt"'],
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
+    \['➤ Edit UltiSnips snippet file                                  9ue', 'normal 9ue'],
     \['➤ Edit configuration file (vimrc)                              9ev', 'edit $MYVIMRC'],
-    \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Enter paste mode [Exit with Esc]                              yp', 'normal yp'],
     \['➤ Execute Current Buffer                                       9eb', 'ExecuteBuffer'],
     \['➤ Execute Current Selection                                    9es', 'ExecuteSelection'],
     \['➤ Exit insert mode and write all files                          9w', 'echo use 9w'],
     \['➤ Find files,                                                  9ff', 'normal 9ff'],
     \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9tn'],
+    \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
+    \['➤ Jump to ctag for word under the cursor                       9gt', 'normal 9gt'],
     \['➤ Jumps to next bad spell word                                  ]s', 'normal ]s'],
     \['➤ Jumps to next spelling error and show suggestions            9sp', 'normal 9sp'],
     \['➤ Most recently used files                                      9m', 'Unite file_mru'],
     \['➤ New horizontal split                                          9-', 'split'],
     \['➤ New vertical split                                            9\', 'vsplit'],
     \['➤ Open NERDTree focused in current directory                   9no', 'NERDTreeFind'],
+    \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Refresh Ctags                                                9rt', 'call RenewTagsFile()'],
-    \['➤ Undersocre Python test name                                  9us', 'normal 9us'],
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
     \['➤ Rerun Last Python Test                                       9rr', 'RerunLastTests'],
     \['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"'],
@@ -585,6 +589,8 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Search folds                                                 9sf', 'Unite fold'],
     \['➤ Search jumps                                                 9sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                           9sb', 'Unite line'],
+    \['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st'],
+    \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Spell check entire file with aspell                          9sc', 'normal 9sc'],
     \['➤ Suggest correctly spelled word                                z=', 'normal z='],
     \['➤ Test Django App                                              9da', 'normal 9da'],
@@ -592,32 +598,29 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Test Django File                                             9df', 'normal 9df'],
     \['➤ Test Django Method                                           9dm', 'normal 9dm'],
     \['➤ Test JavaScript Single Method (Qunit)                        9jm', 'normal 9jm'],
-    \['➤ Test JavaScript all Tests (Qunit)                            9ja', 'normal 9ja'],
     \['➤ Test JavaScript Single Test (Qunit)                          9jt', 'normal 9jt'],
+    \['➤ Test JavaScript all Tests (Qunit)                            9ja', 'normal 9ja'],
     \['➤ Test Python Class with Nose                                  9nc', 'normal 9nc'],
     \['➤ Test Python File with Nose                                   9nf', 'normal 9nf'],
     \['➤ Test Python Method with Nose                                 9nm', 'normal 9nm'],
     \['➤ Toggle NERDTree (open/close)                                 9nt', 'NERDTreeToggle'],
     \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
-    \['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st'],
-    \['➤ Jump to ctag for word under the cursor                       9gt', 'normal 9gt'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
+    \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
     \['➤ Toggle indentation guildes                                   9ig', 'normal 9ig'],
-    \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
     \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
     \['➤ Toggle quickfix                                               9q', 'call QuickfixToggle()'],
+    \['➤ Toggle visual undo tree                                      9ud', 'GundoToggle'],
     \['➤ Turn off search highlighting                               space', 'nohlsearch'],
     \['➤ Turn off spell checking                                       ss', 'setlocal spell!'],
     \['➤ Turn on spell checking                                        ss', 'setlocal spell!'],
+    \['➤ Undersocre Python test name                                  9us', 'normal 9us'],
     \['➤ Update Neobundle Packages                                    9nu', 'normal 9nu'],
-    \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
-    \['➤ Visual find and replace over visual selection                9fr', 'call VisualFindAndReplaceWithSelection()'],
-    \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Visual find and replace over full file                       9fr', 'call VisualFindAndReplace()'],
+    \['➤ Visual find and replace over visual selection                9fr', 'call VisualFindAndReplaceWithSelection()'],
+    \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
     \['➤ Yank history                                                  9y', 'Unite history/yank'],
     \['➤ choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
-    \['➤ Toggle visual undo tree                                      9ud', 'GundoToggle'],
-    \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
     \]
 nnoremap <silent>[menu]k :Unite -silent -winheight=17 -start-insert menu:LeaderKeyMaps<CR>
 " }}}5

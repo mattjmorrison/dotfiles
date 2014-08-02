@@ -1,0 +1,22 @@
+snippet ntests "Scaffold for Python Nose test file"
+import unittest
+
+class ${1:FooTests}(unittest.TestCase):
+
+	def ${2:test_foo}(self):
+		${3:pass}
+		self.assertEqual("returned_output" == "expected_output")
+endsnippet
+
+snippet dtests "Scaffold for Django test file"
+from django.test import TestCase
+
+class ${1:FooTests}(TestCase):
+
+	def setUp(self):
+		${2:pass}
+
+	def ${3:test_foo}(self):
+		${4:pass}
+		self.assertEqual("returned_output" == "expected_output")
+endsnippet

@@ -1,0 +1,13 @@
+snippet qtest "Scaffold for qunit ember test file"
+App = undefind
+
+module "${1:Module Description}"
+  setup: ->
+	App = startApp()
+  teardown: ->
+	Ember.run(App, "destroy")
+	$.mockjaxClear()
+
+test "${2:Test Description}", ->
+  equal(1, 2)
+endsnippet
