@@ -299,7 +299,7 @@ nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader>gt :call MyJumpTo()<CR>
 " --- Select tag if more than one option exists else jump to tag
-nnoremap <Leader>st g<C-]><CR>
+nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
@@ -794,6 +794,7 @@ function! VisualFindAndReplaceWithSelection() range
     :'<,'>OverCommandLine s/
     :w
 endfunction
+" }}}2
 " Doesn't replace buffer contents when pasting {{{2
 "-----------------------------------------------------------------------------------
 function! RestoreRegister()
