@@ -94,6 +94,7 @@ NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'                          
 NeoBundle 'amdt/vim-niji'                                                                          " Rainbow parentheses
 NeoBundle 'lukaszkorecki/CoffeeTags'                                                               " Ctags generator for CoffeScript
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
+NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}                                 " Ack in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}                                  " Ack son
@@ -263,8 +264,8 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Ack!<space>
-nnoremap<Leader>ff :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <Leader>b :Unite buffer<CR>
+nnoremap <Leader>ff :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Space> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
@@ -366,6 +367,17 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " }}}2
+" Ctrlp configurations {{{2
+"-----------------------------------------------------------------------------------
+let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_max_height = 18
+let g:ctrlp_open_multiple_files = '1vjr'
+let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
+func! MyCtrlPMappings()
+ nnoremap <buffer> <silent> <F6> :call <sid>DeleteBuffer()<cr>
+endfunc
+" }}}2
 " Exuberant ctags configurations {{{2
 "-----------------------------------------------------------------------------------
 " Vim will look for a ctags file in the current directory and continue
@@ -390,6 +402,7 @@ let g:jedi#popup_on_dot = 0
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76
+let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
 let g:startify_change_to_dir = 0
 " Set the contents of the banner
