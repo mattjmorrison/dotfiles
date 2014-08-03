@@ -267,7 +267,7 @@ nnoremap <Leader>a :Ack!<space>
 nnoremap <Leader>ff :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
-nnoremap <Space> :nohlsearch<CR>
+nnoremap <Leader><ESC> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
 nnoremap <Leader>us :call MakeUnderscore()<CR>
 nnoremap <C-j> <C-w>j
@@ -559,7 +559,7 @@ nnoremap <Leader>m :Unite file_mru<CR>
 nnoremap <Leader>sb :Unite line<CR>
 nnoremap <Leader>y :Unite history/yank<CR><Esc>
 nnoremap <Leader>sf :Unite fold<CR>
-nnoremap <Leader>sj :Unite jump<CR>
+nnoremap <Leader>sj :Unite jump<CR><Esc>
 nnoremap <LocalLeader>c :Unite colorscheme -auto-preview<CR>
 nnoremap <Leader>nu :<C-u>Unite neobundle/update -log -vertical -auto-quit<CR>
 " }}}3
@@ -573,22 +573,22 @@ nmap <LocalLeader> [menu]
 " Menus {{{4
 nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 " Keyboard Shortcuts {{{5
-let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |k'}
+let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |9'}
 let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Ack                                                           9a', 'echo "User 9a to start the Ack prompt"'],
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
+    \['➤ Choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
     \['➤ Edit UltiSnips snippet file                                  9ue', 'normal 9ue'],
     \['➤ Edit configuration file (vimrc)                              9ev', 'edit $MYVIMRC'],
-    \['➤ Enter paste mode [Exit with Esc]                              yp', 'normal yp'],
-    \['➤ Execute Current Buffer                                       9eb', 'ExecuteBuffer'],
-    \['➤ Execute Current Selection                                    9es', 'ExecuteSelection'],
-    \['➤ Exit insert mode and write all files                          9w', 'echo use 9w'],
+    \['➤ Enter paste mode [exit with <Esc>]                            yp', 'normal yp'],
+    \['➤ Execute current buffer                                       9eb', 'ExecuteBuffer'],
+    \['➤ Execute surrent selection                                    9es', 'ExecuteSelection'],
     \['➤ Find files,                                                  9ff', 'normal 9ff'],
-    \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9tn'],
+    \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9h'],
     \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
-    \['➤ Jump to ctag for word under the cursor                       9gt', 'normal 9gt'],
+    \['➤ Jump to ctag or word under the cursor                        9gt', 'normal 9gt'],
+    \['➤ Jump to next UltiSnip edit point                          9<Tab>', 'echo "Use 9<Tab> to jump to the next editable snippet segment"'],
     \['➤ Jumps to next bad spell word                                  ]s', 'normal ]s'],
-    \['➤ Jumps to next spelling error and show suggestions            9sp', 'normal 9sp'],
     \['➤ Most recently used files                                      9m', 'Unite file_mru'],
     \['➤ New horizontal split                                          9-', 'split'],
     \['➤ New vertical split                                            9\', 'vsplit'],
@@ -596,7 +596,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Refresh Ctags                                                9rt', 'call RenewTagsFile()'],
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
-    \['➤ Rerun Last Python Test                                       9rr', 'RerunLastTests'],
+    \['➤ Rerun last Python test                                       9rr', 'RerunLastTests'],
     \['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"'],
     \['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"'],
     \['➤ Search folds                                                 9sf', 'Unite fold'],
@@ -606,16 +606,16 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Spell check entire file with aspell                          9sc', 'normal 9sc'],
     \['➤ Suggest correctly spelled word                                z=', 'normal z='],
-    \['➤ Test Django App                                              9da', 'normal 9da'],
-    \['➤ Test Django Class                                            9dc', 'normal 9dc'],
-    \['➤ Test Django File                                             9df', 'normal 9df'],
-    \['➤ Test Django Method                                           9dm', 'normal 9dm'],
-    \['➤ Test JavaScript Single Method (Qunit)                        9jm', 'normal 9jm'],
-    \['➤ Test JavaScript Single Test (Qunit)                          9jt', 'normal 9jt'],
-    \['➤ Test JavaScript all Tests (Qunit)                            9ja', 'normal 9ja'],
-    \['➤ Test Python Class with Nose                                  9nc', 'normal 9nc'],
-    \['➤ Test Python File with Nose                                   9nf', 'normal 9nf'],
-    \['➤ Test Python Method with Nose                                 9nm', 'normal 9nm'],
+    \['➤ Test Django app                                              9da', 'echo "Use 9da"'],
+    \['➤ Test Django class                                            9dc', 'echo "Use 9dc"'],
+    \['➤ Test Django file                                             9df', 'echo "Use 9df"'],
+    \['➤ Test Django method                                           9dm', 'echo "Use 9dm"'],
+    \['➤ Test JavaScript single method (Qunit)                        9jm', 'echo "Use 9jm"'],
+    \['➤ Test JavaScript single test (Qunit)                          9jt', 'echo "Use 9jt"'],
+    \['➤ Test JavaScript all tests (Qunit)                            9ja', 'echo "Use 9ja"'],
+    \['➤ Test Python class with Nose                                  9nc', 'echo "Use 9nc"'],
+    \['➤ Test Python file with Nose                                   9nf', 'echo "Use 9nf"'],
+    \['➤ Test Python method with Nose                                 9nm', 'echo "Use 9nm"'],
     \['➤ Toggle NERDTree (open/close)                                 9nt', 'NERDTreeToggle'],
     \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
@@ -623,19 +623,18 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Toggle indentation guildes                                   9ig', 'normal 9ig'],
     \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
     \['➤ Toggle quickfix                                               9q', 'call QuickfixToggle()'],
+    \['➤ Toggle spell checking                                         ss', 'setlocal spell!'],
     \['➤ Toggle visual undo tree                                      9ud', 'GundoToggle'],
-    \['➤ Turn off search highlighting                               space', 'nohlsearch'],
-    \['➤ Turn off spell checking                                       ss', 'setlocal spell!'],
-    \['➤ Turn on spell checking                                        ss', 'setlocal spell!'],
+    \['➤ Trigger UltiSnip snippet expansion                        9<Tab>', 'echo "Use 9<Tab> to expand a snippet"'],
+    \['➤ Turn off search highlighting                              9<ESC>', 'nohlsearch'],
     \['➤ Undersocre Python test name                                  9us', 'normal 9us'],
-    \['➤ Update Neobundle Packages                                    9nu', 'normal 9nu'],
+    \['➤ Update Neobundle packages                                    9nu', 'normal 9nu'],
     \['➤ Visual find and replace over full file                       9fr', 'call VisualFindAndReplace()'],
     \['➤ Visual find and replace over visual selection                9fr', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
     \['➤ Yank history                                                  9y', 'Unite history/yank'],
-    \['➤ choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
     \]
-nnoremap <silent>[menu]k :Unite -silent -winheight=17 -start-insert menu:LeaderKeyMaps<CR>
+nnoremap <silent>[menu]9 :Unite -silent -winheight=17 -start-insert menu:9LeaderKeyMaps<CR>
 " }}}5
 " Plugin Keyboard Shortcuts {{{5
 let g:unite_source_menu_menus.PluginKeyMaps = {'description': 'Keyboard shortcuts mapped by 3rd party plugins     |p'}
@@ -660,7 +659,7 @@ nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltIn
 " Misc Functions {{{1
 " DeleteBuffer {{{2
 "-----------------------------------------------------------------------------------
-" Custom function to delete buffers from within Ctrl-P
+" Delete buffer(s) in Ctrl-P with <F5>
 function! s:DeleteBuffer()
     let line = getline('.')
     let bufid = line =~ '\[\d\+\*No Name\]$' ? str2nr(matchstr(line, '\d\+'))
@@ -671,6 +670,7 @@ endfunction
 "}}}2
 " Renewtagsfile {{{2
 "-----------------------------------------------------------------------------------
+" If a ctags file exists updated it if not create one
 function! RenewTagsFile()
     exe 'silent !rm -rf .ctags'
     exe 'silent !coffeetags --include-vars -Rf .ctags'
@@ -681,7 +681,7 @@ endfunction
 " }}}2
 " Highlight matches when jumping to next {{{2
 "-----------------------------------------------------------------------------------
-" This rewires n and N to do the highlighing...
+" This rewires n and N to highlight the match to help your eye track between jumps
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
 
@@ -699,6 +699,7 @@ endfunction
 " }}}2
 " Custom Fold Text{{{2
 "-----------------------------------------------------------------------------------
+" Customizations for how folded text is displayed
 function! CustomFoldText()
     let fs = v:foldstart
     while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
@@ -744,7 +745,7 @@ augroup unimpaired_paste
         \ endif
 augroup END
 " }}}2
-" Increment a column of number {{{2
+" Increment a column of numbers {{{2
 "-----------------------------------------------------------------------------------
 function! Incr()
     let a = line('.') - line("'<")
@@ -759,6 +760,7 @@ vnoremap <C-a> :call Incr()<CR>
 " }}}2
 " Toggle checkboxs {{{2
 "-----------------------------------------------------------------------------------
+" Used in .md files for todo lists turns [ ] into [√] and appends a done time stamp
 function! ToggleTodoCheckbox()
         let line = getline('.')
         if(match(line, "\\[ \\]") != -1)
@@ -789,6 +791,7 @@ endfunction
 " }}}2
 " Format JSON {{{2
 "-----------------------------------------------------------------------------------
+" Visually select an uglified json string and call this command to pretty print it
 function! FormatJSON()
     :'<,'>!python -m json.tool
 endfunction

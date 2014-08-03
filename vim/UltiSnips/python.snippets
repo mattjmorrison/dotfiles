@@ -1,4 +1,4 @@
-snippet ntests "Scaffold for Python Nose test file"
+snippet ntests "Scaffold for Python Nose test file" !b
 import unittest
 
 class ${1:FooTests}(unittest.TestCase):
@@ -8,7 +8,7 @@ class ${1:FooTests}(unittest.TestCase):
 		self.assertEqual("returned_output" == "expected_output")
 endsnippet
 
-snippet dtests "Scaffold for Django test file"
+snippet dtests "Scaffold for Django test file" !b
 from django.test import TestCase
 
 class ${1:FooTests}(TestCase):
@@ -21,7 +21,7 @@ class ${1:FooTests}(TestCase):
 		self.assertEqual("returned_output" == "expected_output")
 endsnippet
 
-snippet de "Define Python function"
+snippet de "Define Python function" !b
 def ${1:my_func}(${2:*args}):
 	${3:pass}
 endsnippet
