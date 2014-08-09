@@ -95,6 +95,7 @@ NeoBundle 'amdt/vim-niji'                                                       
 NeoBundle 'lukaszkorecki/CoffeeTags'                                                               " Ctags generator for CoffeScript
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
 "NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
+NeoBundle 'JarrodCTaylor/vim-hardtime'
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}                                 " Ack in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}                                  " Ack son
@@ -301,6 +302,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader>gt :call MyJumpTo()<CR>
+nnoremap <Leader>th :HardTimeToggle<CR>
 " --- Select tag if more than one option exists else jump to tag
 nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
@@ -625,6 +627,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
     \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
+    \['➤ Toggle hard mode                                             9th', 'normal 9th'],
     \['➤ Toggle indentation guildes                                   9ig', 'normal 9ig'],
     \['➤ Toggle line numbers                                          9tn', 'normal 9tn'],
     \['➤ Toggle quickfix                                               9q', 'call QuickfixToggle()'],
@@ -658,6 +661,12 @@ nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltIn
 " }}}5
 " }}}4
 " }}}3
+" }}}2
+" HardTime {{{2
+let g:list_of_normal_keys = ["h", "j", "k", "l"]
+let g:hardtime_ignore_buffer_patterns = ["vimrc", "NERD.*", "quickfix", "qf"]
+let g:hardtime_maxcount = 2
+let g:hardtime_ignore_quickfix = 1
 " }}}2
 " }}}1
 
