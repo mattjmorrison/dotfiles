@@ -190,6 +190,7 @@ endif
 " Abbreviations {{{2
 "-----------------------------------------------------------------------------------
 :iabbr teh the
+:iabbr itme item
 :iabbr condole console
 " }}}2
 " Make arrowkey resize viewports {{{2
