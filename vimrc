@@ -663,9 +663,10 @@ nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltIn
 " }}}2
 " HardTime {{{2
 let g:list_of_normal_keys = ["h", "j", "k", "l"]
-let g:hardtime_ignore_buffer_patterns = ["vimrc", "NERD.*", "quickfix", "qf"]
+let g:hardtime_ignore_buffer_patterns = ["vimrc", "NERD.*", ".*markdown", ".*md"]
 let g:hardtime_maxcount = 2
 let g:hardtime_ignore_quickfix = 1
+let g:hardtime_default_on = 1
 " }}}2
 " }}}1
 
