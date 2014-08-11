@@ -95,7 +95,7 @@ NeoBundle 'amdt/vim-niji'                                                       
 NeoBundle 'lukaszkorecki/CoffeeTags'                                                               " Ctags generator for CoffeScript
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
 NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
-NeoBundle 'JarrodCTaylor/vim-hardtime'
+NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}                                 " Ack in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
 NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}                                  " Ack son
@@ -641,7 +641,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
     \['➤ Yank history                                                  9y', 'Unite history/yank'],
     \]
-nnoremap <silent>[menu]9 :Unite -silent -winheight=17 -start-insert menu:9LeaderKeyMaps<CR>
+nnoremap <silent>[menu]9 :Unite -silent -winheight=17 -start-insert menu:LeaderKeyMaps<CR>
 " }}}5
 " Plugin Keyboard Shortcuts {{{5
 let g:unite_source_menu_menus.PluginKeyMaps = {'description': 'Keyboard shortcuts mapped by 3rd party plugins     |p'}
