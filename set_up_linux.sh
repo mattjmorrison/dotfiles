@@ -30,6 +30,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.antigen > /dev/null 2>&1
     sudo rm ~/.antigen.zsh > /dev/null 2>&1
     sudo rm ~/.psqlrc > /dev/null 2>&1
+    sudo rm -r ~/.emacs.d
 fi
 
 #==============
@@ -47,6 +48,7 @@ ln -s $dotfiles_dir/gitconfig ~/.gitconfig
 ln -s $dotfiles_dir/ackrc ~/.ackrc
 ln -s $dotfiles_dir/tigrc ~/.tigrc
 ln -s $dotfiles_dir/psqlrc ~/.psqlrc
+ln -s $dotfiles_dir/emacs.d ~/.emacs.d
 
 #==============
 # Select which conky to symlink
@@ -126,7 +128,7 @@ if [[ $answer = "Y" ]] ; then
         echo "exuberant-ctags FAILED TO INSTALL!!!" >> $log_file
     fi
 
-    sudo apt-get -y gtk-redshift 
+    sudo apt-get -y gtk-redshift
     if type -p redshift > /dev/null; then
         echo "redshift Installed" >> $log_file
     else
