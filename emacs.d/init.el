@@ -43,3 +43,5 @@
 (require 'setup-elpy)
 (require 'setup-flymake)
 (require 'setup-ack)
+(require 'setup-coffee)
+(require 'setup-neotree)

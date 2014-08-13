@@ -25,6 +25,9 @@
     elpy                      ; Python goodness
     flymake-cursor            ; Display syntax errors in minibuffer
     ack-and-a-half            ; Emacs front end for ack
+    coffee-mode               ; CoffeeScript syntax and features
+    helm
+    neotree                   ; Provides a NERDTree like file browser
     zenburn-theme             ; Zenburn Emacs theme nuff said
   ))
 
