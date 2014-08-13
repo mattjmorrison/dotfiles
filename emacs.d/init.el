@@ -40,3 +40,6 @@
 (require 'setup-smex)
 (require 'setup-rainbow-delimiters)
 (require 'setup-smart-mode-line)
+(require 'setup-elpy)
+(require 'setup-flymake)
+(require 'setup-ack)

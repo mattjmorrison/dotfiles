@@ -10,8 +10,7 @@
 (setq ispell-extra-args '("--sug-mode=fast"))
 
 ;;====
-; Load hideshow and enable it for all minor modes
-; This might be enabled by default?
+; Load hideshow (Aka, folding) and enable it for all minor modes
 ;;====
 (load-library "hideshow")
 (add-hook 'prog-mode-hook #'hs-minor-mode)

@@ -22,6 +22,9 @@
     smart-mode-line           ; A slightly better than stock mode line
     auto-complete             ; Provide auto completion in buffers
     cider                     ; Clojure hotness
+    elpy                      ; Python goodness
+    flymake-cursor            ; Display syntax errors in minibuffer
+    ack-and-a-half            ; Emacs front end for ack
     zenburn-theme             ; Zenburn Emacs theme nuff said
   ))
 
