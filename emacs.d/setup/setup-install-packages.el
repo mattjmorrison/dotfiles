@@ -27,7 +27,9 @@
     ack-and-a-half            ; Emacs front end for ack
     coffee-mode               ; CoffeeScript syntax and features
     helm
+    markdown-mode             ; Provides markdown syntax
     neotree                   ; Provides a NERDTree like file browser
+    handlebars-mode           ; Provides handlebars syntax highlighting
     zenburn-theme             ; Zenburn Emacs theme nuff said
   ))
 

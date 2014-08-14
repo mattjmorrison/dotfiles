@@ -45,3 +45,5 @@
 (require 'setup-ack)
 (require 'setup-coffee)
 (require 'setup-neotree)
+(require 'setup-handlebars)
+(require 'setup-markdown)
