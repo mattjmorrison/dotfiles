@@ -47,3 +47,4 @@
 (require 'setup-neotree)
 (require 'setup-handlebars)
 (require 'setup-markdown)
+(require 'setup-helm)

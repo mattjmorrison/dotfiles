@@ -10,6 +10,7 @@
 (evil-leader/set-key "\\" 'split-window-horizontally)     ; (DEFAULT Emacs): Emacs has this backwards for some reason
 (evil-leader/set-key "-"  'split-window-vertically)       ; (DEFAULT Emacs): Again with the backwards Emacs sigh...
 (evil-leader/set-key "b"  'buffer-menu)                   ; (DEFAULT Emacs): Choose from list of open buffers
+(evil-leader/set-key "B"  'helm-buffers-list)             ; (REQUIRES helm): Use helm to filter down and select from buffer list
 (evil-leader/set-key "no" 'neotree-toggle)                ; (REQUIRES neotree): Toggle the file tree explorer
 (evil-leader/set-key "nt" 'neotree-find)                  ; (REQUIRES neotree): Open the file tree explorer with current buffer as root
 (evil-leader/set-key "ac" 'auto-complete-mode)            ; (REQUIRES auto-complete): Toggle auto complete mode

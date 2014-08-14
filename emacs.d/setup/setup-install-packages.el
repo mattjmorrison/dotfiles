@@ -26,7 +26,7 @@
     flymake-cursor            ; Display syntax errors in minibuffer
     ack-and-a-half            ; Emacs front end for ack
     coffee-mode               ; CoffeeScript syntax and features
-    helm
+    helm                      ; Incremental completion and selection narrowing framework
     markdown-mode             ; Provides markdown syntax
     neotree                   ; Provides a NERDTree like file browser
     handlebars-mode           ; Provides handlebars syntax highlighting
