@@ -84,7 +84,7 @@ NeoBundle 'JarrodCTaylor/vim-qunit-special-blend'                               
 NeoBundle 'mustache/vim-mustache-handlebars'                                                       " Handlebars syntax highlighting
 NeoBundle 'JarrodCTaylor/vim-js2coffee'                                                            " Convert JS to CoffeeScript and vice versa
 NeoBundle 'osyo-manga/vim-over'                                                                    " Visual find and replace
-NeoBundle 'groenewege/vim-less'                                                                    " Syntax highlighting for less files
+NeoBundle '2ndStopShop/vim-less'                                                                   " Syntax highlighting for less files
 NeoBundle 'Yggdroot/indentLine'                                                                    " Indent guides
 NeoBundle 'wellle/targets.vim'                                                                     " Provide additional text objects
 NeoBundle 'tpope/vim-fireplace'                                                                    " Clojure REPL support
