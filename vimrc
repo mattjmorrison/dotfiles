@@ -78,7 +78,6 @@ NeoBundle 'justinmk/vim-sneak'                                                  
 NeoBundle 'JarrodCTaylor/vim-shell-executor'                                                       " Execute any code from within vim buffers
 NeoBundle 'https://github.com/mattn/emmet-vim/'                                                    " Formally zen coding
 NeoBundle 'junegunn/vim-easy-align'                                                                " Simple easy to use alignment plugin
-NeoBundle 'marijnh/tern_for_vim'                                                                   " Auto complete for JavaScript requires tern npm install
 NeoBundle 'kchmck/vim-coffee-script'                                                               " CoffeeScript support syntax, indenting, etc
 NeoBundle 'JarrodCTaylor/vim-qunit-special-blend'                                                  " Run qunit tests
 NeoBundle 'mustache/vim-mustache-handlebars'                                                       " Handlebars syntax highlighting
@@ -169,6 +168,7 @@ set shell=bash                         " Required to let zsh know how to run thi
 set ttimeoutlen=50                     " Fix delay when escaping from insert with Esc
 set noshowmode                         " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set synmaxcol=256                      " Don't syntax highlight long lines
+set nosol                              " Keep cursor in the same column if possible for G, gg, etc.
 " }}}2
 " Treat JSON files like JavaScript {{{2
 "-----------------------------------------------------------------------------------
