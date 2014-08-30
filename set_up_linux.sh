@@ -199,6 +199,13 @@ if [[ $answer = "Y" ]] ; then
         echo "Ack FAILED TO INSTALL!!!" >> $log_file
     fi
 
+    sudo apt-get install silversearcher-ag
+    if type -p ag > /dev/null; then
+        echo "Silver searcher Installed" >> $log_file
+    else
+        echo "Silver searcher FAILED TO INSTALL!!!" >> $log_file
+    fi
+
     sudo apt-get -y install python-pip
     if type -p pip > /dev/null; then
         echo "pip Installed" >> $log_file

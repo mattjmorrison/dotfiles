@@ -72,6 +72,7 @@ if [[ $answer = "Y" ]] ; then
     brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste
     brew install ack
     brew install tmux
+    brew install the_silver_searcher
 
     # ===
     # Get Ctags properly setup

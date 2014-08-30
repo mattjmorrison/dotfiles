@@ -1,0 +1,23 @@
+*nerd-search.txt*  Add on for NERDTree allowing dir specific searching
+
+==============================================================================
+CONTENTS                                                  *nerd-search-contents*
+
+    1. Intro ............................................... |nerd-search-intro|
+    2. Usage ............................................... |nerd-search-usage|
+
+==============================================================================
+1. INTRODUCTION                                              *nerd-search-intro*
+
+This is an add on plugin for NERDTree which adds a new option to the NERDTree
+menu (s)earch. This new option allows the user to do directory specific
+searches.
+
+==============================================================================
+2. Usage                                                       *nerd-search-usage*
+
+Open NERDTree highlight the desired directory and the press m. The NERDTRee
+menu will open and you will be able to press s to trigger the search prompt.
+You many then directory specific search away.
+
+" vim: filetype=help

@@ -95,9 +95,8 @@ NeoBundle 'lukaszkorecki/CoffeeTags'                                            
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
 NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
 NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
-NeoBundle '~/dotfiles/vim/my-plugins/nerd-ack', {'type': 'nosync'}                                 " Ack in a specific directory from within nerdtree
+NeoBundle '~/dotfiles/vim/my-plugins/nerd-search', {'type': 'nosync'}                              " Search in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
-NeoBundle '~/dotfiles/vim/my-plugins/vim-ack', {'type': 'nosync'}                                  " Ack son
 NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}                        " Add grep functionality to the quickfix buffer
 NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}                           " Add the ability to link between wiki (markdown) files
 " }}}2
@@ -265,7 +264,7 @@ nnoremap <Leader>no :NERDTreeFind<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
-nnoremap <Leader>a :Ack!<space>
+nnoremap <Leader>a :Search<CR>
 nnoremap <Leader>ff :CtrlP<CR>
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
@@ -578,7 +577,7 @@ nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 " Keyboard Shortcuts {{{5
 let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |9'}
 let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
-    \['➤ Ack                                                           9a', 'echo "User 9a to start the Ack prompt"'],
+    \['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"'],
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
     \['➤ Choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
     \['➤ Edit UltiSnips snippet file                                  9ue', 'normal 9ue'],
@@ -662,6 +661,7 @@ nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltIn
 " }}}3
 " }}}2
 " HardTime {{{2
+"-------------------------------------------------------------------------
 let g:list_of_normal_keys = ["h", "j", "k", "l"]
 let g:hardtime_ignore_buffer_patterns = ["vimrc", "NERD.*", ".*markdown", ".*md"]
 let g:hardtime_maxcount = 4
@@ -869,10 +869,10 @@ import vim
 from itertools import dropwhile
 
 def python_input(message = 'input'):
-  vim.command('call inputsave()')
-  vim.command("let user_input = input('" + message + ": ')")
-  vim.command('call inputrestore()')
-  return vim.eval('user_input')
+    vim.command('call inputsave()')
+    vim.command("let user_input = input('" + message + ": ')")
+    vim.command('call inputrestore()')
+    return vim.eval('user_input')
 
 def wrap_with():
     the_chars = {"[": "]", "['": "']", '["': '"]', "(": ")", "('": "')", '("': '")', "": ")"}
@@ -902,5 +902,37 @@ function! MyJumpTo()
         :exe "norm \<C-]>"
     endif
 endfunction
+" }}}2
+" The Silver Searcher {{{2
+"-----------------------------------------------------------------------------------
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c:%m
+endif
+
+function! TheSilverSearcher()
+python << endPython
+
+import vim
+
+def python_input(message = 'input'):
+  vim.command('call inputsave()')
+  vim.command("let user_input = input('" + message + ": ')")
+  vim.command('call inputrestore()')
+  return vim.eval('user_input')
+
+def silver_search():
+    search_args = python_input("Search For")
+    vim.command('silent grep! "{}"'.format(search_args))
+    vim.command('redraw!')
+    vim.command('redrawstatus!')
+    vim.command('copen')
+
+silver_search()
+
+endPython
+endfunction
+
+command Search call TheSilverSearcher()
 " }}}2
 " }}}1
