@@ -371,7 +371,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " }}}2
 " Ctrlp configurations {{{2
 "-----------------------------------------------------------------------------------
-let g:ctrlp_custom_ignore = 'node_modules$\|xmlrunner$\|.DS_Store|.git|.bak|.swp|.pyc'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_height = 18
 let g:ctrlp_open_multiple_files = '1vjr'
