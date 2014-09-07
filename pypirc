@@ -6,7 +6,7 @@ index-servers=
 [test]
 repository = https://testpypi.python.org/pypi
 username = JarrodCTaylor
-password = P455word1
+password = <ENTER PASSWORD>
 
 [pypi]
 repository = https://pypi.python.org/pypi
