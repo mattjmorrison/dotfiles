@@ -26,6 +26,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.antigen > /dev/null 2>&1
     sudo rm ~/.antigen.zsh > /dev/null 2>&1
     sudo rm ~/.psqlrc > /dev/null 2>&1
+    sudo rm ~/.emacs.d > /dev/null 2>&1
     #==============
     # Create symlinks in the home folder
     #==============
@@ -40,6 +41,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/ackrc ~/.ackrc
     ln -s ~/dotfiles/tigrc ~/.tigrc
     ln -s ~/dotfiles/psqlrc ~/.psqlrc
+    ln -s ~/dotfiles/emacs.d ~/.emacs.d
 fi
 
 #==============
@@ -109,5 +111,4 @@ chsh -s /bin/zsh
 #==============
 echo -e "\n====== Success!! ======\n"
 echo
-echo "When you first open vim run :BundleInstall to install the plugins"
 echo "Enjoy -Jarrod"

@@ -277,6 +277,5 @@ echo -e "\n====== Success!! ======\n"
 echo -e "\n====== Summary ======\n"
 cat $log_file
 echo
-echo "When you first open vim run :BundleInstall to install the plugins"
 echo "Enjoy -Jarrod"
 rm $log_file
