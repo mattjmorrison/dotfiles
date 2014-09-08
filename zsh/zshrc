@@ -373,12 +373,10 @@ include() {
     [[ -s "$1" ]] && source "$1"
 }
 # >>2
-# ackvim open ack results in vim <<2
+# agvim open ag results in vim <<2
 #--------------------------------------------------------------------
-ackv() {
-   pattern=$1
-   shift
-   vim +"Ack '$pattern' $*"
+agv() {
+   vim +"Search"
 }
 # >>2
 # Extract the most common compression types <<2
