@@ -301,6 +301,8 @@ nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader>gt :call MyJumpTo()<CR>
 nnoremap <Leader>th :HardTimeToggle<CR>
+inoremap <Leader>c <C-x><C-o>
+nmap <Leader>em :call EditMacro()<CR> <Plug>em
 " --- Select tag if more than one option exists else jump to tag
 nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
@@ -588,6 +590,8 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Find files,                                                  9ff', 'normal 9ff'],
     \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9h'],
     \['➤ Grep in Quickfix buffer                                       9g', 'echo "Use 9g to grep within the Quickfix buffer"'],
+    \['➤ Edit macro contents in specific register                     9em', 'normal 9em'],
+    \['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"'],
     \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
     \['➤ Jump to ctag or word under the cursor                        9gt', 'normal 9gt'],
     \['➤ Jump to next UltiSnip edit point                          9<Tab>', 'echo "Use 9<Tab> to jump to the next editable snippet segment"'],
@@ -934,5 +938,14 @@ endPython
 endfunction
 
 command Search call TheSilverSearcher()
+" }}}2
+" Edit Macro {{{2
+"-----------------------------------------------------------------------------------
+function! EditMacro()
+  call inputsave()
+  let g:regToEdit = input('Register to edit: ')
+  call inputrestore()
+  execute "nnoremap <Plug>em :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
+endfunction
 " }}}2
 " }}}1
