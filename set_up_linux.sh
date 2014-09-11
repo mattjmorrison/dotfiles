@@ -30,7 +30,8 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.antigen > /dev/null 2>&1
     sudo rm ~/.antigen.zsh > /dev/null 2>&1
     sudo rm ~/.psqlrc > /dev/null 2>&1
-    sudo rm -r ~/.emacs.d
+    sudo rm -r ~/.emacs.d > /dev/null 2>&1
+    sudo rm ~/coffeelint.json > /dev/null 2>&1
 fi
 
 #==============
@@ -49,6 +50,7 @@ ln -s $dotfiles_dir/ackrc ~/.ackrc
 ln -s $dotfiles_dir/tigrc ~/.tigrc
 ln -s $dotfiles_dir/psqlrc ~/.psqlrc
 ln -s $dotfiles_dir/emacs.d ~/.emacs.d
+ln -s $dotfiles_dir/coffeelint.json ~/coffeelint.json
 
 #==============
 # Select which conky to symlink
