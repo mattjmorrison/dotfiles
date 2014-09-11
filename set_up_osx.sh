@@ -27,6 +27,7 @@ if [[ $answer = "Y" ]] ; then
     sudo rm ~/.antigen.zsh > /dev/null 2>&1
     sudo rm ~/.psqlrc > /dev/null 2>&1
     sudo rm ~/.emacs.d > /dev/null 2>&1
+    sudo rm ~/coffeelint.json > /dev/null 2>&1
     #==============
     # Create symlinks in the home folder
     #==============
@@ -42,6 +43,7 @@ if [[ $answer = "Y" ]] ; then
     ln -s ~/dotfiles/tigrc ~/.tigrc
     ln -s ~/dotfiles/psqlrc ~/.psqlrc
     ln -s ~/dotfiles/emacs.d ~/.emacs.d
+    ln -s ~/dotfiles/coffeelint.json ~/coffeelint.json
 fi
 
 #==============
