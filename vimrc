@@ -291,6 +291,7 @@ nnoremap <Leader>eb :ExecuteBuffer<CR>
 vnoremap <Leader>es :ExecuteSelection<CR>
 nnoremap <Leader>ja :RunAllQunitTests<CR>
 nnoremap <Leader>jt :RunSingleQunitTest<CR>
+nnoremap <Leader>js :RunSingleAsyncQunitTest<CR>
 nnoremap <Leader>jm :RunSingleQunitModule<CR>
 nnoremap <Leader>ww :WrapWith<CR>
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
@@ -622,6 +623,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Test JavaScript all tests (Qunit)                            9ja', 'echo "Use 9ja"'],
     \['➤ Test JavaScript single method (Qunit)                        9jm', 'echo "Use 9jm"'],
     \['➤ Test JavaScript single test (Qunit)                          9jt', 'echo "Use 9jt"'],
+    \['➤ Test JavaScript single asyncTest (Qunit)                     9js', 'echo "Use 9js"'],
     \['➤ Test Python class with Nose                                  9nc', 'echo "Use 9nc"'],
     \['➤ Test Python file with Nose                                   9nf', 'echo "Use 9nf"'],
     \['➤ Test Python method with Nose                                 9nm', 'echo "Use 9nm"'],
