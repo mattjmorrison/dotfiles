@@ -95,6 +95,7 @@ NeoBundle 'lukaszkorecki/CoffeeTags'                                            
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
 NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
 NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
+NeoBundle 'JarrodCTaylor/vim-sql-suggest'                                                          " SQL auto completion
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-search', {'type': 'nosync'}                              " Search in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/tmux-navigator', {'type': 'nosync'}                           " Allow easy navigation between tmux and vim splits
 NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}                        " Add grep functionality to the quickfix buffer
@@ -584,19 +585,17 @@ nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 " Keyboard Shortcuts {{{5
 let g:unite_source_menu_menus.LeaderKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |9'}
 let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
-    \['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"'],
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
     \['➤ Choose colorscheme                                            |c', 'Unite colorscheme -auto-preview'],
     \['➤ Edit UltiSnips snippet file                                  9ue', 'normal 9ue'],
     \['➤ Edit configuration file (vimrc)                              9ev', 'edit $MYVIMRC'],
+    \['➤ Edit macro contents in specific register                     9em', 'normal 9em'],
     \['➤ Enter paste mode [exit with <Esc>]                            yp', 'normal yp'],
     \['➤ Execute current buffer                                       9eb', 'ExecuteBuffer'],
     \['➤ Execute surrent selection                                    9es', 'ExecuteSelection'],
     \['➤ Find files,                                                  9ff', 'normal 9ff'],
     \['➤ Get Hex dump of binary file buffer                            9h', 'normal 9h'],
     \['➤ Grep in Quickfix buffer                                       9g', 'echo "Use 9g to grep within the Quickfix buffer"'],
-    \['➤ Edit macro contents in specific register                     9em', 'normal 9em'],
-    \['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"'],
     \['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"'],
     \['➤ Jump to ctag or word under the cursor                        9gt', 'normal 9gt'],
     \['➤ Jump to next UltiSnip edit point                          9<Tab>', 'echo "Use 9<Tab> to jump to the next editable snippet segment"'],
@@ -610,24 +609,28 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
     \['➤ Rerun last Python test                                       9rr', 'RerunLastTests'],
     \['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"'],
+    \['➤ Resize windows 50%                               <C-w>Arrow keys', 'echo "Use Ctrl-w plus the arrow keys to resize a window by 50%"'],
     \['➤ Restore the Quickfix buffer                                   9r', 'echo "Use 9r to restore the Quickfix buffer"'],
     \['➤ Reverse Grep in Quickfix buffer                               9v', 'echo "Use 9v to reverse grep within the Quickfix buffer"'],
     \['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"'],
+    \['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"'],
     \['➤ Search folds                                                 9sf', 'Unite fold'],
     \['➤ Search jumps                                                 9sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                           9sb', 'Unite line'],
     \['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st'],
     \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Spell check entire file with aspell                          9sc', 'normal 9sc'],
+    \['➤ Suggest SQL column name in insert mode                       9sc', 'echo "Use 9sc in insert mode to suggest a sql column name"'],  
+    \['➤ Suggest SQL table name in insert mode                        9st', 'echo "Use 9st in insert mode to suggest a sql table name"'],  
     \['➤ Suggest correctly spelled word                                z=', 'normal z='],
     \['➤ Test Django app                                              9da', 'echo "Use 9da"'],
     \['➤ Test Django class                                            9dc', 'echo "Use 9dc"'],
     \['➤ Test Django file                                             9df', 'echo "Use 9df"'],
     \['➤ Test Django method                                           9dm', 'echo "Use 9dm"'],
     \['➤ Test JavaScript all tests (Qunit)                            9ja', 'echo "Use 9ja"'],
+    \['➤ Test JavaScript single asyncTest (Qunit)                     9js', 'echo "Use 9js"'],
     \['➤ Test JavaScript single method (Qunit)                        9jm', 'echo "Use 9jm"'],
     \['➤ Test JavaScript single test (Qunit)                          9jt', 'echo "Use 9jt"'],
-    \['➤ Test JavaScript single asyncTest (Qunit)                     9js', 'echo "Use 9js"'],
     \['➤ Test Python class with Nose                                  9nc', 'echo "Use 9nc"'],
     \['➤ Test Python file with Nose                                   9nf', 'echo "Use 9nf"'],
     \['➤ Test Python method with Nose                                 9nm', 'echo "Use 9nm"'],
@@ -645,6 +648,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Turn off search highlighting                              9<ESC>', 'nohlsearch'],
     \['➤ Undersocre Python test name                                  9us', 'normal 9us'],
     \['➤ Update Neobundle packages                                    9nu', 'normal 9nu'],
+    \['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"'],
     \['➤ Visual find and replace over full file                       9fr', 'call VisualFindAndReplace()'],
     \['➤ Visual find and replace over visual selection                9fr', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Wrap word under cursor with method                           9ww', 'normal 9ww'],
@@ -678,6 +682,12 @@ let g:hardtime_maxcount = 4
 let g:hardtime_ignore_quickfix = 1
 let g:hardtime_default_on = 1
 " }}}2
+" SQL Suggest {{{2
+inoremap <Leader>sc <C-R>=SQLComplete("column")<CR>
+inoremap <Leader>st <C-R>=SQLComplete("table")<CR>
+" let g:suggest_db = "mysql -u root test"
+let g:suggest_db = "psql -U Jrock libexample"
+" }}} 2
 " }}}1
 
 " Misc Functions {{{1
