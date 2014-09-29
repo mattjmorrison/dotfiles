@@ -479,7 +479,7 @@ let g:sneak#target_labels = "sfgkqwetyupzcvbnmSDFGHJKLQWERTYUPZXCVBNM1234567890r
 " Enable just in html files
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key=','
-autocmd FileType html,htmldjango,handlebars EmmetInstall
+autocmd FileType html,htmldjango,handlebars,html.handlebars EmmetInstall
 "}}}2
 " Easy Align {{{2
 "-----------------------------------------------------------------------------------
