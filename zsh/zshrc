@@ -242,21 +242,21 @@ function pyserve() {
 #-------------------------------------------------------------------------------
 function workTimer() {
     echo -n "How long to set timer for? (ex. 1h, 10m, 20s, etc) => "; read duration
-    echo -n "What to words_to_say when done => "; read words_to_say
+    echo -n "What to say when time finishes => "; read finishMessage
     if [ "$(uname)" = "Darwin" ]; then
       if [ $duration[-1] = "h" ]; then
           (( durationInHours = $duration[1,-2] * 60 * 60))
-          sleep $durationInHours && say "$words_to_say"
+          sleep $durationInHours && say "$finishMessage"
       elif [ $duration[-1] = "m" ]; then
           (( durationInMinutes = $duration[1,-2] * 60))
-          sleep $durationInMinutes && say "$words_to_say"
+          sleep $durationInMinutes && say "$finishMessage"
       elif [ $duration[-1] = "s" ]; then
-          sleep $duration && say "$words_to_say"
+          sleep $duration && say "$finishMessage"
       else
         echo "You must specify; Hours, Min or Seconds.."
       fi
     else
-      sleep $duration && espeak "$say" && zenity --info --title="$name" --text="$say"
+      sleep $duration && espeak "$finishMessage" && zenity --info --title="$name" --text="$finishMessage"
     fi
 }
 # >>2
