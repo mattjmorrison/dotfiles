@@ -439,6 +439,14 @@ ipinfo() {
     curl freegeoip.net/json/$desiredIP | python -mjson.tool
 }
 # >>2
+# Export java cmd if jdk is installed <<2
+#--------------------------------------------------------------------
+# This seems like it is going to be a PITA with versions, but it works ATM.
+if [[ -s "/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/bin/java" ]]; then
+    export JAVA_CMD="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/bin/java"
+fi
+# >>2
 # >>1
+
 
 # EOF
