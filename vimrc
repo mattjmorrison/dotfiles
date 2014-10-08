@@ -96,6 +96,7 @@ NeoBundle 'tpope/vim-dispatch'                                                  
 NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
 NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
 NeoBundle 'JarrodCTaylor/vim-sql-suggest'                                                          " SQL auto completion
+NeoBundle 'PeterRincker/vim-argumentative'                                                         " Move comma separated arguments
 NeoBundle '~/dotfiles/vim/my-plugins/nerd-search', {'type': 'nosync'}                              " Search in a specific directory from within nerdtree
 NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}                        " Add grep functionality to the quickfix buffer
 NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}                           " Add the ability to link between wiki (markdown) files
