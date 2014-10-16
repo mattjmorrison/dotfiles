@@ -1,7 +1,7 @@
 " vim: set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
 
 "===================================================================================
-"  DESCRIPTION:  ”I’m sorry, Jarrod, I’m afraid I cant do that.” – VIM
+"  DESCRIPTION:  ”Life is frittered away by detail... simplify, simplify.” – Thoreau
 "       AUTHOR:  Jarrod Taylor
 " ____   ____.__                  .__               __
 " \   \ /   /|__| _____           |__| ____ _____ _/  |_  ___________
