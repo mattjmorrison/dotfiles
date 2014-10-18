@@ -93,7 +93,6 @@ NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'                          
 NeoBundle 'amdt/vim-niji'                                                                          " Rainbow parentheses
 NeoBundle 'lukaszkorecki/CoffeeTags'                                                               " Ctags generator for CoffeScript
 NeoBundle 'tpope/vim-dispatch'                                                                     " Asynchronous build and test dispatcher
-NeoBundle 'kien/ctrlp.vim'                                                                         " Because I just can't get unit to work all the way :(
 NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
 NeoBundle 'JarrodCTaylor/vim-sql-suggest'                                                          " SQL auto completion
 NeoBundle 'PeterRincker/vim-argumentative'                                                         " Move comma separated arguments
@@ -270,8 +269,8 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader>a :Search<CR>
-nnoremap <Leader>ff :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>ff :Unite file file_rec/async -start-insert -buffer-name=files -winheight=18<CR>
+nnoremap <Leader>b :Unite buffer<CR>
 nnoremap <Leader>ts :SyntasticToggleMode<CR>
 nnoremap <Leader><ESC> :nohlsearch<CR>
 nnoremap <Leader>rt :call RenewTagsFile()<CR>
@@ -373,17 +372,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " }}}2
-" Ctrlp configurations {{{2
-"-----------------------------------------------------------------------------------
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_max_height = 18
-let g:ctrlp_open_multiple_files = '1vjr'
-let g:ctrlp_buffer_func = { 'enter': 'MyCtrlPMappings' }
-func! MyCtrlPMappings()
- nnoremap <buffer> <silent> <F6> :call <sid>DeleteBuffer()<cr>
-endfunc
-" }}}2
 " Exuberant ctags configurations {{{2
 "-----------------------------------------------------------------------------------
 " Vim will look for a ctags file in the current directory and continue
@@ -408,7 +396,6 @@ let g:jedi#popup_on_dot = 0
 "-----------------------------------------------------------------------------------
 " Highlight the acsii banner with green font
 hi StartifyHeader ctermfg=76
-let g:ctrlp_reuse_window = 'startify'
 " Don't change the directory when opening a recent file with a shortcut
 let g:startify_change_to_dir = 0
 " Set the contents of the banner
@@ -534,17 +521,18 @@ let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%m-%d-%Y %H:%M:%S) '
+let g:unite_source_rec_async_command= 'ag --nocolor --nogroup -g ""'
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.DS_Store/',
-      \ 'node_modules/',
-      \ '\.git/',
-      \ '\.bak',
-      \ '\.swp',
-      \ '\.pyc',
-      \ ], '\|'))
+" call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+"       \ 'ignore_pattern', join([
+"       \ '\.DS_Store/',
+"       \ 'node_modules/',
+"       \ '\.git/',
+"       \ '\.bak',
+"       \ '\.swp',
+"       \ '\.pyc',
+"       \ ], '\|'))
 " }}}3
 " Unite autocmd FileType settings {{{3
 autocmd FileType unite call s:unite_buffer_settings()
@@ -616,8 +604,8 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st'],
     \['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv'],
     \['➤ Spell check entire file with aspell                          9sc', 'normal 9sc'],
-    \['➤ Suggest SQL column name in insert mode                       9sc', 'echo "Use 9sc in insert mode to suggest a sql column name"'],  
-    \['➤ Suggest SQL table name in insert mode                        9st', 'echo "Use 9st in insert mode to suggest a sql table name"'],  
+    \['➤ Suggest SQL column name in insert mode                       9sc', 'echo "Use 9sc in insert mode to suggest a sql column name"'],
+    \['➤ Suggest SQL table name in insert mode                        9st', 'echo "Use 9st in insert mode to suggest a sql table name"'],
     \['➤ Suggest correctly spelled word                                z=', 'normal z='],
     \['➤ Test Django app                                              9da', 'echo "Use 9da"'],
     \['➤ Test Django class                                            9dc', 'echo "Use 9dc"'],
