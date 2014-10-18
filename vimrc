@@ -12,34 +12,19 @@
 "
 "===================================================================================
 "
-" Set nocompatible {{{1
-"-----------------------------------------------------------------------------------
-" Use Vim settings, rather then Vi settings. This must be first, because it changes
-" other options as a side effect.
-"-----------------------------------------------------------------------------------
-set nocompatible
-" }}}1
-
 " NeoBundle auto-installation and setup {{{1
 " Install and configure NeoBundle {{{2
-let iCanHazNeoBundle=1
+if !1 | finish | endif
+if has('vim_starting')
+    set nocompatible
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
 if !filereadable(neobundle_readme)
-    echo "Installing NeoBundle.."
-    echo ""
-    silent !mkdir -p $HOME/.vim/bundle
-    silent !git clone https://github.com/Shougo/neobundle.vim $HOME/.vim/bundle/neobundle.vim
-    let iCanHazNeoBundle=0
+    silent !curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 endif
-
-" Call NeoBundle
-if has('vim_starting')
-    set rtp+=$HOME/.vim/bundle/neobundle.vim/
-endif
-call neobundle#rc(expand($HOME.'/.vim/bundle/'))
-
-" NeoBundle rules NeoBundle (needed!)
-NeoBundle 'Shougo/neobundle.vim'
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 " }}}2
 " Bundles {{{2
 " Vimproc to asynchronously run commands (NeoBundle, Unite)
@@ -101,15 +86,8 @@ NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}     
 NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}                           " Add the ability to link between wiki (markdown) files
 " }}}2
 " Auto install the plugins {{{2
-
-" First-time plugins installation
-if iCanHazNeoBundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :NeoBundleInstall
-endif
-
-" Check if all of the plugins are already installed, in other case ask if we want to install them
+call neobundle#end()
+filetype plugin indent on
 NeoBundleCheck
 " }}}2
 " }}}1
@@ -126,7 +104,7 @@ filetype  indent on
 " Color scheme {{{2
 "-----------------------------------------------------------------------------------
 set t_Co=256
-colorscheme harlem-nights
+colorscheme pop-rocks
 " }}}2
 " Switch syntax highlighting on. {{{2
 "-----------------------------------------------------------------------------------
