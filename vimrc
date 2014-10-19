@@ -43,7 +43,6 @@ NeoBundle 'kopischke/unite-spell-suggest'                                       
 NeoBundle 'Shougo/neocomplete.vim'                                                                 " Auto completion framework. Requires that vim be compiled with lua support
 NeoBundle 'davidhalter/jedi-vim'                                                                   " Python autocompletion
 NeoBundle 'Raimondi/delimitMate'                                                                   " Auto close quotes, parens, brackets, etc
-NeoBundle 'scrooloose/nerdtree'                                                                    " File tree explorer and manager
 NeoBundle 'JarrodCTaylor/vim-256-color-schemes'                                                    " A variety of terminal based colorschemes
 NeoBundle 'majutsushi/tagbar'                                                                      " Display tags in a buffer ordered by class
 NeoBundle 'ervandew/supertab'                                                                      " Use tab for all completions
@@ -81,7 +80,7 @@ NeoBundle 'tpope/vim-dispatch'                                                  
 NeoBundle 'takac/vim-hardtime'                                                                     " Muhahahahaha oh their faces. I can taste their tears
 NeoBundle 'JarrodCTaylor/vim-sql-suggest'                                                          " SQL auto completion
 NeoBundle 'PeterRincker/vim-argumentative'                                                         " Move comma separated arguments
-NeoBundle '~/dotfiles/vim/my-plugins/nerd-search', {'type': 'nosync'}                              " Search in a specific directory from within nerdtree
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle '~/dotfiles/vim/my-plugins/vim-grep-quickfix', {'type': 'nosync'}                        " Add grep functionality to the quickfix buffer
 NeoBundle '~/dotfiles/vim/my-plugins/vim-wiki-links', {'type': 'nosync'}                           " Add the ability to link between wiki (markdown) files
 " }}}2
@@ -241,8 +240,6 @@ let mapleader="9"
 let maplocalleader= '|'
 map ss :setlocal spell!<CR>
 map z= :Unite spell_suggest<CR><ESC>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
-nnoremap <Leader>no :NERDTreeFind<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
@@ -358,13 +355,6 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " Enable ctags support
 set tags=./.ctags,.ctags;
 " }}}2
-" NERDTree configurations {{{2
-"-----------------------------------------------------------------------------------
-" Make NERDTree ignore .pyc files
-let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeMapJumpNextSibling = ''
-let g:NERDTreeMapJumpPrevSibling = ''
-" }}}2
 " Jedi configurations {{{2
 "-----------------------------------------------------------------------------------
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
@@ -458,7 +448,7 @@ nnoremap <Leader>ig :IndentLinesToggle<CR>
 let g:indentLine_enabled = 0
 let g:indentLine_char = '¦' "'┊'
 let g:indentLine_color_term = 239
-let g:indentLine_bufNameExclude = ['_.*', 'NERD_tree.*', 'start*']
+let g:indentLine_bufNameExclude = ['_.*', 'start*']
 let g:indentLine_fileTypeExclude = ['text']
 " }}}2
 " Rainbow Parentheses (niji) settings {{{2
@@ -565,7 +555,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Most recently used files                                      9m', 'Unite file_mru'],
     \['➤ New horizontal split                                          9-', 'split'],
     \['➤ New vertical split                                            9\', 'vsplit'],
-    \['➤ Open NERDTree focused in current directory                   9no', 'NERDTreeFind'],
+    \['➤ Open Vimfiler                                                9vf', 'echo "Use 9vf"'],
     \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Refresh Ctags                                                9rt', 'call RenewTagsFile()'],
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
@@ -596,7 +586,6 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Test Python class with Nose                                  9nc', 'echo "Use 9nc"'],
     \['➤ Test Python file with Nose                                   9nf', 'echo "Use 9nf"'],
     \['➤ Test Python method with Nose                                 9nm', 'echo "Use 9nm"'],
-    \['➤ Toggle NERDTree (open/close)                                 9nt', 'NERDTreeToggle'],
     \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
     \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
@@ -639,16 +628,38 @@ nnoremap <silent>[menu]b :Unite -silent -winheight=17 -start-insert menu:BuiltIn
 " HardTime {{{2
 "-------------------------------------------------------------------------
 let g:list_of_normal_keys = ["h", "j", "k", "l"]
-let g:hardtime_ignore_buffer_patterns = ["vimrc", "NERD.*", ".*markdown", ".*md"]
+let g:hardtime_ignore_buffer_patterns = ["vimrc", ".*markdown", ".*md"]
 let g:hardtime_maxcount = 4
 let g:hardtime_ignore_quickfix = 1
 let g:hardtime_default_on = 1
 " }}}2
 " SQL Suggest {{{2
+"-------------------------------------------------------------------------
 inoremap <Leader>sc <C-R>=SQLComplete("column")<CR>
 inoremap <Leader>st <C-R>=SQLComplete("table")<CR>
 " let g:suggest_db = "mysql -u root test"
 let g:suggest_db = "psql -U Jrock libexample"
+" }}} 2
+" Vimfiler {{{2
+"-------------------------------------------------------------------------
+" nnoremap <Leader>vf :<C-u>VimFiler -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
+nnoremap <Leader>vf :<C-u>VimFilerBufferDir -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_tree_leaf_icon = " "
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '✓'
+let g:vimfiler_readonly_file_icon = '✗'
+let g:vimfiler_ignore_pattern = '^\%(.git\|.DS_Store\)$'
+let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
+
+autocmd FileType vimfiler nunmap <buffer> <C-l>
+autocmd FileType vimfiler nunmap <buffer> <C-j>
+autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
+autocmd FileType vimfiler nmap <buffer> <Leader>s :call VimFilerSearch()<CR>
+"autocmd FileType vimfiler nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
 " }}} 2
 " }}}1
 
@@ -940,4 +951,19 @@ nnoremap <silent> <C-h> :call <SID>NavigateTermSplits('h')<CR>
 nnoremap <silent> <C-j> :call <SID>NavigateTermSplits('j')<CR>
 nnoremap <silent> <C-k> :call <SID>NavigateTermSplits('k')<CR>
 nnoremap <silent> <C-l> :call <SID>NavigateTermSplits('l')<CR>
+" }}}2
+" VimfilerSearch {{{2
+function! VimFilerSearch()
+    let currentDir = vimfiler#get_current_vimfiler().current_dir
+    let pattern = input("Search For: ")
+    if pattern == ''
+        echo 'Maybe another time...'
+        return
+    endif
+    exec 'silent grep! "'.pattern.'" '.currentDir
+    exec "redraw!"
+    exec "redrawstatus!"
+    exec "copen"
+endfunction
+" }}}2
 " }}}1
