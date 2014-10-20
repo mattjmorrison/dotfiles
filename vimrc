@@ -956,6 +956,7 @@ nnoremap <silent> <C-k> :call <SID>NavigateTermSplits('k')<CR>
 nnoremap <silent> <C-l> :call <SID>NavigateTermSplits('l')<CR>
 " }}}2
 " VimfilerSearch {{{2
+"-----------------------------------------------------------------------------------
 function! VimFilerSearch()
     let currentDir = vimfiler#get_current_vimfiler().current_dir
     let pattern = input("Search For: ")
