@@ -50,6 +50,7 @@ NeoBundle 'pangloss/vim-javascript'                                             
 NeoBundle 'scrooloose/syntastic'                                                                   " Syntax checking
 NeoBundle 'vim-scripts/UltiSnips'                                                                  " Ultimate solution for snippets
 NeoBundle 'tpope/vim-commentary'                                                                   " Comment stuff out
+NeoBundle 'tpope/vim-scriptease'                                                                   " A Vim plugin for making / debugging Vim plugins
 NeoBundle 'mhinz/vim-startify'                                                                     " Fancy splash screen
 NeoBundle 'tmhedberg/SimpylFold'                                                                   " Fold Python source code
 NeoBundle 'JarrodCTaylor/vim-python-test-runner'                                                   " Run Python tests from Vim
@@ -938,6 +939,8 @@ function! EditMacro()
   execute "nnoremap <Plug>em :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
 endfunction
 " }}}2
+" Navigate Terminal Splits {{{2
+"-----------------------------------------------------------------------------------
 function! s:NavigateTermSplits(direction)
   let windowNumber = winnr()
   execute 'wincmd ' . a:direction
