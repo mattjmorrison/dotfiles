@@ -653,13 +653,17 @@ let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '✓'
 let g:vimfiler_readonly_file_icon = '✗'
-let g:vimfiler_ignore_pattern = '^\%(.git\|.DS_Store\)$'
 let g:vimfiler_time_format = '%m-%d-%y %H:%M:%S'
+let g:vimfiler_expand_jump_to_first_child = 0
+let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
 
 autocmd FileType vimfiler nunmap <buffer> <C-l>
 autocmd FileType vimfiler nunmap <buffer> <C-j>
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
 autocmd FileType vimfiler nmap <buffer> <Leader>s :call VimFilerSearch()<CR>
+autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
+\ "\<Plug>(vimfiler_expand_tree)",
+\ "\<Plug>(vimfiler_edit_file)")
 "autocmd FileType vimfiler nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
 " }}} 2
 " }}}1
