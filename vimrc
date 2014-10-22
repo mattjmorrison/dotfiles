@@ -1003,4 +1003,18 @@ function! VimfilerChangeDir()
     call vimfiler#mappings#cd('file:'.dirToSearch)
 endfunction
 " }}}2
+" Delete Matching Buffers {{{2
+"-----------------------------------------------------------------------------------
+function! DeleteMatchingBuffers(pattern)
+    let l:bufferList = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
+    if len(l:matchingBuffers) < 1
+        echo 'No buffers found matching pattern ' . a:pattern
+        return
+    endif
+    exec 'bd ' . join(l:matchingBuffers, ' ')
+endfunction
+
+command! -nargs=1 BD call DeleteMatchingBuffers('<args>')
+" }}}2
 " }}}1
