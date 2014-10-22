@@ -643,7 +643,6 @@ let g:suggest_db = "psql -U Jrock libexample"
 " }}} 2
 " Vimfiler {{{2
 "-------------------------------------------------------------------------
-" nnoremap <Leader>vf :<C-u>VimFiler -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
 nnoremap <Leader>vf :<C-u>VimFilerBufferDir -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
@@ -660,11 +659,11 @@ let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
 autocmd FileType vimfiler nunmap <buffer> <C-l>
 autocmd FileType vimfiler nunmap <buffer> <C-j>
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
-autocmd FileType vimfiler nmap <buffer> <Leader>s :call VimFilerSearch()<CR>
+autocmd FileType vimfiler nmap <buffer> <Leader>sd :call VimFilerSearch()<CR>
 autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
 \ "\<Plug>(vimfiler_expand_tree)",
 \ "\<Plug>(vimfiler_edit_file)")
-"autocmd FileType vimfiler nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
+" autocmd FileType vimfiler nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
 " }}} 2
 " }}}1
 
@@ -962,13 +961,18 @@ nnoremap <silent> <C-l> :call <SID>NavigateTermSplits('l')<CR>
 " VimfilerSearch {{{2
 "-----------------------------------------------------------------------------------
 function! VimFilerSearch()
-    let currentDir = vimfiler#get_current_vimfiler().current_dir
-    let pattern = input("Search For: ")
+    let currentDir = vimfiler#get_current_vimfiler().original_files
+    for dirItem in currentDir
+        if dirItem.vimfiler__is_marked == 1
+            let dirToSearch = dirItem.action__path
+        endif
+    endfor
+    let pattern = input("Search [".dirToSearch."] For: ")
     if pattern == ''
         echo 'Maybe another time...'
         return
     endif
-    exec 'silent grep! "'.pattern.'" '.currentDir
+    exec 'silent grep! "'.pattern.'" '.dirToSearch
     exec "redraw!"
     exec "redrawstatus!"
     exec "copen"
