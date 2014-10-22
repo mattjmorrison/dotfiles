@@ -556,7 +556,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Most recently used files                                      9m', 'Unite file_mru'],
     \['➤ New horizontal split                                          9-', 'split'],
     \['➤ New vertical split                                            9\', 'vsplit'],
-    \['➤ Open Vimfiler                                                9vf', 'echo "Use 9vf"'],
+    \['➤ Open Vimfiler focused in current directory                   9vs', 'echo "User 9vs"'],
     \['➤ Recolor the rainbow parentheses after sneak                  9rc', 'call VisualFindAndReplaceWithSelection()'],
     \['➤ Refresh Ctags                                                9rt', 'call RenewTagsFile()'],
     \['➤ Remove trailing whitespaces                                   9W', 'normal 9W'],
@@ -589,6 +589,7 @@ let g:unite_source_menu_menus.LeaderKeyMaps.command_candidates = [
     \['➤ Test Python method with Nose                                 9nm', 'echo "Use 9nm"'],
     \['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode'],
     \['➤ Toggle Tagbar                                                9tb', 'TagbarToggle'],
+    \['➤ Toggle Vimfiler                                              9vf', 'echo "Use 9vf"'],
     \['➤ Toggle checkbox                                              9tc', 'normal 9tc'],
     \['➤ Toggle hard mode                                             9th', 'normal 9th'],
     \['➤ Toggle indentation guildes                                   9ig', 'normal 9ig'],
@@ -613,6 +614,14 @@ let g:unite_source_menu_menus.PluginKeyMaps = {'description': 'Keyboard shortcut
 let g:unite_source_menu_menus.PluginKeyMaps.command_candidates = [
     \['➤ Replace in quickfix                                   :Qfreplace', 'echo "Use :Qfreplace"'],
     \['➤ Activate EasyAlign in visual mode (<C-x> for regex)        Enter', 'echo "Press Enter"'],
+    \['➤ Vimfiler copy file(s)                    Select file(s) then "c"', 'echo "Select file(s) then c"'],
+    \['➤ Vimfiler delete file(s)                  Select file(s) then "d"', 'echo "Select file(s) then d"'],
+    \['➤ Vimfiler move file(s)                    Select file(s) then "m"', 'echo "Select file(s) then m"'],
+    \['➤ Vimfiler search dir                                           9s', 'echo "9s over desired dir"'],
+    \['➤ Vimfiler create file(s)                                        N', 'echo "Press N"'],
+    \['➤ Vimfiler create dirs(s)                                        K', 'echo "Press K"'],
+    \['➤ Vimfiler cd into or edit under cursor                          l', 'echo "Press l"'],
+    \['➤ Vimfiler switch to parrent directory                           h', 'echo "Press h"'],
     \]
 nnoremap <silent>[menu]p :Unite -silent -winheight=17 -start-insert menu:PluginKeyMaps<CR>
 " }}}5
@@ -643,7 +652,8 @@ let g:suggest_db = "psql -U Jrock libexample"
 " }}} 2
 " Vimfiler {{{2
 "-------------------------------------------------------------------------
-nnoremap <Leader>vf :<C-u>VimFilerBufferDir -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
+nnoremap <Leader>vf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
+nnoremap <Leader>vs :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -no-quit -find<CR>
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_tree_leaf_icon = " "
@@ -658,12 +668,14 @@ let g:vimfiler_ignore_pattern = '\.git\|\.DS_Store\|\.pyc'
 
 autocmd FileType vimfiler nunmap <buffer> <C-l>
 autocmd FileType vimfiler nunmap <buffer> <C-j>
+autocmd FileType vimfiler nunmap <buffer> l
+autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
+autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
-autocmd FileType vimfiler nmap <buffer> <Leader>sd :call VimFilerSearch()<CR>
+autocmd FileType vimfiler nmap <buffer> <Leader>s <Plug>(vimfiler_mark_current_line):call VimfilerSearch()<CR>
 autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
 \ "\<Plug>(vimfiler_expand_tree)",
 \ "\<Plug>(vimfiler_edit_file)")
-" autocmd FileType vimfiler nmap <buffer> c <Plug>(vimfiler_mark_current_line)<Plug>(vimfiler_copy_file)
 " }}} 2
 " }}}1
 
@@ -958,15 +970,21 @@ nnoremap <silent> <C-j> :call <SID>NavigateTermSplits('j')<CR>
 nnoremap <silent> <C-k> :call <SID>NavigateTermSplits('k')<CR>
 nnoremap <silent> <C-l> :call <SID>NavigateTermSplits('l')<CR>
 " }}}2
-" VimfilerSearch {{{2
+" VimfilerCurrentDir {{{2
 "-----------------------------------------------------------------------------------
-function! VimFilerSearch()
+function! VimfilerCurrentDir()
     let currentDir = vimfiler#get_current_vimfiler().original_files
     for dirItem in currentDir
         if dirItem.vimfiler__is_marked == 1
-            let dirToSearch = dirItem.action__path
+            return dirItem.action__path
         endif
     endfor
+endfunction
+" }}}2
+" VimfilerSearch {{{2
+"-----------------------------------------------------------------------------------
+function! VimfilerSearch()
+    let dirToSearch = VimfilerCurrentDir()
     let pattern = input("Search [".dirToSearch."] For: ")
     if pattern == ''
         echo 'Maybe another time...'
@@ -976,6 +994,13 @@ function! VimFilerSearch()
     exec "redraw!"
     exec "redrawstatus!"
     exec "copen"
+endfunction
+" }}}2
+" VimfilerChangeDir {{{2
+"-----------------------------------------------------------------------------------
+function! VimfilerChangeDir()
+    let dirToSearch = VimfilerCurrentDir()
+    call vimfiler#mappings#cd('file:'.dirToSearch)
 endfunction
 " }}}2
 " }}}1
