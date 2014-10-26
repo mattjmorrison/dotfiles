@@ -21,6 +21,26 @@ let b:fileList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/custom-functions', '*.vim'), '\n')
 "}1
 
+" Function to process lists for sourceing and adding bundles {1
+function! ProcessList(listToProcess, functionToCall)
+    for fpath in a:listToProcess
+        if index(b:exclude, split(fpath, "/")[-1]) >= 0
+            continue
+        else
+            exe "call " . a:functionToCall . "('" . fpath . "')"
+        endif
+    endfor
+endfunction
+
+function! AddBundle(fpath)
+    exe 'NeoBundle ' readfile(a:fpath, "", 4)[-1]
+endfunction
+
+function! SourceFile(fpath)
+    exe 'source' a:fpath
+endfunction
+"}1
+
 " Set leader keys {1
 let mapleader="9"
 let maplocalleader= '|'
@@ -45,13 +65,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 " }2
 " Bundles {2
-for fpath in b:pluginList
-    if index(b:exclude, split(fpath, "/")[-1]) >= 0
-        continue
-    else
-        exe 'NeoBundle '  readfile(fpath, "", 4)[-1]
-    endif
-endfor
+call ProcessList(b:pluginList, "AddBundle")
 " }2
 " Auto install the plugins {2
 call neobundle#end()
@@ -62,12 +76,5 @@ NeoBundleCheck
 
 " Source Vim configurations {1
 source ~/.vim/plugin-configs/unite.vim " Needs to be first so the others can add to the menu(s)
-
-for fpath in b:fileList
-    if index(b:exclude, split(fpath, "/")[-1]) >= 0
-        continue
-    else
-        exe 'source' fpath
-    endif
-endfor
+call ProcessList(b:fileList, "SourceFile")
 " }1
