@@ -27,7 +27,7 @@ function! ProcessList(listToProcess, functionToCall)
         if index(b:exclude, split(fpath, "/")[-1]) >= 0
             continue
         else
-            exe "call " . a:functionToCall . "('" . fpath . "')"
+            call {a:functionToCall}(fpath)
         endif
     endfor
 endfunction
