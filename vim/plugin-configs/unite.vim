@@ -34,6 +34,7 @@ function! s:unite_buffer_settings()
   imap <silent><buffer><expr> <C-x> unite#do_action('split')
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+  noremap <silent><buffer><expr> <C-d> unite#do_action('delete')
   nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
@@ -63,6 +64,7 @@ nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 let g:unite_source_menu_menus.CustomKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |9'}
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates = [
     \['➤ Buffer list                                                   9b', 'Unite buffer'],
+    \['➤ Delete from buffer list in normal mode                     <C-d>', 'echo "Use <C-d> to delete a buffer"'],
     \['➤ Find files,                                                  9ff', 'normal 9ff'],
     \['➤ Search jumps                                                 9sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                           9sb', 'Unite line'],
