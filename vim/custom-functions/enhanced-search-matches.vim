@@ -1,0 +1,54 @@
+"===============================================================================
+" DESCRIPTION:   Monkeypatches the 6 search commands (/,?,n,N,*,#) and adds
+"                two things. First we display a message about the number of
+"                matches (i.e. "Match 3 of 12 for [searchWord]") next we
+"                highlight the current match for .4 of a second to help your
+"                eye track between jumps.
+" EXAMPLE USAGE: Use (/, ?, n, N, *. #) as you normally would and the
+"                magic happens automatically.
+"===============================================================================
+function! HLNext (blinktime)
+    highlight HighlightStyle ctermfg=none ctermbg=160 cterm=none
+    let [bufnum, lnum, col, off] = getpos('.')
+    let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+    let target_pat = '\c\%#'.@/
+    let ring = matchadd('HighlightStyle', target_pat, 101)
+    redraw
+    exec 'sleep ' . float2nr(a:blinktime * 500) . 'm'
+    call matchdelete(ring)
+    redraw
+endfunction
+
+function! DoIndexedSearch()
+    let winview = winsaveview()
+    let line = winview["lnum"]
+    let col = winview["col"] + 1
+    let [total, current] = [0, -1]
+    call cursor(1, 1)
+    let [matchline, matchcol] = searchpos(@/, 'Wc')
+    while matchline
+        let total += 1
+        if (matchline == line && matchcol == col)
+            let current = total
+        endif
+        let [matchline, matchcol] = searchpos(@/, 'W')
+    endwhile
+    call winrestview(winview)
+    echo "Match " . current . " of " . total . " for" ." [" . @/ . "]"
+    call HLNext(0.4)
+endfunction
+
+"===============================================================================
+" Function Keymappings
+"===============================================================================
+nnoremap /  :call DoIndexedSearch()<CR>/
+nnoremap ?  :call DoIndexedSearch()<CR>?
+nnoremap <silent>* *:call DoIndexedSearch()<CR>
+nnoremap <silent># #:call DoIndexedSearch()<CR>
+nnoremap <silent>n nzv:call DoIndexedSearch()<CR>
+nnoremap <silent>N Nzv:call DoIndexedSearch<CR>
+
+"===============================================================================
+" Unite Keymap Menu Item(s)
+"===============================================================================
+" N/A
