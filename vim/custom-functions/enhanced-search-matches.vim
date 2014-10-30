@@ -20,21 +20,21 @@ function! HLNext (blinktime)
 endfunction
 
 function! DoIndexedSearch()
-    let winview = winsaveview()
-    let line = winview["lnum"]
-    let col = winview["col"] + 1
-    let [total, current] = [0, -1]
+    let currentUserView = winsaveview()
+    let userLine = currentUserView["lnum"]
+    let userCol = currentUserView["col"] + 1
+    let [totalMatches, currentMatch] = [0, -1]
     call cursor(1, 1)
     let [matchline, matchcol] = searchpos(@/, 'Wc')
     while matchline
-        let total += 1
-        if (matchline == line && matchcol == col)
-            let current = total
+        let totalMatches += 1
+        if (matchline == userLine && matchcol == userCol)
+            let currentMatch = totalMatches
         endif
         let [matchline, matchcol] = searchpos(@/, 'W')
     endwhile
-    call winrestview(winview)
-    echo "Match " . current . " of " . total . " for" ." [" . @/ . "]"
+    call winrestview(currentUserView)
+    echo "Match " . currentMatch . " of " . totalMatches . " for" ." [" . @/ . "]"
     call HLNext(0.4)
 endfunction
 
@@ -46,7 +46,7 @@ nnoremap ?  :call DoIndexedSearch()<CR>?
 nnoremap <silent>* *:call DoIndexedSearch()<CR>
 nnoremap <silent># #:call DoIndexedSearch()<CR>
 nnoremap <silent>n nzv:call DoIndexedSearch()<CR>
-nnoremap <silent>N Nzv:call DoIndexedSearch<CR>
+nnoremap <silent>N Nzv:call DoIndexedSearch()<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
