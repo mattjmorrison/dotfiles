@@ -57,7 +57,7 @@ git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 echo -n "Install all the packages (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
 
-    ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew doctor
     brew update
 
