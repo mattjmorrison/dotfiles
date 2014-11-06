@@ -21,4 +21,4 @@ nnoremap <Leader>gt :call MyJumpTo()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Jump to ctag or word under the cursor                        9gt', 'normal 9gt']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Jump to ctag or word under the cursor                        9gt', 'normal 9gt']]

@@ -35,4 +35,4 @@ nnoremap <Leader>us :call MakeUnderscore()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Undersocre Python test name                                  9us', 'normal 9us']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Undersocre Python test name                                  9us', 'normal 9us']]

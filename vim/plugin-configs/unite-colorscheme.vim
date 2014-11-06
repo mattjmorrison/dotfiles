@@ -16,4 +16,4 @@ nnoremap <LocalLeader>c :Unite colorscheme -auto-preview<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Choose colorscheme                                            |c', 'Unite colorscheme -auto-preview']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Choose colorscheme                                            |c', 'Unite colorscheme -auto-preview']]

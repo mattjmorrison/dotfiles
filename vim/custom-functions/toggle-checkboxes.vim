@@ -27,4 +27,4 @@ nnoremap <Leader>tc :call ToggleTodoCheckbox()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Toggle checkbox                                              9tc', 'normal 9tc']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle checkbox                                              9tc', 'normal 9tc']]

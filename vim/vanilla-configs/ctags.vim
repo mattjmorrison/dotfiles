@@ -23,4 +23,4 @@ nnoremap <Leader>rt :call RenewTagsFile()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Refresh or create ctags file                                 9rt', 'call RenewTagsFile()']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Refresh or create ctags file                                 9rt', 'call RenewTagsFile()']]

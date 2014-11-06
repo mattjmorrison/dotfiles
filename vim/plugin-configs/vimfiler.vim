@@ -60,13 +60,13 @@ nnoremap <Leader>vs :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Toggle Vimfiler                                              9vf', 'echo "Use 9vf"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Open Vimfiler focused in current directory                   9vs', 'echo "User 9vs"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler copy file(s)                    Select file(s) then "c"', 'echo "Select file(s) then c"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler delete file(s)                  Select file(s) then "d"', 'echo "Select file(s) then d"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler move file(s)                    Select file(s) then "m"', 'echo "Select file(s) then m"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler search dir                                           9s', 'echo "9s over desired dir"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler create file(s)                                        N', 'echo "Press N"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler create dirs(s)                                        K', 'echo "Press K"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler cd into or edit under cursor                          l', 'echo "Press l"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Vimfiler switch to parrent directory                           h', 'echo "Press h"']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle Vimfiler                                              9vf', 'echo "Use 9vf"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Open Vimfiler focused in current directory                   9vs', 'echo "User 9vs"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler copy file(s)                    Select file(s) then "c"', 'echo "Select file(s) then c"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler delete file(s)                  Select file(s) then "d"', 'echo "Select file(s) then d"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler move file(s)                    Select file(s) then "m"', 'echo "Select file(s) then m"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler search dir                                           9s', 'echo "9s over desired dir"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler create file(s)                                        N', 'echo "Press N"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler create dirs(s)                                        K', 'echo "Press K"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler cd into or edit under cursor                          l', 'echo "Press l"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler switch to parrent directory                           h', 'echo "Press h"']]

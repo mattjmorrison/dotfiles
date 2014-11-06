@@ -19,5 +19,5 @@ nnoremap <C-w><Down> :exe "resize -" . (winheight(0) * 1/2)<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"']
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Resize windows 50%                               <C-w>Arrow keys', 'echo "Use Ctrl-w plus the arrow keys to resize a window by 50%"']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Resize windows                                        Arrow keys', 'echo "Use the arrow keys to resize windows"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Resize windows 50%                               <C-w>Arrow keys', 'echo "Use Ctrl-w plus the arrow keys to resize a window by 50%"']]

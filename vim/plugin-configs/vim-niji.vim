@@ -34,4 +34,4 @@ nnoremap <Leader>rc :call niji#highlight()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Recolor the rainbow parentheses after sneak                  9rc', 'echo "Use 9rc to recolor the parens"']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Recolor the rainbow parentheses after sneak                  9rc', 'echo "Use 9rc to recolor the parens"']]

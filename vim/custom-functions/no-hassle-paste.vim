@@ -34,4 +34,4 @@ nnoremap <silent> yI  :call <SID>setup_paste()<CR>I
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Enter paste mode [exit with <Esc>]                            yp', 'normal yp']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Enter paste mode [exit with <Esc>]                            yp', 'normal yp']]

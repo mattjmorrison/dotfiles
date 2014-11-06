@@ -17,4 +17,4 @@ vmap <Enter> <Plug>(EasyAlign)
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Activate EasyAlign in visual mode (<C-x> for regex)        Enter', 'echo "Press Enter"']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Activate EasyAlign in visual mode (<C-x> for regex)        Enter', 'echo "Press Enter"']]

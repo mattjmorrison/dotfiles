@@ -16,4 +16,4 @@ nnoremap <Leader>tb :TagbarToggle<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Toggle Tagbar                                                9tb', 'TagbarToggle']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle Tagbar                                                9tb', 'TagbarToggle']]

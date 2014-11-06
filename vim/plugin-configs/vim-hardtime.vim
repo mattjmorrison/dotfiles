@@ -20,4 +20,4 @@ nnoremap <Leader>th :HardTimeToggle<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Toggle hard mode                                             9th', 'normal 9th']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle hard mode                                             9th', 'normal 9th']]

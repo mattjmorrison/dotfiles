@@ -43,4 +43,4 @@ nnoremap <Leader>a :Search<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"']]

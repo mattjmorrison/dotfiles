@@ -16,4 +16,4 @@ nnoremap <Leader>ud :GundoToggle<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += ['➤ Toggle visual undo tree                                      9ud', 'GundoToggle']
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle visual undo tree                                      9ud', 'GundoToggle']]
