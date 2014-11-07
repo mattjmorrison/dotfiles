@@ -25,7 +25,7 @@ function! DoIndexedSearch()
     let userCol = currentUserView["col"] + 1
     let [totalMatches, currentMatch] = [0, -1]
     call cursor(1, 1)
-    let [matchline, matchcol] = searchpos(@/, 'Wc')
+    try | let [matchline, matchcol] = searchpos(@/, 'Wc') | catch | let [matchline, matchcol] = [0, 0] | endtry
     while matchline
         let totalMatches += 1
         if (matchline == userLine && matchcol == userCol)
