@@ -2,24 +2,24 @@
 " DESCRIPTION:   Toggle the quickfix window open and closed
 " EXAMPLE USAGE: Press <Leader>q to toggle the quickfix window
 "===============================================================================
-let g:quickfix_is_open = 0
-
-function! QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen
-        let g:quickfix_is_open = 1
-    endif
+function! QuickfixToggle(forced)
+  if exists("g:qfix_win") && a:forced == 0
+    cclose
+  else
+    execute "copen "
+  endif
 endfunction
+
+augroup QuickfixToggle
+ autocmd!
+ autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+ autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+augroup END
 
 "===============================================================================
 " Function Keymappings
 "===============================================================================
-nnoremap <Leader>q :call QuickfixToggle()<CR>
+nnoremap <Leader>q :call QuickfixToggle(0)<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
