@@ -38,9 +38,9 @@ command Search call TheSilverSearcher()
 "===============================================================================
 " Function Keymappings
 "===============================================================================
-nnoremap <Leader>a :Search<CR>
+nnoremap <Leader>s :Search<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        9a', 'echo "Use 9a to start the search prompt"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        9s', 'echo "Use 9s to start the search prompt"']]
