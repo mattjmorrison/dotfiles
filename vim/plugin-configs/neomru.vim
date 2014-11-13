@@ -11,9 +11,9 @@
 "===============================================================================
 " Plugin Keymappings
 "===============================================================================
-nnoremap <Leader>m :Unite file_mru<CR>
+nnoremap <Leader>ru :Unite file_mru<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Most recently used files                                      9m', 'Unite file_mru']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Most recently used files                                      9ru', 'Unite file_mru']]
