@@ -1,7 +1,7 @@
 "===============================================================================
 " DESCRIPTION:   Search from the project root recursively for a specified
 "                string
-" EXAMPLE USAGE: Press <Leader>a and enter the string to search for. The
+" EXAMPLE USAGE: Press <Leader>ag and enter the string to search for. The
 "                results are displayed in the quickfix window.
 "===============================================================================
 if executable('ag')
@@ -38,9 +38,9 @@ command Search call TheSilverSearcher()
 "===============================================================================
 " Function Keymappings
 "===============================================================================
-nnoremap <Leader>s :Search<CR>
+nnoremap <Leader>ag :Search<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        <Leader>s', 'echo "Use <Leader>s to start the search prompt"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        <Leader>ag', 'echo "Use <Leader>s to start the search prompt"']]
