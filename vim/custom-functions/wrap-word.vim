@@ -44,4 +44,4 @@ nnoremap <Leader>ww :WrapWith<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Wrap word under cursor with method                           9ww', 'normal 9ww']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Wrap word under cursor with method                            <Leader>ww', 'normal <Leader>ww']]

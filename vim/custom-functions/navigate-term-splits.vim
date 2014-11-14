@@ -24,4 +24,4 @@ nnoremap <silent> <C-l> :call <SID>NavigateTermSplits('l')<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Navigate between splits                             Ctrl + hjkl', 'echo "Use Ctrl plus hjkl to navigate splits"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Navigate between splits                                       Ctrl + hjkl', 'echo "Use Ctrl plus hjkl to navigate splits"']]

@@ -20,4 +20,4 @@ nmap <Leader>em :call EditMacro()<CR> <Plug>em
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit macro contents in specific register                     9em', 'normal 9em']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit macro contents in specific register                      <Leader>em', 'normal <Leader>em']]

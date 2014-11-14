@@ -48,7 +48,7 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
-inoremap <Leader>c <C-x><C-o>
+inoremap 9c <C-x><C-o>
 " --- Select tag if more than one option exists else jump to tag
 nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
@@ -63,15 +63,15 @@ cmap w!! w !sudo tee %
 " Unite Keymap Menu Item(s)
 "===============================================================================
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle spell checking                                         ss', 'setlocal spell!']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New vertical split                                            9\', 'vsplit']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New horizontal split                                          9-', 'split']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Turn off search highlighting                              9<ESC>', 'nohlsearch']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle line numbers                                          9tn', 'normal 9tn']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit configuration file (vimrc)                              9ev', 'edit $MYVIMRC']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Source vim configuration file (vimrc)                        9sv', 'normal 9sv']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Spell check entire file with aspell                          9sc', 'normal 9sc']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Get Hex dump of binary file buffer                            9h', 'normal 9h']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New vertical split                                            <Leader>\', 'vsplit']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New horizontal split                                          <Leader>-', 'split']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Turn off search highlighting                                  <Leader><ESC>', 'nohlsearch']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle line numbers                                           <Leader>tn', 'normal <Leader>tn']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit configuration file (vimrc)                               <Leader>ev', 'edit $MYVIMRC']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Source vim configuration file (vimrc)                         <Leader>sv', 'normal <Leader>sv']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Spell check entire file with aspell                           <Leader>sc', 'normal <Leader>sc']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Get Hex dump of binary file buffer                            <Leader>h', 'normal <Leader>h']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Select tag if more than one else jump to tag                 9st', 'normal 9st']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Remove trailing whitespaces                                   9W', 'normal 9W']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Save as root                                                :w!!', 'exe "write !sudo tee % >/dev/null"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Select tag if more than one else jump to tag                  <Leader>st', 'normal <Leader>st']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Remove trailing whitespaces                                   <Leader>W', 'normal <Leader>W']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Save as root                                                  :w!!', 'exe "write !sudo tee % >/dev/null"']]

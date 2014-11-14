@@ -42,7 +42,7 @@ endfunction
 "}1
 
 " Set leader keys {1
-let mapleader="9"
+let mapleader=" "
 let maplocalleader= '|'
 " }1
 

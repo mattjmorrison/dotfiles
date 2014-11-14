@@ -19,4 +19,4 @@ autocmd FileType html,htmldjango,handlebars,html.handlebars EmmetInstall
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Trigger emmet expansion                                        ,', 'echo "use `,` to expand html tags"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Trigger emmet expansion                                       ,', 'echo "use `,` to expand html tags"']]

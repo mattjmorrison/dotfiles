@@ -32,7 +32,7 @@ A must have for pair programming sessions. The most notable features are the the
 
 ## Vim
 
-The vim configuration is the life blood of the dotfiles. Vim is my primary editor and spend the majority of everyday banging away inside its modal buffers. Even more so thatn the zshrc the vimrc is meticulously organized. You can interactively explore the key mappings by opening an empty buffer and typing `|9` in normal mode as pictured below. This will open a unite menu that lists all of the shortcuts with a description and the key mapping that triggers it. You can scroll through the list with \<C-J> \<C-k> or filter the options by typing.
+The vim configuration is the life blood of the dotfiles. Vim is my primary editor and spend the majority of everyday banging away inside its modal buffers. Even more so thatn the zshrc the vimrc is meticulously organized. You can interactively explore the key mappings by opening an empty buffer and typing `|<Space>` in normal mode as pictured below. This will open a unite menu that lists all of the shortcuts with a description and the key mapping that triggers it. You can scroll through the list with \<C-J> \<C-k> or filter the options by typing.
 
 ![vim](https://cloud.githubusercontent.com/assets/4416952/4179851/d820ceba-36d9-11e4-8818-0aee5eb7b096.gif)
 

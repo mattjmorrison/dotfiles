@@ -30,4 +30,4 @@ vnoremap <C-a> :call Incr()<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Increment visually selected column of numbers              <C-a>', 'echo "Use <C-a>"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Increment visually selected column of numbers                 <C-a>', 'echo "Use <C-a>"']]

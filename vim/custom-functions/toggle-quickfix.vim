@@ -24,4 +24,4 @@ nnoremap <Leader>q :call QuickfixToggle(0)<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle quickfix                                               9q', 'call QuickfixToggle()']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle quickfix                                               <Leader>q', 'call QuickfixToggle()']]

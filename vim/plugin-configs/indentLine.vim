@@ -20,4 +20,4 @@ nnoremap <Leader>ig :IndentLinesToggle<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle indentation guildes                                   9ig', 'normal 9ig']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle indentation guildes                                    <Leader>ig', 'normal <Leader>ig']]

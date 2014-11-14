@@ -26,4 +26,4 @@ nnoremap <Leader>ts :SyntasticToggleMode<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle Syntastic                                             9ts', 'SyntasticToggleMode']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle Syntastic                                              <Leader>ts', 'SyntasticToggleMode']]

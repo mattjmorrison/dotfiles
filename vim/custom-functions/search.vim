@@ -2,7 +2,7 @@
 " DESCRIPTION:   Search from the project root recursively for a specified
 "                string
 " EXAMPLE USAGE: Press <Leader>a and enter the string to search for. The
-"                results are displayed in the quickfix window. 
+"                results are displayed in the quickfix window.
 "===============================================================================
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor\ --column
@@ -43,4 +43,4 @@ nnoremap <Leader>s :Search<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        9s', 'echo "Use 9s to start the search prompt"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search                                                        <Leader>s', 'echo "Use <Leader>s to start the search prompt"']]

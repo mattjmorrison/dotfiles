@@ -61,17 +61,17 @@ nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR><Esc>
 "===============================================================================
 " Menu for Custom Key
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |9'}
+let g:unite_source_menu_menus.CustomKeyMaps = {'description': 'Custom mapped keyboard shortcuts                   |<SPACE>'}
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates = [
-    \['➤ Buffer list                                                   9b', 'Unite buffer'],
-    \['➤ Delete from buffer list in normal mode                     <C-d>', 'echo "Use <C-d> to delete a buffer"'],
-    \['➤ Find files,                                                  9ff', 'normal 9ff'],
-    \['➤ Search jumps                                                 9sj', 'Unite jump'],
-    \['➤ Search lines in the current buffer                           9sb', 'Unite line'],
-    \['➤ Update Neobundle packages                                    9nu', 'normal 9nu'],
-    \['➤ Yank history                                                  9y', 'Unite history/yank'],
+    \['➤ Buffer list                                                   <Leader>b', 'Unite buffer'],
+    \['➤ Delete from buffer list in normal mode                        <C-d>', 'echo "Use <C-d> to delete a buffer"'],
+    \['➤ Find files,                                                   <Leader>ff', 'normal <Leader>ff'],
+    \['➤ Search jumps                                                  <Leader>sj', 'Unite jump'],
+    \['➤ Search lines in the current buffer                            <Leader>sb', 'Unite line'],
+    \['➤ Update Neobundle packages                                     <Leader>nu', 'normal <Leader>nu'],
+    \['➤ Yank history                                                  <Leader>y', 'Unite history/yank'],
     \]
-nnoremap <silent>[menu]9 :Unite -silent -winheight=17 -start-insert menu:CustomKeyMaps<CR>
+nnoremap <silent>[menu]<Space> :Unite -silent -winheight=17 -start-insert menu:CustomKeyMaps<CR>
 
 "===============================================================================
 " Plugin Keyboard Shortcuts

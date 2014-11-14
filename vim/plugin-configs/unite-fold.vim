@@ -16,4 +16,4 @@ nnoremap <Leader>sf :Unite fold<CR>
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search folds                                                 9sf', 'Unite fold']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Search folds                                                  <Leader>sf', 'Unite fold']]
