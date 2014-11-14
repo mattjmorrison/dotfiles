@@ -18,7 +18,7 @@ nnoremap <Leader>dm :DjangoTestMethod<CR>
 nnoremap <Leader>nf :NosetestFile<CR>
 nnoremap <Leader>nc :NosetestClass<CR>
 nnoremap <Leader>nm :NosetestMethod<CR>
-nnoremap <Leader>rr :RerunLastTests<CR>
+nnoremap <Leader>re :RerunLastTests<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
@@ -30,4 +30,4 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Dj
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Python class with Nose                                   <Leader>nc', 'echo "Use <Leader>nc"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Python file with Nose                                    <Leader>nf', 'echo "Use <Leader>nf"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Python method with Nose                                  <Leader>nm', 'echo "Use <Leader>nm"']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Rerun last Python test                                        <Leader>rr', 'RerunLastTests']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Rerun last Python test                                        <Leader>re', 'RerunLastTests']]
