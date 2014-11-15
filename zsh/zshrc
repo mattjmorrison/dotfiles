@@ -200,10 +200,6 @@ alias la='ls -la'
 alias lls='ll -Sr'
 alias less='less -imJMW'
 alias tmux="deactivate; TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias gs='git status'
 alias gd='git diff'
@@ -445,6 +441,21 @@ ipinfo() {
 if [[ -s "/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/bin/java" ]]; then
     export JAVA_CMD="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/bin/java"
 fi
+# >>2
+# Upwards directory traversal shortcut <<2
+#--------------------------------------------------------------------
+# Hitting `...` will produce `../..` an additional `/..` will be added
+# for every `.` after that
+# -------------------------------------------------------------------
+traverse_up() {
+    if [[ $LBUFFER = *.. ]]; then
+        LBUFFER+=/..
+    else
+        LBUFFER+=.
+    fi
+}
+zle -N traverse_up
+bindkey . traverse_up
 # >>2
 # >>1
 
