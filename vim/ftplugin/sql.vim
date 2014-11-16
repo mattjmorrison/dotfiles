@@ -1,621 +1,621 @@
-:iabbr abort ABORT
-:iabbr abs ABS
-:iabbr absolute ABSOLUTE
-:iabbr access ACCESS
-:iabbr action ACTION
-:iabbr ada ADA
-:iabbr add ADD
-:iabbr admin ADMIN
-:iabbr after AFTER
-:iabbr aggregate AGGREGATE
-:iabbr alias ALIAS
-:iabbr all ALL
-:iabbr allocate ALLOCATE
-:iabbr also ALSO
-:iabbr alter ALTER
-:iabbr always ALWAYS
-:iabbr analyse ANALYSE
-:iabbr analyze ANALYZE
-:iabbr and AND
-:iabbr any ANY
-:iabbr are ARE
-:iabbr array ARRAY
-:iabbr as AS
-:iabbr asc ASC
-:iabbr asensitive ASENSITIVE
-:iabbr assertion ASSERTION
-:iabbr assignment ASSIGNMENT
-:iabbr asymmetric ASYMMETRIC
-:iabbr at AT
-:iabbr atomic ATOMIC
-:iabbr attribute ATTRIBUTE
-:iabbr attributes ATTRIBUTES
-:iabbr authorization AUTHORIZATION
-:iabbr avg AVG
-:iabbr backward BACKWARD
-:iabbr before BEFORE
-:iabbr begin BEGIN
-:iabbr bernoulli BERNOULLI
-:iabbr between BETWEEN
-:iabbr bigint BIGINT
-:iabbr binary BINARY
-:iabbr bit BIT
-:iabbr bitvar BITVAR
-:iabbr bit_length BIT_LENGTH
-:iabbr blob BLOB
-:iabbr boolean BOOLEAN
-:iabbr both BOTH
-:iabbr breadth BREADTH
-:iabbr by BY
-:iabbr cache CACHE
-:iabbr call CALL
-:iabbr called CALLED
-:iabbr cardinality CARDINALITY
-:iabbr cascade CASCADE
-:iabbr cascaded CASCADED
-:iabbr case CASE
-:iabbr cast CAST
-:iabbr catalog CATALOG
-:iabbr catalog_name CATALOG_NAME
-:iabbr ceil CEIL
-:iabbr ceiling CEILING
-:iabbr chain CHAIN
-:iabbr char CHAR
-:iabbr character CHARACTER
-:iabbr characteristics CHARACTERISTICS
-:iabbr characters CHARACTERS
-:iabbr character_length CHARACTER_LENGTH
-:iabbr character_set_catalog CHARACTER_SET_CATALOG
-:iabbr character_set_name CHARACTER_SET_NAME
-:iabbr character_set_schema CHARACTER_SET_SCHEMA
-:iabbr char_length CHAR_LENGTH
-:iabbr check CHECK
-:iabbr checked CHECKED
-:iabbr checkpoint CHECKPOINT
-:iabbr class CLASS
-:iabbr class_origin CLASS_ORIGIN
-:iabbr clob CLOB
-:iabbr close CLOSE
-:iabbr cluster CLUSTER
-:iabbr coalesce COALESCE
-:iabbr cobol COBOL
-:iabbr collate COLLATE
-:iabbr collation COLLATION
-:iabbr collation_catalog COLLATION_CATALOG
-:iabbr collation_name COLLATION_NAME
-:iabbr collation_schema COLLATION_SCHEMA
-:iabbr collect COLLECT
-:iabbr column COLUMN
-:iabbr column_name COLUMN_NAME
-:iabbr command_function COMMAND_FUNCTION
-:iabbr command_function_code COMMAND_FUNCTION_CODE
-:iabbr comment COMMENT
-:iabbr commit COMMIT
-:iabbr committed COMMITTED
-:iabbr completion COMPLETION
-:iabbr condition CONDITION
-:iabbr condition_number CONDITION_NUMBER
-:iabbr connect CONNECT
-:iabbr connection CONNECTION
-:iabbr connection_name CONNECTION_NAME
-:iabbr constraint CONSTRAINT
-:iabbr constraints CONSTRAINTS
-:iabbr constraint_catalog CONSTRAINT_CATALOG
-:iabbr constraint_name CONSTRAINT_NAME
-:iabbr constraint_schema CONSTRAINT_SCHEMA
-:iabbr constructor CONSTRUCTOR
-:iabbr contains CONTAINS
-:iabbr continue CONTINUE
-:iabbr conversion CONVERSION
-:iabbr convert CONVERT
-:iabbr copy COPY
-:iabbr corr CORR
-:iabbr corresponding CORRESPONDING
-:iabbr count COUNT
-:iabbr covar_pop COVAR_POP
-:iabbr covar_samp COVAR_SAMP
-:iabbr create CREATE
-:iabbr createdb CREATEDB
-:iabbr createrole CREATEROLE
-:iabbr createuser CREATEUSER
-:iabbr cross CROSS
-:iabbr csv CSV
-:iabbr cube CUBE
-:iabbr cume_dist CUME_DIST
-:iabbr current CURRENT
-:iabbr current_date CURRENT_DATE
-:iabbr current_default_transform_group CURRENT_DEFAULT_TRANSFORM_GROUP
-:iabbr current_path CURRENT_PATH
-:iabbr current_role CURRENT_ROLE
-:iabbr current_time CURRENT_TIME
-:iabbr current_timestamp CURRENT_TIMESTAMP
-:iabbr current_transform_group_for_type CURRENT_TRANSFORM_GROUP_FOR_TYPE
-:iabbr current_user CURRENT_USER
-:iabbr cursor CURSOR
-:iabbr cursor_name CURSOR_NAME
-:iabbr cycle CYCLE
-:iabbr data DATA
-:iabbr database DATABASE
-:iabbr date DATE
-:iabbr datetime_interval_code DATETIME_INTERVAL_CODE
-:iabbr datetime_interval_precision DATETIME_INTERVAL_PRECISION
-:iabbr day DAY
-:iabbr deallocate DEALLOCATE
-:iabbr dec DEC
-:iabbr decimal DECIMAL
-:iabbr declare DECLARE
-:iabbr default DEFAULT
-:iabbr defaults DEFAULTS
-:iabbr deferrable DEFERRABLE
-:iabbr deferred DEFERRED
-:iabbr defined DEFINED
-:iabbr definer DEFINER
-:iabbr degree DEGREE
-:iabbr delete DELETE
-:iabbr delimiter DELIMITER
-:iabbr delimiters DELIMITERS
-:iabbr dense_rank DENSE_RANK
-:iabbr depth DEPTH
-:iabbr deref DEREF
-:iabbr derived DERIVED
-:iabbr desc DESC
-:iabbr describe DESCRIBE
-:iabbr descriptor DESCRIPTOR
-:iabbr destroy DESTROY
-:iabbr destructor DESTRUCTOR
-:iabbr deterministic DETERMINISTIC
-:iabbr diagnostics DIAGNOSTICS
-:iabbr dictionary DICTIONARY
-:iabbr disable DISABLE
-:iabbr disconnect DISCONNECT
-:iabbr dispatch DISPATCH
-:iabbr distinct DISTINCT
-:iabbr do DO
-:iabbr domain DOMAIN
-:iabbr double DOUBLE
-:iabbr drop DROP
-:iabbr dynamic DYNAMIC
-:iabbr dynamic_function DYNAMIC_FUNCTION
-:iabbr dynamic_function_code DYNAMIC_FUNCTION_CODE
-:iabbr each EACH
-:iabbr element ELEMENT
-:iabbr else ELSE
-:iabbr enable ENABLE
-:iabbr encoding ENCODING
-:iabbr encrypted ENCRYPTED
-:iabbr end END
-:iabbr end END-EXEC
-:iabbr equals EQUALS
-:iabbr escape ESCAPE
-:iabbr every EVERY
-:iabbr except EXCEPT
-:iabbr exception EXCEPTION
-:iabbr exclude EXCLUDE
-:iabbr excluding EXCLUDING
-:iabbr exclusive EXCLUSIVE
-:iabbr exec EXEC
-:iabbr execute EXECUTE
-:iabbr existing EXISTING
-:iabbr exists EXISTS
-:iabbr exp EXP
-:iabbr explain EXPLAIN
-:iabbr external EXTERNAL
-:iabbr extract EXTRACT
-:iabbr false FALSE
-:iabbr fetch FETCH
-:iabbr filter FILTER
-:iabbr final FINAL
-:iabbr first FIRST
-:iabbr float FLOAT
-:iabbr floor FLOOR
-:iabbr following FOLLOWING
-:iabbr for FOR
-:iabbr force FORCE
-:iabbr foreign FOREIGN
-:iabbr fortran FORTRAN
-:iabbr forward FORWARD
-:iabbr found FOUND
-:iabbr free FREE
-:iabbr freeze FREEZE
-:iabbr from FROM
-:iabbr full FULL
-:iabbr function FUNCTION
-:iabbr fusion FUSION
-:iabbr general GENERAL
-:iabbr generated GENERATED
-:iabbr get GET
-:iabbr global GLOBAL
-:iabbr go GO
-:iabbr goto GOTO
-:iabbr grant GRANT
-:iabbr granted GRANTED
-:iabbr greatest GREATEST
-:iabbr group GROUP
-:iabbr grouping GROUPING
-:iabbr handler HANDLER
-:iabbr having HAVING
-:iabbr header HEADER
-:iabbr hierarchy HIERARCHY
-:iabbr hold HOLD
-:iabbr host HOST
-:iabbr hour HOUR
-:iabbr identity IDENTITY
-:iabbr ignore IGNORE
-:iabbr ilike ILIKE
-:iabbr immediate IMMEDIATE
-:iabbr immutable IMMUTABLE
-:iabbr implementation IMPLEMENTATION
-:iabbr implicit IMPLICIT
-:iabbr in IN
-:iabbr including INCLUDING
-:iabbr increment INCREMENT
-:iabbr index INDEX
-:iabbr indicator INDICATOR
-:iabbr infix INFIX
-:iabbr inherit INHERIT
-:iabbr inherits INHERITS
-:iabbr initialize INITIALIZE
-:iabbr initially INITIALLY
-:iabbr inner INNER
-:iabbr inout INOUT
-:iabbr input INPUT
-:iabbr insensitive INSENSITIVE
-:iabbr insert INSERT
-:iabbr instance INSTANCE
-:iabbr instantiable INSTANTIABLE
-:iabbr instead INSTEAD
-:iabbr int INT
-:iabbr integer INTEGER
-:iabbr intersect INTERSECT
-:iabbr intersection INTERSECTION
-:iabbr interval INTERVAL
-:iabbr into INTO
-:iabbr invoker INVOKER
-:iabbr is IS
-:iabbr isnull ISNULL
-:iabbr isolation ISOLATION
-:iabbr iterate ITERATE
-:iabbr join JOIN
-:iabbr key_member KEY_MEMBER
-:iabbr key_type KEY_TYPE
-:iabbr lancompiler LANCOMPILER
-:iabbr language LANGUAGE
-:iabbr large LARGE
-:iabbr last LAST
-:iabbr lateral LATERAL
-:iabbr leading LEADING
-:iabbr least LEAST
-:iabbr left LEFT
-:iabbr length LENGTH
-:iabbr less LESS
-:iabbr level LEVEL
-:iabbr like LIKE
-:iabbr limit LIMIT
-:iabbr listen LISTEN
-:iabbr ln LN
-:iabbr load LOAD
-:iabbr local LOCAL
-:iabbr localtime LOCALTIME
-:iabbr localtimestamp LOCALTIMESTAMP
-:iabbr location LOCATION
-:iabbr locator LOCATOR
-:iabbr lock LOCK
-:iabbr login LOGIN
-:iabbr lower LOWER
-:iabbr map MAP
-:iabbr match MATCH
-:iabbr matched MATCHED
-:iabbr max MAX
-:iabbr maxvalue MAXVALUE
-:iabbr member MEMBER
-:iabbr merge MERGE
-:iabbr message_length MESSAGE_LENGTH
-:iabbr message_octet_length MESSAGE_OCTET_LENGTH
-:iabbr message_text MESSAGE_TEXT
-:iabbr method METHOD
-:iabbr min MIN
-:iabbr minute MINUTE
-:iabbr minvalue MINVALUE
-:iabbr mod MOD
-:iabbr mode MODE
-:iabbr modifies MODIFIES
-:iabbr modify MODIFY
-:iabbr module MODULE
-:iabbr month MONTH
-:iabbr more MORE
-:iabbr move MOVE
-:iabbr multiset MULTISET
-:iabbr mumps MUMPS
-:iabbr name NAME
-:iabbr names NAMES
-:iabbr national NATIONAL
-:iabbr natural NATURAL
-:iabbr nchar NCHAR
-:iabbr nclob NCLOB
-:iabbr nesting NESTING
-:iabbr new NEW
-:iabbr next NEXT
-:iabbr no NO
-:iabbr nocreatedb NOCREATEDB
-:iabbr nocreaterole NOCREATEROLE
-:iabbr nocreateuser NOCREATEUSER
-:iabbr noinherit NOINHERIT
-:iabbr nologin NOLOGIN
-:iabbr none NONE
-:iabbr normalize NORMALIZE
-:iabbr normalized NORMALIZED
-:iabbr nosuperuser NOSUPERUSER
-:iabbr not NOT
-:iabbr nothing NOTHING
-:iabbr notify NOTIFY
-:iabbr notnull NOTNULL
-:iabbr nowait NOWAIT
-:iabbr null NULL
-:iabbr nullable NULLABLE
-:iabbr nullif NULLIF
-:iabbr nulls NULLS
-:iabbr number NUMBER
-:iabbr numeric NUMERIC
-:iabbr object OBJECT
-:iabbr octets OCTETS
-:iabbr octet_length OCTET_LENGTH
-:iabbr of OF
-:iabbr off OFF
-:iabbr offset OFFSET
-:iabbr oids OIDS
-:iabbr old OLD
-:iabbr on ON
-:iabbr only ONLY
-:iabbr open OPEN
-:iabbr operation OPERATION
-:iabbr operator OPERATOR
-:iabbr option OPTION
-:iabbr options OPTIONS
-:iabbr or OR
-:iabbr order ORDER
-:iabbr ordering ORDERING
-:iabbr ordinality ORDINALITY
-:iabbr others OTHERS
-:iabbr out OUT
-:iabbr outer OUTER
-:iabbr output OUTPUT
-:iabbr over OVER
-:iabbr overlaps OVERLAPS
-:iabbr overlay OVERLAY
-:iabbr overriding OVERRIDING
-:iabbr owner OWNER
-:iabbr pad PAD
-:iabbr parameter PARAMETER
-:iabbr parameters PARAMETERS
-:iabbr parameter_mode PARAMETER_MODE
-:iabbr parameter_name PARAMETER_NAME
-:iabbr parameter_ordinal_position PARAMETER_ORDINAL_POSITION
-:iabbr parameter_specific_catalog PARAMETER_SPECIFIC_CATALOG
-:iabbr parameter_specific_name PARAMETER_SPECIFIC_NAME
-:iabbr parameter_specific_schema PARAMETER_SPECIFIC_SCHEMA
-:iabbr partial PARTIAL
-:iabbr partition PARTITION
-:iabbr pascal PASCAL
-:iabbr password PASSWORD
-:iabbr path PATH
-:iabbr percentile_cont PERCENTILE_CONT
-:iabbr percentile_disc PERCENTILE_DISC
-:iabbr percent_rank PERCENT_RANK
-:iabbr placing PLACING
-:iabbr pli PLI
-:iabbr position POSITION
-:iabbr postfix POSTFIX
-:iabbr power POWER
-:iabbr preceding PRECEDING
-:iabbr precision PRECISION
-:iabbr prefix PREFIX
-:iabbr preorder PREORDER
-:iabbr prepare PREPARE
-:iabbr prepared PREPARED
-:iabbr preserve PRESERVE
-:iabbr primary PRIMARY
-:iabbr prior PRIOR
-:iabbr privileges PRIVILEGES
-:iabbr procedural PROCEDURAL
-:iabbr procedure PROCEDURE
-:iabbr public PUBLIC
-:iabbr quote QUOTE
-:iabbr range RANGE
-:iabbr rank RANK
-:iabbr read READ
-:iabbr reads READS
-:iabbr real REAL
-:iabbr recheck RECHECK
-:iabbr recursive RECURSIVE
-:iabbr ref REF
-:iabbr references REFERENCES
-:iabbr referencing REFERENCING
-:iabbr regr_avgx REGR_AVGX
-:iabbr regr_avgy REGR_AVGY
-:iabbr regr_count REGR_COUNT
-:iabbr regr_intercept REGR_INTERCEPT
-:iabbr regr_r2 REGR_R2
-:iabbr regr_slope REGR_SLOPE
-:iabbr regr_sxx REGR_SXX
-:iabbr regr_sxy REGR_SXY
-:iabbr regr_syy REGR_SYY
-:iabbr reindex REINDEX
-:iabbr relative RELATIVE
-:iabbr release RELEASE
-:iabbr rename RENAME
-:iabbr repeatable REPEATABLE
-:iabbr replace REPLACE
-:iabbr reset RESET
-:iabbr restart RESTART
-:iabbr restrict RESTRICT
-:iabbr result RESULT
-:iabbr return RETURN
-:iabbr returned_cardinality RETURNED_CARDINALITY
-:iabbr returned_length RETURNED_LENGTH
-:iabbr returned_octet_length RETURNED_OCTET_LENGTH
-:iabbr returned_sqlstate RETURNED_SQLSTATE
-:iabbr returns RETURNS
-:iabbr revoke REVOKE
-:iabbr right RIGHT
-:iabbr role ROLE
-:iabbr rollback ROLLBACK
-:iabbr rollup ROLLUP
-:iabbr routine ROUTINE
-:iabbr routine_catalog ROUTINE_CATALOG
-:iabbr routine_name ROUTINE_NAME
-:iabbr routine_schema ROUTINE_SCHEMA
-:iabbr row ROW
-:iabbr rows ROWS
-:iabbr row_count ROW_COUNT
-:iabbr row_number ROW_NUMBER
-:iabbr rule RULE
-:iabbr savepoint SAVEPOINT
-:iabbr scale SCALE
-:iabbr schema SCHEMA
-:iabbr schema_name SCHEMA_NAME
-:iabbr scope SCOPE
-:iabbr scope_catalog SCOPE_CATALOG
-:iabbr scope_name SCOPE_NAME
-:iabbr scope_schema SCOPE_SCHEMA
-:iabbr scroll SCROLL
-:iabbr search SEARCH
-:iabbr second SECOND
-:iabbr section SECTION
-:iabbr security SECURITY
-:iabbr select SELECT
-:iabbr self SELF
-:iabbr sensitive SENSITIVE
-:iabbr sequence SEQUENCE
-:iabbr serializable SERIALIZABLE
-:iabbr server_name SERVER_NAME
-:iabbr session SESSION
-:iabbr session_user SESSION_USER
-:iabbr set SET
-:iabbr setof SETOF
-:iabbr sets SETS
-:iabbr share SHARE
-:iabbr show SHOW
-:iabbr similar SIMILAR
-:iabbr simple SIMPLE
-:iabbr size SIZE
-:iabbr smallint SMALLINT
-:iabbr some SOME
-:iabbr source SOURCE
-:iabbr space SPACE
-:iabbr specific SPECIFIC
-:iabbr specifictype SPECIFICTYPE
-:iabbr specific_name SPECIFIC_NAME
-:iabbr sql SQL
-:iabbr sqlcode SQLCODE
-:iabbr sqlerror SQLERROR
-:iabbr sqlexception SQLEXCEPTION
-:iabbr sqlstate SQLSTATE
-:iabbr sqlwarning SQLWARNING
-:iabbr sqrt SQRT
-:iabbr stable STABLE
-:iabbr start START
-:iabbr state STATE
-:iabbr statement STATEMENT
-:iabbr static STATIC
-:iabbr statistics STATISTICS
-:iabbr stddev_pop STDDEV_POP
-:iabbr stddev_samp STDDEV_SAMP
-:iabbr stdin STDIN
-:iabbr stdout STDOUT
-:iabbr storage STORAGE
-:iabbr strict STRICT
-:iabbr structure STRUCTURE
-:iabbr style STYLE
-:iabbr subclass_origin SUBCLASS_ORIGIN
-:iabbr sublist SUBLIST
-:iabbr submultiset SUBMULTISET
-:iabbr substring SUBSTRING
-:iabbr sum SUM
-:iabbr superuser SUPERUSER
-:iabbr symmetric SYMMETRIC
-:iabbr sysid SYSID
-:iabbr system SYSTEM
-:iabbr system_user SYSTEM_USER
-:iabbr table TABLE
-:iabbr tablesample TABLESAMPLE
-:iabbr tablespace TABLESPACE
-:iabbr table_name TABLE_NAME
-:iabbr temp TEMP
-:iabbr template TEMPLATE
-:iabbr temporary TEMPORARY
-:iabbr terminate TERMINATE
-:iabbr than THAN
-:iabbr then THEN
-:iabbr ties TIES
-:iabbr time TIME
-:iabbr timestamp TIMESTAMP
-:iabbr timezone_hour TIMEZONE_HOUR
-:iabbr timezone_minute TIMEZONE_MINUTE
-:iabbr to TO
-:iabbr toast TOAST
-:iabbr top_level_count TOP_LEVEL_COUNT
-:iabbr trailing TRAILING
-:iabbr transaction TRANSACTION
-:iabbr transactions_committed TRANSACTIONS_COMMITTED
-:iabbr transactions_rolled_back TRANSACTIONS_ROLLED_BACK
-:iabbr transaction_active TRANSACTION_ACTIVE
-:iabbr transform TRANSFORM
-:iabbr transforms TRANSFORMS
-:iabbr translate TRANSLATE
-:iabbr translation TRANSLATION
-:iabbr treat TREAT
-:iabbr trigger TRIGGER
-:iabbr trigger_catalog TRIGGER_CATALOG
-:iabbr trigger_name TRIGGER_NAME
-:iabbr trigger_schema TRIGGER_SCHEMA
-:iabbr trim TRIM
-:iabbr true TRUE
-:iabbr truncate TRUNCATE
-:iabbr trusted TRUSTED
-:iabbr type TYPE
-:iabbr uescape UESCAPE
-:iabbr unbounded UNBOUNDED
-:iabbr uncommitted UNCOMMITTED
-:iabbr under UNDER
-:iabbr unencrypted UNENCRYPTED
-:iabbr union UNION
-:iabbr unique UNIQUE
-:iabbr unknown UNKNOWN
-:iabbr unlisten UNLISTEN
-:iabbr unnamed UNNAMED
-:iabbr unnest UNNEST
-:iabbr until UNTIL
-:iabbr update UPDATE
-:iabbr upper UPPER
-:iabbr usage USAGE
-:iabbr user USER
-:iabbr user_defined_type_catalog USER_DEFINED_TYPE_CATALOG
-:iabbr user_defined_type_code USER_DEFINED_TYPE_CODE
-:iabbr user_defined_type_name USER_DEFINED_TYPE_NAME
-:iabbr user_defined_type_schema USER_DEFINED_TYPE_SCHEMA
-:iabbr using USING
-:iabbr vacuum VACUUM
-:iabbr valid VALID
-:iabbr validator VALIDATOR
-:iabbr value VALUE
-:iabbr values VALUES
-:iabbr varchar VARCHAR
-:iabbr variable VARIABLE
-:iabbr varying VARYING
-:iabbr var_pop VAR_POP
-:iabbr var_samp VAR_SAMP
-:iabbr verbose VERBOSE
-:iabbr view VIEW
-:iabbr volatile VOLATILE
-:iabbr when WHEN
-:iabbr whenever WHENEVER
-:iabbr where WHERE
-:iabbr width_bucket WIDTH_BUCKET
-:iabbr window WINDOW
-:iabbr with WITH
-:iabbr within WITHIN
-:iabbr without WITHOUT
-:iabbr work WORK
-:iabbr write WRITE
-:iabbr year YEAR
-:iabbr zone ZONE
+:iabbr <buffer> abort ABORT
+:iabbr <buffer> abs ABS
+:iabbr <buffer> absolute ABSOLUTE
+:iabbr <buffer> access ACCESS
+:iabbr <buffer> action ACTION
+:iabbr <buffer> ada ADA
+:iabbr <buffer> add ADD
+:iabbr <buffer> admin ADMIN
+:iabbr <buffer> after AFTER
+:iabbr <buffer> aggregate AGGREGATE
+:iabbr <buffer> alias ALIAS
+:iabbr <buffer> all ALL
+:iabbr <buffer> allocate ALLOCATE
+:iabbr <buffer> also ALSO
+:iabbr <buffer> alter ALTER
+:iabbr <buffer> always ALWAYS
+:iabbr <buffer> analyse ANALYSE
+:iabbr <buffer> analyze ANALYZE
+:iabbr <buffer> and AND
+:iabbr <buffer> any ANY
+:iabbr <buffer> are ARE
+:iabbr <buffer> array ARRAY
+:iabbr <buffer> as AS
+:iabbr <buffer> asc ASC
+:iabbr <buffer> asensitive ASENSITIVE
+:iabbr <buffer> assertion ASSERTION
+:iabbr <buffer> assignment ASSIGNMENT
+:iabbr <buffer> asymmetric ASYMMETRIC
+:iabbr <buffer> at AT
+:iabbr <buffer> atomic ATOMIC
+:iabbr <buffer> attribute ATTRIBUTE
+:iabbr <buffer> attributes ATTRIBUTES
+:iabbr <buffer> authorization AUTHORIZATION
+:iabbr <buffer> avg AVG
+:iabbr <buffer> backward BACKWARD
+:iabbr <buffer> before BEFORE
+:iabbr <buffer> begin BEGIN
+:iabbr <buffer> bernoulli BERNOULLI
+:iabbr <buffer> between BETWEEN
+:iabbr <buffer> bigint BIGINT
+:iabbr <buffer> binary BINARY
+:iabbr <buffer> bit BIT
+:iabbr <buffer> bitvar BITVAR
+:iabbr <buffer> bit_length BIT_LENGTH
+:iabbr <buffer> blob BLOB
+:iabbr <buffer> boolean BOOLEAN
+:iabbr <buffer> both BOTH
+:iabbr <buffer> breadth BREADTH
+:iabbr <buffer> by BY
+:iabbr <buffer> cache CACHE
+:iabbr <buffer> call CALL
+:iabbr <buffer> called CALLED
+:iabbr <buffer> cardinality CARDINALITY
+:iabbr <buffer> cascade CASCADE
+:iabbr <buffer> cascaded CASCADED
+:iabbr <buffer> case CASE
+:iabbr <buffer> cast CAST
+:iabbr <buffer> catalog CATALOG
+:iabbr <buffer> catalog_name CATALOG_NAME
+:iabbr <buffer> ceil CEIL
+:iabbr <buffer> ceiling CEILING
+:iabbr <buffer> chain CHAIN
+:iabbr <buffer> char CHAR
+:iabbr <buffer> character CHARACTER
+:iabbr <buffer> characteristics CHARACTERISTICS
+:iabbr <buffer> characters CHARACTERS
+:iabbr <buffer> character_length CHARACTER_LENGTH
+:iabbr <buffer> character_set_catalog CHARACTER_SET_CATALOG
+:iabbr <buffer> character_set_name CHARACTER_SET_NAME
+:iabbr <buffer> character_set_schema CHARACTER_SET_SCHEMA
+:iabbr <buffer> char_length CHAR_LENGTH
+:iabbr <buffer> check CHECK
+:iabbr <buffer> checked CHECKED
+:iabbr <buffer> checkpoint CHECKPOINT
+:iabbr <buffer> class CLASS
+:iabbr <buffer> class_origin CLASS_ORIGIN
+:iabbr <buffer> clob CLOB
+:iabbr <buffer> close CLOSE
+:iabbr <buffer> cluster CLUSTER
+:iabbr <buffer> coalesce COALESCE
+:iabbr <buffer> cobol COBOL
+:iabbr <buffer> collate COLLATE
+:iabbr <buffer> collation COLLATION
+:iabbr <buffer> collation_catalog COLLATION_CATALOG
+:iabbr <buffer> collation_name COLLATION_NAME
+:iabbr <buffer> collation_schema COLLATION_SCHEMA
+:iabbr <buffer> collect COLLECT
+:iabbr <buffer> column COLUMN
+:iabbr <buffer> column_name COLUMN_NAME
+:iabbr <buffer> command_function COMMAND_FUNCTION
+:iabbr <buffer> command_function_code COMMAND_FUNCTION_CODE
+:iabbr <buffer> comment COMMENT
+:iabbr <buffer> commit COMMIT
+:iabbr <buffer> committed COMMITTED
+:iabbr <buffer> completion COMPLETION
+:iabbr <buffer> condition CONDITION
+:iabbr <buffer> condition_number CONDITION_NUMBER
+:iabbr <buffer> connect CONNECT
+:iabbr <buffer> connection CONNECTION
+:iabbr <buffer> connection_name CONNECTION_NAME
+:iabbr <buffer> constraint CONSTRAINT
+:iabbr <buffer> constraints CONSTRAINTS
+:iabbr <buffer> constraint_catalog CONSTRAINT_CATALOG
+:iabbr <buffer> constraint_name CONSTRAINT_NAME
+:iabbr <buffer> constraint_schema CONSTRAINT_SCHEMA
+:iabbr <buffer> constructor CONSTRUCTOR
+:iabbr <buffer> contains CONTAINS
+:iabbr <buffer> continue CONTINUE
+:iabbr <buffer> conversion CONVERSION
+:iabbr <buffer> convert CONVERT
+:iabbr <buffer> copy COPY
+:iabbr <buffer> corr CORR
+:iabbr <buffer> corresponding CORRESPONDING
+:iabbr <buffer> count COUNT
+:iabbr <buffer> covar_pop COVAR_POP
+:iabbr <buffer> covar_samp COVAR_SAMP
+:iabbr <buffer> create CREATE
+:iabbr <buffer> createdb CREATEDB
+:iabbr <buffer> createrole CREATEROLE
+:iabbr <buffer> createuser CREATEUSER
+:iabbr <buffer> cross CROSS
+:iabbr <buffer> csv CSV
+:iabbr <buffer> cube CUBE
+:iabbr <buffer> cume_dist CUME_DIST
+:iabbr <buffer> current CURRENT
+:iabbr <buffer> current_date CURRENT_DATE
+:iabbr <buffer> current_default_transform_group CURRENT_DEFAULT_TRANSFORM_GROUP
+:iabbr <buffer> current_path CURRENT_PATH
+:iabbr <buffer> current_role CURRENT_ROLE
+:iabbr <buffer> current_time CURRENT_TIME
+:iabbr <buffer> current_timestamp CURRENT_TIMESTAMP
+:iabbr <buffer> current_transform_group_for_type CURRENT_TRANSFORM_GROUP_FOR_TYPE
+:iabbr <buffer> current_user CURRENT_USER
+:iabbr <buffer> cursor CURSOR
+:iabbr <buffer> cursor_name CURSOR_NAME
+:iabbr <buffer> cycle CYCLE
+:iabbr <buffer> data DATA
+:iabbr <buffer> database DATABASE
+:iabbr <buffer> date DATE
+:iabbr <buffer> datetime_interval_code DATETIME_INTERVAL_CODE
+:iabbr <buffer> datetime_interval_precision DATETIME_INTERVAL_PRECISION
+:iabbr <buffer> day DAY
+:iabbr <buffer> deallocate DEALLOCATE
+:iabbr <buffer> dec DEC
+:iabbr <buffer> decimal DECIMAL
+:iabbr <buffer> declare DECLARE
+:iabbr <buffer> default DEFAULT
+:iabbr <buffer> defaults DEFAULTS
+:iabbr <buffer> deferrable DEFERRABLE
+:iabbr <buffer> deferred DEFERRED
+:iabbr <buffer> defined DEFINED
+:iabbr <buffer> definer DEFINER
+:iabbr <buffer> degree DEGREE
+:iabbr <buffer> delete DELETE
+:iabbr <buffer> delimiter DELIMITER
+:iabbr <buffer> delimiters DELIMITERS
+:iabbr <buffer> dense_rank DENSE_RANK
+:iabbr <buffer> depth DEPTH
+:iabbr <buffer> deref DEREF
+:iabbr <buffer> derived DERIVED
+:iabbr <buffer> desc DESC
+:iabbr <buffer> describe DESCRIBE
+:iabbr <buffer> descriptor DESCRIPTOR
+:iabbr <buffer> destroy DESTROY
+:iabbr <buffer> destructor DESTRUCTOR
+:iabbr <buffer> deterministic DETERMINISTIC
+:iabbr <buffer> diagnostics DIAGNOSTICS
+:iabbr <buffer> dictionary DICTIONARY
+:iabbr <buffer> disable DISABLE
+:iabbr <buffer> disconnect DISCONNECT
+:iabbr <buffer> dispatch DISPATCH
+:iabbr <buffer> distinct DISTINCT
+:iabbr <buffer> do DO
+:iabbr <buffer> domain DOMAIN
+:iabbr <buffer> double DOUBLE
+:iabbr <buffer> drop DROP
+:iabbr <buffer> dynamic DYNAMIC
+:iabbr <buffer> dynamic_function DYNAMIC_FUNCTION
+:iabbr <buffer> dynamic_function_code DYNAMIC_FUNCTION_CODE
+:iabbr <buffer> each EACH
+:iabbr <buffer> element ELEMENT
+:iabbr <buffer> else ELSE
+:iabbr <buffer> enable ENABLE
+:iabbr <buffer> encoding ENCODING
+:iabbr <buffer> encrypted ENCRYPTED
+:iabbr <buffer> end END
+:iabbr <buffer> end END-EXEC
+:iabbr <buffer> equals EQUALS
+:iabbr <buffer> escape ESCAPE
+:iabbr <buffer> every EVERY
+:iabbr <buffer> except EXCEPT
+:iabbr <buffer> exception EXCEPTION
+:iabbr <buffer> exclude EXCLUDE
+:iabbr <buffer> excluding EXCLUDING
+:iabbr <buffer> exclusive EXCLUSIVE
+:iabbr <buffer> exec EXEC
+:iabbr <buffer> execute EXECUTE
+:iabbr <buffer> existing EXISTING
+:iabbr <buffer> exists EXISTS
+:iabbr <buffer> exp EXP
+:iabbr <buffer> explain EXPLAIN
+:iabbr <buffer> external EXTERNAL
+:iabbr <buffer> extract EXTRACT
+:iabbr <buffer> false FALSE
+:iabbr <buffer> fetch FETCH
+:iabbr <buffer> filter FILTER
+:iabbr <buffer> final FINAL
+:iabbr <buffer> first FIRST
+:iabbr <buffer> float FLOAT
+:iabbr <buffer> floor FLOOR
+:iabbr <buffer> following FOLLOWING
+:iabbr <buffer> for FOR
+:iabbr <buffer> force FORCE
+:iabbr <buffer> foreign FOREIGN
+:iabbr <buffer> fortran FORTRAN
+:iabbr <buffer> forward FORWARD
+:iabbr <buffer> found FOUND
+:iabbr <buffer> free FREE
+:iabbr <buffer> freeze FREEZE
+:iabbr <buffer> from FROM
+:iabbr <buffer> full FULL
+:iabbr <buffer> function FUNCTION
+:iabbr <buffer> fusion FUSION
+:iabbr <buffer> general GENERAL
+:iabbr <buffer> generated GENERATED
+:iabbr <buffer> get GET
+:iabbr <buffer> global GLOBAL
+:iabbr <buffer> go GO
+:iabbr <buffer> goto GOTO
+:iabbr <buffer> grant GRANT
+:iabbr <buffer> granted GRANTED
+:iabbr <buffer> greatest GREATEST
+:iabbr <buffer> group GROUP
+:iabbr <buffer> grouping GROUPING
+:iabbr <buffer> handler HANDLER
+:iabbr <buffer> having HAVING
+:iabbr <buffer> header HEADER
+:iabbr <buffer> hierarchy HIERARCHY
+:iabbr <buffer> hold HOLD
+:iabbr <buffer> host HOST
+:iabbr <buffer> hour HOUR
+:iabbr <buffer> identity IDENTITY
+:iabbr <buffer> ignore IGNORE
+:iabbr <buffer> ilike ILIKE
+:iabbr <buffer> immediate IMMEDIATE
+:iabbr <buffer> immutable IMMUTABLE
+:iabbr <buffer> implementation IMPLEMENTATION
+:iabbr <buffer> implicit IMPLICIT
+:iabbr <buffer> in IN
+:iabbr <buffer> including INCLUDING
+:iabbr <buffer> increment INCREMENT
+:iabbr <buffer> index INDEX
+:iabbr <buffer> indicator INDICATOR
+:iabbr <buffer> infix INFIX
+:iabbr <buffer> inherit INHERIT
+:iabbr <buffer> inherits INHERITS
+:iabbr <buffer> initialize INITIALIZE
+:iabbr <buffer> initially INITIALLY
+:iabbr <buffer> inner INNER
+:iabbr <buffer> inout INOUT
+:iabbr <buffer> input INPUT
+:iabbr <buffer> insensitive INSENSITIVE
+:iabbr <buffer> insert INSERT
+:iabbr <buffer> instance INSTANCE
+:iabbr <buffer> instantiable INSTANTIABLE
+:iabbr <buffer> instead INSTEAD
+:iabbr <buffer> int INT
+:iabbr <buffer> integer INTEGER
+:iabbr <buffer> intersect INTERSECT
+:iabbr <buffer> intersection INTERSECTION
+:iabbr <buffer> interval INTERVAL
+:iabbr <buffer> into INTO
+:iabbr <buffer> invoker INVOKER
+:iabbr <buffer> is IS
+:iabbr <buffer> isnull ISNULL
+:iabbr <buffer> isolation ISOLATION
+:iabbr <buffer> iterate ITERATE
+:iabbr <buffer> join JOIN
+:iabbr <buffer> key_member KEY_MEMBER
+:iabbr <buffer> key_type KEY_TYPE
+:iabbr <buffer> lancompiler LANCOMPILER
+:iabbr <buffer> language LANGUAGE
+:iabbr <buffer> large LARGE
+:iabbr <buffer> last LAST
+:iabbr <buffer> lateral LATERAL
+:iabbr <buffer> leading LEADING
+:iabbr <buffer> least LEAST
+:iabbr <buffer> left LEFT
+:iabbr <buffer> length LENGTH
+:iabbr <buffer> less LESS
+:iabbr <buffer> level LEVEL
+:iabbr <buffer> like LIKE
+:iabbr <buffer> limit LIMIT
+:iabbr <buffer> listen LISTEN
+:iabbr <buffer> ln LN
+:iabbr <buffer> load LOAD
+:iabbr <buffer> local LOCAL
+:iabbr <buffer> localtime LOCALTIME
+:iabbr <buffer> localtimestamp LOCALTIMESTAMP
+:iabbr <buffer> location LOCATION
+:iabbr <buffer> locator LOCATOR
+:iabbr <buffer> lock LOCK
+:iabbr <buffer> login LOGIN
+:iabbr <buffer> lower LOWER
+:iabbr <buffer> map MAP
+:iabbr <buffer> match MATCH
+:iabbr <buffer> matched MATCHED
+:iabbr <buffer> max MAX
+:iabbr <buffer> maxvalue MAXVALUE
+:iabbr <buffer> member MEMBER
+:iabbr <buffer> merge MERGE
+:iabbr <buffer> message_length MESSAGE_LENGTH
+:iabbr <buffer> message_octet_length MESSAGE_OCTET_LENGTH
+:iabbr <buffer> message_text MESSAGE_TEXT
+:iabbr <buffer> method METHOD
+:iabbr <buffer> min MIN
+:iabbr <buffer> minute MINUTE
+:iabbr <buffer> minvalue MINVALUE
+:iabbr <buffer> mod MOD
+:iabbr <buffer> mode MODE
+:iabbr <buffer> modifies MODIFIES
+:iabbr <buffer> modify MODIFY
+:iabbr <buffer> module MODULE
+:iabbr <buffer> month MONTH
+:iabbr <buffer> more MORE
+:iabbr <buffer> move MOVE
+:iabbr <buffer> multiset MULTISET
+:iabbr <buffer> mumps MUMPS
+:iabbr <buffer> name NAME
+:iabbr <buffer> names NAMES
+:iabbr <buffer> national NATIONAL
+:iabbr <buffer> natural NATURAL
+:iabbr <buffer> nchar NCHAR
+:iabbr <buffer> nclob NCLOB
+:iabbr <buffer> nesting NESTING
+:iabbr <buffer> new NEW
+:iabbr <buffer> next NEXT
+:iabbr <buffer> no NO
+:iabbr <buffer> nocreatedb NOCREATEDB
+:iabbr <buffer> nocreaterole NOCREATEROLE
+:iabbr <buffer> nocreateuser NOCREATEUSER
+:iabbr <buffer> noinherit NOINHERIT
+:iabbr <buffer> nologin NOLOGIN
+:iabbr <buffer> none NONE
+:iabbr <buffer> normalize NORMALIZE
+:iabbr <buffer> normalized NORMALIZED
+:iabbr <buffer> nosuperuser NOSUPERUSER
+:iabbr <buffer> not NOT
+:iabbr <buffer> nothing NOTHING
+:iabbr <buffer> notify NOTIFY
+:iabbr <buffer> notnull NOTNULL
+:iabbr <buffer> nowait NOWAIT
+:iabbr <buffer> null NULL
+:iabbr <buffer> nullable NULLABLE
+:iabbr <buffer> nullif NULLIF
+:iabbr <buffer> nulls NULLS
+:iabbr <buffer> number NUMBER
+:iabbr <buffer> numeric NUMERIC
+:iabbr <buffer> object OBJECT
+:iabbr <buffer> octets OCTETS
+:iabbr <buffer> octet_length OCTET_LENGTH
+:iabbr <buffer> of OF
+:iabbr <buffer> off OFF
+:iabbr <buffer> offset OFFSET
+:iabbr <buffer> oids OIDS
+:iabbr <buffer> old OLD
+:iabbr <buffer> on ON
+:iabbr <buffer> only ONLY
+:iabbr <buffer> open OPEN
+:iabbr <buffer> operation OPERATION
+:iabbr <buffer> operator OPERATOR
+:iabbr <buffer> option OPTION
+:iabbr <buffer> options OPTIONS
+:iabbr <buffer> or OR
+:iabbr <buffer> order ORDER
+:iabbr <buffer> ordering ORDERING
+:iabbr <buffer> ordinality ORDINALITY
+:iabbr <buffer> others OTHERS
+:iabbr <buffer> out OUT
+:iabbr <buffer> outer OUTER
+:iabbr <buffer> output OUTPUT
+:iabbr <buffer> over OVER
+:iabbr <buffer> overlaps OVERLAPS
+:iabbr <buffer> overlay OVERLAY
+:iabbr <buffer> overriding OVERRIDING
+:iabbr <buffer> owner OWNER
+:iabbr <buffer> pad PAD
+:iabbr <buffer> parameter PARAMETER
+:iabbr <buffer> parameters PARAMETERS
+:iabbr <buffer> parameter_mode PARAMETER_MODE
+:iabbr <buffer> parameter_name PARAMETER_NAME
+:iabbr <buffer> parameter_ordinal_position PARAMETER_ORDINAL_POSITION
+:iabbr <buffer> parameter_specific_catalog PARAMETER_SPECIFIC_CATALOG
+:iabbr <buffer> parameter_specific_name PARAMETER_SPECIFIC_NAME
+:iabbr <buffer> parameter_specific_schema PARAMETER_SPECIFIC_SCHEMA
+:iabbr <buffer> partial PARTIAL
+:iabbr <buffer> partition PARTITION
+:iabbr <buffer> pascal PASCAL
+:iabbr <buffer> password PASSWORD
+:iabbr <buffer> path PATH
+:iabbr <buffer> percentile_cont PERCENTILE_CONT
+:iabbr <buffer> percentile_disc PERCENTILE_DISC
+:iabbr <buffer> percent_rank PERCENT_RANK
+:iabbr <buffer> placing PLACING
+:iabbr <buffer> pli PLI
+:iabbr <buffer> position POSITION
+:iabbr <buffer> postfix POSTFIX
+:iabbr <buffer> power POWER
+:iabbr <buffer> preceding PRECEDING
+:iabbr <buffer> precision PRECISION
+:iabbr <buffer> prefix PREFIX
+:iabbr <buffer> preorder PREORDER
+:iabbr <buffer> prepare PREPARE
+:iabbr <buffer> prepared PREPARED
+:iabbr <buffer> preserve PRESERVE
+:iabbr <buffer> primary PRIMARY
+:iabbr <buffer> prior PRIOR
+:iabbr <buffer> privileges PRIVILEGES
+:iabbr <buffer> procedural PROCEDURAL
+:iabbr <buffer> procedure PROCEDURE
+:iabbr <buffer> public PUBLIC
+:iabbr <buffer> quote QUOTE
+:iabbr <buffer> range RANGE
+:iabbr <buffer> rank RANK
+:iabbr <buffer> read READ
+:iabbr <buffer> reads READS
+:iabbr <buffer> real REAL
+:iabbr <buffer> recheck RECHECK
+:iabbr <buffer> recursive RECURSIVE
+:iabbr <buffer> ref REF
+:iabbr <buffer> references REFERENCES
+:iabbr <buffer> referencing REFERENCING
+:iabbr <buffer> regr_avgx REGR_AVGX
+:iabbr <buffer> regr_avgy REGR_AVGY
+:iabbr <buffer> regr_count REGR_COUNT
+:iabbr <buffer> regr_intercept REGR_INTERCEPT
+:iabbr <buffer> regr_r2 REGR_R2
+:iabbr <buffer> regr_slope REGR_SLOPE
+:iabbr <buffer> regr_sxx REGR_SXX
+:iabbr <buffer> regr_sxy REGR_SXY
+:iabbr <buffer> regr_syy REGR_SYY
+:iabbr <buffer> reindex REINDEX
+:iabbr <buffer> relative RELATIVE
+:iabbr <buffer> release RELEASE
+:iabbr <buffer> rename RENAME
+:iabbr <buffer> repeatable REPEATABLE
+:iabbr <buffer> replace REPLACE
+:iabbr <buffer> reset RESET
+:iabbr <buffer> restart RESTART
+:iabbr <buffer> restrict RESTRICT
+:iabbr <buffer> result RESULT
+:iabbr <buffer> return RETURN
+:iabbr <buffer> returned_cardinality RETURNED_CARDINALITY
+:iabbr <buffer> returned_length RETURNED_LENGTH
+:iabbr <buffer> returned_octet_length RETURNED_OCTET_LENGTH
+:iabbr <buffer> returned_sqlstate RETURNED_SQLSTATE
+:iabbr <buffer> returns RETURNS
+:iabbr <buffer> revoke REVOKE
+:iabbr <buffer> right RIGHT
+:iabbr <buffer> role ROLE
+:iabbr <buffer> rollback ROLLBACK
+:iabbr <buffer> rollup ROLLUP
+:iabbr <buffer> routine ROUTINE
+:iabbr <buffer> routine_catalog ROUTINE_CATALOG
+:iabbr <buffer> routine_name ROUTINE_NAME
+:iabbr <buffer> routine_schema ROUTINE_SCHEMA
+:iabbr <buffer> row ROW
+:iabbr <buffer> rows ROWS
+:iabbr <buffer> row_count ROW_COUNT
+:iabbr <buffer> row_number ROW_NUMBER
+:iabbr <buffer> rule RULE
+:iabbr <buffer> savepoint SAVEPOINT
+:iabbr <buffer> scale SCALE
+:iabbr <buffer> schema SCHEMA
+:iabbr <buffer> schema_name SCHEMA_NAME
+:iabbr <buffer> scope SCOPE
+:iabbr <buffer> scope_catalog SCOPE_CATALOG
+:iabbr <buffer> scope_name SCOPE_NAME
+:iabbr <buffer> scope_schema SCOPE_SCHEMA
+:iabbr <buffer> scroll SCROLL
+:iabbr <buffer> search SEARCH
+:iabbr <buffer> second SECOND
+:iabbr <buffer> section SECTION
+:iabbr <buffer> security SECURITY
+:iabbr <buffer> select SELECT
+:iabbr <buffer> self SELF
+:iabbr <buffer> sensitive SENSITIVE
+:iabbr <buffer> sequence SEQUENCE
+:iabbr <buffer> serializable SERIALIZABLE
+:iabbr <buffer> server_name SERVER_NAME
+:iabbr <buffer> session SESSION
+:iabbr <buffer> session_user SESSION_USER
+:iabbr <buffer> set SET
+:iabbr <buffer> setof SETOF
+:iabbr <buffer> sets SETS
+:iabbr <buffer> share SHARE
+:iabbr <buffer> show SHOW
+:iabbr <buffer> similar SIMILAR
+:iabbr <buffer> simple SIMPLE
+:iabbr <buffer> size SIZE
+:iabbr <buffer> smallint SMALLINT
+:iabbr <buffer> some SOME
+:iabbr <buffer> source SOURCE
+:iabbr <buffer> space SPACE
+:iabbr <buffer> specific SPECIFIC
+:iabbr <buffer> specifictype SPECIFICTYPE
+:iabbr <buffer> specific_name SPECIFIC_NAME
+:iabbr <buffer> sql SQL
+:iabbr <buffer> sqlcode SQLCODE
+:iabbr <buffer> sqlerror SQLERROR
+:iabbr <buffer> sqlexception SQLEXCEPTION
+:iabbr <buffer> sqlstate SQLSTATE
+:iabbr <buffer> sqlwarning SQLWARNING
+:iabbr <buffer> sqrt SQRT
+:iabbr <buffer> stable STABLE
+:iabbr <buffer> start START
+:iabbr <buffer> state STATE
+:iabbr <buffer> statement STATEMENT
+:iabbr <buffer> static STATIC
+:iabbr <buffer> statistics STATISTICS
+:iabbr <buffer> stddev_pop STDDEV_POP
+:iabbr <buffer> stddev_samp STDDEV_SAMP
+:iabbr <buffer> stdin STDIN
+:iabbr <buffer> stdout STDOUT
+:iabbr <buffer> storage STORAGE
+:iabbr <buffer> strict STRICT
+:iabbr <buffer> structure STRUCTURE
+:iabbr <buffer> style STYLE
+:iabbr <buffer> subclass_origin SUBCLASS_ORIGIN
+:iabbr <buffer> sublist SUBLIST
+:iabbr <buffer> submultiset SUBMULTISET
+:iabbr <buffer> substring SUBSTRING
+:iabbr <buffer> sum SUM
+:iabbr <buffer> superuser SUPERUSER
+:iabbr <buffer> symmetric SYMMETRIC
+:iabbr <buffer> sysid SYSID
+:iabbr <buffer> system SYSTEM
+:iabbr <buffer> system_user SYSTEM_USER
+:iabbr <buffer> table TABLE
+:iabbr <buffer> tablesample TABLESAMPLE
+:iabbr <buffer> tablespace TABLESPACE
+:iabbr <buffer> table_name TABLE_NAME
+:iabbr <buffer> temp TEMP
+:iabbr <buffer> template TEMPLATE
+:iabbr <buffer> temporary TEMPORARY
+:iabbr <buffer> terminate TERMINATE
+:iabbr <buffer> than THAN
+:iabbr <buffer> then THEN
+:iabbr <buffer> ties TIES
+:iabbr <buffer> time TIME
+:iabbr <buffer> timestamp TIMESTAMP
+:iabbr <buffer> timezone_hour TIMEZONE_HOUR
+:iabbr <buffer> timezone_minute TIMEZONE_MINUTE
+:iabbr <buffer> to TO
+:iabbr <buffer> toast TOAST
+:iabbr <buffer> top_level_count TOP_LEVEL_COUNT
+:iabbr <buffer> trailing TRAILING
+:iabbr <buffer> transaction TRANSACTION
+:iabbr <buffer> transactions_committed TRANSACTIONS_COMMITTED
+:iabbr <buffer> transactions_rolled_back TRANSACTIONS_ROLLED_BACK
+:iabbr <buffer> transaction_active TRANSACTION_ACTIVE
+:iabbr <buffer> transform TRANSFORM
+:iabbr <buffer> transforms TRANSFORMS
+:iabbr <buffer> translate TRANSLATE
+:iabbr <buffer> translation TRANSLATION
+:iabbr <buffer> treat TREAT
+:iabbr <buffer> trigger TRIGGER
+:iabbr <buffer> trigger_catalog TRIGGER_CATALOG
+:iabbr <buffer> trigger_name TRIGGER_NAME
+:iabbr <buffer> trigger_schema TRIGGER_SCHEMA
+:iabbr <buffer> trim TRIM
+:iabbr <buffer> true TRUE
+:iabbr <buffer> truncate TRUNCATE
+:iabbr <buffer> trusted TRUSTED
+:iabbr <buffer> type TYPE
+:iabbr <buffer> uescape UESCAPE
+:iabbr <buffer> unbounded UNBOUNDED
+:iabbr <buffer> uncommitted UNCOMMITTED
+:iabbr <buffer> under UNDER
+:iabbr <buffer> unencrypted UNENCRYPTED
+:iabbr <buffer> union UNION
+:iabbr <buffer> unique UNIQUE
+:iabbr <buffer> unknown UNKNOWN
+:iabbr <buffer> unlisten UNLISTEN
+:iabbr <buffer> unnamed UNNAMED
+:iabbr <buffer> unnest UNNEST
+:iabbr <buffer> until UNTIL
+:iabbr <buffer> update UPDATE
+:iabbr <buffer> upper UPPER
+:iabbr <buffer> usage USAGE
+:iabbr <buffer> user USER
+:iabbr <buffer> user_defined_type_catalog USER_DEFINED_TYPE_CATALOG
+:iabbr <buffer> user_defined_type_code USER_DEFINED_TYPE_CODE
+:iabbr <buffer> user_defined_type_name USER_DEFINED_TYPE_NAME
+:iabbr <buffer> user_defined_type_schema USER_DEFINED_TYPE_SCHEMA
+:iabbr <buffer> using USING
+:iabbr <buffer> vacuum VACUUM
+:iabbr <buffer> valid VALID
+:iabbr <buffer> validator VALIDATOR
+:iabbr <buffer> value VALUE
+:iabbr <buffer> values VALUES
+:iabbr <buffer> varchar VARCHAR
+:iabbr <buffer> variable VARIABLE
+:iabbr <buffer> varying VARYING
+:iabbr <buffer> var_pop VAR_POP
+:iabbr <buffer> var_samp VAR_SAMP
+:iabbr <buffer> verbose VERBOSE
+:iabbr <buffer> view VIEW
+:iabbr <buffer> volatile VOLATILE
+:iabbr <buffer> when WHEN
+:iabbr <buffer> whenever WHENEVER
+:iabbr <buffer> where WHERE
+:iabbr <buffer> width_bucket WIDTH_BUCKET
+:iabbr <buffer> window WINDOW
+:iabbr <buffer> with WITH
+:iabbr <buffer> within WITHIN
+:iabbr <buffer> without WITHOUT
+:iabbr <buffer> work WORK
+:iabbr <buffer> write WRITE
+:iabbr <buffer> year YEAR
+:iabbr <buffer> zone ZONE
