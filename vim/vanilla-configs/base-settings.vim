@@ -20,7 +20,6 @@ set list                               " Toggle manually with set list / set nol
 set listchars=""                       " Empty the listchars
 set listchars=tab:>.                   " A tab will be displayed as >...
 "set listchars+=trail:.                 " Trailing white spaces will be displayed as .
-set mouse=a                            " Enable the use of the mouse
 set nobackup                           " Don't constantly write backup files
 set noswapfile                         " Ain't nobody got time for swap files
 set noerrorbells                       " Don't beep
