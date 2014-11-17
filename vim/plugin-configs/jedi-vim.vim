@@ -8,6 +8,7 @@
 "===============================================================================
 let g:jedi#use_tabs_not_buffers = 0     " Use buffers not tabs
 let g:jedi#popup_on_dot = 0
+let g:jedi#rename_command = "" " This is just dangerous
 
 "===============================================================================
 " Plugin Keymappings
