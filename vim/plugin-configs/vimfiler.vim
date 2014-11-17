@@ -46,7 +46,7 @@ autocmd FileType vimfiler nunmap <buffer> l
 autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
 autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
-autocmd FileType vimfiler nmap <buffer> <Leader>s <Plug>(vimfiler_mark_current_line):call VimfilerSearch()<CR>
+autocmd FileType vimfiler nmap <buffer> <Leader>sd <Plug>(vimfiler_mark_current_line):call VimfilerSearch()<CR>
 autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
 \ "\<Plug>(vimfiler_expand_tree)",
 \ "\<Plug>(vimfiler_edit_file)")
@@ -65,7 +65,7 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Open Vi
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler copy file(s)                                         Select file(s) then "c"', 'echo "Select file(s) then c"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler delete file(s)                                       Select file(s) then "d"', 'echo "Select file(s) then d"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler move file(s)                                         Select file(s) then "m"', 'echo "Select file(s) then m"']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler search dir                                           <Leader>s', 'echo "<Leader>s over desired dir"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler search dir                                           <Leader>sd', 'echo "<Leader>sd over desired dir"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler create file(s)                                       N', 'echo "Press N"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler create dirs(s)                                       K', 'echo "Press K"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler cd into or edit under cursor                         l', 'echo "Press l"']]
