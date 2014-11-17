@@ -2,7 +2,7 @@
 " DESCRIPTION:   If we are in a python file call jedi goto on the word under
 "                the cursor if any other file type attempt to jump to the ctag
 "                definition for the word under the cursor.
-" EXAMPLE USAGE: Position cursor over a word and press <leader>gt
+" EXAMPLE USAGE: Position cursor over a word and press <leader>j
 "===============================================================================
 function! MyJumpTo()
     let filetype=&ft
@@ -16,9 +16,9 @@ endfunction
 "===============================================================================
 " Function Keymappings
 "===============================================================================
-nnoremap <Leader>gt :call MyJumpTo()<CR>
+nnoremap <Leader>j :call MyJumpTo()<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Jump to ctag or word under the cursor                         <Leader>gt', 'normal <Leader>gt']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Jump to ctag or word under the cursor                          <Leader>j', 'normal <Leader>j']]
