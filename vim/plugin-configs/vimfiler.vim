@@ -54,14 +54,14 @@ autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor
 "===============================================================================
 " Plugin Keymappings
 "===============================================================================
-nnoremap <Leader>vf :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
-nnoremap <Leader>vs :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -no-quit -find<CR>
+nnoremap <Leader>tr :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -toggle -no-quit<CR>
+nnoremap <Leader>gr :<C-u>VimFilerExplorer -split -simple -parent -winwidth=35 -no-quit -find<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle Vimfiler                                               <Leader>vf', 'echo "Use <Leader>vf"']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Open Vimfiler focused in current directory                    <Leader>vs', 'echo "User <Leader>vs"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle File Tree                                              <Leader>tr', 'echo "Use <Leader>tr"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Open File Tree focused in current directory                   <Leader>gr', 'echo "User <Leader>gr"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler copy file(s)                                         Select file(s) then "c"', 'echo "Select file(s) then c"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler delete file(s)                                       Select file(s) then "d"', 'echo "Select file(s) then d"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vimfiler move file(s)                                         Select file(s) then "m"', 'echo "Select file(s) then m"']]
