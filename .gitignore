@@ -6,5 +6,5 @@ emacs.d/auto-save-list/*
 emacs.d/*~
 emacs.d/ac-comphist.dat
 emacs.d/*ac-comphist.dat*
-vim/custom-config/*
-vim/custom-config/.git-keep
+vim/custom-configs/*
+!vim/custom-configs/.git-keep
