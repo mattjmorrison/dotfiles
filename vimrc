@@ -14,7 +14,7 @@
 
 " Buffer variables that control plugin loading {1
 " To exclude plugins add the file name to the array below (i.e `let b:exclude = ["vim-hardtime.vim"]`)
-let b:exclude = [""]
+let b:exclude = ["unite.vim"]
 let b:pluginList = split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
 let b:fileList = split(globpath('~/.vim/vanilla-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
@@ -65,6 +65,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 " }2
 " Bundles {2
+NeoBundle "Shougo/unite.vim" " Installed manually to allow automatically building the menu for the other plugins
 call ProcessList(b:pluginList, "AddBundle")
 " }2
 " Auto install the plugins {2
