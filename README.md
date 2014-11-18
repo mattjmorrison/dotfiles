@@ -8,21 +8,21 @@ In my opinion *which I respect very much* what you have stumbled across right he
 
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
-cd ~/dotfiles 
+cd ~/dotfiles
 bash set_up_linux.sh
 # or
 bash set_up_osx.sh
 ```
 
-# Contents 
+# Contents
 
 ## Zsh
 
-At the configurations core is the Z shell. When you first open the terminal you will notice the custom prompt. The prompt takes up the full width of the terminal and is two or three lines depending on if you are currently in a directory that is a git repo. The image below details the core components of the prompt. Additionally if you enter a directory that shares the name of a Python virtualenv it will be activated automatically and indicated visually in the prompt. The same is true for a directory containing node modules. 
+At the configurations core is the Z shell. When you first open the terminal you will notice the custom prompt. The prompt takes up the full width of the terminal and is two or three lines depending on if you are currently in a directory that is a git repo. The image below details the core components of the prompt. Additionally if you enter a directory that shares the name of a Python virtualenv it will be activated automatically and indicated visually in the prompt. The same is true for a directory containing node modules.
 
 ![zsh-prompt](https://cloud.githubusercontent.com/assets/4416952/4179773/ecec6e52-36d5-11e4-9317-bd6af3313e73.png)
 
-The shell has many convenience aliases and functions. For those I will suggest you look at the zshrc file as it is well organized. 
+The shell has many convenience aliases and functions. For those I will suggest you look at the zshrc file as it is well organized.
 
 ## Tmux
 
@@ -32,13 +32,28 @@ A must have for pair programming sessions. The most notable features are the the
 
 ## Vim
 
-The vim configuration is the life blood of the dotfiles. Vim is my primary editor and spend the majority of everyday banging away inside its modal buffers. Even more so thatn the zshrc the vimrc is meticulously organized. You can interactively explore the key mappings by opening an empty buffer and typing `|<Space>` in normal mode as pictured below. This will open a unite menu that lists all of the shortcuts with a description and the key mapping that triggers it. You can scroll through the list with \<C-J> \<C-k> or filter the options by typing.
+The vim configuration is the life blood of the dotfiles. Vim is my primary
+editor and I spend the majority of everyday banging away inside its modal
+buffers. You can interactively explore the key mappings by opening an empty buffer and
+typing `|<Space>` in normal mode as pictured below. This will open a unite menu
+that lists all of the shortcuts with a description and the key mapping that
+triggers it. You can scroll through the list with \<C-J> \<C-k> or filter the
+options by typing.
 
 ![vim](https://cloud.githubusercontent.com/assets/4416952/4179851/d820ceba-36d9-11e4-8818-0aee5eb7b096.gif)
 
+### Customizing Vim
+
+The Vim setup is designed to allow customization. You can maintain a separate
+version controlled repository of Vim configurations and pull that repository
+into the `vim/custom-configs` directory. Any file ending with `.vim` will
+automatically be sourced. If you would like to add additional plugins copy a
+file from `vim/plugin-configs` and updated it as needed then save that file
+with a name that ends in `-plugin.vim`
+
 ## Emacs
 
-While Vim is far and away my primary editor I would be remiss if I didn't mention the emacs configuration that you get with these dotfiles as well. Evil mode is used to make the Vim user feel almost at home. 
+While Vim is far and away my primary editor I would be remiss if I didn't mention the emacs configuration that you get with these dotfiles as well. Evil mode is used to make the Vim user feel almost at home.
 
 ![emacs](https://cloud.githubusercontent.com/assets/4416952/4180166/c5b4124e-36ea-11e4-8f21-2cef1009c2d7.gif)
 
