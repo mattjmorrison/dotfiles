@@ -12,9 +12,18 @@
 "
 "===================================================================================
 
+" Source custom-init to allow excluding plugins {1
+let b:customInit=expand($HOME.'/.vim/custom-configs/**/custom-init.vim')
+if filereadable(b:customInit)
+    source b:customInit
+endif
+
+if !exists("g:exclude")
+    let g:exclude = [""]
+endif
+" }1
+
 " Buffer variables that control plugin loading {1
-" To exclude plugins add the file name to the array below (i.e `let b:exclude = ["vim-hardtime.vim"]`)
-let b:exclude = [""]
 let b:pluginList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
 let b:pluginList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
 let b:pluginList += split(globpath('~/.vim/custom-configs/**', '*-plugin.vim'), '\n')
@@ -25,10 +34,15 @@ let b:fileList += split(globpath('~/.vim/functions', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/custom-configs/**', '*.vim'), '\n')
 "}1
 
+" Set leader keys {1
+let mapleader=" "
+let maplocalleader= '|'
+" }1
+
 " Function to process lists for sourceing and adding bundles {1
 function! ProcessList(listToProcess, functionToCall)
     for fpath in a:listToProcess
-        if index(b:exclude, split(fpath, "/")[-1]) >= 0
+        if index(g:exclude, split(fpath, "/")[-1]) >= 0
             continue
         else
             call {a:functionToCall}(fpath)
@@ -44,11 +58,6 @@ function! SourceFile(fpath)
     exe 'source' a:fpath
 endfunction
 "}1
-
-" Set leader keys {1
-let mapleader=" "
-let maplocalleader= '|'
-" }1
 
 " NeoBundle auto-installation and setup {1
 " Install and configure NeoBundle {2
