@@ -17,10 +17,12 @@
 let b:exclude = [""]
 let b:pluginList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
 let b:pluginList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
+let b:pluginList += split(globpath('~/.vim/custom-configs/**', '*.vim'), '\n')
 let b:fileList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/vanilla-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
-let b:fileList += split(globpath('~/.vim/custom-functions', '*.vim'), '\n')
+let b:fileList += split(globpath('~/.vim/functions', '*.vim'), '\n')
+let b:fileList += split(globpath('~/.vim/custom-configs/**', '*.vim'), '\n')
 "}1
 
 " Function to process lists for sourceing and adding bundles {1
