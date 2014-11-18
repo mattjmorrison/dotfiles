@@ -14,9 +14,11 @@
 
 " Buffer variables that control plugin loading {1
 " To exclude plugins add the file name to the array below (i.e `let b:exclude = ["vim-hardtime.vim"]`)
-let b:exclude = ["unite.vim"]
-let b:pluginList = split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
-let b:fileList = split(globpath('~/.vim/vanilla-configs', '*.vim'), '\n')
+let b:exclude = [""]
+let b:pluginList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
+let b:pluginList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
+let b:fileList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
+let b:fileList += split(globpath('~/.vim/vanilla-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/custom-functions', '*.vim'), '\n')
 "}1
@@ -65,7 +67,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 " }2
 " Bundles {2
-NeoBundle "Shougo/unite.vim" " Installed manually to allow automatically building the menu for the other plugins
 call ProcessList(b:pluginList, "AddBundle")
 " }2
 " Auto install the plugins {2
@@ -76,6 +77,5 @@ NeoBundleCheck
 " }1
 
 " Source Vim configurations {1
-source ~/.vim/plugin-configs/unite.vim " Needs to be first so the others can add to the menu(s)
 call ProcessList(b:fileList, "SourceFile")
 " }1
