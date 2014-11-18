@@ -39,7 +39,7 @@
 "===============================================================================
 " Keymaps
 "===============================================================================
-map ss :setlocal spell!<CR>
+map ts :setlocal spell!<CR>
 nnoremap <Leader>\ :vsplit<CR>
 nnoremap <Leader>- :split<CR>
 nnoremap <Leader><ESC> :nohlsearch<CR>
@@ -62,7 +62,7 @@ cmap w!! w !sudo tee %
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle spell checking                                         ss', 'setlocal spell!']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Toggle spell checking                                         ts', 'setlocal spell!']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New vertical split                                            <Leader>\', 'vsplit']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ New horizontal split                                          <Leader>-', 'split']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Turn off search highlighting                                  <Leader><ESC>', 'nohlsearch']]
