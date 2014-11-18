@@ -48,6 +48,7 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>sc :!aspell -c %<CR>
 nnoremap <leader>h :%!xxd<CR>
+nnoremap <Leader><Leader> <c-^>
 inoremap 9c <C-x><C-o>
 " --- Select tag if more than one option exists else jump to tag
 nnoremap <Leader>st g<C-]>
@@ -74,4 +75,5 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Get Hex
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Select tag if more than one else jump to tag                  <Leader>st', 'normal <Leader>st']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Remove trailing whitespaces                                   <Leader>W', 'normal <Leader>W']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Switch to the last active buffer                              <Leader><Leader>', 'normal <Leader><Leader>']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Save as root                                                  :w!!', 'exe "write !sudo tee % >/dev/null"']]
