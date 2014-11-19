@@ -13,7 +13,7 @@
 "===================================================================================
 
 " Source custom-init to allow excluding plugins {1
-let b:customInit=expand($HOME.'/.vim/custom-configs/**/custom-init.vim')
+let b:customInit=expand('~/dotfiles/custom-configs/**/custom-init.vim')
 if filereadable(b:customInit)
     source b:customInit
 endif
@@ -26,12 +26,12 @@ endif
 " Buffer variables that control plugin loading {1
 let b:pluginList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
 let b:pluginList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
-let b:pluginList += split(globpath('~/.vim/custom-configs/**', '*-plugin.vim'), '\n')
+let b:pluginList += split(globpath('~/dotfiles/custom-configs/**', '*-plugin.vim'), '\n')
 let b:fileList = split(globpath('~/.vim/order-dependent-unite-config', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/vanilla-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/plugin-configs', '*.vim'), '\n')
 let b:fileList += split(globpath('~/.vim/functions', '*.vim'), '\n')
-let b:fileList += split(globpath('~/.vim/custom-configs/**', '*.vim'), '\n')
+let b:fileList += split(globpath('~/dotfiles/custom-configs/**', '*.vim'), '\n')
 "}1
 
 " Set leader keys {1

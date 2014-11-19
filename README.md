@@ -46,7 +46,7 @@ options by typing.
 
 The Vim setup is designed to allow customization. You can maintain a separate
 version controlled repository of Vim configurations and pull that repository
-into the `vim/custom-configs` directory. Any file ending with `.vim` will
+into the `dotfiles/custom-configs` directory. Any file ending with `.vim` will
 automatically be sourced. If you would like to add additional plugins copy a
 file from `vim/plugin-configs` and updated it as needed then save that file
 with a name that ends in `-plugin.vim`. If you would like to not load some of
