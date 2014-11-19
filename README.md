@@ -40,8 +40,6 @@ that lists all of the shortcuts with a description and the key mapping that
 triggers it. You can scroll through the list with \<C-J> \<C-k> or filter the
 options by typing.
 
-![vim](https://cloud.githubusercontent.com/assets/4416952/4179851/d820ceba-36d9-11e4-8818-0aee5eb7b096.gif)
-
 ### Customizing Vim
 
 The Vim setup is designed to allow customization. You can maintain a separate
@@ -60,8 +58,6 @@ example `hard-time` is not for the novice Vim user. So in your
 ## Emacs
 
 While Vim is far and away my primary editor I would be remiss if I didn't mention the emacs configuration that you get with these dotfiles as well. Evil mode is used to make the Vim user feel almost at home.
-
-![emacs](https://cloud.githubusercontent.com/assets/4416952/4180166/c5b4124e-36ea-11e4-8f21-2cef1009c2d7.gif)
 
 ## Conky
 
