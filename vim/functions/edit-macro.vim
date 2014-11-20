@@ -9,15 +9,15 @@ function! EditMacro()
   call inputsave()
   let g:regToEdit = input('Register to edit: ')
   call inputrestore()
-  execute "nnoremap <Plug>em :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
+  execute "nnoremap <Plug>me :let @" . eval("g:regToEdit") . "='<C-R><C-R>" . eval("g:regToEdit")
 endfunction
 
 "===============================================================================
 " Function Keymappings
 "===============================================================================
-nmap <Leader>em :call EditMacro()<CR> <Plug>em
+nmap <Leader>me :call EditMacro()<CR> <Plug>me
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit macro contents in specific register                      <Leader>em', 'normal <Leader>em']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Edit macro contents in specific register                      <Leader>me', 'normal <Leader>me']]
