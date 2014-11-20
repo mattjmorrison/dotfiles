@@ -7,4 +7,4 @@ emacs.d/*~
 emacs.d/ac-comphist.dat
 emacs.d/*ac-comphist.dat*
 custom-configs/*
-!custom-configs/.git-keep
+!custom-configs/.git-keep.sh

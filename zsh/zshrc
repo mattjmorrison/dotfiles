@@ -462,7 +462,7 @@ bindkey . traverse_up
 # >>1
 
 # Source Custom Configurations <<1
-for fname in $(find ~/dotfiles/custom-configs/**/*.sh -type f); do
+for fname in $(find custom-configs -name "*.sh*"); do
     source $fname
 done
 # >>1
