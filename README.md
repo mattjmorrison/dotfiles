@@ -68,9 +68,6 @@ example `hard-time` is not for the novice Vim user. So in your
 ["vim-hardtime.vim"]` this array can contain the name of any file in
 `vim/plugin-configs`
 
-## Emacs
-
-While Vim is far and away my primary editor I would be remiss if I didn't mention the emacs configuration that you get with these dotfiles as well. Evil mode is used to make the Vim user feel almost at home.
 
 ## Conky
 
