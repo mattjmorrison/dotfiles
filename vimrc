@@ -15,7 +15,7 @@
 " Source custom-init to allow excluding plugins {1
 let b:customInit=expand('~/dotfiles/custom-configs/**/custom-init.vim')
 if filereadable(b:customInit)
-    source b:customInit
+    exe 'source' b:customInit
 endif
 
 if !exists("g:exclude")
