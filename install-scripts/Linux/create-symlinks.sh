@@ -28,6 +28,7 @@ sudo rm -rf ~/.antigen.zsh > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
 sudo rm -rf ~/coffeelint.json > /dev/null 2>&1
 sudo rm -rf ~/.conkyrc > /dev/null 2>&1
+sudo rm -rf ~/.tigrc > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
