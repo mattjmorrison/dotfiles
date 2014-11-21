@@ -56,6 +56,7 @@ nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
+autocmd BufReadPost quickfix nnoremap <buffer> <Leader><Leader> :echo "I don't think you want to do that"<CR>
 " --- Strip trailing whitespace
 nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " --- Save changes to a readonly file with sudo
