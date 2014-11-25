@@ -1,2 +1,4 @@
 bind status D !@?rm %(file)
 set vertical-split = no
+bind diff <Ctrl-j> next
+bind diff <Ctrl-k> previous
