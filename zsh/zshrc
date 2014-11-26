@@ -199,7 +199,7 @@ alias ll='ls -lh'
 alias la='ls -la'
 alias lls='ll -Sr'
 alias less='less -imJMW'
-alias tmux="deactivate; TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky
+alias tmux="TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
 alias gs='git status'
 alias gd='git diff'
