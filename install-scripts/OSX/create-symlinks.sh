@@ -22,6 +22,7 @@ sudo rm -rf ~/.antigen.zsh > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
 sudo rm -rf ~/coffeelint.json > /dev/null 2>&1
 sudo rm -rf ~/.tigrc > /dev/null 2>&1
+sudo rm -rf ~/.config > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -33,6 +34,7 @@ ln -s ~/dotfiles/bashrc ~/.bashrc
 ln -s ~/dotfiles/mac-tmux ~/.tmux
 ln -s ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
 ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/dotfiles/config ~/.config
 
 if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
     ln -s ~/dotfiles/custom-configs/**/gitconfig ~/.gitconfig
