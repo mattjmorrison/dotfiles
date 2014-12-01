@@ -1,10 +1,5 @@
 vim/bundle/
 vim/tmp/
 .DS_Store
-emacs.d/elpa*
-emacs.d/auto-save-list/*
-emacs.d/*~
-emacs.d/ac-comphist.dat
-emacs.d/*ac-comphist.dat*
 custom-configs/*
 !custom-configs/.git-keep.sh
