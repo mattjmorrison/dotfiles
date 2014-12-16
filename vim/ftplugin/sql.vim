@@ -532,7 +532,6 @@
 :iabbr <buffer> superuser SUPERUSER
 :iabbr <buffer> symmetric SYMMETRIC
 :iabbr <buffer> sysid SYSID
-:iabbr <buffer> system SYSTEM
 :iabbr <buffer> system_user SYSTEM_USER
 :iabbr <buffer> table TABLE
 :iabbr <buffer> tablesample TABLESAMPLE
