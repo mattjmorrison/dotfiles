@@ -57,8 +57,6 @@ nnoremap <Leader>st g<C-]>
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> o :.cc<CR>
 autocmd BufReadPost quickfix nnoremap <buffer> <Leader><Leader> :echo "I don't think you want to do that"<CR>
-" --- Strip trailing whitespace
-nnoremap <Leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " --- Save changes to a readonly file with sudo
 cmap w!! w !sudo tee %
 
@@ -77,6 +75,5 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Get Hex
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vim built in auto completion in inset mode                    9c', 'echo "Use 9c in insert mode to trigger the auto completion"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Vim built file path completion in insert mode                 9fp', 'echo "Use 9fp in insert mode to trigger the auto completion"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Select tag if more than one else jump to tag                  <Leader>st', 'normal <Leader>st']]
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Remove trailing whitespaces                                   <Leader>W', 'normal <Leader>W']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Switch to the last active buffer                              <Leader><Leader>', 'normal <Leader><Leader>']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Save as root                                                  :w!!', 'exe "write !sudo tee % >/dev/null"']]
