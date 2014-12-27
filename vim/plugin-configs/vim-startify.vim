@@ -43,6 +43,8 @@ let g:startify_show_files = 1
 let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
 let g:startify_bookmarks = [ '~/.vimrc' ]
+" Replace startify buffer when opening file from vimfiler
+autocmd User Startified setlocal buftype=
 
 "===============================================================================
 " Plugin Keymappings
