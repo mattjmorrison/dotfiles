@@ -47,6 +47,8 @@ autocmd FileType vimfiler nmap <buffer> l <Plug>(vimfiler_cd_or_edit)
 autocmd FileType vimfiler nmap <buffer> h <Plug>(vimfiler_switch_to_parent_directory)
 autocmd FileType vimfiler nmap <buffer> <C-R> <Plug>(vimfiler_redraw_screen)
 autocmd FileType vimfiler nmap <buffer> <Leader>sd <Plug>(vimfiler_mark_current_line):call VimfilerSearch()<CR>
+autocmd FileType vimfiler vmap <buffer> x <Plug>(vimfiler_toggle_mark_selected_lines)
+autocmd FileType vimfiler nmap <buffer> x <Plug>(vimfiler_toggle_mark_current_line)
 autocmd FileType vimfiler nmap <silent><buffer><expr> <CR> vimfiler#smart_cursor_map(
 \ "\<Plug>(vimfiler_expand_tree)",
 \ "\<Plug>(vimfiler_edit_file)")
