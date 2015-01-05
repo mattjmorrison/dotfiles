@@ -3,3 +3,5 @@ vim/tmp/
 .DS_Store
 custom-configs/*
 !custom-configs/.git-keep.sh
+config/configstore/*
+tags
