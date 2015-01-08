@@ -39,13 +39,16 @@ if [[ $answer = "Y" ]] ; then
     sudo pip install virtualenvwrapper
     sudo pip install jedi
     sudo pip install flake8
+    sudo gem install CoffeeTags
 
     # ===
     # Gollum set up
     # ===
-    brew install icu4c
-    sudo gem install gollum
-    sudo gem install redcarpet
-    sudo gem install CoffeeTags
+    echo -n "Do you want to maintain a wiki using gollum? (Y/n) => "; read wiki
+    if [[ $wiki = "Y" ]] ; then
+        brew install icu4c
+        sudo gem install gollum
+        sudo gem install redcarpet
+    fi
 
 fi
