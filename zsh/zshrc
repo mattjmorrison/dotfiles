@@ -132,7 +132,7 @@ export PROJECT_HOME=$HOME/VirtualDevEnvs
 # Add postgress to the path on osx <<2
 #-------------------------------------------------------------------------------
 if [ "$(uname)" = "Darwin" ]; then
-    PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+    PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 fi
 # >>2
 # Add Heroku Toolbelt to the path on osx <<2
