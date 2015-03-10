@@ -14,14 +14,25 @@ function! EnhancedYank() range
     let @+ = selection
 endfunction
 
+function! EnhancedYankToRegister()
+  normal! ""gvy
+  let selection = getreg('"')
+  call inputsave()
+  let g:regToYank = input('Register to yank to: ')
+  call inputrestore()
+  exe "let @" . g:regToYank . " = '" . selection . "'"
+endfunction
+
 "===============================================================================
 " Function Keymappings
 "===============================================================================
 xnoremap y :call EnhancedYank()<CR>
+xnoremap <Leader>" :call EnhancedYankToRegister()<CR>
 xnoremap <Leader>p "pp
 nnoremap <Leader>p "pp
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
-let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Paste from the p buffer                                        <Leader>p', '"pp']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Paste from the p buffer                                       <Leader>p', '"pp']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ [Visual Mode] Yank to named register                          <Leader>"', 'echo "User <Leader>"']]
