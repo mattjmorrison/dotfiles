@@ -37,8 +37,6 @@ let g:startify_custom_header = [
             \ '             $                                                                                                          ',
             \ '',
             \]
-" List recently used files using viminfo.
-let g:startify_show_files = 1
 " The number of files to list.
 let g:startify_show_files_number = 10
 " A list of files to bookmark. Always shown
