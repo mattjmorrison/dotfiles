@@ -1,5 +1,6 @@
 vim/bundle/
 vim/tmp/
+vim/custom-snips/*
 .DS_Store
 custom-configs/*
 !custom-configs/.git-keep.sh
