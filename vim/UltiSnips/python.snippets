@@ -4,24 +4,7 @@ import unittest
 class ${1:FooTests}(unittest.TestCase):
 
 	def ${2:test_foo}(self):
-		${3:pass}
-		self.assertEqual("returned_output" == "expected_output")
-endsnippet
-
-snippet dtests "Scaffold for Django test file" !b
-from django.test import TestCase
-
-class ${1:FooTests}(TestCase):
-
-	def setUp(self):
-		${2:pass}
-
-	def ${3:test_foo}(self):
-		${4:pass}
-		self.assertEqual("returned_output" == "expected_output")
-endsnippet
-
-snippet de "Define Python function" !b
-def ${1:my_func}(${2:*args}):
-	${3:pass}
+		expected_result = 1
+		actual_result = 2
+		self.assertEqual(expected_result, actual_result)
 endsnippet

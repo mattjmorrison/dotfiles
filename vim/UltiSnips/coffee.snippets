@@ -1,17 +1,12 @@
 snippet qtest "Scaffold for qunit ember test file"
 App = undefind
 
-module "${1:Module Description}"
-  setup: ->
-	App = startApp()
-  teardown: ->
-	Ember.run(App, "destroy")
-	$.mockjaxClear()
-
-test "${2:Test Description}", ->
-  equal(1, 2)
-endsnippet
-
 snippet cl "console.log(...)" b
 console.log($0)
+endsnippet
+
+snippet clx "console log block" b
+console.log("<><><>")
+console.log($0)
+console.log("<><><>")
 endsnippet
