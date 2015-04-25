@@ -14,10 +14,10 @@ yourself a favor, grab a copy and get to coding.
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
 cd ~/dotfiles/install-scripts
 zsh OSX/install-packages.sh
-zsh OSX/create-symlink.sh
+zsh OSX/create-symlinks.sh
 # or
 zsh Linux/install-packages.sh
-zsh Linux/create-symlink.sh
+zsh Linux/create-symlinks.sh
 ```
 
 # Contents
