@@ -11,3 +11,9 @@ endsnippet
 snippet fun "new function" i
 function($1) {$2}
 endsnippet
+
+snippet test "test('testname')" !b
+test('$1', function(assert) {
+	$2
+});
+endsnippet
