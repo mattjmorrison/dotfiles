@@ -30,6 +30,7 @@ sudo rm -rf ~/coffeelint.json > /dev/null 2>&1
 sudo rm -rf ~/.conkyrc > /dev/null 2>&1
 sudo rm -rf ~/.tigrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
+sudo rm -rf ~/.ideavimrc > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -42,6 +43,7 @@ ln -s $dotfiles_dir/linux-tmux ~/.tmux
 ln -s $dotfiles_dir/zsh/zsh_prompt ~/.zsh_prompt
 ln -s $dotfiles_dir/zsh/zshrc ~/.zshrc
 ln -s $dotfiles_dir/config ~/.config
+ln -s $dotfiles_dir/ideavimrc ~/.ideavimrc
 
 if [ -n "$(find $dotfiles_dir/custom-configs -name gitconfig)" ]; then
     ln -s $dotfiles_dir/custom-configs/**/gitconfig ~/.gitconfig
