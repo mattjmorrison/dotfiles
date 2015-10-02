@@ -24,6 +24,7 @@ if [[ $answer = "Y" ]] ; then
     brew install ack
     brew install tmux
     brew install the_silver_searcher
+    brew install planck
 
     # ===
     # Get Ctags properly setup
