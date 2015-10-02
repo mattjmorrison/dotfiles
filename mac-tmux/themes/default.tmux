@@ -34,9 +34,6 @@ setw -g window-status-current-attr bold
 setw -g window-status-bg black
 setw -g window-status-fg blue
 setw -g window-status-attr default
-setw -g window-status-content-bg black
-setw -g window-status-content-fg blue
-setw -g window-status-content-attr bold
 
 # -------------
 # Info on left (no session display)
