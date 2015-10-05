@@ -67,12 +67,12 @@ a separate version controlled repository of configurations for all your
 settings and pull that repository into the `dotfiles/custom-configs` directory.
 Any file ending with `.vim` will automatically be sourced.
 
-If you would like to add additional plugins copy a file from
-`vim/plugin-configs` and updated it as needed then save that file with a name
+If you would like to add additional plugins, copy a file from
+`vim/plugin-configs` and update it as needed. Then save that file with a name
 that ends in `-plugin.vim`.
 
 If you would like to not load some of the plugins that I have configured you
-can create a file named `custom-init.vim` in there you can specify an array of
+can create a file named `custom-init.vim`. In there you can specify an array of
 plugins to exclude. For example `hard-time` is not for the novice Vim user. So
 in your `custom-init.vim` you can add the following line.
 
