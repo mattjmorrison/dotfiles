@@ -8,7 +8,7 @@ ridiculous amount of time grooming and enhancing this treasure trove of
 developer tools. So if you love the command line, and I know you do, then do
 yourself a favor, grab a copy and get to coding.
 
-## Installation
+### Installation
 
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
