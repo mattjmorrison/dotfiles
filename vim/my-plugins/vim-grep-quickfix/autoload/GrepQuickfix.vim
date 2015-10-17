@@ -82,8 +82,9 @@ endfunction
 function! GrepQuickfix#remove_line_under_cursor()
   let cp = deepcopy(getqflist())
   let theLineContent = split(getline('.'), '|\d\+ col \d\+|')[1].'$'
+  let trimmedContent = substitute(theLineContent, '^\s*\(.\{-}\)\s*$', '\1', '')
   for d in cp
-    if d['text'] =~ substitute(theLineContent, '^\s*\(.\{-}\)\s*$', '\1', '')
+    if d['text'] =~ trimmedContent
       call remove(cp, index(cp,d))
     endif
   endfor
