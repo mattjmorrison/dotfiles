@@ -79,6 +79,17 @@ function! GrepQuickfix#grep_QuickFix(invert)
   endtry
 endfunction
 
+function! GrepQuickfix#remove_line_under_cursor()
+  let cp = deepcopy(getqflist())
+  let theLineContent = split(getline('.'), '|\d\+ col \d\+|')[1].'$'
+  for d in cp
+    if d['text'] =~ substitute(theLineContent, '^\s*\(.\{-}\)\s*$', '\1', '')
+      call remove(cp, index(cp,d))
+    endif
+  endfor
+  call setqflist(cp)
+endfunction
+
 "restore quickfix items since last qf command
 function! GrepQuickfix#restore_QuickFix()
   if len(s:origQF) > 0
