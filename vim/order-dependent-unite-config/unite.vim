@@ -10,7 +10,6 @@ let g:unite_enable_start_insert = 1
 let g:unite_split_rule = 'botright'
 let g:unite_force_overwrite_statusline = 0
 let g:unite_winheight = 15
-let g:unite_source_history_yank_enable = 1
 let g:unite_prompt = '──➤  '
 let g:unite_update_time = 200
 let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
@@ -55,7 +54,6 @@ endfunction
 "===============================================================================
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
-nnoremap <Leader>y :Unite history/yank<CR><Esc>
 nnoremap <Leader>sj :Unite jump<CR><Esc>
 nnoremap <Leader>nu :<C-u>Unite neobundle/update -log -vertical -auto-quit<CR>
 nnoremap <Leader>ff :Unite file file_rec/git -start-insert -buffer-name=files -winheight=18<CR>
@@ -81,7 +79,6 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates = [
     \['➤ Search jumps                                                  <Leader>sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                            <Leader>sb', 'Unite line'],
     \['➤ Update Neobundle packages                                     <Leader>nu', 'normal <Leader>nu'],
-    \['➤ Yank history                                                  <Leader>y', 'Unite history/yank'],
     \]
 nnoremap <silent>[menu]<Space> :Unite -silent -winheight=17 -start-insert menu:CustomKeyMaps<CR>
 
