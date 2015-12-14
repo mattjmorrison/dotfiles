@@ -75,7 +75,7 @@ let g:unite_source_menu_menus.CustomKeyMaps = {'description': 'Custom mapped key
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates = [
     \['➤ Buffer list                                                   <Leader>b', 'Unite buffer'],
     \['➤ Delete from buffer list in normal mode                        <C-d>', 'echo "Use <C-d> to delete a buffer"'],
-    \['➤ Find files,                                                   <Leader>ff', 'normal <Leader>ff'],
+    \['➤ Find files                                                    <Leader>ff', 'normal <Leader>ff'],
     \['➤ Search jumps                                                  <Leader>sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                            <Leader>sb', 'Unite line'],
     \['➤ Update Neobundle packages                                     <Leader>nu', 'normal <Leader>nu'],
