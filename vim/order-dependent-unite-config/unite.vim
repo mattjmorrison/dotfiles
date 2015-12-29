@@ -139,6 +139,7 @@ let g:unite_source_menu_menus.StatusCodeDefinitions.command_candidates = [
     \['➤ 415 Unsupported Media Type                                     ', 'echo "Unsupported Media Type"'],
     \['➤ 416 Requested Range Not Satisfiable                            ', 'echo "Requested Range Not Satisfiable"'],
     \['➤ 417 Expectation Failed                                         ', 'echo "Expectation Failed"'],
+    \['➤ 422 Unprocessable Entity                                       ', 'echo "Unprocessable Entity"'],
     \['➤ 500 Internal Server Error                                      ', 'echo "Internal Server Error"'],
     \['➤ 501 Not Implemented                                            ', 'echo "Not Implemented"'],
     \['➤ 502 Bad Gateway                                                ', 'echo "Bad Gateway"'],
