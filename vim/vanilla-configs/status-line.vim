@@ -24,6 +24,7 @@ function! BuildStatusLine(showMode)
     if a:showMode
         setl statusline+=%1*\ %{TextForCurrentMode()}\ "
     endif
+    setl statusline+=%<                              " Truncate contents after when line too long
     setl statusline+=%{&paste?'>\ PASTE':''}         " Alert when in paste mode
     setl statusline+=%8*\ %F                         " File path
     setl statusline+=%7*%m                           " File modified status
@@ -35,7 +36,6 @@ function! BuildStatusLine(showMode)
     setl statusline+=\ [LEN=%L]                      " Number of line in the file
     setl statusline+=%#warningmsg#                   " Highlights the syntastic errors in red
     setl statusline+=%{SyntasticStatuslineFlag()}    " Adds the line number and error count
-    setl statusline+=%*                              " Fill the width of the vim window
 endfunction
 
 hi User1 ctermfg=236 ctermbg=101 cterm=reverse
@@ -43,5 +43,4 @@ hi User7 ctermfg=88  ctermbg=236 cterm=none
 hi User8 ctermfg=236 ctermbg=101 cterm=reverse
 
 au WinLeave * call BuildStatusLine(0)
-au WinEnter * call BuildStatusLine(1)
-au VimEnter * call BuildStatusLine(1)
+au WinEnter,VimEnter,BufWinEnter * call BuildStatusLine(1)
