@@ -14,21 +14,24 @@ autoload -U promptinit
 autoload -Uz vcs_info
 
 # Make the colors easier to reference
+typeset -AHg FG BG
+
+for color in {000..255}; do
+    FG[$color]="%{[38;5;${color}m%}"
+    BG[$color]="%{[48;5;${color}m%}"
+done
+
 local reset white gray green red yellow blue cyan magenta black
 reset="%{${reset_color}%}"
-white="%{$fg[white]%}"
-gray="%{$fg_bold[black]%}"
-green="%{$fg_bold[green]%}"
-red="%{$fg[red]%}"
-yellow="%{$fg[yellow]%}"
-cyan="%{$fg[cyan]%}"
-blue="%{$fg[blue]%}"
-magenta="%{$fg[magenta]%}"
-black="%{$fg[black]%}"
+gray="%{$FG[239]%}"
+green="%{$FG[029]%}"
+red="%{$FG[088]%}"
+yellow="%{$FG[101]%}"
+cyan="%{$FG[066]%}"
+blue="%{$FG[060]%}"
 
 local -A pr_com            # Associative array
 local -a prompt_left_lines # Array parameters
-
 
 zstyle ":pr_jrock:" mode full
 zstyle ':pr_jrock:*' hooks pwd usr vcs venv npm jobs prompt
