@@ -7,7 +7,7 @@
 " Plugin Configurations
 "===============================================================================
 function! VimfilerCurrentDir()
-    let currentDir = vimfiler#get_current_vimfiler().original_files
+    let currentDir = vimfiler#get_marked_files(b:vimfiler)
     for dirItem in currentDir
         if dirItem.vimfiler__is_marked == 1
             return dirItem.action__path
