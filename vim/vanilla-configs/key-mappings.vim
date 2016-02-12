@@ -51,6 +51,10 @@ nnoremap <leader>h :%!xxd<CR>
 nnoremap <Leader><Leader> <c-^>
 inoremap 9fp <C-x><C-f>
 inoremap 9c <C-x><C-o>
+nnoremap { k{j^
+vnoremap { k{j^
+nnoremap } j}k^
+vnoremap } j}k^
 " --- Select tag if more than one option exists else jump to tag
 nnoremap <Leader>st g<C-]>
 " --- Shortcuts for quickfix as it was broken for some reason
