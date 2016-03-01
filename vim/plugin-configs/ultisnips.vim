@@ -6,7 +6,7 @@
 "===============================================================================
 " Plugin Configurations
 "===============================================================================
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom-snips"]
 let g:UltiSnipsJumpForwardTrigger="9<Tab>"
 let g:UltiSnipsEditSplit="vertical"
 

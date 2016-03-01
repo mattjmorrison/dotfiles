@@ -30,15 +30,16 @@ sudo rm -rf ~/.lein/profiles.clj > /dev/null 2>&1
 # Create symlinks in the home folder
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
-ln -s ~/dotfiles/vim ~/.vim
-ln -s ~/dotfiles/vimrc ~/.vimrc
-ln -s ~/dotfiles/bashrc ~/.bashrc
-ln -s ~/dotfiles/mac-tmux ~/.tmux
-ln -s ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
-ln -s ~/dotfiles/zsh/zshrc ~/.zshrc
-ln -s ~/dotfiles/config ~/.config
-ln -s ~/dotfiles/ideavimrc ~/.ideavimrc
-ln -s ~/dotfiles/profiles.clj ~/.lein/profiles.clj
+ln -sf ~/dotfiles/vim ~/.vim
+ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/bashrc ~/.bashrc
+ln -sf ~/dotfiles/mac-tmux ~/.tmux
+ln -sf ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
+ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
+ln -sf ~/dotfiles/config ~/.config
+ln -sf ~/dotfiles/ideavimrc ~/.ideavimrc
+ln -sf ~/dotfiles/profiles.clj ~/.lein/profiles.clj
+ln -sf ~/dotfiles/custom-configs/custom-snips ~/.vim/custom-snips
 
 if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
     ln -s ~/dotfiles/custom-configs/**/gitconfig ~/.gitconfig
