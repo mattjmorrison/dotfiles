@@ -12,7 +12,6 @@ function! StripTrailingWhitespace()
   normal `Z
 endfunction
 
-" autocmd BufWritePre *.{py,js,coffee} :call StripTrailingWhitespace()
 autocmd BufWritePre * :call StripTrailingWhitespace()
 
 "===============================================================================
