@@ -1,14 +1,3 @@
-snippet ntests "Scaffold for Python Nose test file" !b
-import unittest
-
-class ${1:FooTests}(unittest.TestCase):
-
-	def ${2:test_foo}(self):
-		expected_result = 1
-		actual_result = 2
-		self.assertEqual(expected_result, actual_result)
-endsnippet
-
 snippet pprint "import ppring" !b
 from pprint import pprint
 pprint(${0})
