@@ -4,10 +4,9 @@
  alt="JarrodCTaylor" title="JarrodCTaylor" align="left" />
 
 In my opinion *which I respect very much* what you have stumbled across right
-here is the best dotfiles money can buy, and they are priced to move. I have
-and continue to spend a ridiculous amount of time grooming and enhancing this
-treasure trove of developer tools. So if you love the command line, and I know
-you do, then do yourself a favor and grab a copy and get coding.
+here is the best dotfiles money can buy, and they're priced to move. This venerable
+treasure trove of developer tools is worthy of your time and attention. So if you
+love the command line, and I know you do, then grab a copy and get coding.
 
 ## Installation
 
@@ -32,7 +31,7 @@ You are encouraged to maintain a separate github repository of configurations fo
 
 ## Zsh
 
-AWhen you first open the terminal you will notice the custom prompt. The prompt
+When you first open the terminal you will notice the custom prompt. The prompt
 takes up the full width of the terminal and is two or three lines depending on
 if you are currently in a directory that is a git repo. The image below details
 the core components of the prompt. Additionally if you enter a directory that
