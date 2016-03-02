@@ -51,5 +51,4 @@ if [[ $answer = "Y" ]] ; then
         sudo gem install gollum
         sudo gem install redcarpet
     fi
-
 fi
