@@ -20,6 +20,9 @@ function! TextForCurrentMode()
 endfunction
 
 function! BuildStatusLine(showMode)
+    hi User1 ctermfg=236 ctermbg=101 cterm=reverse
+    hi User7 ctermfg=88  ctermbg=236 cterm=none
+    hi User8 ctermfg=236 ctermbg=101 cterm=reverse
     setl statusline=
     if a:showMode
         setl statusline+=%1*\ %{TextForCurrentMode()}\ "
@@ -37,10 +40,6 @@ function! BuildStatusLine(showMode)
     setl statusline+=%#warningmsg#                   " Highlights the syntastic errors in red
     setl statusline+=%{SyntasticStatuslineFlag()}    " Adds the line number and error count
 endfunction
-
-hi User1 ctermfg=236 ctermbg=101 cterm=reverse
-hi User7 ctermfg=88  ctermbg=236 cterm=none
-hi User8 ctermfg=236 ctermbg=101 cterm=reverse
 
 au WinLeave * call BuildStatusLine(0)
 au WinEnter,VimEnter,BufWinEnter * call BuildStatusLine(1)
