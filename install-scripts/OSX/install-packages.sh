@@ -3,6 +3,7 @@
 #==============
 echo -n "Install all the packages (Y/n) => "; read answer
 if [[ $answer = "Y" ]] ; then
+    sudo chown -R $(whoami):admin /usr/local
 
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew doctor
