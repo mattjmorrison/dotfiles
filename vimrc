@@ -51,7 +51,7 @@ function! ProcessList(listToProcess, functionToCall)
 endfunction
 
 function! AddBundle(fpath)
-    exe 'NeoBundle ' readfile(a:fpath, "", 4)[-1]
+    exe 'call dein#add(' . readfile(a:fpath, "", 4)[-1]. ')'
 endfunction
 
 function! SourceFile(fpath)
@@ -59,32 +59,22 @@ function! SourceFile(fpath)
 endfunction
 "}1
 
-" NeoBundle auto-installation and setup {1
-" Install and configure NeoBundle {2
-if !1 | finish | endif
-
-if has('vim_starting')
+" Dein auto install plug-ins {1
+if &compatible
     set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-let neobundle_readme=expand($HOME.'/.vim/bundle/neobundle.vim/README.md')
-
-if !filereadable(neobundle_readme)
-    silent !curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+set runtimepath^=~/.dein/repos/github.com/Shougo/dein.vim
+call dein#begin(expand('~/.dein'))
+call dein#add('Shougo/dein.vim')
+call ProcessList(b:pluginList, 'AddBundle')
+call dein#local('~/dotfiles/vim/my-plugins')
+call dein#end()
+if dein#check_install()
+    call dein#install()
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-" }2
-" Bundles {2
-call ProcessList(b:pluginList, "AddBundle")
-" }2
-" Auto install the plugins {2
-call neobundle#end()
 filetype plugin indent on
-NeoBundleCheck
-" }2
 " }1
 
 " Source Vim configurations {1

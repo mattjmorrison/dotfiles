@@ -43,13 +43,6 @@ if [[ $answer = "Y" ]] ; then
     sudo pip install flake8
     sudo gem install CoffeeTags
 
-    # ===
-    # Gollum set up
-    # ===
-    echo -n "Do you want to maintain a wiki using gollum? (Y/n) => "; read wiki
-    if [[ $wiki = "Y" ]] ; then
-        brew install icu4c
-        sudo gem install gollum
-        sudo gem install redcarpet
-    fi
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
+    sh /tmp/installer.sh ~/.dein
 fi

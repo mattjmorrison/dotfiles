@@ -55,7 +55,7 @@ endfunction
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
 nnoremap <Leader>sj :Unite jump<CR><Esc>
-nnoremap <Leader>nu :<C-u>Unite neobundle/update -log -vertical -auto-quit<CR>
+nnoremap <Leader>nu :call dein#update() <CR>
 nnoremap <Leader>ff :Unite file file_rec/git -start-insert -buffer-name=files -winheight=18<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 
@@ -78,7 +78,11 @@ let g:unite_source_menu_menus.CustomKeyMaps.command_candidates = [
     \['➤ Find files                                                    <Leader>ff', 'normal <Leader>ff'],
     \['➤ Search jumps                                                  <Leader>sj', 'Unite jump'],
     \['➤ Search lines in the current buffer                            <Leader>sb', 'Unite line'],
-    \['➤ Update Neobundle packages                                     <Leader>nu', 'normal <Leader>nu'],
+    \['➤ Update Vim plugins                                            <Leader>vu', 'normal <Leader>vu'],
+    \['➤ Grep in Quickfix buffer                                       <Leader>g', 'echo "Use <Leader>g to grep within the Quickfix buffer"'],
+    \['➤ Restore the Quickfix buffer                                   <Leader>r', 'echo "Use <Leader>r to restore the Quickfix buffer"'],
+    \['➤ Reverse Grep in Quickfix buffer                               <Leader>v', 'echo "Use <Leader>v to reverse grep within the Quickfix buffer"'],
+    \['➤ Reverse Grep Line Under Cursor in Quickfix buffer             <Leader>d', 'echo "Use <Leader>d to reverse grep the Line Under the Cursor in Quickfix buffer"'],
     \]
 nnoremap <silent>[menu]<Space> :Unite -silent -winheight=17 -start-insert menu:CustomKeyMaps<CR>
 

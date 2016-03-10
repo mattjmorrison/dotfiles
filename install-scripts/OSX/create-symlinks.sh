@@ -74,7 +74,7 @@ fi
 #==============
 # Set zsh as the default shell
 #==============
-chsh -s /usr/local/bin/zsh
+chsh -s /bin/zsh
 
 #==============
 # And we are done
