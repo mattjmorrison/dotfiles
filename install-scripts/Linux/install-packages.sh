@@ -185,6 +185,9 @@ else
     echo "flake8 FAILED TO INSTALL!!!" >> $log_file
 fi
 
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
+sh /tmp/installer.sh ~/.dein
+
 #==============
 # Give the user a summary of what has been installed
 #==============
