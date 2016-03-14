@@ -214,6 +214,7 @@ alias delete_pyc='find . -name \*.pyc -exec rm \{\} \+'
 alias c='clear'
 alias vom='vim'
 alias cljs='planck'
+alias ag='ag --ignore-dir node_modules --ignore-dir bower_components'
 # >>1
 
 # Functions <<1
