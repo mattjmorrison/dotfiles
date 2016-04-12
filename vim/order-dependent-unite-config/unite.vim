@@ -42,7 +42,7 @@ endfunction
 " filter buffer for search term
 nnoremap <Leader>sb :Unite line<CR>
 nnoremap <Leader>sj :Unite jump<CR><Esc>
-nnoremap <Leader>nu :call dein#update() <CR>
+nnoremap <Leader>vu :call dein#update() <CR>
 nnoremap <Leader>ff :Unite file file_rec/git -start-insert -buffer-name=files -winheight=18<CR>
 nnoremap <Leader>b :Unite buffer<CR>
 
