@@ -67,6 +67,7 @@ endif
 set runtimepath^=~/.dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.dein'))
 call dein#add('Shougo/dein.vim')
+call dein#disable(g:exclude)
 call ProcessList(b:pluginList, 'AddBundle')
 call dein#local('~/dotfiles/vim/my-plugins')
 call dein#end()
