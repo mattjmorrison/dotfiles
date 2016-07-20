@@ -1,10 +1,9 @@
 #==============
 # Install all the packages
 #==============
-echo -n "Install all the packages (Y/n) => "; read answer
-if [[ $answer = "Y" ]] ; then
+echo -n "Install all base packages (Y/n) => "; read answer
+if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     sudo chown -R $(whoami):admin /usr/local
-
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     brew doctor
     brew update
@@ -45,4 +44,11 @@ if [[ $answer = "Y" ]] ; then
 
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
     sh /tmp/installer.sh ~/.dein
+fi
+
+echo -n "Install haskell related tools? (y/N) => "; read haskell
+if [[ $haskell = "y" ]] || [[ $haskell = "Y" ]] ; then
+    brew install haskell-stack
+    stack setup
+    stack install hlint ghc-mod hdevtools
 fi

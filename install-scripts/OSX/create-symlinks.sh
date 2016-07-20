@@ -23,8 +23,6 @@ sudo rm -rf ~/.psqlrc > /dev/null 2>&1
 sudo rm -rf ~/coffeelint.json > /dev/null 2>&1
 sudo rm -rf ~/.tigrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
-sudo rm -rf ~/.ideavimrc > /dev/null 2>&1
-sudo rm -rf ~/.lein/profiles.clj > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
@@ -37,8 +35,6 @@ ln -sf ~/dotfiles/mac-tmux ~/.tmux
 ln -sf ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
 ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
 ln -sf ~/dotfiles/config ~/.config
-ln -sf ~/dotfiles/ideavimrc ~/.ideavimrc
-ln -sf ~/dotfiles/profiles.clj ~/.lein/profiles.clj
 ln -sf ~/dotfiles/custom-configs/custom-snips ~/.vim/custom-snips
 
 if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
