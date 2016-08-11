@@ -16,7 +16,6 @@ set -g pane-base-index 1
 # -------------
 # status line
 # -------------
-set -g status-utf8 on
 set -g status-justify left
 set -g status-bg black
 set -g status-fg white
@@ -40,5 +39,4 @@ setw -g window-status-attr default
 set -g status-left ''
 set -g status-right-length 150
 set -g status-right '#[fg=colour69] #(hostname)@#(hostname -I | cut -d " " -f 1) | #[fg=colour160]♥ #[fg=colour69]#(acpi -b | cut -d" " -f4 | cut -d"%" -f1)% | %H:%M | %Y-%m-%d '
-set -g status-utf8 on
 
