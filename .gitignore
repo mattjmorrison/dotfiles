@@ -2,6 +2,8 @@ vim/bundle/
 vim/tmp/
 vim/custom-snips/*
 vim/custom-snips
+vim/plugged/
+vim/autoload/
 .DS_Store
 custom-configs/*
 custom-configs/custom-snips/*

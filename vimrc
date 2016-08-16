@@ -37,7 +37,7 @@ let b:fileList += split(globpath('~/dotfiles/custom-configs/**', '*.vim'), '\n')
 " Set leader keys {1
 let mapleader=" "
 let maplocalleader= '|'
-" }1
+"}1
 
 " Function to process lists for sourceing and adding bundles {1
 function! ProcessList(listToProcess, functionToCall)
@@ -51,7 +51,7 @@ function! ProcessList(listToProcess, functionToCall)
 endfunction
 
 function! AddBundle(fpath)
-    exe 'call dein#add(' . readfile(a:fpath, "", 4)[-1]. ')'
+    execute "Plug " . readfile(a:fpath, "", 4)[-1][1:]
 endfunction
 
 function! SourceFile(fpath)
@@ -59,21 +59,22 @@ function! SourceFile(fpath)
 endfunction
 "}1
 
-" Dein auto install plug-ins {1
+" Manage plug-ins {1
 if &compatible
     set nocompatible
 endif
 
-set runtimepath^=~/.dein/repos/github.com/Shougo/dein.vim
-call dein#begin(expand('~/.dein'))
-call dein#add('Shougo/dein.vim')
-call dein#disable(g:exclude)
-call ProcessList(b:pluginList, 'AddBundle')
-call dein#local('~/dotfiles/vim/my-plugins')
-call dein#end()
-if dein#check_install()
-    call dein#install()
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
+
+call plug#begin('~/.vim/plugged')
+call ProcessList(b:pluginList, 'AddBundle')
+Plug '~/dotfiles/vim/my-plugins/vim-grep-quickfix'
+Plug '~/dotfiles/vim/my-plugins/vim-wiki-links'
+call plug#end()
 
 filetype plugin indent on
 " }1

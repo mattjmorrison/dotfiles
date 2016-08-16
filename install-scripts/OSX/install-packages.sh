@@ -41,9 +41,6 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     sudo pip install jedi
     sudo pip install flake8
     sudo gem install CoffeeTags
-
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
-    sh /tmp/installer.sh ~/.dein
 fi
 
 echo -n "Install haskell related tools? (y/N) => "; read haskell

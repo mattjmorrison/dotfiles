@@ -38,7 +38,6 @@ function! BuildStatusLine(showMode)
     setl statusline+=\ [POS=L%04l,R%04v]             " Cursor position in the file line, row
     setl statusline+=\ [LEN=%L]                      " Number of line in the file
     setl statusline+=%#warningmsg#                   " Highlights the syntastic errors in red
-    setl statusline+=%{SyntasticStatuslineFlag()}    " Adds the line number and error count
 endfunction
 
 au WinLeave * call BuildStatusLine(0)
