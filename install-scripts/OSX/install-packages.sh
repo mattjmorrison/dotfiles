@@ -25,6 +25,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     brew install tmux
     brew install the_silver_searcher
     brew install planck
+    brew install zsh-syntax-highlighting
 
     # ===
     # Get Ctags properly setup
