@@ -216,4 +216,8 @@ for fname in $(find ~/dotfiles/custom-configs -name "*.sh*"); do
 done
 # >>1
 
+# Source Syntaxhighlighting <<1
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# >>1
+
 # EOF
