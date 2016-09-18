@@ -47,4 +47,3 @@ alias .....='cd ../../../..'
 alias ls='ls --color'
 # Empty the trash folder that is created when you delete things as root
 alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}/*"'
-alias tmux="TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky

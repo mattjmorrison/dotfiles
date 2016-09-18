@@ -154,7 +154,7 @@ if [ "$(uname)" = "Darwin" ]; then
 else
     alias ls='ls -F --color'
 fi
-alias tmux="TERM=screen-256color-bce tmux"  # Fix tmux making vim colors funky
+alias tmux="tmux -2"  # Fix tmux making vim colors funky
 alias tmuxh='tmux attach -t host-session || tmux new-session -s host-session'
 alias tmuxp='tmux attach -t pair-session || tmux new-session -t host-session -s pair-session'
 # >>1

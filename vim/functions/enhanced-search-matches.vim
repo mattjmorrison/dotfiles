@@ -8,7 +8,7 @@
 "                magic happens automatically.
 "===============================================================================
 function! HLNext (blinktime)
-    highlight HighlightStyle ctermfg=none ctermbg=160 cterm=none
+    highlight HighlightStyle ctermfg=none ctermbg=160 guibg=#9D0006 cterm=none
     let [bufnum, lnum, col, off] = getpos('.')
     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
     let target_pat = '\c\%#'.@/

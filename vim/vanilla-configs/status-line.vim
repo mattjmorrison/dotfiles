@@ -1,17 +1,17 @@
 setl laststatus=2
 
-let s:currentmode={'n':  {'text': 'NORMAL',  'color': 60},
-                 \ 'v':  {'text': 'VISUAL',  'color': 58},
-                 \ 'V':  {'text': 'V-LINE',  'color': 58},
-                 \ '': {'text': 'V-BLOCK', 'color': 58},
-                 \ 'i':  {'text': 'INSERT',  'color': 29},
-                 \ 'R':  {'text': 'REPLACE', 'color': 88}}
+let s:currentmode={'n':  {'text': 'NORMAL',  'termColor': 60, 'guiColor': '#076678'},
+                 \ 'v':  {'text': 'VISUAL',  'termColor': 58, 'guiColor': '#D65D0E'},
+                 \ 'V':  {'text': 'V-LINE',  'termColor': 58, 'guiColor': '#D65D0E'},
+                 \ '': {'text': 'V-BLOCK', 'termColor': 58, 'guiColor': '#D65D0E'},
+                 \ 'i':  {'text': 'INSERT',  'termColor': 29, 'guiColor': '#8EC07C'},
+                 \ 'R':  {'text': 'REPLACE', 'termColor': 88, 'guiColor': '#CC241D'}}
 
 function! TextForCurrentMode()
     set lazyredraw
     if has_key(s:currentmode, mode())
         let modeMap = s:currentmode[mode()]
-        execute 'hi! User1 ctermfg=255 ctermbg=' . modeMap['color'] . ' cterm=none'
+        execute 'hi! User1 ctermfg=255 ctermbg=' . modeMap['termColor'] . 'guifg=#EEEEEE guibg=' . modeMap['guiColor'] . ' cterm=none'
         return modeMap['text']
     else
         return 'UNKNOWN'
@@ -20,9 +20,9 @@ function! TextForCurrentMode()
 endfunction
 
 function! BuildStatusLine(showMode)
-    hi User1 ctermfg=236 ctermbg=101 cterm=reverse
-    hi User7 ctermfg=88  ctermbg=236 cterm=none
-    hi User8 ctermfg=236 ctermbg=101 cterm=reverse
+    hi User1 ctermfg=236 ctermbg=101 guifg=#303030 guibg=#87875F cterm=reverse
+    hi User7 ctermfg=88  ctermbg=236 guifg=#870000 guibg=#303030 cterm=none
+    hi User8 ctermfg=236 ctermbg=101 guifg=#303030 guibg=#87875F cterm=reverse
     setl statusline=
     if a:showMode
         setl statusline+=%1*\ %{TextForCurrentMode()}\ "

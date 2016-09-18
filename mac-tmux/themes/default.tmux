@@ -1,9 +1,4 @@
 # -------------
-# Try to get close to normal colors in tmux
-# -------------
-set -g default-terminal "screen-256color"
-
-# -------------
 # start with window 1 (instead of 0)
 # -------------
 set -g base-index 1
