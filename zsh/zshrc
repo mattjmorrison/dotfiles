@@ -220,4 +220,9 @@ done
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # >>1
 
+# Export Go Path <<1
+export GOPATH=~/Projects/go
+export PATH=$PATH:$GOPATH/bin
+# >>1
+
 # EOF

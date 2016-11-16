@@ -49,3 +49,9 @@ if [[ $haskell = "y" ]] || [[ $haskell = "Y" ]] ; then
     stack setup
     stack install hlint ghc-mod hdevtools
 fi
+
+echo -n "Install GO related tools? (y/N) => "; read go
+if [[ $go = "y" ]] || [[ $go = "Y" ]] ; then
+    brew install go --cross-compile-common
+    # go get -u github.com/golang/lint/golint
+fi
