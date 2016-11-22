@@ -20,6 +20,7 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     brew install tig
     brew install aspell
     brew install node
+    brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste
     brew install ack
     brew install tmux
     brew install the_silver_searcher
