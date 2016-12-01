@@ -21,7 +21,6 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     brew install aspell
     brew install node
     brew install reattach-to-user-namespace --wrap-pbcopy-and-pbpaste
-    brew install ack
     brew install tmux
     brew install the_silver_searcher
     brew install planck
@@ -41,7 +40,6 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     sudo pip install virtualenvwrapper
     sudo pip install jedi
     sudo pip install flake8
-    sudo gem install CoffeeTags
 fi
 
 echo -n "Install haskell related tools? (y/N) => "; read haskell
