@@ -106,13 +106,6 @@ else
     echo "jshint FAILED TO INSTALL!!!" >> $log_file
 fi
 
-sudo npm install -g coffee-script
-if type -p coffee > /dev/null; then
-    echo "coffee script Installed" >> $log_file
-else
-    echo "coffee script FAILED TO INSTALL!!!" >> $log_file
-fi
-
 curl http://beyondgrep.com/ack-2.08-single-file > ~/ack && chmod 0755 !#:3
 sudo mv ~/ack /usr/bin/ack
 sudo chmod 755 /usr/bin/ack

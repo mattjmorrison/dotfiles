@@ -14,7 +14,6 @@ let g:syntastic_javascript_checkers = ['jshint']  " sets jshint as our javascrip
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': [],
                          \ 'passive_filetypes': ['html', 'handlebars'] }
-let g:syntastic_coffee_coffeelint_args="--csv --file ~/coffeelint.json"
 
 "===============================================================================
 " Plugin Keymappings
