@@ -75,7 +75,6 @@ list with \<C-J> \<C-k> or filter the options by typing as seen below.
 
 You can use your own configuration file in place of any of the following
  * gitconfig
- * coffeelint.json
  * psqlrc
  * tigrc
  * tmux.conf

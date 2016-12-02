@@ -26,7 +26,6 @@ sudo rm -rf ~/.gitconfig > /dev/null 2>&1
 sudo rm -rf ~/.antigen > /dev/null 2>&1
 sudo rm -rf ~/.antigen.zsh > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
-sudo rm -rf ~/coffeelint.json > /dev/null 2>&1
 sudo rm -rf ~/.conkyrc > /dev/null 2>&1
 sudo rm -rf ~/.tigrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
@@ -66,12 +65,6 @@ if [ -n "$(find $dotfiles_dir/custom-configs -name psqlrc)" ]; then
     ln -s $dotfiles_dir/custom-configs/**/psqlrc ~/.psqlrc
 else
     ln -s $dotfiles_dir/psqlrc ~/.psqlrc
-fi
-
-if [ -n "$(find $dotfiles_dir/custom-configs -name coffeelint.json)" ]; then
-    ln -s $dotfiles_dir/custom-configs/**/coffeelint.json ~/coffeelint.json
-else
-    ln -s $dotfiles_dir/coffeelint.json ~/coffeelint.json
 fi
 
 #==============
