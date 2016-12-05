@@ -13,11 +13,11 @@ love the command line, and I know you do, then grab a copy and get coding.
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
 cd ~/dotfiles/install-scripts
-zsh OSX/install-packages.sh
-zsh OSX/create-symlinks.sh
+bash OSX/install-packages.sh
+bash OSX/create-symlinks.sh
 # or
-zsh Linux/install-packages.sh
-zsh Linux/create-symlinks.sh
+bash Linux/install-packages.sh
+bash Linux/create-symlinks.sh
 ```
 
 ## Customization
