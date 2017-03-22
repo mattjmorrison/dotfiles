@@ -8,7 +8,7 @@ here is the best dotfiles money can buy, and they're priced to move. This venera
 treasure trove of developer tools is worthy of your time and attention. So if you
 love the command line, and I know you do, then grab a copy and get coding.
 
-## Installation
+### Installation
 
 ``` bash
 git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
