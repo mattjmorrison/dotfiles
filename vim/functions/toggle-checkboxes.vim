@@ -8,7 +8,7 @@
 "===============================================================================
 au BufNewFile,BufRead *.todo set filetype=todo
 function! UpdateToDoList()
-python << endPython
+python3 << endPython
 
 import vim
 

@@ -10,7 +10,7 @@ if executable('ag')
 endif
 
 function! TheSilverSearcher()
-python << endPython
+python3 << endPython
 
 import vim
 
