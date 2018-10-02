@@ -4,7 +4,7 @@
  alt="JarrodCTaylor" title="JarrodCTaylor" align="left" />
 
 In my opinion *which I respect very much* what you have stumbled across right
-here is the best dotfiles money can buy, and they're priced to move. This venerable
+here are the best dotfiles money can buy, and they're priced to move. This venerable
 treasure trove of developer tools is worthy of your time and attention. So if you
 love the command line, and I know you do, then grab a copy and get coding.
 
