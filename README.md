@@ -11,7 +11,7 @@ love the command line, and I know you do, then grab a copy and get coding.
 ## Installation
 
 ``` bash
-git clone https://github.com/JarrodCTaylor/dotfiles.git ~/dotfiles
+git clone https://github.com/mattjmorrison/dotfiles.git ~/dotfiles
 cd ~/dotfiles/install-scripts
 bash OSX/install-packages.sh
 bash OSX/create-symlinks.sh
@@ -23,7 +23,7 @@ bash Linux/create-symlinks.sh
 ## Customization
 
 There is no need to fork this repository in order to customize it. Everything
-can be customized by leveraging the [custom-configs](https://github.com/JarrodCTaylor/dotfiles/wiki/custom-config) directory.
+can be customized by leveraging the [custom-configs](https://github.com/mattjmorrison/dotfiles/wiki/custom-config) directory.
 You are encouraged to maintain a separate github repository of configurations for your own dotfiles.
 
 # Contents
@@ -43,7 +43,7 @@ node modules.
 
 ### Customizing Zsh
 
-[customizing-zsh](https://github.com/JarrodCTaylor/dotfiles/wiki/zsh)
+[customizing-zsh](https://github.com/mattjmorrison/dotfiles/wiki/zsh)
 
 ## Tmux
 
@@ -65,11 +65,11 @@ list with \<C-J> \<C-k> or filter the options by typing as seen below.
 
 ### Customizing Vim
 
-- [Adding Plugins](https://github.com/JarrodCTaylor/dotfiles/wiki/Adding-Vim-Plugins)
-- [Removing Plugins](https://github.com/JarrodCTaylor/dotfiles/wiki/Removing-Vim-Plugins)
-- [Adding Snippets](https://github.com/JarrodCTaylor/dotfiles/wiki/Adding-Vim-Snippets)
-- [Changing Colorschemes](https://github.com/JarrodCTaylor/dotfiles/wiki/Changing-Vim-Colorschemes)
-- [Splash Screen](https://github.com/JarrodCTaylor/dotfiles/wiki/Changing-Vim-Splashscreen)
+- [Adding Plugins](https://github.com/mattjmorrison/dotfiles/wiki/Adding-Vim-Plugins)
+- [Removing Plugins](https://github.com/mattjmorrison/dotfiles/wiki/Removing-Vim-Plugins)
+- [Adding Snippets](https://github.com/mattjmorrison/dotfiles/wiki/Adding-Vim-Snippets)
+- [Changing Colorschemes](https://github.com/mattjmorrison/dotfiles/wiki/Changing-Vim-Colorschemes)
+- [Splash Screen](https://github.com/mattjmorrison/dotfiles/wiki/Changing-Vim-Splashscreen)
 
 ## Misc Customization
 
