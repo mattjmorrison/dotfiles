@@ -16,12 +16,10 @@ if [[ $answer != "n" ]] && [[ $answer != "N" ]] ; then
     # The regular brew installable packages
     # ===
     brew install zsh
-    brew install vim --with-lua
+    brew install vim --with-lua --with-python3
     brew install tig
     brew install aspell
     brew install node
-    brew install lua
-    brew install python3
     brew install reattach-to-user-namespace
     brew install tmux
     brew install the_silver_searcher
