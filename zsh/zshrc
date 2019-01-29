@@ -124,11 +124,7 @@ export MANPAGER=$PAGER
 export GIT_PAGER=$PAGER
 export BROWSER='chromium-browser'
 # >>2
-# Specify virtualenv directories <<2
-#-------------------------------------------------------------------------------
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/VirtualDevEnvs
-# >>2
+#
 # Eliminate lag between transition from normal/insert mode <<2
 #-------------------------------------------------------------------------------
 # If this causes issue with other shell commands it can be raised default is 4
@@ -154,78 +150,23 @@ if [ "$(uname)" = "Darwin" ]; then
 else
     alias ls='ls -F --color'
 fi
-alias tmux="tmux -2"  # Fix tmux making vim colors funky
-alias tmuxh='tmux attach -t host-session || tmux new-session -s host-session'
-alias tmuxp='tmux attach -t pair-session || tmux new-session -t host-session -s pair-session'
-# >>1
-
-# Functions <<1
-#===============================================================================
-# Workon virtualenv <<2
-#--------------------------------------------------------------------
-# If we cd into a directory that is named the same as a virtualenv
-# auto activate that virtualenv
-# -------------------------------------------------------------------
-[[ -a /usr/local/share/python/virtualenvwrapper.sh ]] && source /usr/local/share/python/virtualenvwrapper.sh
-[[ -a /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
-
-workon_virtualenv() {
-  if [[ -d .git ]]; then
-     VENV_CUR_DIR="${PWD##*/}"
-     if [[ -a ~/.virtualenvs/$VENV_CUR_DIR ]]; then
-       deactivate > /dev/null 2>&1
-       source ~/.virtualenvs/$VENV_CUR_DIR/bin/activate
-     fi
-  fi
-}
-# >>2
-# Workon node env <<2
-#--------------------------------------------------------------------
-# If we cd into a directory that contains a directory named node_modules
-# we automatically add it to the $PATH
-# -------------------------------------------------------------------
-workon_node_env() {
-  if [[ -d "node_modules" ]]; then
-
-    export NPM_ORIGINAL_PATH=$PATH
-    eval NODE_NAME=$(basename $(pwd))
-    export PATH="${PATH}:$(pwd)/node_modules/.bin"
-
-    deactivatenode(){
-      export PATH=$NPM_ORIGINAL_PATH
-      unset -f deactivatenode
-      unset NODE_NAME
-    }
-  fi
-}
-# >>2
-# Run the virtual environments functions for the prompt on each cd <<2
-# -------------------------------------------------------------------
-cd() {
-  builtin cd "$@"
-  unset NODE_NAME
-  workon_virtualenv
-  workon_node_env
-}
-# >>2
-# >>1
-
-# Source Custom Configurations <<1
-for fname in $(find ~/dotfiles/custom-configs -name "*.sh*"); do
-    source $fname
-done
 # >>1
 
 # Source Syntaxhighlighting <<1
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # >>1
 
-# Export Go Path <<1
-if [[ ! -n $GOPATH ]]; then
-    export GOPATH=~/Projects/go
-fi
 
-export PATH=$PATH:$GOPATH/bin
+# Source Default Configurations <<1
+for fname in $(find ~/dotfiles/default-configs -name "*.sh*"); do
+    source $fname
+done
+# >>1
+
+# Source Custom Configurations <<1
+for fname in $(find ~/dotfiles/custom-configs -name "*.sh*"); do
+    source $fname
+done
 # >>1
 
 # EOF

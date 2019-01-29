@@ -34,10 +34,7 @@ You are encouraged to maintain a separate github repository of configurations fo
 When you first open the terminal you will notice the custom prompt. The prompt
 takes up the full width of the terminal and is two or three lines depending on
 if you are currently in a directory that is a git repo. The image below details
-the core components of the prompt. Additionally if you enter a directory that
-shares the name of a Python virtualenv it will be activated automatically and
-indicated visually in the prompt. The same is true for a directory containing
-node modules.
+the core components of the prompt.
 
 ![zsh-prompt](https://cloud.githubusercontent.com/assets/4416952/4179773/ecec6e52-36d5-11e4-9317-bd6af3313e73.png)
 

@@ -26,7 +26,6 @@ sudo rm -rf ~/.gitconfig > /dev/null 2>&1
 sudo rm -rf ~/.antigen > /dev/null 2>&1
 sudo rm -rf ~/.antigen.zsh > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
-sudo rm -rf ~/.conkyrc > /dev/null 2>&1
 sudo rm -rf ~/.tigrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
 
@@ -65,24 +64,6 @@ if [ -n "$(find $dotfiles_dir/custom-configs -name psqlrc)" ]; then
     ln -s $dotfiles_dir/custom-configs/**/psqlrc ~/.psqlrc
 else
     ln -s $dotfiles_dir/psqlrc ~/.psqlrc
-fi
-
-#==============
-# Select which conky to symlink
-#==============
-echo -n "Install desktop or laptop conky? (Desk/Lap) => "; read answer
-
-if [[ $answer = "Desk" ]] ; then
-    ln -s ~/dotfiles/conky/_conkyrc_desktop ~/.conkyrc
-else
-    ln -s ~/dotfiles/conky/_conkyrc_laptop ~/.conkyrc
-    # Used to get battery status
-    sudo apt-get -y install acpi
-    if type -p acpi > /dev/null; then
-        echo "acpi Installed" >> $log_file
-    else
-        echo "acpi FAILED TO INSTALL!!!" >> $log_file
-    fi
 fi
 
 #==============
