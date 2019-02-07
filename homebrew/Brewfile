@@ -5,7 +5,7 @@ brew "zsh"
 brew "zsh-syntax-highlighting"
 
 # vim tools
-brew "vim", args: ["with-lua"]
+brew "vim"
 brew "aspell"
 brew "ctags"
 
