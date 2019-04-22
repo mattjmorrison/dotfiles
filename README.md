@@ -13,8 +13,7 @@ love the command line, and I know you do, then grab a copy and get coding.
 ``` bash
 git clone https://github.com/mattjmorrison/dotfiles.git ~/dotfiles
 cd ~/dotfiles/install-scripts
-bash OSX/install-packages.sh
-bash OSX/create-symlinks.sh
+bash OSX/setup.sh
 # or
 bash Linux/install-packages.sh
 bash Linux/create-symlinks.sh
