@@ -143,13 +143,6 @@ else
     echo "bpython3 FAILED TO INSTALL!!!" >> $log_file
 fi
 
-sudo apt-get -y install conky
-if type -p conky > /dev/null; then
-    echo "conky Installed" >> $log_file
-else
-    echo "conky FAILED TO INSTALL!!!" >> $log_file
-fi
-
 sudo apt-get -y install tmux
 if type -p tmux > /dev/null; then
     echo "tmux Installed" >> $log_file
