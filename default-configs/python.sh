@@ -33,3 +33,40 @@ cd() {
   workon_virtualenv
 }
 # >>2
+
+
+# Create a virtual environment using pyenv
+# -------------------------------------------------------------------
+mkvirtualenv() {
+    pyenv virtualenv $1 $2
+    pyenv activate $2
+    deactivate() {
+        pyenv deactivate $(basename ${VIRTUAL_ENV})
+    }
+}
+# >>2
+
+# Activate a virtualenv using pyenv
+# -------------------------------------------------------------------
+workon() {
+    pyenv activate $1
+    deactivate() {
+        pyenv deactivate $(basename ${VIRTUAL_ENV})
+    }
+}
+# >>2
+
+# change the current directory to the site packages of the currently activated virtualenv
+# -------------------------------------------------------------------
+cdsitepackages() {
+    cd ${VIRTUAL_ENV}/lib/python*/site-packages
+}
+# >>2
+
+# delete the chosen virtualenv
+# -------------------------------------------------------------------
+rmvirtualenv() {
+    pyenv uninstall $1
+}
+# >>2
+
