@@ -1,0 +1,136 @@
+{
+  /*****************************************************
+
+  VSCode dotefile for imt-apps by Patrick McCartney
+
+  to get the right extensions installed automatically, run:
+
+  code --install-extension be5invis.vscode-custom-css
+  code --install-extension christian-kohler.npm-intellisense
+  code --install-extension DavidAnson.vscode-markdownlint
+  code --install-extension dbaeumer.jshint
+  code --install-extension dbaeumer.vscode-eslint
+  code --install-extension donjayamanne.githistory
+  code --install-extension dracula-theme.theme-dracula
+  code --install-extension esbenp.prettier-vscode
+  code --install-extension ms-azuretools.vscode-docker
+  code --install-extension ms-python.python
+  code --install-extension ms-vscode.vscode-typescript-tslint-plugin
+  code --install-extension ms-vsliveshare.vsliveshare
+  code --install-extension msjsdiag.debugger-for-chrome
+  code --install-extension Pachwenko.django-test-runner
+  code --install-extension softwaredotcom.swdc-vscode
+  code --install-extension sozercan.slack
+  code --install-extension trentrand.git-commit-helper-vscode
+  code --install-extension VisualStudioExptTeam.vscodeintellicode
+  code --install-extension vscodevim.vim
+  code --install-extension wesbos.theme-cobalt2
+
+  (outputted from `code --list-extensions | xargs -L 1 echo code --install-extension`)
+  ****************************************************/
+
+  "workbench.colorTheme": "Cobalt2",
+
+  // misc settings
+  "editor.renderWhitespace": "all",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "python.jediEnabled": false,
+
+  // controversial settings?
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontLigatures": true,
+  "files.autoSave": "afterDelay",
+  "git.autofetch": true,
+  "vim.camelCaseMotion.enable": true,
+
+  // python linting settings
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.ignorePatterns": [".vscode/*.py", "migrations/**/*.py"],
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Args": [""],
+  "python.linting.flake8CategorySeverity.W": "Error",
+
+  // yapf settings
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true}"
+  ],
+
+  /* vscodevim specific settings, keybindings
+   * see https://github.com/VSCodeVim/Vim for more information
+   *
+   * don't enable vim.statusBarColorControl unless you want bad stuttering
+   */
+  "vim.leader": "<space>",
+  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["Z", "Z"],
+      "commands": [":wq"]
+    },
+    {
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["leader", "d", "m"],
+      "commands": ["python.djangoTestRunner.runMethodTests"]
+    },
+    {
+      "before": ["leader", "d", "c"],
+      "commands": ["python.djangoTestRunner.runClassTests"]
+    },
+    {
+      "before": ["leader", "d", "f"],
+      "commands": ["python.djangoTestRunner.runFileTests"]
+    },
+    {
+      "before": ["leader", "d", "a"],
+      "commands": ["python.djangoTestRunner.runAppTests"]
+    },
+    {
+      "before": ["leader", "d", "p"],
+      "commands": ["python.djangoTestRunner.runPreviousTests"]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "showGitMetrics": false,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
+
