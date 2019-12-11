@@ -9,6 +9,7 @@
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "custom-snips"]
 let g:UltiSnipsJumpForwardTrigger="9<Tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="9<tab>"
 
 "===============================================================================
 " Plugin Keymappings

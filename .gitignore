@@ -8,3 +8,4 @@ vim/autoload/
 config/configstore/*
 tags
 config/hub
+config/coc/extensions/*

@@ -60,6 +60,34 @@ list with \<C-J> \<C-k> or filter the options by typing as seen below.
 
 ![key-map-search](https://cloud.githubusercontent.com/assets/4416952/13449402/cc8002b2-dff0-11e5-911b-e616d851f525.gif)
 
+## Coc.nvim
+
+Suggested extensions to install:
+```
+:CocInstall coc-python coc-html coc-css coc-json
+```
+
+Suggested settings, use :CocConfig or put in ~/.vim/coc-settings.json:
+```
+{
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true}"
+  ],
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8CategorySeverity.W": "Error",
+  "python.linting.pylintEnabled": false,
+  "suggest.timeout": 5000,
+  "python.analysis.disabled": [
+    "unresolved-import", // ignore these warnings/errors
+    "undefined-variable"
+  ],
+  "python.jediEnabled": false,
+  "suggest.enablePreview": true
+}
+```
+
 ### Customizing Vim
 
 - [Adding Plugins](https://github.com/mattjmorrison/dotfiles/wiki/Adding-Vim-Plugins)

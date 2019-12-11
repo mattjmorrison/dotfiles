@@ -1,0 +1,18 @@
+{
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true}"
+  ],
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8CategorySeverity.W": "Error",
+  "python.linting.pylintEnabled": false,
+  "suggest.timeout": 5000,
+  "python.analysis.disabled": [
+    "unresolved-import", // ignore these warnings/errors
+    "undefined-variable"
+  ],
+  "python.jediEnabled": false,
+  "suggest.enablePreview": true
+}
+
