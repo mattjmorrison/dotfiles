@@ -1,0 +1,10 @@
+vim/bundle/
+vim/tmp/
+vim/custom-snips/*
+vim/custom-snips
+vim/plugged/
+vim/autoload/
+.DS_Store
+config/configstore/*
+tags
+config/hub

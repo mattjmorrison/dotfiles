@@ -1,0 +1,45 @@
+snippet main "The main function" !b
+int main(int argc, char *argv[]) {
+	${VISUAL}${0}
+	return 0;
+}
+endsnippet
+
+snippet fun "function declaration" !b
+${1:void} ${2:function_name}(${3}) {
+	${0}
+	return ${5};
+}
+endsnippet
+
+snippet st "struct declaration" !b
+typedef struct {
+	${0:data}
+} ${1:struct_alias};
+endsnippet
+
+snippet if "if" !b
+if (${1:/* condition */}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet eli "else if" !b
+else if (${1:/* condition */}) {
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet ife "if else" !b
+if (${1:/* condition */}) {
+	${2}
+} else {
+	${3:/* else */}
+}
+endsnippet
+
+snippet fori "for loop" !b
+for (${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
+	${VISUAL}${0}
+}
+endsnippet

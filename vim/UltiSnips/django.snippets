@@ -1,0 +1,25 @@
+snippet block
+{% block ${1} %}
+  ${2}
+{% endblock %}
+endsnippet
+
+snippet extends
+{% extends "${1:base.html}" %}
+endsnippet
+
+snippet if
+{% if ${1} %}
+  ${2}
+{% endif %}
+endsnippet
+
+snippet else
+{% else %}
+  ${1}
+endsnippet
+
+snippet url
+{% url ${1} as ${2} %}
+endsnippet
+

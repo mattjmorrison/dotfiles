@@ -1,0 +1,27 @@
+*GrepQuickfix.txt*  A plugin for filtering Quickfix entries
+
+================================================================================
+Help on using GrepQuickfix
+
+  1. DISCLAIMER ........................................ |GrepQuickfix-disclaimer|
+  2. USAGE .................................................. |GrepQuickfix-usage|
+
+================================================================================
+1. DISCLAIMER                                            *GrepQuickfix-disclaimer*
+
+I ran across a version of this code in a sketchy seemingly unmaintained github
+repo. I slightly modified it to suit my needs and pulled it into my vim config.
+The vim script is a little narley but it works as intended. I am not going to
+burn the calories at this point to make it pretty. As always pull requests are
+well sucker.
+
+================================================================================
+2. USAGE                                                      *GrepQuickfix-usage*
+
+|GrepQuickfix| commands and mappings work only in the |Quickfix| buffer.
+
+<Leader>g filter entries, you will be asked for pattern
+<Leader>v inverted filter entries, you will be asked for pattern (like grep -v)
+<Leader>r to restore original quickfix entires.
+
+" vim: filetype=help

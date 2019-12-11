@@ -1,0 +1,8 @@
+alias ts='tig status'
+alias eft='ember exam --split=2 --parallel --silent'
+alias git-track='function _gittrack(){ git branch --set-upstream-to=origin/"$1" "$1";};_gittrack'
+alias pr='hub pull-request'
+alias push='git publish'
+alias pull='git pul'
+alias gmm='git fetch && git rebase origin/master'
+alias gcm='git checkout master'

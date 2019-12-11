@@ -1,0 +1,29 @@
+*vim-markdown-links*  Navagate between links in markdown files
+
+==============================================================================
+CONTENTS                                           *vim-markdown-links-contents*
+
+    1. Intro ........................................ |vim-markdown-links-intro|
+    2. Usage ........................................ |vim-markdown-links-usage|
+    3. Link Format ................................. |vim-markdown-links-format|
+
+==============================================================================
+1. INTRODUCTION                                       *vim-markdown-links-intro*
+
+A Vim plugin which eases the navigation between files in a personal wiki.
+This project is forked from wikilink and adapted for my own personal wiki
+which I maintain in Vim.
+
+==============================================================================
+1. USAGE                                                                 *usage*
+
+Hit the ENTER key when the cursor is on a wiki link
+The corresponding file is loaded in the current buffer
+
+==============================================================================
+2. LINK FORMAT                                                     *link-format*
+
+`[[Text to display|path/to/file]]`
+
+
+" vim: filetype=help

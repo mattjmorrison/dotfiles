@@ -1,0 +1,17 @@
+-- Make null display as NULL and not an empty string
+\pset null '[NULL]'
+
+-- Table format default expanded format when too much data for one screen
+\x auto
+
+-- Verbose error reports.
+\set VERBOSITY verbose
+
+-- Use a separate history file per-database.
+\set HISTFILE ~/.psql_history- :DBNAME
+
+-- If command run more than once in a row, only store once in history.
+\set HISTCONTROL ignoredups
+
+-- complete keywords (like SELECT) in upper-case
+\set COMP_KEYWORD_CASE upper

@@ -1,0 +1,20 @@
+[color]
+    ui = true
+    branch = true
+    diff = true
+    interactive = true
+    status = true
+[color "status"]
+    added = green
+    changed = red
+    deleted = red
+    untracked = yellow
+[user]
+	name = Brian Archibald
+	email = brian.archibald@imtapps.com
+[alias]
+    default = matching
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    publish = "!git push origin $(git branch-name)"
+    pull-rebase = "!git pull origin $(git branch-name) --rebase"
+    pul = "!git pull origin $(git branch-name)"

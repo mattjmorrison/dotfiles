@@ -1,0 +1,14 @@
+global !p
+def complete(t, opts):
+    if t:
+        opts = [m[len(t):] for m in opts if m.startswith(t)]
+    if len(opts) == 1:
+        return opts[0]
+    return "({})".format("|".join(opts))
+endglobal
+
+snippet pre "Official Commit Message Prefixes" !b
+$1`!p snip.rv=complete(t[1], ["Bug Fix", "Debugging", "Dependency",
+                              "Doc", "Enhancement", "Feature", "Version",
+                              "Peripheral", "Refactor", "Style", "Test"])`: 
+endsnippet
