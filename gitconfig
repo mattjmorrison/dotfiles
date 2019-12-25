@@ -10,7 +10,7 @@
     deleted = red
     untracked = yellow
 [user]
-    name =
-    email =
+	name = Paul
+	email = poginni@gmail.com
 [push]
     default = matching
