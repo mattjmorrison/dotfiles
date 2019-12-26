@@ -78,3 +78,9 @@ You can use your own configuration file in place of any of the following
 To do so you just need to include a file of the same name in your version
 controlled directory that you save into `custom-configs` the create symlinks
 scripts will link the files properly.
+
+### Potential problems
+
+Here are solutions to problems I've encountered when using the install scripts:
+ * Error: nvim error detected while processing function Ultisnips
+ * Solution: Run the following from your terminal: `python3 -m pip install --user --upgrade pynvim`
