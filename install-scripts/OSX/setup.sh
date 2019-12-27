@@ -96,12 +96,14 @@ chsh -s /bin/zsh
 #==============
 # Setup nvim plugin installer
 #==============
+mkdir -p ~/.local
+
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+cp ../../custom-configs/init.vim ~/.config/nvim/init.vim
 
 #==============
 # And we are done
 #==============
 echo -e "\n====== All Done!! ======\n"
-echo
-echo "Enjoy -Matt"
