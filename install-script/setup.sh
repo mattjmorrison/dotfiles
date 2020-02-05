@@ -29,6 +29,10 @@ brew doctor
 echo_ok "Updating homebrew..."
 brew update
 
+# So we use all of the packages we are about to install
+echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
+source ~/.bashrc
+
 echo "Creating an SSH key for you..."
 ssh-keygen -t rsa -b 4096 -C "dhcrain@gmail.com"
 
@@ -41,12 +45,25 @@ xcode-select --install
 
 sudo xcodebuild -license accept # Accepts the Xcode license
 
+#==============
+# Remove old dot flies
+#==============
+sudo rm -rf ~/.bashrc > /dev/null 2>&1
+sudo rm -rf ~/.zsh_prompt > /dev/null 2>&1
+sudo rm -rf ~/.zshrc > /dev/null 2>&1
+sudo rm -rf ~/.gitconfig > /dev/null 2>&1
+sudo rm -rf ~/.psqlrc > /dev/null 2>&1
+sudo rm -rf ~/.config > /dev/null 2>&1
+sudo rm -rf ~/Brewfile > /dev/null 2>&1
+
 
 #==============
 # Create symlinks in the home folder
 # Allow overriding with files of matching names in the custom-configs dir
 #==============
 SYMLINKS=()
+ln -sf ~/dotfiles/bashrc ~/.bashrc
+SYMLINKS+=('.bashrc')
 ln -sf ~/dotfiles/zsh/zsh_prompt ~/.zsh_prompt
 SYMLINKS+=('.zsh_prompt')
 ln -sf ~/dotfiles/zsh/zshrc ~/.zshrc
