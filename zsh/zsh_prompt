@@ -24,11 +24,11 @@ done
 local reset white gray green red yellow blue cyan magenta black
 reset="%{${reset_color}%}"
 gray="%{$FG[239]%}"
-green="%{$FG[029]%}"
-red="%{$FG[088]%}"
-yellow="%{$FG[101]%}"
+green="%{$FG[010]%}"
+red="%{$FG[009]%}"
+yellow="%{$FG[011]%}"
 cyan="%{$FG[066]%}"
-blue="%{$FG[060]%}"
+blue="%{$FG[012]%}"
 
 local -A pr_com            # Associative array
 local -a prompt_left_lines # Array parameters
