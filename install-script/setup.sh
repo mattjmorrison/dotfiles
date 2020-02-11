@@ -43,10 +43,9 @@ read -p "Press [Enter] key after this..."
 if test ! $(which g++); then
   echo_ok "Installing xcode-stuff"
   xcode-select --install
-else 
+else
   echo_ok "xcode cl tools already installed"
 fi
-
 
 sudo xcodebuild -license accept # Accepts the Xcode license
 
