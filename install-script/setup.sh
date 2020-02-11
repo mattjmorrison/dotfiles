@@ -103,7 +103,6 @@ echo_ok "Installing apps from Brewfile 🙌"
 brew bundle
 cd -
 
-brew cask cleanup
 brew cleanup
 brew doctor
 
