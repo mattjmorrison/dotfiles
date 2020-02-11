@@ -40,8 +40,13 @@ echo_warn "Please add this public key to Github \n"
 echo_ok "https://github.com/settings/keys \n"
 read -p "Press [Enter] key after this..."
 
-echo_ok "Installing xcode-stuff"
-xcode-select --install
+if test ! $(which g++); then
+  echo_ok "Installing xcode-stuff"
+  xcode-select --install
+else 
+  echo_ok "xcode cl tools already installed"
+fi
+
 
 sudo xcodebuild -license accept # Accepts the Xcode license
 
