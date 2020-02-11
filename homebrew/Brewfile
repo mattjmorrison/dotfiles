@@ -28,7 +28,7 @@ brew "git-standup"
 
 # databases
 # cask "postgres"
-cask "sqlite"
+brew "sqlite"
 
 # Java related tools
 cask "java"
@@ -39,7 +39,6 @@ brew "maven"
 # languages
 brew "node"
 brew "node@12"
-brew "python@2"
 brew "python3"
 brew "pyenv"
 brew "pyenv-virtualenv"
