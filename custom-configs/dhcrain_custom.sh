@@ -280,3 +280,7 @@ function nuke-node-modules() {
 	echo " > Deleteing node_modules and reinstalling"
 	rm -rf node_modules && npm install
 }
+
+function dnsFlush() {
+	sudo killall -HUP mDNSResponder
+}
