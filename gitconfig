@@ -10,7 +10,11 @@
     deleted = red
     untracked = yellow
 [user]
-    name =
-    email =
+    name = Davis
+    email = dhcrain@gmail.com
 [push]
     default = matching
+[core]
+	excludesfile = /Users/davis/.gitignore_global
+	autocrlf = false
+	editor = code
