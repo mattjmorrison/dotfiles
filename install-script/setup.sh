@@ -1,7 +1,11 @@
 # helpers
-function echo_ok { echo -e '\033[1;32m'"$1"'\033[0m'; }
-function echo_warn { echo -e '\033[1;33m'"$1"'\033[0m'; }
-function echo_error  { echo -e '\033[1;31mERROR: '"$1"'\033[0m'; }
+RED='\033[0;31m'
+ORANGE='\033[0;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+function echo_ok { echo -e "${GREEN} $1 ${NC}"; }
+function echo_warn { echo -e "${ORANGE} $1 ${NC}"; }
+function echo_error  { echo -e "${RED}ERROR: $1 ${NC}"; }
 
 #==============
 # Install all the packages
