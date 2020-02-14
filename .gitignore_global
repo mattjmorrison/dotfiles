@@ -1,0 +1,23 @@
+# Node
+npm-debug.log
+node_modules
+
+# Mac
+.DS_Store
+
+# Jetbrains
+.idea/
+
+# vi
+*~
+
+venv
+.sass-cache
+*.sqlite
+
+# Compiled Python files
+*.pyc
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes

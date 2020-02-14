@@ -60,6 +60,7 @@ sudo rm -rf ~/.bashrc > /dev/null 2>&1
 sudo rm -rf ~/.zsh_prompt > /dev/null 2>&1
 sudo rm -rf ~/.zshrc > /dev/null 2>&1
 sudo rm -rf ~/.gitconfig > /dev/null 2>&1
+sudo rm -rf ~/.gitignore_global > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
 sudo rm -rf ~/Brewfile > /dev/null 2>&1
@@ -89,6 +90,13 @@ else
 fi
 SYMLINKS+=('.gitconfig')
 
+if [ -n "$(find ~/dotfiles/custom-configs -name gitignore_global)" ]; then
+    ln -s ~/dotfiles/custom-configs/**/gitignore_global ~/.gitignore_global
+else
+    ln -s ~/dotfiles/gitignore_global ~/.gitignore_global
+fi
+SYMLINKS+=('.gitignore_global')
+
 if [ -n "$(find ~/dotfiles/custom-configs -name psqlrc)" ]; then
     ln -s ~/dotfiles/custom-configs/**/psqlrc ~/.psqlrc
 else
@@ -96,7 +104,7 @@ else
 fi
 SYMLINKS+=('.psqlrc')
 
-echo ${SYMLINKS[@]}
+echo_ok "Symlinks: " ${SYMLINKS[@]}
 
 # hack for... I'm not even sure what... sqlite working in Python with pyenv?
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
