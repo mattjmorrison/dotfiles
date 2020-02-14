@@ -16,7 +16,7 @@ bash setup.sh
 
 ## Customization
 
-There is no need to fork this repository in order to customize it. Everything
+There is no need to fork this repository in order to customize it. (*But I did it anyway*) Everything
 can be customized by leveraging the [custom-configs](https://github.com/dhcrain/dotfiles/wiki/custom-config) directory.
 You are encouraged to maintain a separate github repository of configurations for your own dotfiles.
 
