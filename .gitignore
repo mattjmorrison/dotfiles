@@ -8,4 +8,5 @@ vim/autoload/
 custom-configs/custom-snips/*
 !custom-configs/custom-snips/.git-keep.sh
 config/configstore/*
+config/direnv/*
 tags
