@@ -1,29 +1,15 @@
 # Dotfiles
 
-<img src="https://cloud.githubusercontent.com/assets/4416952/4179463/baa22c1a-36c7-11e4-8d8b-b0d1cee0caa6.png"
- alt="JarrodCTaylor" title="JarrodCTaylor" align="left" />
-
-In my opinion *which I respect very much* what you have stumbled across right
-here are the best dotfiles money can buy, and they're priced to move. This venerable
-treasure trove of developer tools is worthy of your time and attention. So if you
-love the command line, and I know you do, then grab a copy and get coding.
-
 ## Installation
 
 ``` bash
-git clone https://github.com/mattjmorrison/dotfiles.git ~/dotfiles
+git clone https://github.com/Paul1987/dotfiles.git ~/dotfiles
 cd ~/dotfiles/install-scripts
 bash OSX/setup.sh
 # or
 bash Linux/install-packages.sh
 bash Linux/create-symlinks.sh
 ```
-
-## Customization
-
-There is no need to fork this repository in order to customize it. Everything
-can be customized by leveraging the [custom-configs](https://github.com/mattjmorrison/dotfiles/wiki/custom-config) directory.
-You are encouraged to maintain a separate github repository of configurations for your own dotfiles.
 
 # Contents
 
@@ -39,7 +25,7 @@ the core components of the prompt.
 
 ### Customizing Zsh
 
-[customizing-zsh](https://github.com/mattjmorrison/dotfiles/wiki/zsh)
+[customizing-zsh](https://github.com/Paul1987n/dotfiles/wiki/zsh)
 
 ## Tmux
 
@@ -61,11 +47,11 @@ list with \<C-J> \<C-k> or filter the options by typing as seen below.
 
 ### Customizing Vim
 
-- [Adding Plugins](https://github.com/mattjmorrison/dotfiles/wiki/Adding-Vim-Plugins)
-- [Removing Plugins](https://github.com/mattjmorrison/dotfiles/wiki/Removing-Vim-Plugins)
-- [Adding Snippets](https://github.com/mattjmorrison/dotfiles/wiki/Adding-Vim-Snippets)
-- [Changing Colorschemes](https://github.com/mattjmorrison/dotfiles/wiki/Changing-Vim-Colorschemes)
-- [Splash Screen](https://github.com/mattjmorrison/dotfiles/wiki/Changing-Vim-Splashscreen)
+- [Adding Plugins](https://github.com/Paul1987/dotfiles/wiki/Adding-Vim-Plugins)
+- [Removing Plugins](https://github.com/Paul1987/dotfiles/wiki/Removing-Vim-Plugins)
+- [Adding Snippets](https://github.com/Paul1987/dotfiles/wiki/Adding-Vim-Snippets)
+- [Changing Colorschemes](https://github.com/Paul1987/dotfiles/wiki/Changing-Vim-Colorschemes)
+- [Splash Screen](https://github.com/Paul1987/dotfiles/wiki/Changing-Vim-Splashscreen)
 
 ## Misc Customization
 
@@ -78,9 +64,3 @@ You can use your own configuration file in place of any of the following
 To do so you just need to include a file of the same name in your version
 controlled directory that you save into `custom-configs` the create symlinks
 scripts will link the files properly.
-
-### Potential problems
-
-Here are solutions to problems I've encountered when using the install scripts:
- * Error: nvim error detected while processing function Ultisnips
- * Solution: Run the following from your terminal: `python3 -m pip install --user --upgrade pynvim`
