@@ -49,3 +49,5 @@ alias ls='ls --color'
 alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}/*"'
 export PATH='/usr/local/bin:/Users/poginni/.pyenv/shims:~/.pyenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/opt/X11/bin:/Users/poginni/.rvm/bin'
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
