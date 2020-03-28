@@ -12,4 +12,4 @@ bash Linux/create-symlinks.sh
 ```
 
 ## Refernce
-Shout out to mattjmorrison, after whom I modeled this dotfile repo.
+Shout out to mattjmorrison, after whose dotfiles I modeled this repo.
