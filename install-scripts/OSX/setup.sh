@@ -1,12 +1,16 @@
 #==============
 # Install all the packages
 #==============
+
+# Update /usr/local path ownership to current user
 sudo chown -R $(whoami):admin /usr/local
+
+# Install Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew doctor
 brew update
 
-# So we use all of the packages we are about to install
+# Ensure we use all of the packages we are about to install
 echo "export PATH='/usr/local/bin:$PATH'\n" >> ~/.bashrc
 source ~/.bashrc
 
@@ -28,7 +32,7 @@ sudo rm -rf ~/Brewfile > /dev/null 2>&1
 
 #==============
 # Create symlinks in the home folder
-# Allow overriding with files of matching names in the custom-configs dir
+# Allow overriding with files of matching names in the custom-configs dir with the -f flag
 #==============
 SYMLINKS=()
 ln -sf ~/dotfiles/vim ~/.vim
