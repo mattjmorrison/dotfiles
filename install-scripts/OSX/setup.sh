@@ -53,37 +53,16 @@ ln -sf ~/dotfiles/custom-configs/custom-snips ~/.vim/custom-snips
 SYMLINKS+=('.vim/custom-snips')
 ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
-
-
-if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/gitconfig ~/.gitconfig
-else
-    ln -s ~/dotfiles/gitconfig ~/.gitconfig
-fi
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
 SYMLINKS+=('.gitconfig')
-
-if [ -n "$(find ~/dotfiles/custom-configs -name tmux.conf)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/tmux.conf ~/.tmux.conf
-else
-    ln -s ~/dotfiles/mac-tmux/tmux.conf ~/.tmux.conf
-fi
+ln -s ~/dotfiles/mac-tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
-
-if [ -n "$(find ~/dotfiles/custom-configs -name tigrc)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/tigrc ~/.tigrc
-else
-    ln -s ~/dotfiles/tigrc ~/.tigrc
-fi
+ln -s ~/dotfiles/tigrc ~/.tigrc
 SYMLINKS+=('.tigrc')
-
-if [ -n "$(find ~/dotfiles/custom-configs -name psqlrc)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/psqlrc ~/.psqlrc
-else
-    ln -s ~/dotfiles/psqlrc ~/.psqlrc
-fi
+ln -s ~/dotfiles/psqlrc ~/.psqlrc
 SYMLINKS+=('.psqlrc')
 
-echo ${SYMLINKS[@]}
+echo "The following symlinks have been created:\n ${SYMLINKS[@]}"
 
 # hack for... I'm not even sure what... sqlite working in Python with pyenv?
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
