@@ -10,7 +10,7 @@ if executable('ag')
 endif
 
 function! TheSilverSearcher()
-python3 << endPython
+python3 << EndPython
 
 import vim
 
@@ -30,7 +30,7 @@ def silver_search():
 
 silver_search()
 
-endPython
+EndPython
 endfunction
 
 command Search call TheSilverSearcher()

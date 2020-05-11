@@ -7,7 +7,7 @@
 "                `def test_something_in_a_python_file(test):`
 "===============================================================================
 function! MakeUnderscore()
-python3 << endPython
+python3 << EndPython
 
 import vim
 
@@ -22,7 +22,7 @@ def underscore_test_name():
 
 underscore_test_name()
 
-endPython
+EndPython
 endfunction
 
 command! UnderscoreTest call MakeUnderscore()

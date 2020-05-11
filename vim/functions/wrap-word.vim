@@ -7,7 +7,7 @@
 "                `someFunction(otherFunc(arg1), arg2)`
 "===============================================================================
 function! WrapWordWith()
-python3 << endPython
+python3 << EndPython
 
 import vim
 from itertools import dropwhile
@@ -31,7 +31,7 @@ def wrap_with():
 
 wrap_with()
 
-endPython
+EndPython
 endfunction
 
 command! WrapWith call WrapWordWith()
