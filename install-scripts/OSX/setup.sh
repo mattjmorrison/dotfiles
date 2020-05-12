@@ -1,5 +1,5 @@
 #==============
-# Install all the packages
+# Install packages
 #==============
 
 # Update /usr/local path ownership to current user
@@ -53,47 +53,19 @@ ln -sf ~/dotfiles/custom-configs/custom-snips ~/.vim/custom-snips
 SYMLINKS+=('.vim/custom-snips')
 ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
-
-
-if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/gitconfig ~/.gitconfig
-else
-    ln -s ~/dotfiles/gitconfig ~/.gitconfig
-fi
+ln -s ~/dotfiles/gitconfig ~/.gitconfig
 SYMLINKS+=('.gitconfig')
-
-if [ -n "$(find ~/dotfiles/custom-configs -name tmux.conf)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/tmux.conf ~/.tmux.conf
-else
-    ln -s ~/dotfiles/mac-tmux/tmux.conf ~/.tmux.conf
-fi
+ln -s ~/dotfiles/mac-tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
 
-if [ -n "$(find ~/dotfiles/custom-configs -name tigrc)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/tigrc ~/.tigrc
-else
-    ln -s ~/dotfiles/tigrc ~/.tigrc
-fi
-SYMLINKS+=('.tigrc')
-
-if [ -n "$(find ~/dotfiles/custom-configs -name psqlrc)" ]; then
-    ln -s ~/dotfiles/custom-configs/**/psqlrc ~/.psqlrc
-else
-    ln -s ~/dotfiles/psqlrc ~/.psqlrc
-fi
-SYMLINKS+=('.psqlrc')
-
-echo ${SYMLINKS[@]}
-
-# hack for... I'm not even sure what... sqlite working in Python with pyenv?
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+echo "The following symlinks have been created:\n ${SYMLINKS[@]}"
 
 cd ~
 brew bundle
 cd -
 
 #==============
-# Set zsh as the default shell
+# Set zsh as default shell
 #==============
 chsh -s /bin/zsh
 
@@ -108,6 +80,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 cp ../../custom-configs/init.vim ~/.config/nvim/init.vim
 
 #==============
-# And we are done
+# Finished
 #==============
-echo -e "\n====== All Done!! ======\n"
+echo -e "\n====== Installation complete ======\n"
