@@ -1,5 +1,5 @@
 #==============
-# Install all the packages
+# Install packages
 #==============
 
 # Update /usr/local path ownership to current user
@@ -57,22 +57,15 @@ ln -s ~/dotfiles/gitconfig ~/.gitconfig
 SYMLINKS+=('.gitconfig')
 ln -s ~/dotfiles/mac-tmux/tmux.conf ~/.tmux.conf
 SYMLINKS+=('.tmux.conf')
-ln -s ~/dotfiles/tigrc ~/.tigrc
-SYMLINKS+=('.tigrc')
-ln -s ~/dotfiles/psqlrc ~/.psqlrc
-SYMLINKS+=('.psqlrc')
 
 echo "The following symlinks have been created:\n ${SYMLINKS[@]}"
-
-# hack for... I'm not even sure what... sqlite working in Python with pyenv?
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 
 cd ~
 brew bundle
 cd -
 
 #==============
-# Set zsh as the default shell
+# Set zsh as default shell
 #==============
 chsh -s /bin/zsh
 
@@ -87,6 +80,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 cp ../../custom-configs/init.vim ~/.config/nvim/init.vim
 
 #==============
-# And we are done
+# Finished
 #==============
-echo -e "\n====== All Done!! ======\n"
+echo -e "\n====== Installation complete ======\n"

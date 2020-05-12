@@ -40,8 +40,6 @@ set cursorline
 set colorcolumn=80
 set number relativenumber
 
-nnoremap <silent> <leader>f :FZF<cr>
-
 """"""""""""""""""""""""""""Personal remappings"""""""""""""""""""""""""
 :let mapleader = "-"
 :inoremap <c-u> <esc>viwU<esc>i
@@ -56,6 +54,7 @@ noremap <Leader>p "*p
 noremap <Leader>Y "+y
 noremap <Leader>P "+p
 set clipboard=unnamed
+nnoremap <silent> <leader>f :FZF<cr>
 
 """""""""""""""""""""""""""""Nerdtree"""""""""""""""""""""""""""""""""""
 " autocmd vimenter * NERDTree
