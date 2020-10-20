@@ -1,3 +1,6 @@
+# window management
+cask "spectacle"
+
 # shell tools
 cask "iterm2"
 brew "tmux"
