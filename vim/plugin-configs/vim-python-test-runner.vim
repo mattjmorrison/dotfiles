@@ -19,10 +19,16 @@ nnoremap <Leader>nf :NosetestFile<CR>
 nnoremap <Leader>nc :NosetestClass<CR>
 nnoremap <Leader>nm :NosetestMethod<CR>
 nnoremap <Leader>re :RerunLastTests<CR>
+nnoremap <Leader>tm :PytestMethod<CR>
+nnoremap <Leader>tf :PytestFile<CR>
+nnoremap <Leader>tC :PytestClass<CR>
 
 "===============================================================================
 " Unite Keymap Menu Item(s)
 "===============================================================================
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Pytest method                                            <Leader>tm', 'echo "Use <Leader>tm"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Pytest class                                             <Leader>tC', 'echo "Use <Leader>tC"']]
+let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Pytest file                                              <Leader>tf', 'echo "Use <Leader>tf"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Django app                                               <Leader>da', 'echo "Use <Leader>da"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Django class                                             <Leader>dc', 'echo "Use <Leader>dc"']]
 let g:unite_source_menu_menus.CustomKeyMaps.command_candidates += [['➤ Test Django file                                              <Leader>df', 'echo "Use <Leader>df"']]
