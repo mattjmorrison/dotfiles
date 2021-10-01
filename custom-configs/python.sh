@@ -1,4 +1,5 @@
 # Pyenv Setup <<1
+
 PATH=~/.pyenv/shims:$PATH
 LDFLAGS="-L/usr/local/opt/zlib/lib"  # hack for install on Mojave
 CPPFLAGS="-I/usr/local/opt/zlib/include"  # hack for install on Mojave
@@ -25,15 +26,6 @@ workon_virtualenv() {
   fi
 }
 # >>1
-
-# Run the virtual environments functions for the prompt on each cd <<2
-# -------------------------------------------------------------------
-cd() {
-  builtin cd "$@"
-  workon_virtualenv
-}
-# >>2
-
 
 # Create a virtual environment using pyenv
 # -------------------------------------------------------------------

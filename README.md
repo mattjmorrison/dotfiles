@@ -14,6 +14,29 @@ cd ~/dotfiles/install-scripts
 bash setup.sh
 ```
 
+## Other Manual Steps
+
+### Avoid loading “All My Files” when the Finder opens. To do this we need two steps:
+
+1. Go to the Preferences for Finder:
+	Under "New Finder windows show: 
+	Choose any folder that is not “Recants”:
+	By changing this setting, we can make sure new Finder windows do not show “All My Files” and eat our RAM.
+
+2. Relaunch Finder, without triggering “All My Files”.
+	A simple relaunch by holding option, two finger tapping (right click) on the Finder icon and selecting “Relaunch” should be enough. Or `killall Finder` if that doesn't work
+
+From: https://paradite.com/2017/01/31/reduce-macos-finder-memory-usage/
+
+And: https://apple.stackexchange.com/questions/53075/when-will-finder-use-large-amount-of-memory/105832#105832
+
+
+### Use spacebar to select and tab to navigate controls
+1.  → System Preferences → Keyboard → Shortcuts → Use keyboard navigation to move focus between controls
+
+From: https://apple.stackexchange.com/a/384961/374596
+
+
 ## Customization
 
 There is no need to fork this repository in order to customize it. (*But I did it anyway*) Everything

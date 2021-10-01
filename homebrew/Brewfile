@@ -8,6 +8,7 @@ tap "homebrew/core"
 # shell tools
 cask "iterm2"
 brew "zsh-syntax-highlighting"
+brew "zsh"
 brew "bat"
 brew "telnet"
 brew "tree"

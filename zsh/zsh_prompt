@@ -50,7 +50,7 @@ zstyle ':vcs_info:(git*):*' check-for-changes true                        # We w
 #      It is currently used by the hg and git backends to display patch information from the mq and stgit extensions.
 # Format of what we will display during a special action on the repo (Ex. Interactive rebase or merge conflict)
 zstyle ':vcs_info:(git*)' actionformats "(%b|${red}%a${gray}%m)"
-zstyle ':vcs_info:(git*)' formats "(%b%m)"
+zstyle ':vcs_info:(git*)' formats "( %b%m)"
 zstyle ':vcs_info:git*+set-message:*' hooks git-statuses git-st
 
 # Run all the prompt hook functions
@@ -83,7 +83,7 @@ function pr_run_hooks() {
 # This is our prompt, this is a compressed example it will expand
 # to the width of the console
 # ┌──(~/src/dotfiles)v(dotfiles)──────(✔)─
-# ├──(master [origin/master ] Unstaged)
+# ├──(master [origin/master ] Unstaged)
 # └───>
 function +pr-mode-full() {
     local i info_line_width return_status_width filler venv_shim npm_shim
@@ -143,12 +143,11 @@ function +pr-mode-full() {
     )
 
     # Add some connecting lines to the beginning of our prompts
+    lines[1]="${gray}┌──${lines[1]}${gray}─${reset}"
     if [[ -n ${pr_com[vcs]} ]]; then
-        lines[1]="${gray}┌──${lines[1]}${gray}─${reset}"
         lines[2]="${gray}├──${lines[2]}${reset}"
         lines[3]="${gray}└──➤${lines[3]}${reset}"
     else
-        lines[1]="${gray}┌──${lines[1]}${gray}─${reset}"
         lines[2]="${gray}└──➤${lines[2]}${reset}"
     fi
 
@@ -173,7 +172,7 @@ function +pr-vcs() {
 # Show virtualenv information
 function +pr-venv() {
     local -a v_venv
-
+    # echo ${VIRTUAL_ENV}
     [[ -n ${VIRTUAL_ENV} ]] && v_venv=(
         ${blue}
         $(basename ${VIRTUAL_ENV})

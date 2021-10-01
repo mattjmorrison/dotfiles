@@ -13,6 +13,9 @@
 #===================================================================================
 #
 
+# Uncomment this and the bottom line to profile zsh startup
+# zmodload zsh/zprof
+
 # Source the prompt <<1
 #-------------------------------------------------------------------------------
 if [[ ! -n "$ZSHRUN" ]]; then
@@ -111,7 +114,7 @@ export GREP_OPTIONS='--color=auto'
 # >>2
 # Use the correct ctags <<2
 #-------------------------------------------------------------------------------
-PATH="~/.pyenv/shims:/usr/local/bin:$PATH"
+# PATH="~/.pyenv/shims:$PATH"
 # >>2
 # Editor and display configurations <<2
 #-------------------------------------------------------------------------------
@@ -165,3 +168,13 @@ done
 
 
 eval "$(direnv hook zsh)"
+PATH="/usr/local/opt/icu4c/bin:$PATH"
+PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+
+# Uncomment this and the top line to profile zsh startup
+# zprof

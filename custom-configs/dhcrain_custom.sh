@@ -2,7 +2,6 @@
 #-------------------------------------------------------------------------------
 alias la='ls -lah'
 alias ping='ping -c 5'      # Pings with 5 packets, not unlimited
-alias ts='tig status'
 alias c='clear'
 alias cat='bat'
 alias speedtest='speedtest-cli --simple'
@@ -17,7 +16,7 @@ alias ip-local="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -E
 # ssd-add -A &> /dev/null
 
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home -v "1.8.0_241")
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 
@@ -223,7 +222,9 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # inspierd from http://erikaybar.name/git-deleting-old-local-branches/
 clean-git() {
 
-	IFS=$'\n' branches=($(git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}'))
+	IFS=$'\n' originDeleted=($(git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}'))
+	IFS=$'\n' notPushed=($(git branch -vv | grep -v origin | awk '{print $1}'))
+	branches=("${originDeleted[@]}" "${notPushed[@]}")
 	branchCount="${#branches[@]}"
 
 	echo "* Branches that do not exist on origin:"
@@ -233,7 +234,8 @@ clean-git() {
 
 	echo "* Which Branch to delete? (1-$branchCount). \
 		  \n  * Enter more than one branch with spaces between numbers (ex. 1 2 3) \
-		  \n  * Delete All (All)  "; read confirm
+		  \n  * Delete All (All)  \
+		  \n  * Anything else will exit without touching repo  "; read confirm
 
 	if [[ "${confirm//[A-Za-z]/}" = "" ]]; then
 		if [[ $confirm == [aA][lL][lL] ]]; then
@@ -241,7 +243,7 @@ clean-git() {
 			 \n * Are you sure? [y/n] "; read yesNo
 			if [[ $yesNo == [Yy] ]]; then
 				echo "Burn with Fire"
-				echo $branches | xargs git branch -d
+				echo $branches | xargs git branch -D
 			else
 				echo "Nothing Delted"
 			fi
@@ -282,5 +284,69 @@ function nuke-node-modules() {
 }
 
 function dnsFlush() {
-	sudo killall -HUP mDNSResponder
+	sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
+}
+
+# Workon node env <<2
+#--------------------------------------------------------------------
+# If we cd into a directory that contains a directory named node_modules
+# we automatically add it to the $PATH
+# -------------------------------------------------------------------
+workon_node_env() {
+	if [[ -d "node_modules" ]]; then
+
+		export NPM_ORIGINAL_PATH=$PATH
+		eval NODE_NAME=$(basename $(pwd))
+		export PATH="${PATH}:$(pwd)/node_modules/.bin"
+
+		deactivatenode(){
+			export PATH=$NPM_ORIGINAL_PATH
+			unset -f deactivatenode
+			unset NODE_NAME
+		}
+	fi
+}
+ # >>2
+ # Run the virtual environments functions for the prompt on each cd <<2
+ # -------------------------------------------------------------------
+ cd() {
+   builtin cd "$@"
+   unset NODE_NAME
+   workon_virtualenv
+   workon_node_env
+ }
+ # >>2
+
+# # Run the virtual environments functions for the prompt on each cd <<2
+# # -------------------------------------------------------------------
+# cd() {
+#   builtin cd "$@"
+#   workon_virtualenv
+# }
+# # >>2
+
+
+make-git-remote() {
+	repoName="$1.git"
+	path=~/git/$repoName
+	mkdir -p $path
+	cd $path
+	git init --bare
+
+	localIp=ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'
+	user=`whoami`
+
+	echo "Run on remote: git remote add $repoName $user@$localIp:$path"
+}
+
+# Stop running a process running on a particular port
+stop() {
+	port=$1
+	pid=$(lsof -ti tcp:$port)
+	if [[ $pid ]]; then
+		kill -9 $pid
+		echo "Congrates!! $port is stopped."
+	else
+		echo "Sorry nothing running on above port"
+	fi
 }

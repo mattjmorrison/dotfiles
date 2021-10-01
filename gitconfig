@@ -10,11 +10,18 @@
     deleted = red
     untracked = yellow
 [user]
-    name = Davis
-    email = dhcrain@gmail.com
+	name = Davis
+	email = dhcrain@gmail.com
+	signingKey = ""
 [push]
     default = matching
 [core]
 	excludesfile = /Users/davis/.gitignore_global
 	autocrlf = false
 	editor = code
+[gpg]
+	program = gpg
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false
