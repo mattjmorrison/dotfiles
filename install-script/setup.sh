@@ -106,8 +106,8 @@ SYMLINKS+=('.psqlrc')
 
 echo_ok "Symlinks: " ${SYMLINKS[@]}
 
-# hack for... I'm not even sure what... sqlite working in Python with pyenv?
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+# # hack for... I'm not even sure what... sqlite working in Python with pyenv?
+# sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 
 cd ~
 echo_ok "Installing apps from Brewfile 🙌"
