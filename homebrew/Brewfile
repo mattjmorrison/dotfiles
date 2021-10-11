@@ -14,9 +14,7 @@ brew "telnet"
 brew "tree"
 brew "gawk"
 brew "direnv"
-brew "gawk"
 brew "speedtest-cli"
-brew "ranger"
 cask "ngrok"
 brew "mackup"
 
@@ -28,14 +26,14 @@ brew "git"
 brew "git-standup"
 
 # databases
-# cask "postgres"
+cask "postgres"
 brew "sqlite"
 
 # Java related tools
-cask "java"
-brew "groovy"
-brew "gradle"
-brew "maven"
+# cask "java"
+# brew "groovy"
+# brew "gradle"
+# brew "maven"
 
 # languages
 brew "node"
@@ -49,16 +47,15 @@ brew "zlib" # needed for pyenv installing
 cask "gitkraken"
 cask "postman"
 cask "dropbox"
-cask "1password"
+# cask "1password"
 cask "visual-studio-code"
 cask "firefox"
 cask "google-chrome"
-cask "slack"
+# cask "slack"
 cask "font-fira-code"
 cask "dbeaver-community"
-cask "shimo"
 cask "jetbrains-toolbox"
 cask "fliqlo"
 
 # App Store apps
-mas "Magnet", id: 441258766
+# mas "Magnet", id: 441258766
