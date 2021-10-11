@@ -26,7 +26,7 @@ brew "git"
 brew "git-standup"
 
 # databases
-cask "postgres"
+cask "postgresql"
 brew "sqlite"
 
 # Java related tools
