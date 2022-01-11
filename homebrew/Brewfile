@@ -17,6 +17,7 @@ brew "direnv"
 brew "speedtest-cli"
 cask "ngrok"
 brew "mackup"
+brew "awscli"
 
 # search tools
 brew "ripgrep"
@@ -56,6 +57,7 @@ cask "font-fira-code"
 cask "dbeaver-community"
 cask "jetbrains-toolbox"
 cask "fliqlo"
+cask "rectangle"
 
 # App Store apps
 # mas "Magnet", id: 441258766

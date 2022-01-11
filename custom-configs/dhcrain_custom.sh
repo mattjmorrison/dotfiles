@@ -9,17 +9,14 @@ alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall 
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias ip-public='curl ipinfo.io/ip'
 alias ip-local="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias gUncommit='git reset HEAD~1 --soft' # Uncommit last unpushed commit
 
 # >>1
 
-# ssh-add -K ~/.ssh/ted_db &> /dev/null
-# ssd-add -A &> /dev/null
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
 
-
-export JAVA_HOME=$(/usr/libexec/java_home -v "1.8.0_241")
-export GROOVY_HOME=/usr/local/opt/groovy/libexec
-
-
+# Do not run brew update when installing with brew
+export HOMEBREW_NO_AUTO_UPDATE=1
 # Functions <<1
 #===============================================================================
 
@@ -198,13 +195,16 @@ mkcdir () {
 # takes the clipboard contents, replaces spaces and new lines with '-', puts it back on the clipboard
 # will add prefix 'feature/' by default, but can pass something differnt
 branch-this () {
-	if [[ -z $1 ]]; then
-		preFix="feature/"
-	else
+	if [[ $1 ]]; then
 		preFix="$1/"
 	fi
 	noSpace=`pbpaste | tr -s " \n" "-"`
 	echo $preFix$noSpace | pbcopy
+}
+
+# https://gist.github.com/npx/3a8688e114df6b3157c6e1bc5bdfd1f0
+function git-watch() {
+  watch -ct -n1 git --no-pager log --color --all --oneline --decorate --graph
 }
 
 # Colored Man pages <<1
@@ -350,3 +350,12 @@ stop() {
 		echo "Sorry nothing running on above port"
 	fi
 }
+
+# https://til.hashrocket.com/posts/sfyie5lqwd-rename-iterm-tab-with-a-shell-function
+# Rename the current iTerm tab
+function renametab () {
+    echo -ne "\033]0;"$@"\007"
+}
+
+
+fpath+=~/.zfunc

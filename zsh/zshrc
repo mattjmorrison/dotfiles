@@ -1,3 +1,4 @@
+
 #!/bin/zsh
 # vim: set foldmarker=<<,>> foldlevel=0 foldmethod=marker:
 #===================================================================================
@@ -175,6 +176,8 @@ export PATH="/usr/local/sbin:$PATH"
 export LDFLAGS="-L/usr/local/opt/icu4c/lib"
 export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Uncomment this and the top line to profile zsh startup
 # zprof

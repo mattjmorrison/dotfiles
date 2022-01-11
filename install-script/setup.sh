@@ -126,7 +126,6 @@ sudo pip3 install virtualenv
 echo " * installing direnv"
 # http://direnv.net/
 brew install direnv
-echo 'eval "$(direnv hook zsh)"' >> .zshrc
 
 # echo_warn "Login to Dropbox and have the Dropbox folder in the $HOME directory."
 # read -p "Press [Enter] once this is done."

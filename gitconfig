@@ -10,18 +10,28 @@
     deleted = red
     untracked = yellow
 [user]
-	name = Davis
-	email = dhcrain@gmail.com
+	name = Davis Crain
+	email = davis.crain@onepeloton.com
 	signingKey = ""
 [push]
     default = matching
 [core]
-	excludesfile = /Users/davis/.gitignore_global
-	autocrlf = false
-	editor = code
+	excludesfile = /Users/davis.crain/.gitignore_global
+	autocrlf = input
+	editor = code --wait
 [gpg]
 	program = gpg
 [commit]
 	gpgSign = false
+	template = /Users/davis.crain/.stCommitMsg
 [tag]
 	forceSignAnnotated = false
+[init]
+	templatedir = ~/.git-templates
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rerere]
+	enabled = true
