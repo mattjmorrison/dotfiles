@@ -21,7 +21,7 @@ chown -R $(whoami):admin /usr/local
 # Install if we don't have it
 if test ! $(which brew); then
   echo_ok "Installing homebrew... 🍺"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else 
   echo_ok "🍺Homebrew already installed"
 fi
