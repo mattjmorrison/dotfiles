@@ -172,7 +172,6 @@ function +pr-vcs() {
 # Show virtualenv information
 function +pr-venv() {
     local -a v_venv
-    # echo ${VIRTUAL_ENV}
     [[ -n ${VIRTUAL_ENV} ]] && v_venv=(
         ${blue}
         $(basename ${VIRTUAL_ENV})
