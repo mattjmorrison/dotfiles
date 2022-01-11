@@ -1,3 +1,4 @@
+
 #!/bin/zsh
 # vim: set foldmarker=<<,>> foldlevel=0 foldmethod=marker:
 #===================================================================================
@@ -12,6 +13,9 @@
 #
 #===================================================================================
 #
+
+# Uncomment this and the bottom line to profile zsh startup
+# zmodload zsh/zprof
 
 # Source the prompt <<1
 #-------------------------------------------------------------------------------
@@ -111,7 +115,7 @@ export GREP_OPTIONS='--color=auto'
 # >>2
 # Use the correct ctags <<2
 #-------------------------------------------------------------------------------
-PATH="~/.pyenv/shims:/usr/local/bin:$PATH"
+# PATH="~/.pyenv/shims:$PATH"
 # >>2
 # Editor and display configurations <<2
 #-------------------------------------------------------------------------------
@@ -157,16 +161,24 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # >>1
 
 
-# Source Default Configurations <<1
-for fname in $(find ~/dotfiles/default-configs -name "*.sh*"); do
-    source $fname
-done
-# >>1
-
 # Source Custom Configurations <<1
 for fname in $(find ~/dotfiles/custom-configs -name "*.sh*"); do
     source $fname
 done
 # >>1
 
+
+eval "$(direnv hook zsh)"
+PATH="/usr/local/opt/icu4c/bin:$PATH"
+PATH="/usr/local/opt/icu4c/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+# Uncomment this and the top line to profile zsh startup
+# zprof
 

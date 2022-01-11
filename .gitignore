@@ -5,8 +5,8 @@ vim/custom-snips
 vim/plugged/
 vim/autoload/
 .DS_Store
-custom-configs/*
 custom-configs/custom-snips/*
 !custom-configs/custom-snips/.git-keep.sh
 config/configstore/*
+config/direnv/*
 tags

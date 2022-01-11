@@ -1,2 +1,0 @@
-bind status D !@?rm %(file)
-set vertical-split = no

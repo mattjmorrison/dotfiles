@@ -1,30 +1,63 @@
+#  Homebrew setup
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+
 # shell tools
 cask "iterm2"
-brew "tmux"
-brew "zsh"
 brew "zsh-syntax-highlighting"
-
-# vim tools
-brew "vim"
-brew "aspell"
-brew "ctags"
+brew "zsh"
+brew "bat"
+brew "telnet"
+brew "tree"
+brew "gawk"
+brew "direnv"
+brew "speedtest-cli"
+cask "ngrok"
+brew "mackup"
+brew "awscli"
 
 # search tools
-brew "the_silver_searcher"
+brew "ripgrep"
 
 # Source Control Tools
-brew "hub"
-brew "tig"
-
-# keyboard tools
-cask "karabiner-elements"
+brew "git"
+brew "git-standup"
 
 # databases
-cask "postgres"
+cask "postgresql"
+brew "sqlite"
+
+# Java related tools
+# cask "java"
+# brew "groovy"
+# brew "gradle"
+# brew "maven"
 
 # languages
 brew "node"
+brew "node@12"
+brew "python3"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "zlib" # needed for pyenv installing
-brew "sqlite"
+
+# Applications
+cask "gitkraken"
+cask "postman"
+cask "dropbox"
+# cask "1password"
+cask "visual-studio-code"
+cask "firefox"
+cask "google-chrome"
+# cask "slack"
+cask "font-fira-code"
+cask "dbeaver-community"
+cask "jetbrains-toolbox"
+cask "fliqlo"
+cask "rectangle"
+
+# App Store apps
+# mas "Magnet", id: 441258766
