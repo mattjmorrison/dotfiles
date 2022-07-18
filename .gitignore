@@ -7,6 +7,7 @@ vim/autoload/
 .DS_Store
 custom-configs/custom-snips/*
 !custom-configs/custom-snips/.git-keep.sh
+custom-configs/peloton_aws.sh
 config/configstore/*
 config/direnv/*
 tags

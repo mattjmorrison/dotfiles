@@ -22,7 +22,7 @@ chown -R $(whoami):admin /usr/local
 if test ! $(which brew); then
   echo_ok "Installing homebrew... 🍺"
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-else 
+else
   echo_ok "🍺Homebrew already installed"
 fi
 
@@ -64,6 +64,8 @@ sudo rm -rf ~/.gitignore_global > /dev/null 2>&1
 sudo rm -rf ~/.psqlrc > /dev/null 2>&1
 sudo rm -rf ~/.config > /dev/null 2>&1
 sudo rm -rf ~/Brewfile > /dev/null 2>&1
+sudo rm -rf ~/.tmux > /dev/null 2>&1
+sudo rm -rf ~/.tmux.conf > /dev/null 2>&1
 
 
 #==============
@@ -81,6 +83,8 @@ ln -sf ~/dotfiles/config ~/.config
 SYMLINKS+=('.config')
 ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
+ln -sf ~/dotfiles/tmux ~/.tmux
+SYMLINKS+=('.tmux')
 
 
 if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then
@@ -117,7 +121,7 @@ cd -
 brew cleanup
 brew doctor
 
-echo_warn "Open Chrome and set as default browser 💻"
+echo_warn "Open Firefox and set as default browser 💻"
 read -p "Press [Enter] once this is done."
 
 echo_ok "Installing Python related items 🐍"

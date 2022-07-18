@@ -110,31 +110,6 @@ include() {
 function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
 # >>2
 
-# Get info about an ip or url <<2
-#--------------------------------------------------------------------
-# Usage:
-# ipinfo -i 199.59.150.7
-# ipinfo -u github.com
-#--------------------------------------------------------------------
-ipinfo() {
-	if [ $# -lt 2 ]; then
-	  echo "Usage: `basename $0` -i ipaddress" 1>&2
-	  echo "Usage: `basename $0` -u url" 1>&2
-	  return
-	fi
-	if [ "$1" = "-i" ]; then
-		desiredIP=$2
-	fi
-	if [ "$1" = "-u" ]; then
-		# Aleternate ways to get desired IP
-		# desitedIP=$(host unix.stackexchange.com | awk '/has address/ { print $4 ; exit }')
-		# desiredIP=$(nslookup google.com | awk '/^Address: / { print $2 ; exit }')
-		desiredIP=$(dig +short $2)
-	fi
-	curl "freegeoip.net/json/$desiredIP" | python -m json.tool
-}
-# >>2
-
 # Upwards directory traversal shortcut <<2
 #--------------------------------------------------------------------
 # Hitting `...` will produce `../..` an additional `/..` will be added

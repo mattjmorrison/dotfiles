@@ -68,3 +68,10 @@ You can use your own configuration file in place of any of the following
 To do so you just need to include a file of the same name in your version
 controlled directory that you save into `custom-configs` the create symlinks
 scripts will link the files properly.
+
+## Tmux
+
+A must have for pair programming sessions. The most notable features are the
+themed status line pictured below and the non-stock leader key \<C-Space>
+
+![tmux-status](https://cloud.githubusercontent.com/assets/4416952/4179937/429dc236-36dd-11e4-87ad-1aca9966db8d.png)

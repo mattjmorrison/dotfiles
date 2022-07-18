@@ -1,6 +1,7 @@
 # Pyenv Setup <<1
 
 PATH=~/.pyenv/shims:$PATH
+PATH=/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin:$PATH
 LDFLAGS="-L/usr/local/opt/zlib/lib"  # hack for install on Mojave
 CPPFLAGS="-I/usr/local/opt/zlib/include"  # hack for install on Mojave
 eval "$(pyenv init -)"

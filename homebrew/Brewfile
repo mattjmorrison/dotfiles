@@ -18,6 +18,7 @@ brew "speedtest-cli"
 cask "ngrok"
 brew "mackup"
 brew "awscli"
+brew "tmux"
 
 # search tools
 brew "ripgrep"
