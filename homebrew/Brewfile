@@ -16,14 +16,14 @@ brew "ctags"
 brew "the_silver_searcher"
 
 # Source Control Tools
-brew "hub"
+brew "gh"
 brew "tig"
 
 # keyboard tools
 cask "karabiner-elements"
 
 # databases
-cask "postgres"
+cask "postgresql"
 
 # languages
 brew "node"
