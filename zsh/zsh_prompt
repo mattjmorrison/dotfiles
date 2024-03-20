@@ -181,11 +181,35 @@ function +pr-venv() {
     pr_com[venv]=${(j::)v_venv}
 }
 
+# Show saml2aws profile information
+# function +pr-saml2aws() {
+#     local -a v_saml2aws
+#     if [[ -n "$AWS_OKTA_PROFILE" ]]; then
+#         echo " [aws:\x1B[1;34m$AWS_OKTA_PROFILE\e[0m]"
+#     elif [[ -n "$SAML2AWS_PROFILE" ]]; then
+#         echo "in saml2aws"
+#         if [[ $(gdate +%s) -ge $(gdate -d "$AWS_CREDENTIAL_EXPIRATION" +%s) ]]; then
+#             echo " [aws:\x1B[1;31m$SAML2AWS_PROFILE\e[0m]"
+#         else
+#             echo " [aws:\x1B[1;34m$SAML2AWS_PROFILE\e[0m]"
+#         fi
+#     else
+#         echo ""
+#     fi
+#     [[ -n ${VIRTUAL_ENV} ]] && v_venv=(
+#         ${blue}
+#         $(basename ${VIRTUAL_ENV})
+#         ${reset}
+#     )
+
+#     pr_com[saml2aws]=${(j::)saml2aws}
+# }
+
 # Show npm information
 function +pr-npm() {
     local -a v_npm
 
-    if [[ ${NODE_NAME}  != "" ]]; then
+    if [[ ${NODE_NAME} != "" ]]; then
         v_npm=(
             ${cyan}
             ${NODE_NAME}

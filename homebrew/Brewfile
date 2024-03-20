@@ -15,8 +15,8 @@ brew "tree"
 brew "gawk"
 brew "direnv"
 brew "speedtest-cli"
-cask "ngrok"
-brew "mackup"
+# cask "ngrok"
+# brew "mackup"
 brew "awscli"
 brew "tmux"
 
@@ -46,19 +46,24 @@ brew "pyenv-virtualenv"
 brew "zlib" # needed for pyenv installing
 
 # Applications
-cask "gitkraken"
+# cask "gitkraken"
 cask "postman"
-cask "dropbox"
-# cask "1password"
+# cask "dropbox"
+cask "1password"
 cask "visual-studio-code"
 cask "firefox"
 cask "google-chrome"
-# cask "slack"
+cask "slack"
 cask "font-fira-code"
 cask "dbeaver-community"
 cask "jetbrains-toolbox"
 cask "fliqlo"
 cask "rectangle"
+cask "iterm2"
+cask "docker"
+cask "zoomus"
+
+
 
 # App Store apps
 # mas "Magnet", id: 441258766

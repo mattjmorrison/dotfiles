@@ -20,7 +20,7 @@ bash setup.sh
 
 1. Go to the Preferences for Finder:
 	Under "New Finder windows show: 
-	Choose any folder that is not “Recants”:
+	Choose any folder that is not “Recents”:
 	By changing this setting, we can make sure new Finder windows do not show “All My Files” and eat our RAM.
 
 2. Relaunch Finder, without triggering “All My Files”.

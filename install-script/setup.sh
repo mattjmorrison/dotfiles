@@ -85,6 +85,8 @@ ln -sf ~/dotfiles/homebrew/Brewfile ~/Brewfile
 SYMLINKS+=('Brewfile')
 ln -sf ~/dotfiles/tmux ~/.tmux
 SYMLINKS+=('.tmux')
+ln -sf ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+SYMLINKS+=('.tmux.conf')
 
 
 if [ -n "$(find ~/dotfiles/custom-configs -name gitconfig)" ]; then

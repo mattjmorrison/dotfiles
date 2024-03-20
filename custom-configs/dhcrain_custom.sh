@@ -17,6 +17,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Conten
 
 # Do not run brew update when installing with brew
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 # Functions <<1
 #===============================================================================
 
@@ -38,30 +39,6 @@ function pyserve() {
 	}
 # >>2
 
-# Memory Usage <<2
-#-------------------------------------------------------------------------------
-# Shows the specified number of the top memory consuming processes and their PID
-#-------------------------------------------------------------------------------
-function mem_usage() {
-	echo -n "How many you what to see? "; read number
-	echo ""
-	echo "Mem Size       PID     Process"
-	echo "============================================================================="
-	if [ "$(uname)" = "Darwin" ]; then
-		ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head -n $number
-	else
-		ps aux | awk '{ output = sprintf("%5d Mb --> %5s --> %s%s%s%s", $6/1024, $2, $11, $12, $13, $14); print output }' | sort -gr | head --line $number
-	fi
-	}
-# >>2
-# Spell Check <<2
-#------------------------------------------------------------------------------
-# Because, well I need to spell check a lot :\
-#------------------------------------------------------------------------------
-spell (){
-	echo $1 | aspell -a
-}
-# >>2
 # Search for running processes <<2
 # -------------------------------------------------------------------
 any() {
@@ -107,7 +84,9 @@ include() {
 
 # Find a file with a pattern in name: <<2
 #--------------------------------------------------------------------
-function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+function ff() {
+	find . -type f -iname '*'"$*"'*' -ls ;
+}
 # >>2
 
 # Upwards directory traversal shortcut <<2
@@ -196,7 +175,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # inspierd from http://erikaybar.name/git-deleting-old-local-branches/
 clean-git() {
-
 	IFS=$'\n' originDeleted=($(git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}'))
 	IFS=$'\n' notPushed=($(git branch -vv | grep -v origin | awk '{print $1}'))
 	branches=("${originDeleted[@]}" "${notPushed[@]}")
@@ -300,7 +278,6 @@ workon_node_env() {
 # }
 # # >>2
 
-
 make-git-remote() {
 	repoName="$1.git"
 	path=~/git/$repoName
@@ -332,5 +309,10 @@ function renametab () {
     echo -ne "\033]0;"$@"\007"
 }
 
+# Jump to section in man page
+# press N to go to the next instance of search term
+function searchman () {
+    man $1 | less +/$2
+}
 
 fpath+=~/.zfunc

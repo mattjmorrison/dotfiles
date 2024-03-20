@@ -35,11 +35,6 @@ precmd_functions=( precmd_prompt )
 # >>1
 
 # General Settings <<1
-# Autoload tab completion <<2
-#-------------------------------------------------------------------------------
-autoload -U compinit
-compinit -C
-# >> 2
 # Modify default zsh directory coloring on ls commands <<2
 #-------------------------------------------------------------------------------
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -58,7 +53,7 @@ setopt  auto_cd
 # Make cd push the old directory onto the directory stack.
 setopt  auto_pushd
 # Safety for overwriting files use >| instead of > to over write files
-setopt  noclobber
+# setopt  noclobber
 # Prevents aliases on the command line from being internally substituted before
 # completion is attempted. The effect is to make the alias a distinct command
 # for completion purposes.
@@ -167,18 +162,41 @@ for fname in $(find ~/dotfiles/custom-configs -name "*.sh*"); do
 done
 # >>1
 
+# Autoload tab completion <<2
+#-------------------------------------------------------------------------------
+# autoload -U compinit
+# compinit -C
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206
+autoload -Uz compinit
+if [ "$(find ~/.zcompdump -mtime +1)" ] ; then
+    compinit
+fi
+compinit -C
+# # >> 2
 
 eval "$(direnv hook zsh)"
+
 PATH="/usr/local/opt/icu4c/bin:$PATH"
 PATH="/usr/local/opt/icu4c/sbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/davis.crain/.local/bin:$PATH"
 
 export LDFLAGS="-L/usr/local/opt/icu4c/lib"
 export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
 
-export PATH="$HOME/.poetry/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
+
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 4); do /usr/bin/time $shell -i -c exit; done
+}
 
 # Uncomment this and the top line to profile zsh startup
 # zprof
-
