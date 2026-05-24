@@ -2,21 +2,21 @@
 { pkgs, ... }:
 
 {
-	nix.enable = false;
-	system.stateVersion = 6;
-	system.primaryUser = "matt-nix";
-	programs.zsh.enable = true;
-	environment.systemPackages = with pkgs; [
-		git
-	];
+  nix.enable = false;
 
+  system.stateVersion = 6;
+  system.primaryUser = "matt-nix";
+  programs.zsh.enable = true;
+  users.users."matt-nix".home = "/Users/matt-nix";
 
-	homebrew = {
-	  enable = true;
+  homebrew = {
+    enable = true;
 
-	  casks = [
-	    "ghostty"
-	  ];
-	};
+    casks = [
+      "ghostty"
+      "karabiner-elements"
+      "rectangle"
+      "firefox@developer-edition"
+    ];
+  };
 }
-
