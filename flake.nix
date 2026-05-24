@@ -11,31 +11,18 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager }:
+  outputs = inputs@{ darwin, ... }:
     let
       system = "aarch64-darwin";
-    in {
-      darwinConfigurations.macbook =
-        darwin.lib.darwinSystem {
-          inherit system;
+    in
+    {
+      darwinConfigurations.macbook = darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = { inherit inputs; };
 
-          modules = [
-		  ./modules/darwin
-		  home-manager.darwinModules.home-manager
-      {
-        nixpkgs.config.allowUnfreePredicate = pkg:
-          builtins.elem (nixpkgs.lib.getName pkg) [
-            "claude-code"
-            "github-copilot-cli"
-          ];
-      }
-		  {
-		    home-manager.useGlobalPkgs = true;
-		    home-manager.useUserPackages = true;
-                    home-manager.backupFileExtension = "backup";
-                    home-manager.users."matt-nix" = ./home/matt-nix.nix;
-		  }
-		];
-        };
+        modules = [
+          ./hosts/macbook
+        ];
+      };
     };
 }
