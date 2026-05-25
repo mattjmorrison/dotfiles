@@ -118,6 +118,7 @@ The same Home Manager shell module also manages nearby terminal tooling:
 - links `config/tmux/tmux.conf` to `~/.tmux.conf`
 - writes Ghostty config to `~/.config/ghostty/config.ghostty`
 - sets the Ghostty theme to `TokyoNight Night`
+- sets Ghostty to treat the macOS Option key as Alt
 
 Those settings are not zsh options directly, but they live in the same shell module because they affect the interactive terminal environment.
 

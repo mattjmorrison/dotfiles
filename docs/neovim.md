@@ -97,25 +97,21 @@ These are the custom keymaps currently defined by files in `config/nvim/lua/plug
 | `<leader>gg` | Normal | `lazygit.lua` | Opens LazyGit with `:LazyGit` |
 | `<leader>ai` | Normal | `sidekick.lua` | Toggles the Sidekick CLI window |
 | `w` | Snacks explorer list | `snacks.lua` | Runs Snacks explorer's `pick_win` action, then `jump` |
-| `<C-h>` | Normal | `tmux-navigator.lua` | Moves to the left Neovim split or tmux pane |
-| `<BS>` | Normal | `tmux-navigator.lua` | Moves to the left Neovim split or tmux pane |
-| `<C-j>` | Normal | `tmux-navigator.lua` | Moves to the lower Neovim split or tmux pane |
-| `<C-k>` | Normal | `tmux-navigator.lua` | Moves to the upper Neovim split or tmux pane |
-| `<C-l>` | Normal | `tmux-navigator.lua` | Moves to the right Neovim split or tmux pane |
-
-Explorer-like buffers also get buffer-local overrides for `<C-h>` and `<BS>` so left movement goes directly to the left tmux pane. That override applies to:
-
-- `neo-tree`
-- `NvimTree`
-- `snacks_*`
-- `snacks_picker_list`
-- `snacks_picker_input`
+| `<C-h>` | Normal | `smart-splits.lua` | Moves to the left Neovim split or tmux pane |
+| `<BS>` | Normal | `smart-splits.lua` | Moves to the left Neovim split or tmux pane |
+| `<C-j>` | Normal | `smart-splits.lua` | Moves to the lower Neovim split or tmux pane |
+| `<C-k>` | Normal | `smart-splits.lua` | Moves to the upper Neovim split or tmux pane |
+| `<C-l>` | Normal | `smart-splits.lua` | Moves to the right Neovim split or tmux pane |
+| `<M-h>` | Normal | `smart-splits.lua` | Resizes the current pane left |
+| `<M-j>` | Normal | `smart-splits.lua` | Resizes the current pane down |
+| `<M-k>` | Normal | `smart-splits.lua` | Resizes the current pane up |
+| `<M-l>` | Normal | `smart-splits.lua` | Resizes the current pane right |
 
 ### `lua/config/autocmds.lua`
 
 Reserved for local autocommands.
 
-This file currently only contains LazyVim's generated comments. The tmux navigator plugin defines its own targeted autocommand in its plugin spec.
+This file currently only contains LazyVim's generated comments. Plugin-specific autocommands live in their plugin specs when needed.
 
 ## Plugin Specs
 
@@ -174,6 +170,7 @@ Current behavior:
 - disables Sidekick's mux integration
 - configures the Claude CLI command as `claude`
 - disables Sidekick NES
+- routes Sidekick terminal `Ctrl-h/j/k/l` navigation and `Option-h/j/k/l` resizing through smart-splits so edge actions can leave Neovim for tmux
 
 Keymap:
 
@@ -198,15 +195,15 @@ Explorer list keymap:
 w -> pick window, then jump
 ```
 
-### `tmux-navigator.lua`
+### `smart-splits.lua`
 
 Adds:
 
-- `christoomey/vim-tmux-navigator`
+- `mrjones2014/smart-splits.nvim`
 
-This plugin coordinates pane movement between Neovim splits and tmux panes.
+This plugin coordinates pane movement and resizing between Neovim splits and tmux panes.
 
-Normal keymaps:
+Movement keymaps:
 
 ```text
 Ctrl-h / Backspace -> move left
@@ -215,23 +212,16 @@ Ctrl-k             -> move up
 Ctrl-l             -> move right
 ```
 
-Inside normal Neovim windows, those commands first try to move between Neovim windows. When there is no Neovim window in that direction, the plugin asks tmux to move to the adjacent tmux pane.
+Resize keymaps:
 
-There is also a targeted explorer override for left movement. Some LazyVim explorer buffers can intercept or redirect `Ctrl-h`, so explorer-like filetypes map `Ctrl-h` and `Backspace` directly to:
-
-```sh
-tmux select-pane -L
+```text
+Option-h -> resize left
+Option-j -> resize down
+Option-k -> resize up
+Option-l -> resize right
 ```
 
-The override applies to filetypes matching:
-
-- `neo-tree`
-- `NvimTree`
-- `snacks_*`
-- `snacks_picker_list`
-- `snacks_picker_input`
-
-This is intentionally scoped to explorer buffers so normal editing buffers still use `vim-tmux-navigator`.
+Inside Neovim, smart-splits first tries to act on Neovim windows. When there is no Neovim window in that direction, the plugin asks tmux to move or resize the adjacent tmux pane.
 
 ### `example.lua`
 
@@ -264,8 +254,10 @@ The relevant tmux behavior is:
 - `Ctrl-Space` then `-` creates a top/bottom split
 - `Ctrl-h/j/k/l` switches tmux panes when the active pane is not Vim/Neovim
 - when the active pane is Vim/Neovim, tmux sends `Ctrl-h/j/k/l` through to Neovim
+- `Option-h/j/k/l` resizes tmux panes when the active pane is not Vim/Neovim
+- when the active pane is Vim/Neovim, tmux sends `Option-h/j/k/l` through to Neovim
 
-That last point is what lets `vim-tmux-navigator` decide whether to move inside Neovim or escape out to tmux.
+Smart-splits sets the tmux `@pane-is-vim` variable when Neovim is active. That is what lets tmux decide whether to handle a key itself or pass it through to Neovim.
 
 ## Adding New Plugins
 

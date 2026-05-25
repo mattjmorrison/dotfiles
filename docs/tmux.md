@@ -71,9 +71,9 @@ The config binds pane motion keys globally, without requiring the tmux prefix:
 | `Ctrl-k` | Up |
 | `Ctrl-l` | Right |
 
-Each binding checks the command running in the current tmux pane.
+Each binding checks the `@pane-is-vim` tmux variable set by `smart-splits.nvim`.
 
-If the active pane is running Vim, Neovim, or a related diff/view command, tmux sends the key through to the editor:
+If the active pane is running Neovim with smart-splits loaded, tmux sends the key through to the editor:
 
 ```text
 send-keys C-h
@@ -82,7 +82,7 @@ send-keys C-k
 send-keys C-l
 ```
 
-If the active pane is not running Vim or Neovim, tmux handles the movement itself:
+If the active pane is not marked as Neovim by smart-splits, tmux handles the movement itself:
 
 ```text
 select-pane -L
@@ -91,63 +91,47 @@ select-pane -U
 select-pane -R
 ```
 
-The command detection pattern is:
+The config also binds pane resizing globally, using 3-cell steps:
 
-```text
-^(n?vim|view|l?nvim?)(diff)?$
-```
-
-That matches common Vim and Neovim command names, including diff variants.
+| Key | Direction |
+| --- | --- |
+| `Option-h` | Left |
+| `Option-j` | Down |
+| `Option-k` | Up |
+| `Option-l` | Right |
 
 ## Neovim Integration
 
-Neovim configures `christoomey/vim-tmux-navigator` in:
+Neovim configures `mrjones2014/smart-splits.nvim` in:
 
 ```text
-config/nvim/lua/plugins/tmux-navigator.lua
+config/nvim/lua/plugins/smart-splits.lua
 ```
 
 That plugin defines matching Neovim keymaps:
 
-| Key | Neovim Command |
+| Key | Neovim Function |
 | --- | --- |
-| `Ctrl-h` | `:TmuxNavigateLeft` |
-| `Backspace` | `:TmuxNavigateLeft` |
-| `Ctrl-j` | `:TmuxNavigateDown` |
-| `Ctrl-k` | `:TmuxNavigateUp` |
-| `Ctrl-l` | `:TmuxNavigateRight` |
+| `Ctrl-h` | `move_cursor_left()` |
+| `Backspace` | `move_cursor_left()` |
+| `Ctrl-j` | `move_cursor_down()` |
+| `Ctrl-k` | `move_cursor_up()` |
+| `Ctrl-l` | `move_cursor_right()` |
+| `Option-h` | `resize_left()` |
+| `Option-j` | `resize_down()` |
+| `Option-k` | `resize_up()` |
+| `Option-l` | `resize_right()` |
 
 Together, the tmux and Neovim configs create one movement model:
 
-1. Press `Ctrl-h/j/k/l`.
-2. tmux checks whether the active pane is running Vim or Neovim.
+1. Press `Ctrl-h/j/k/l` or `Option-h/j/k/l`.
+2. tmux checks whether smart-splits marked the active pane as Neovim.
 3. If not, tmux switches directly to the adjacent tmux pane.
 4. If yes, tmux sends the key into Neovim.
-5. Neovim first tries to move between Neovim windows.
-6. If there is no Neovim window in that direction, `vim-tmux-navigator` asks tmux to move to the adjacent tmux pane.
+5. Neovim first tries to move or resize Neovim windows.
+6. If there is no Neovim window in that direction, smart-splits asks tmux to act on the adjacent tmux pane.
 
-The result is that `Ctrl-h/j/k/l` works across both Neovim splits and tmux panes without needing to think about which layer currently owns focus.
-
-## Explorer Overrides
-
-Some LazyVim explorer buffers can intercept or redirect left movement. To keep pane movement consistent, the Neovim config adds a buffer-local override for explorer-like filetypes.
-
-For these filetypes:
-
-- `neo-tree`
-- `NvimTree`
-- `snacks_*`
-- `snacks_picker_list`
-- `snacks_picker_input`
-
-Neovim maps both keys directly to `tmux select-pane -L`:
-
-```text
-Ctrl-h
-Backspace
-```
-
-That override only affects explorer buffers. Normal editing buffers continue to use `vim-tmux-navigator`.
+The result is that movement and resizing work across both Neovim splits and tmux panes without needing to think about which layer currently owns focus.
 
 ## Copy Mode And Status Keys
 

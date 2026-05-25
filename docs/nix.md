@@ -232,6 +232,7 @@ Manages shell and terminal tooling:
 - installs `tmux`
 - links `config/tmux/tmux.conf` to `~/.tmux.conf`
 - writes Ghostty config to `~/.config/ghostty/config.ghostty`
+- sets Ghostty to treat the macOS Option key as Alt
 - enables zsh through Home Manager
 - enables zsh completion, autosuggestions, and syntax highlighting
 - loads custom zsh aliases from `config/zsh/aliases.zsh`

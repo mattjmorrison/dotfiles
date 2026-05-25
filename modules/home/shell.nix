@@ -9,6 +9,7 @@
 
   xdg.configFile."ghostty/config.ghostty".text = ''
     theme = TokyoNight Night
+    macos-option-as-alt = true
   '';
 
   programs.zsh = {
