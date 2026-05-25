@@ -10,6 +10,9 @@
     gcc
     unzip
     wget
+    marksman
+    markdownlint-cli2
+    markdown-toc
   ];
 
   home.file.".config/nvim" = {

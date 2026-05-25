@@ -11,11 +11,15 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ darwin, ... }:
+  outputs =
+    inputs@{ darwin, nixpkgs, ... }:
     let
       system = "aarch64-darwin";
+      pkgs = import nixpkgs { inherit system; };
     in
     {
+      formatter.${system} = pkgs.nixfmt-tree;
+
       darwinConfigurations.macbook = darwin.lib.darwinSystem {
         inherit system;
         specialArgs = { inherit inputs; };
