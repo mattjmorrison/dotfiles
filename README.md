@@ -30,6 +30,10 @@ The Makefile wraps the common Nix workflow targets:
 - `make check` - check the flake.
 - `make fmt` - format Nix files.
 - `make lint-nix` - lint Nix files.
+- `make preflight` - run Nix linting and flake checks.
+- `make nvim-dev` - launch Neovim with this repo's `config/nvim` without switching.
+- `make test-nvim` - run Neovim movement tests.
+- `make test-tmux-nvim` - run tmux/Neovim integration tests.
 - `make build` - build the nix-darwin configuration.
 - `sudo make switch` - apply the nix-darwin configuration.
 

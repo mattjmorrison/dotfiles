@@ -46,6 +46,11 @@ aarch64-darwin
 
 The flake passes all inputs through `specialArgs`, so host and module files can access them as `inputs`.
 
+The flake also exposes:
+
+- `devShells.aarch64-darwin.default` with `bats`, `neovim`, and `tmux` for local test and editor workflows.
+- `formatter.aarch64-darwin`, backed by `nixfmt-tree`.
+
 ## Host Wiring
 
 The active host is:
@@ -285,6 +290,12 @@ Use Homebrew casks for macOS GUI applications that are easier or more practical 
 
 ## Common Commands
 
+Show available Makefile targets:
+
+```sh
+make help
+```
+
 Check the flake:
 
 ```sh
@@ -301,6 +312,30 @@ Lint Nix files:
 
 ```sh
 make lint-nix
+```
+
+Run the full preflight used before build and switch:
+
+```sh
+make preflight
+```
+
+Launch Neovim with this repo's config without switching the system:
+
+```sh
+make nvim-dev
+```
+
+Run the Neovim-only movement tests:
+
+```sh
+make test-nvim
+```
+
+Run the tmux-backed Neovim navigation integration tests:
+
+```sh
+make test-tmux-nvim
 ```
 
 Build the macOS system configuration:

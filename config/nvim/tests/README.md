@@ -23,3 +23,9 @@ each value is a test function.
 Keep real tmux integration tests outside this directory, for example under
 `tests/integration/`, because those validate cross-tool behavior rather than the
 Neovim config in isolation.
+
+Run the tmux-backed navigation tests with:
+
+```sh
+make test-tmux-nvim
+```

@@ -56,9 +56,11 @@ Two prefix bindings create new panes:
 These map directly to:
 
 ```tmux
-bind-key \\ split-window -h
-bind-key - split-window -v
+bind-key \\ split-window -h -c "#{pane_current_path}"
+bind-key - split-window -v -c "#{pane_current_path}"
 ```
+
+New split panes start in the current pane's working directory.
 
 ## Pane Motion
 

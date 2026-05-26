@@ -18,6 +18,14 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          bats
+          neovim
+          tmux
+        ];
+      };
+
       formatter.${system} = pkgs.nixfmt-tree;
 
       darwinConfigurations.macbook = darwin.lib.darwinSystem {

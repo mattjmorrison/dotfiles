@@ -96,6 +96,11 @@ These are the custom keymaps currently defined by files in `config/nvim/lua/plug
 | --- | --- | --- | --- |
 | `<leader>gg` | Normal | `lazygit.lua` | Opens LazyGit with `:LazyGit` |
 | `<leader>ai` | Normal | `sidekick.lua` | Toggles the Sidekick CLI window |
+| `<leader>mp` | Normal, Markdown buffers | `markdown.lua` | Toggles Markdown Preview |
+| `<C-h>` | Snacks terminal | `snacks.lua` | Moves to the left Neovim split or tmux pane from the terminal |
+| `<C-j>` | Snacks terminal | `snacks.lua` | Moves to the lower Neovim split or tmux pane from the terminal |
+| `<C-k>` | Snacks terminal | `snacks.lua` | Moves to the upper Neovim split or tmux pane from the terminal |
+| `<C-l>` | Snacks terminal | `snacks.lua` | Moves to the right Neovim split or tmux pane from the terminal |
 | `w` | Snacks explorer list | `snacks.lua` | Runs Snacks explorer's `pick_win` action, then `jump` |
 | `<C-j>` | Snacks explorer list | `snacks.lua` | Moves to the lower Neovim split or tmux pane via smart-splits |
 | `<C-k>` | Snacks explorer list | `snacks.lua` | Moves to the upper Neovim split or tmux pane via smart-splits |
@@ -180,6 +185,17 @@ Keymap:
 <leader>ai -> toggle Sidekick CLI
 ```
 
+### `markdown.lua`
+
+Configures:
+
+- `iamcco/markdown-preview.nvim`
+
+Current behavior:
+
+- disables LazyVim's default `<leader>cp` Markdown preview mapping
+- maps `<leader>mp` in Markdown buffers to `MarkdownPreviewToggle`
+
 ### `snacks.lua`
 
 Configures:
@@ -188,9 +204,21 @@ Configures:
 
 Current behavior:
 
+- customizes Snacks terminal navigation
 - customizes the Snacks picker explorer source
 - maps `w` inside the explorer list to run `pick_win`, then `jump`
 - maps `Ctrl-j` and `Ctrl-k` inside the explorer list through smart-splits, so Neovim splits take priority before tmux panes
+
+Terminal keymaps:
+
+```text
+Ctrl-h -> move to left Neovim split or tmux pane from a non-floating terminal
+Ctrl-j -> move to lower Neovim split or tmux pane from a non-floating terminal
+Ctrl-k -> move to upper Neovim split or tmux pane from a non-floating terminal
+Ctrl-l -> move to right Neovim split or tmux pane from a non-floating terminal
+```
+
+Floating Snacks terminals keep the original terminal key input instead of routing through smart-splits.
 
 Explorer list keymap:
 
@@ -284,6 +312,32 @@ return {
     },
   },
 }
+```
+
+## Tests
+
+Neovim-only movement tests live under:
+
+```text
+config/nvim/tests/
+```
+
+Run them through the Makefile so the repo-local XDG paths are used:
+
+```sh
+make test-nvim
+```
+
+Tmux-backed integration tests live under:
+
+```text
+tests/integration/
+```
+
+Run them with:
+
+```sh
+make test-tmux-nvim
 ```
 
 Prefer one plugin or feature area per file. That keeps each plugin's behavior easy to find and remove.
