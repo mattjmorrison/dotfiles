@@ -102,10 +102,25 @@ modules/darwin/
 
 `modules/darwin/default.nix` imports every Darwin module:
 
+- `docker.nix`
 - `homebrew.nix`
 - `nix.nix`
 - `system.nix`
 - `users.nix`
+
+### `docker.nix`
+
+Installs Docker tooling through Homebrew:
+
+- `colima`
+- `docker`
+
+Colima provides the local Linux VM/runtime on macOS. The Docker CLI talks to that runtime after Colima is started:
+
+```sh
+colima start
+docker ps
+```
 
 ### `homebrew.nix`
 

@@ -97,6 +97,8 @@ These are the custom keymaps currently defined by files in `config/nvim/lua/plug
 | `<leader>gg` | Normal | `lazygit.lua` | Opens LazyGit with `:LazyGit` |
 | `<leader>ai` | Normal | `sidekick.lua` | Toggles the Sidekick CLI window |
 | `w` | Snacks explorer list | `snacks.lua` | Runs Snacks explorer's `pick_win` action, then `jump` |
+| `<C-j>` | Snacks explorer list | `snacks.lua` | Moves to the lower Neovim split or tmux pane via smart-splits |
+| `<C-k>` | Snacks explorer list | `snacks.lua` | Moves to the upper Neovim split or tmux pane via smart-splits |
 | `<C-h>` | Normal | `smart-splits.lua` | Moves to the left Neovim split or tmux pane |
 | `<BS>` | Normal | `smart-splits.lua` | Moves to the left Neovim split or tmux pane |
 | `<C-j>` | Normal | `smart-splits.lua` | Moves to the lower Neovim split or tmux pane |
@@ -188,11 +190,14 @@ Current behavior:
 
 - customizes the Snacks picker explorer source
 - maps `w` inside the explorer list to run `pick_win`, then `jump`
+- maps `Ctrl-j` and `Ctrl-k` inside the explorer list through smart-splits, so Neovim splits take priority before tmux panes
 
 Explorer list keymap:
 
 ```text
 w -> pick window, then jump
+Ctrl-j -> move to lower Neovim split or tmux pane from the explorer
+Ctrl-k -> move to upper Neovim split or tmux pane from the explorer
 ```
 
 ### `smart-splits.lua`
