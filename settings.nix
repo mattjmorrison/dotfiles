@@ -13,6 +13,11 @@
         extensions = [
           "bitwarden"
         ];
+
+        settings = {
+          "sidebar.position_start" = false;
+          "sidebar.verticalTabs" = true;
+        };
       };
 
       pyowa = { };

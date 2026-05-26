@@ -61,7 +61,7 @@ Bitwarden is declared on the `mattjmorrison` profile in:
 settings.nix
 ```
 
-`modules/home/firefox.nix` reads the profile extension list from `settings.firefox.profiles` and turns the named extension into the corresponding Firefox add-on package. Other Firefox profiles do not receive it.
+`modules/home/firefox.nix` reads the profile extension list from `settings.firefox.profiles` and turns the named extension into the corresponding Firefox add-on package. The same profile record can also carry Firefox prefs, such as `sidebar.verticalTabs` and `sidebar.position_start` for vertical tabs on the right. Other Firefox profiles do not receive it.
 
 ## Profiles
 

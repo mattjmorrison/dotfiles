@@ -12,6 +12,7 @@ let
     id: name:
     let
       profile = settings.firefox.profiles.${name} or { };
+      profileSettings = profile.settings or { };
       profileExtensions = map (extensionName: extensionPackages.${extensionName}) (
         profile.extensions or [ ]
       );
@@ -24,7 +25,13 @@ let
       }
       // lib.optionalAttrs (profileExtensions != [ ]) {
         extensions.packages = profileExtensions;
-        settings."extensions.autoDisableScopes" = 0;
+      }
+      // {
+        settings =
+          profileSettings
+          // lib.optionalAttrs (profileExtensions != [ ]) {
+            "extensions.autoDisableScopes" = 0;
+          };
       }
     );
 in
