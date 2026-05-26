@@ -1,16 +1,18 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    tmux
-  ];
+  home = {
+    packages = with pkgs; [
+      tmux
+    ];
 
-  home.sessionPath = [
-    "/opt/homebrew/bin"
-    "/opt/homebrew/sbin"
-  ];
+    sessionPath = [
+      "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
+    ];
 
-  home.file.".tmux.conf".source = ../../config/tmux/tmux.conf;
+    file.".tmux.conf".source = ../../config/tmux/tmux.conf;
+  };
 
   xdg.configFile."ghostty/config.ghostty".text = ''
     theme = TokyoNight Night
