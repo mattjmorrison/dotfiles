@@ -49,6 +49,7 @@ This configures:
 - command autosuggestions
 - command syntax highlighting
 - custom aliases from `config/zsh/aliases.zsh`
+- Homebrew binaries on the PATH for login shells
 
 ## Completion
 
@@ -94,6 +95,16 @@ The current aliases are:
 alias vi='nvim'
 alias vim='nvim'
 ```
+
+## PATH
+
+Homebrew's standard macOS binary locations are added through Home Manager in:
+
+```text
+modules/home/shell.nix
+```
+
+This makes `brew`, `colima`, and `docker` available in new login shells when the configuration has been switched onto the machine.
 
 ## Prompt
 

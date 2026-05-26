@@ -5,7 +5,7 @@ NIX_DEVELOP ?= nix develop --command
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help install-nix check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim build switch validate-root
+.PHONY: help install-nix check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-homebrew-acceptance build switch validate-root
 
 help:
 	@echo "Targets:"
@@ -22,6 +22,8 @@ help:
 	@echo "  test         Run all tests"
 	@echo "  test-nvim    Run Neovim movement tests"
 	@echo "  test-tmux-nvim Run tmux/Neovim integration tests"
+	@echo "  test-homebrew Run Darwin/Homebrew declaration tests"
+	@echo "  test-homebrew-acceptance Run host Homebrew acceptance tests"
 	@echo "  build        Build the nix-darwin configuration"
 	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
 	@echo ""
@@ -49,7 +51,7 @@ fmt-bats:
 	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/integration/*.bats
 
 lint: lint-nix lint-lua lint-bats
-test: test-nvim test-tmux-nvim
+test: test-nvim test-tmux-nvim test-homebrew
 
 lint-nix:
 	$(NIX_DEVELOP) statix check .
@@ -73,7 +75,7 @@ lint-bats:
 	$(NIX_DEVELOP) shfmt -d -i 2 -ln bats tests/integration/*.bats
 	$(NIX_DEVELOP) shellcheck tests/integration/*.bats
 
-preflight: lint check test-nvim test-tmux-nvim
+preflight: lint check test
 
 nvim-dev:
 	$(NVIM_DEV_ENV) nvim $(NVIM_ARGS)
@@ -83,6 +85,12 @@ test-nvim:
 
 test-tmux-nvim:
 	@nix develop --command bats tests/integration/tmux-nvim-navigation.bats
+
+test-homebrew:
+	@nix develop --command bats tests/integration/darwin-homebrew.bats
+
+test-homebrew-acceptance:
+	@nix develop --command bats tests/integration/homebrew-acceptance.bats
 
 build: preflight
 	$(DARWIN_REBUILD) build --flake $(FLAKE)
@@ -94,6 +102,11 @@ switch: validate-root
 		$(MAKE) preflight; \
 	fi
 	HOME=/var/root $(DARWIN_REBUILD) switch --flake $(FLAKE)
+	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
+		sudo -u "$$SUDO_USER" -H $(MAKE) test-homebrew-acceptance; \
+	else \
+		$(MAKE) test-homebrew-acceptance; \
+	fi
 
 validate-root:
 	@if [ "$$(id -u)" -ne 0 ]; then \

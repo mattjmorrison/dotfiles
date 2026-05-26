@@ -5,6 +5,11 @@
     tmux
   ];
 
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+  ];
+
   home.file.".tmux.conf".source = ../../config/tmux/tmux.conf;
 
   xdg.configFile."ghostty/config.ghostty".text = ''
