@@ -6,13 +6,27 @@
 }:
 
 let
+  extensionPackages = import ./firefox/plugins { inherit pkgs; };
+
   mkProfile =
     id: name:
-    lib.nameValuePair name {
-      inherit id name;
-      path = name;
-      isDefault = name == settings.firefox.defaultProfile;
-    };
+    let
+      profile = settings.firefox.profiles.${name} or { };
+      profileExtensions = map (extensionName: extensionPackages.${extensionName}) (
+        profile.extensions or [ ]
+      );
+    in
+    lib.nameValuePair name (
+      {
+        inherit id name;
+        path = name;
+        isDefault = name == settings.firefox.defaultProfile;
+      }
+      // lib.optionalAttrs (profileExtensions != [ ]) {
+        extensions.packages = profileExtensions;
+        settings."extensions.autoDisableScopes" = 0;
+      }
+    );
 in
 
 {
@@ -21,6 +35,6 @@ in
     package = null;
     release = pkgs.firefox.version;
 
-    profiles = lib.listToAttrs (lib.imap0 mkProfile settings.firefox.profiles);
+    profiles = lib.listToAttrs (lib.imap0 mkProfile settings.firefox.profileOrder);
   };
 }

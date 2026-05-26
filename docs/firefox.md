@@ -53,6 +53,16 @@ and creates profile directories under:
 ~/Library/Application Support/Firefox/Profiles/
 ```
 
+## Profile Extensions
+
+Bitwarden is declared on the `mattjmorrison` profile in:
+
+```text
+settings.nix
+```
+
+`modules/home/firefox.nix` reads the profile extension list from `settings.firefox.profiles` and turns the named extension into the corresponding Firefox add-on package. Other Firefox profiles do not receive it.
+
 ## Profiles
 
 Profile names are defined in `settings.firefox.profiles`.

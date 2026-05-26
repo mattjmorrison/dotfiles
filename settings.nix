@@ -8,7 +8,19 @@
 
   firefox = {
     defaultProfile = "mattjmorrison";
-    profiles = [
+    profiles = {
+      mattjmorrison = {
+        extensions = [
+          "bitwarden"
+        ];
+      };
+
+      pyowa = { };
+
+      sourceallies = { };
+    };
+
+    profileOrder = [
       "mattjmorrison"
       "pyowa"
       "sourceallies"
