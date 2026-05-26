@@ -6,6 +6,7 @@ Reusable Home Manager modules. These configure user-level packages, shell behavi
 
 - `ai.nix` - installs AI CLI tools.
 - `default.nix` - imports all Home Manager modules.
+- `firefox.nix` - manages Firefox profiles.
 - `git.nix` - configures Git and installs GitHub CLI and Lazygit.
 - `karabiner.nix` - writes the Karabiner configuration.
 - `neovim.nix` - manages Neovim.

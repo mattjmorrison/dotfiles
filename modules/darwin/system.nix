@@ -1,6 +1,8 @@
+{ settings, ... }:
+
 {
   system.stateVersion = 6;
-  system.primaryUser = "matt-nix";
+  system.primaryUser = settings.user.username;
 
   programs.zsh.enable = true;
 }

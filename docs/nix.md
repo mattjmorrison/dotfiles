@@ -7,11 +7,13 @@ This repo uses Nix flakes, nix-darwin, and Home Manager to manage a macOS machin
 The configuration has three layers:
 
 - `flake.nix` pins inputs and exposes host builds.
+- `settings.nix` contains local user, identity, and profile values shared by modules.
 - `hosts/` wires a concrete machine to reusable modules.
 - `modules/` contains reusable nix-darwin and Home Manager configuration.
 
 Tool-specific behavior lives in separate docs:
 
+- `docs/firefox.md`
 - `docs/neovim.md`
 - `docs/tmux.md`
 - `docs/zsh.md`
@@ -46,9 +48,11 @@ aarch64-darwin
 
 The flake passes all inputs through `specialArgs`, so host and module files can access them as `inputs`.
 
+It also imports `settings.nix` and passes it through `specialArgs`, so host and module files can access shared local values as `settings`.
+
 The flake also exposes:
 
-- `devShells.aarch64-darwin.default` with `bats`, `neovim`, and `tmux` for local test and editor workflows.
+- `devShells.aarch64-darwin.default` with formatter, linter, Neovim, Bats, and tmux tooling for local development workflows.
 - `formatter.aarch64-darwin`, backed by `nixfmt-tree`.
 
 ## Host Wiring
@@ -82,7 +86,7 @@ Current Home Manager integration settings:
 - `useGlobalPkgs = true`
 - `useUserPackages = true`
 - `backupFileExtension = "backup"`
-- `users."matt-nix" = ./home.nix`
+- `users.${settings.user.username} = ./home.nix`
 
 The user profile is:
 
@@ -93,7 +97,7 @@ hosts/macbook/home.nix
 It imports `modules/home`, sets:
 
 ```nix
-home.username = "matt-nix";
+home.username = settings.user.username;
 home.stateVersion = "26.05";
 ```
 
@@ -157,7 +161,7 @@ Sets core system values:
 
 ```nix
 system.stateVersion = 6;
-system.primaryUser = "matt-nix";
+system.primaryUser = settings.user.username;
 programs.zsh.enable = true;
 ```
 
@@ -168,7 +172,7 @@ Detailed zsh behavior is documented in `docs/zsh.md`.
 Defines the macOS home directory for the managed user:
 
 ```nix
-users.users."matt-nix".home = "/Users/matt-nix";
+users.users.${settings.user.username}.home = settings.user.homeDirectory;
 ```
 
 ## Home Manager Modules
@@ -182,6 +186,7 @@ modules/home/
 `modules/home/default.nix` imports every Home Manager module:
 
 - `ai.nix`
+- `firefox.nix`
 - `git.nix`
 - `karabiner.nix`
 - `neovim.nix`
@@ -196,13 +201,21 @@ Installs AI CLI tools:
 - `codex`
 - `github-copilot-cli`
 
+### `firefox.nix`
+
+Manages Firefox profiles while leaving the Firefox Developer Edition app installed through Homebrew.
+
+Profile names and the default profile come from `settings.firefox`.
+
+Detailed Firefox behavior is documented in `docs/firefox.md`.
+
 ### `git.nix`
 
 Enables Git and configures:
 
 - default branch: `main`
-- user name: `Matt Morrison`
-- user email: `mattjmorrison@mattjmorrison.com`
+- user name from `settings.user.fullName`
+- user email from `settings.user.email`
 - automatic upstream setup on push
 - editor: `nvim`
 
@@ -241,9 +254,14 @@ Detailed Neovim behavior is documented in `docs/neovim.md`.
 Installs Nix development tooling:
 
 - `deadnix`
+- `lua-language-server`
 - `nil`
 - `nixfmt`
+- `selene`
+- `shellcheck`
+- `shfmt`
 - `statix`
+- `stylua`
 
 ### `shell.nix`
 
@@ -274,6 +292,7 @@ This repo writes or links these user-facing files:
 | `config/tmux/tmux.conf` | `~/.tmux.conf` | `modules/home/shell.nix` |
 | inline Nix text | `~/.config/ghostty/config.ghostty` | `modules/home/shell.nix` |
 | inline Nix JSON | `~/.config/karabiner/karabiner.json` | `modules/home/karabiner.nix` |
+| inline Firefox profile metadata | `~/Library/Application Support/Firefox/profiles.ini` | `modules/home/firefox.nix` |
 
 `config/nvim/` is linked recursively so Neovim can be edited as normal application config inside this repo.
 
@@ -302,10 +321,16 @@ Check the flake:
 make check
 ```
 
-Format Nix files:
+Format Nix, Lua, and Bats files:
 
 ```sh
 make fmt
+```
+
+Lint Nix, Lua, and Bats files:
+
+```sh
+make lint
 ```
 
 Lint Nix files:
@@ -314,7 +339,7 @@ Lint Nix files:
 make lint-nix
 ```
 
-Run the full preflight used before build and switch:
+Run the full preflight used before build and switch. This runs Nix, Lua, and Bats linting, flake checks, Neovim tests, and tmux/Neovim integration tests:
 
 ```sh
 make preflight

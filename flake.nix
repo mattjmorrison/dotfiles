@@ -16,11 +16,20 @@
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs { inherit system; };
+      settings = import ./settings.nix;
     in
     {
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           bats
+          deadnix
+          nixfmt
+          selene
+          shellcheck
+          shfmt
+          statix
+          stylua
+          lua-language-server
           neovim
           tmux
         ];
@@ -30,7 +39,7 @@
 
       darwinConfigurations.macbook = darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs settings; };
 
         modules = [
           ./hosts/macbook

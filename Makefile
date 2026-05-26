@@ -1,19 +1,25 @@
 HOST ?= macbook
 FLAKE ?= .\#$(HOST)
 DARWIN_REBUILD ?= darwin-rebuild
+NIX_DEVELOP ?= nix develop --command
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help install-nix check fmt lint-nix preflight nvim-dev test-nvim test-tmux-nvim build switch validate-root
+.PHONY: help install-nix check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim build switch validate-root
 
 help:
 	@echo "Targets:"
 	@echo "  install-nix  Install Nix with the official multi-user installer"
 	@echo "  check        Check the flake"
-	@echo "  fmt          Format Nix files"
+	@echo "  fmt          Format Nix, Lua, and Bats files"
+	@echo "  lint         Lint Nix, Lua, and Bats files"
 	@echo "  lint-nix     Lint Nix files"
-	@echo "  preflight    Run Nix linting and flake checks"
+	@echo "  lint-lua     Lint Lua files"
+	@echo "  lint-lua-diagnostics Check LuaLS diagnostics through Neovim"
+	@echo "  lint-bats    Lint Bats files"
+	@echo "  preflight    Run Nix linting, flake checks, and tests"
 	@echo "  nvim-dev     Launch Neovim with this repo's config/nvim without switching"
+	@echo "  test         Run all tests"
 	@echo "  test-nvim    Run Neovim movement tests"
 	@echo "  test-tmux-nvim Run tmux/Neovim integration tests"
 	@echo "  build        Build the nix-darwin configuration"
@@ -23,6 +29,7 @@ help:
 	@echo "  HOST=$(HOST)"
 	@echo "  FLAKE=$(FLAKE)"
 	@echo "  DARWIN_REBUILD=$(DARWIN_REBUILD)"
+	@echo "  NIX_DEVELOP=$(NIX_DEVELOP)"
 
 install-nix:
 	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
@@ -30,15 +37,43 @@ install-nix:
 check:
 	nix flake check
 
-fmt:
+fmt: fmt-nix fmt-lua fmt-bats
+
+fmt-nix:
 	nix fmt
 
+fmt-lua:
+	$(NIX_DEVELOP) stylua --config-path config/nvim/stylua.toml config/nvim
+
+fmt-bats:
+	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/integration/*.bats
+
+lint: lint-nix lint-lua lint-bats
+test: test-nvim test-tmux-nvim
+
 lint-nix:
-	statix check .
-	deadnix --fail .
+	$(NIX_DEVELOP) statix check .
+	$(NIX_DEVELOP) deadnix --fail .
 	nix fmt -- --ci
 
-preflight: lint-nix check
+lint-lua:
+	$(NIX_DEVELOP) stylua --check --config-path config/nvim/stylua.toml config/nvim
+	$(NIX_DEVELOP) selene config/nvim
+	$(MAKE) lint-lua-diagnostics
+
+lint-lua-diagnostics:
+	@had_copilot_config=0; \
+	if [ -e "$(CURDIR)/config/github-copilot" ]; then had_copilot_config=1; fi; \
+	$(NIX_DEVELOP) env $(NVIM_DEV_ENV) nvim --headless -S config/nvim/tests/lua_diagnostics.lua; \
+	status=$$?; \
+	if [ "$$had_copilot_config" -eq 0 ]; then rm -rf "$(CURDIR)/config/github-copilot"; fi; \
+	exit $$status
+
+lint-bats:
+	$(NIX_DEVELOP) shfmt -d -i 2 -ln bats tests/integration/*.bats
+	$(NIX_DEVELOP) shellcheck tests/integration/*.bats
+
+preflight: lint check test-nvim test-tmux-nvim
 
 nvim-dev:
 	$(NVIM_DEV_ENV) nvim $(NVIM_ARGS)
@@ -52,8 +87,13 @@ test-tmux-nvim:
 build: preflight
 	$(DARWIN_REBUILD) build --flake $(FLAKE)
 
-switch: preflight validate-root
-	$(DARWIN_REBUILD) switch --flake $(FLAKE)
+switch: validate-root
+	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
+		sudo -u "$$SUDO_USER" -H $(MAKE) preflight; \
+	else \
+		$(MAKE) preflight; \
+	fi
+	HOME=/var/root $(DARWIN_REBUILD) switch --flake $(FLAKE)
 
 validate-root:
 	@if [ "$$(id -u)" -ne 0 ]; then \

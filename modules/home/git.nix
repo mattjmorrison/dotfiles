@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, settings, ... }:
 
 {
   programs.git = {
@@ -8,8 +8,8 @@
       init.defaultBranch = "main";
 
       user = {
-        name = "Matt Morrison";
-        email = "mattjmorrison@mattjmorrison.com";
+        name = settings.user.fullName;
+        email = settings.user.email;
       };
 
       push = {

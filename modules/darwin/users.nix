@@ -1,3 +1,5 @@
+{ settings, ... }:
+
 {
-  users.users."matt-nix".home = "/Users/matt-nix";
+  users.users.${settings.user.username}.home = settings.user.homeDirectory;
 }

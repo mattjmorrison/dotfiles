@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 local test_dir = vim.fn.expand("<sfile>:p:h")
 local nvim_dir = vim.fn.fnamemodify(test_dir, ":h")
 
@@ -5,9 +7,11 @@ vim.o.more = false
 vim.opt.runtimepath:prepend(nvim_dir)
 package.path = nvim_dir .. "/?.lua;" .. nvim_dir .. "/?/init.lua;" .. package.path
 
-local config_ok, config_err = pcall(vim.cmd, "source " .. vim.fn.fnameescape(nvim_dir .. "/init.lua"))
+local config_ok, config_err = pcall(function()
+  vim.cmd("source " .. vim.fn.fnameescape(nvim_dir .. "/init.lua"))
+end)
 if not config_ok then
-  vim.api.nvim_err_writeln("Failed to source config/nvim/init.lua\n" .. tostring(config_err))
+  io.stdout:write("Failed to source config/nvim/init.lua\n" .. tostring(config_err) .. "\n")
   vim.cmd("cquit 1")
 end
 
@@ -20,7 +24,7 @@ local function write_line(message)
 end
 
 local function write_error(message)
-  vim.api.nvim_err_writeln(message)
+  io.stdout:write(message .. "\n")
 end
 
 local function indent(message)

@@ -1,0 +1,14 @@
+base: lua51
+
+globals:
+  error:
+    args:
+      - type: any
+      - type: number
+        required: false
+  io.stdout.write:
+    method: true
+    args:
+      - type: any
+  vim:
+    any: true

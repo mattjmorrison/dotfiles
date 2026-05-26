@@ -45,6 +45,27 @@ Markdown linting is configured at the repo root in:
 
 That config sets `MD013` line length to 200 characters.
 
+Lua formatting is configured in:
+
+```text
+config/nvim/stylua.toml
+```
+
+Lua linting is configured at the repo root in:
+
+```text
+selene.toml
+neovim.yml
+```
+
+Lua language diagnostics are checked by running Neovim itself in headless mode:
+
+```text
+config/nvim/tests/lua_diagnostics.lua
+```
+
+That script asks the same `lua_ls` client used by the editor for warnings and errors, so `make lint-lua` and `make preflight` catch issues that `stylua` and Selene do not model.
+
 ## Startup Flow
 
 Neovim starts at:
@@ -315,6 +336,28 @@ return {
 ```
 
 ## Tests
+
+Lua checks run through:
+
+```sh
+make lint-lua
+```
+
+That target runs three layers:
+
+- `stylua --check` for formatting
+- `selene` for static Lua linting
+- `lint-lua-diagnostics` for Neovim/LuaLS diagnostics
+
+The `lint-lua-diagnostics` target starts this config in headless Neovim and runs:
+
+```text
+config/nvim/tests/lua_diagnostics.lua
+```
+
+This is intentionally different from calling `lua-language-server --check` directly. The script opens the Lua files as real Neovim buffers so LazyVim can attach and configure `lua_ls` the same way it does in the UI. It fails on LuaLS warnings and errors, including deprecations and type mismatches.
+
+The diagnostic check ignores `config/nvim/lua/plugins/example.lua` because that file is an inactive LazyVim starter example. It returns before its sample plugin specs load, but LuaLS would still analyze the dead sample annotations if the file were opened.
 
 Neovim-only movement tests live under:
 
