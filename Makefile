@@ -93,7 +93,7 @@ nvim-dev:
 	$(NVIM_DEV_ENV) nvim $(NVIM_ARGS)
 
 test-nvim:
-	@$(NVIM_DEV_ENV) nvim --headless -u config/nvim/tests/minitest.lua
+	@$(NIX_DEVELOP) env $(NVIM_DEV_ENV) nvim --headless -u config/nvim/tests/minitest.lua
 
 test-tmux-nvim:
 	@nix develop --command bats tests/integration/tmux-nvim-navigation.bats
