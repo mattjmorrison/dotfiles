@@ -31,6 +31,11 @@ assert_true() {
   assert_true "$actual" "expected homebrew.enable to be true"
 }
 
+@test "nix-homebrew installs homebrew itself" {
+  actual="$(config_expr 'if config.nix-homebrew.enable && config.nix-homebrew.user == "matt-nix" && config.nix-homebrew.autoMigrate then "true" else "false"')"
+  assert_true "$actual" "expected nix-homebrew to install and migrate homebrew"
+}
+
 @test "homebrew installs colima and docker" {
   actual="$(config_expr 'if builtins.any (brew: brew.name == "colima") config.homebrew.brews && builtins.any (brew: brew.name == "docker") config.homebrew.brews then "true" else "false"')"
   assert_true "$actual" "expected homebrew.brews to include colima and docker"
