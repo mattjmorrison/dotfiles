@@ -1,14 +1,15 @@
-HOST ?= macbook
+HOST ?= $(error HOST is required. Usage: make <target> HOST=<username>)
 FLAKE ?= .\#$(HOST)
-DARWIN_REBUILD ?= darwin-rebuild
+DARWIN_REBUILD ?= $(shell command -v darwin-rebuild 2>/dev/null || echo "nix run nix-darwin --")
 NIX_DEVELOP ?= nix develop --command
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-homebrew-acceptance build switch validate-root
+.PHONY: help bootstrap install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-homebrew-acceptance build switch validate-root
 
 help:
 	@echo "Targets:"
+	@echo "  bootstrap    Install Nix (first-time setup)"
 	@echo "  install-nix  Install Nix with the official multi-user installer"
 	@echo "  update-nixpkgs Update the pinned nixpkgs flake input"
 	@echo "  check        Check the flake"
@@ -24,6 +25,8 @@ help:
 	@echo "  test-nvim    Run Neovim movement tests"
 	@echo "  test-tmux-nvim Run tmux/Neovim integration tests"
 	@echo "  test-homebrew Run Darwin/Homebrew declaration tests"
+	@echo "  test-home-manager Run Home Manager declaration tests"
+	@echo "  test-host-discovery Run host discovery tests"
 	@echo "  test-homebrew-acceptance Run host Homebrew acceptance tests"
 	@echo "  build        Build the nix-darwin configuration"
 	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
@@ -33,6 +36,11 @@ help:
 	@echo "  FLAKE=$(FLAKE)"
 	@echo "  DARWIN_REBUILD=$(DARWIN_REBUILD)"
 	@echo "  NIX_DEVELOP=$(NIX_DEVELOP)"
+
+bootstrap:
+	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+	@echo ""
+	@echo "Nix installed. Open a new shell, then run: sudo make switch HOST=<username>"
 
 install-nix:
 	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
@@ -55,7 +63,7 @@ fmt-bats:
 	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/integration/*.bats
 
 lint: lint-nix lint-lua lint-bats
-test: test-nvim test-tmux-nvim test-homebrew
+test: test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery
 
 lint-nix:
 	$(NIX_DEVELOP) statix check .
@@ -91,7 +99,13 @@ test-tmux-nvim:
 	@nix develop --command bats tests/integration/tmux-nvim-navigation.bats
 
 test-homebrew:
-	@nix develop --command bats tests/integration/darwin-homebrew.bats
+	@HOST=$(HOST) nix develop --command bats tests/integration/darwin-homebrew.bats
+
+test-home-manager:
+	@HOST=$(HOST) nix develop --command bats tests/integration/home-manager.bats
+
+test-host-discovery:
+	@nix develop --command bats tests/integration/host-discovery.bats
 
 test-homebrew-acceptance:
 	@nix develop --command bats tests/integration/homebrew-acceptance.bats

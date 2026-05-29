@@ -2,6 +2,8 @@
 
 This repo manages zsh through nix-darwin and Home Manager.
 
+> The shell.nix settings covered here are also summarized in `docs/nix.md` under the Home Manager Modules section. This doc covers zsh behavior in detail; that one covers the full module wiring picture.
+
 ## Where It Lives
 
 System-level zsh support is enabled in:

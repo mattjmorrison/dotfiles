@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/home
+    ../home
   ];
 
   home.username = settings.user.username;

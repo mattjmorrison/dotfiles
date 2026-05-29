@@ -7,9 +7,8 @@ This repo uses Nix flakes, nix-darwin, and Home Manager to manage a macOS machin
 The configuration has three layers:
 
 - `flake.nix` pins inputs and exposes host builds.
-- `settings.nix` contains local user, identity, and profile values shared by modules.
-- `hosts/` wires a concrete machine to reusable modules.
-- `modules/` contains reusable nix-darwin and Home Manager configuration.
+- `hosts/` contains one directory per machine, each with a `default.nix` and a `settings.nix` with user-specific values.
+- `modules/` contains reusable nix-darwin, Home Manager, and shared MacBook configuration.
 
 Tool-specific behavior lives in separate docs:
 
@@ -34,21 +33,15 @@ It pins:
 
 Both `nix-darwin` and `home-manager` follow the same `nixpkgs` input, so the system and user configuration use one package set.
 
-The flake currently exposes one Darwin configuration:
+The flake uses [flake-parts](https://github.com/hercules-ci/flake-parts) to split outputs into modules. The dev shell and formatter are defined in `dev/shell.nix` as a `perSystem` module. The `darwinConfigurations` output lives in the `flake` layer since it is not a per-system output.
 
-```text
-darwinConfigurations.macbook
-```
-
-That configuration targets:
+The flake automatically discovers host directories under `hosts/` and exposes one `darwinConfigurations` entry per host. All configurations target:
 
 ```text
 aarch64-darwin
 ```
 
-The flake passes all inputs through `specialArgs`, so host and module files can access them as `inputs`.
-
-It also imports `settings.nix` and passes it through `specialArgs`, so host and module files can access shared local values as `settings`.
+The flake passes `inputs` through `specialArgs` so host and module files can access them. It also loads each host's `settings.nix` and passes it through `specialArgs` as `settings`, giving modules access to the host's user-specific values.
 
 The flake also exposes:
 
@@ -57,49 +50,36 @@ The flake also exposes:
 
 ## Host Wiring
 
-The active host is:
+Each host lives in its own directory under `hosts/`:
 
 ```text
-hosts/macbook/
+hosts/matt-nix/
+hosts/matthewmorrison/
+hosts/mmorrison/
 ```
 
-The host entry point is:
+Every host directory contains two files:
+
+- `default.nix` — imports the shared MacBook module (`modules/macbook`). This is identical across all hosts.
+- `settings.nix` — a plain attrset with user-specific values: `username`, `homeDirectory`, `fullName`, `email`, and Firefox profile configuration.
+
+The flake loads each host's `settings.nix` and passes it as `settings` through `specialArgs`, making it available to all modules in that configuration.
+
+To add a new host, create a new directory under `hosts/` with a `default.nix` and `settings.nix`, then add a `darwinConfigurations` entry in `flake.nix`.
+
+## MacBook Module
+
+The shared MacBook configuration lives in:
 
 ```text
-hosts/macbook/default.nix
+modules/macbook/
 ```
 
-It imports:
+All MacBook hosts import this module. It contains:
 
-- `modules/darwin`
-- `inputs.home-manager.darwinModules.home-manager`
-- `hosts/macbook/home-manager.nix`
-
-Home Manager integration is configured in:
-
-```text
-hosts/macbook/home-manager.nix
-```
-
-Current Home Manager integration settings:
-
-- `useGlobalPkgs = true`
-- `useUserPackages = true`
-- `backupFileExtension = "backup"`
-- `users.${settings.user.username} = ./home.nix`
-
-The user profile is:
-
-```text
-hosts/macbook/home.nix
-```
-
-It imports `modules/home`, sets:
-
-```nix
-home.username = settings.user.username;
-home.stateVersion = "26.05";
-```
+- `default.nix` — enables nix-homebrew, imports `modules/darwin`, and wires Home Manager.
+- `home-manager.nix` — configures the Home Manager integration for the host user.
+- `home.nix` — Home Manager profile; imports `modules/home` and sets `home.username` and `home.stateVersion`.
 
 ## Darwin Modules
 
@@ -280,7 +260,7 @@ Manages shell and terminal tooling:
 
 Detailed shell behavior is documented in:
 
-- `docs/zsh.md`
+- `docs/zsh.md` — covers zsh behavior in depth; intentionally overlaps with the summary above.
 - `docs/tmux.md`
 
 ## Managed Files
@@ -395,10 +375,11 @@ Install Nix with the official multi-user installer:
 make install-nix
 ```
 
-The Makefile defaults to the `macbook` host. Override it with `HOST` when needed:
+`HOST` is required for targets that build or apply the configuration. Pass it explicitly:
 
 ```sh
-make build HOST=macbook
+make build HOST=matt-nix
+sudo make switch HOST=matt-nix
 ```
 
 ## Adding Something New
@@ -406,8 +387,10 @@ make build HOST=macbook
 For a new host:
 
 1. Add a directory under `hosts/`.
-2. Import the Darwin modules and Home Manager module.
-3. Add a new `darwinConfigurations.<name>` entry in `flake.nix`.
+2. Add a `default.nix` that imports `../../modules/macbook`.
+3. Add a `settings.nix` with the host's user values (`username`, `homeDirectory`, `fullName`, `email`, and Firefox profile config).
+
+The flake discovers host directories automatically — no changes to `flake.nix` are needed.
 
 For a new reusable Darwin setting:
 

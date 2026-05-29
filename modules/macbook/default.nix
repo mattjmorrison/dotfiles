@@ -3,7 +3,7 @@
 {
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
-    ../../modules/darwin
+    ../darwin
     inputs.home-manager.darwinModules.home-manager
     ./home-manager.nix
   ];

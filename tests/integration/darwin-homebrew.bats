@@ -3,6 +3,11 @@
 setup_file() {
   ROOT_DIR="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
   export ROOT_DIR
+
+  if [[ -z "$HOST" ]]; then
+    echo "HOST is required. Usage: HOST=<username> bats darwin-homebrew.bats" >&2
+    exit 1
+  fi
 }
 
 config_expr() {
@@ -11,7 +16,7 @@ config_expr() {
   nix eval --impure --expr "
     let
       flake = builtins.getFlake \"$ROOT_DIR\";
-      config = flake.darwinConfigurations.macbook.config;
+      config = flake.darwinConfigurations.${HOST}.config;
     in
       ${expr}
   " --raw
@@ -32,7 +37,7 @@ assert_true() {
 }
 
 @test "nix-homebrew installs homebrew itself" {
-  actual="$(config_expr 'if config.nix-homebrew.enable && config.nix-homebrew.user == "matt-nix" && config.nix-homebrew.autoMigrate then "true" else "false"')"
+  actual="$(config_expr 'if config.nix-homebrew.enable && config.nix-homebrew.user != "" && config.nix-homebrew.autoMigrate then "true" else "false"')"
   assert_true "$actual" "expected nix-homebrew to install and migrate homebrew"
 }
 

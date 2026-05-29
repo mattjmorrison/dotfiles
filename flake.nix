@@ -11,41 +11,37 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs =
-    inputs@{ darwin, nixpkgs, ... }:
+    inputs:
     let
       system = "aarch64-darwin";
-      pkgs = import nixpkgs { inherit system; };
-      settings = import ./settings.nix;
     in
-    {
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          bats
-          deadnix
-          nixfmt
-          selene
-          shellcheck
-          shfmt
-          statix
-          stylua
-          lua-language-server
-          neovim
-          tmux
-        ];
-      };
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ system ];
 
-      formatter.${system} = pkgs.nixfmt-tree;
+      imports = [ ./dev/shell.nix ];
 
-      darwinConfigurations.macbook = darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = { inherit inputs settings; };
-
-        modules = [
-          ./hosts/macbook
-        ];
-      };
+      flake =
+        let
+          lib = inputs.nixpkgs.lib;
+          hosts = builtins.attrNames (lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./hosts));
+          mkConfig =
+            host:
+            inputs.darwin.lib.darwinSystem {
+              inherit system;
+              specialArgs = {
+                inherit inputs;
+                settings = import ./hosts/${host}/settings.nix;
+              };
+              modules = [ ./hosts/${host} ];
+            };
+        in
+        {
+          darwinConfigurations = lib.genAttrs hosts mkConfig;
+        };
     };
 }
