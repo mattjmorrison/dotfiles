@@ -5,11 +5,12 @@ NIX_DEVELOP ?= nix develop --command
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help install-nix check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-homebrew-acceptance build switch validate-root
+.PHONY: help install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-homebrew-acceptance build switch validate-root
 
 help:
 	@echo "Targets:"
 	@echo "  install-nix  Install Nix with the official multi-user installer"
+	@echo "  update-nixpkgs Update the pinned nixpkgs flake input"
 	@echo "  check        Check the flake"
 	@echo "  fmt          Format Nix, Lua, and Bats files"
 	@echo "  lint         Lint Nix, Lua, and Bats files"
@@ -35,6 +36,9 @@ help:
 
 install-nix:
 	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+
+update-nixpkgs:
+	nix flake update nixpkgs
 
 check:
 	nix flake check

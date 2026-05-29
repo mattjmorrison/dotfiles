@@ -201,6 +201,8 @@ Installs AI CLI tools:
 - `codex`
 - `github-copilot-cli`
 
+These packages come from the pinned `nixpkgs` input in `flake.lock`. To pick up newer CLI releases, update `nixpkgs` and then switch the system. Fast-moving tools such as `codex` can still lag their upstream releases until nixpkgs updates its package definition.
+
 ### `firefox.nix`
 
 Manages Firefox profiles while leaving the Firefox Developer Edition app installed through Homebrew.
@@ -313,6 +315,18 @@ Show available Makefile targets:
 
 ```sh
 make help
+```
+
+Update the pinned `nixpkgs` flake input, which is how Nix-managed CLI packages such as `codex` move to newer nixpkgs versions:
+
+```sh
+make update-nixpkgs
+```
+
+After updating, apply the configuration with:
+
+```sh
+sudo make switch
 ```
 
 Check the flake:
