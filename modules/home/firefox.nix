@@ -27,6 +27,12 @@ let
         extensions.packages = profileExtensions;
       }
       // {
+        search = {
+          default = "ddg";
+          privateDefault = "ddg";
+          force = true;
+        };
+
         settings =
           profileSettings
           // lib.optionalAttrs (profileExtensions != [ ]) {

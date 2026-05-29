@@ -30,6 +30,8 @@ Profile names and the default profile are defined in:
 settings.nix
 ```
 
+Each managed profile sets DuckDuckGo as the normal and private browsing search default. The search file is force-managed so Firefox does not replace the Home Manager-generated configuration on launch.
+
 The Home Manager Firefox module is enabled with:
 
 ```nix
