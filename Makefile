@@ -115,15 +115,15 @@ build: preflight
 
 switch: validate-root
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
-		sudo -u "$$SUDO_USER" -H $(MAKE) preflight; \
+		sudo -u "$$SUDO_USER" -H $(MAKE) preflight HOST=$(HOST); \
 	else \
-		$(MAKE) preflight; \
+		$(MAKE) preflight HOST=$(HOST); \
 	fi
 	HOME=/var/root $(DARWIN_REBUILD) switch --flake $(FLAKE)
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
-		sudo -u "$$SUDO_USER" -H $(MAKE) test-homebrew-acceptance; \
+		sudo -u "$$SUDO_USER" -H $(MAKE) test-homebrew-acceptance HOST=$(HOST); \
 	else \
-		$(MAKE) test-homebrew-acceptance; \
+		$(MAKE) test-homebrew-acceptance HOST=$(HOST); \
 	fi
 
 validate-root:
