@@ -79,15 +79,10 @@ The Makefile wraps the common Nix workflow targets:
 - `make lint-nix` - lint Nix files.
 - `make preflight` - run Nix linting, flake checks, and tests.
 - `make nvim-dev` - launch Neovim with this repo's `config/nvim` without switching.
-- `make test HOST=<username>` - run all tests.
 - `make test-nvim` - run Neovim movement tests.
 - `make test-tmux-nvim` - run tmux/Neovim integration tests.
-- `make test-homebrew HOST=<username>` - run Darwin/Homebrew declaration tests.
-- `make test-home-manager HOST=<username>` - run Home Manager declaration tests.
-- `make test-host-discovery` - run host discovery tests.
-- `make test-homebrew-acceptance` - run Homebrew acceptance tests (requires switched system).
-- `make build HOST=<username>` - build the nix-darwin configuration.
-- `sudo make switch HOST=<username>` - apply the nix-darwin configuration.
+- `make build` - build the nix-darwin configuration.
+- `sudo make switch` - apply the nix-darwin configuration.
 
 ## Documentation
 

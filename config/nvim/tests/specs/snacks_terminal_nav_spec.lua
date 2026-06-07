@@ -64,6 +64,39 @@ local function assert_terminal_key_falls_back_to_tmux(key_name, lhs, direction)
   end)
 end
 
+T["terminal <C-h> sends '2' to channel when floating to trigger lazygit jumpToBlock"] = function()
+  local calls = {}
+  local original = vim.api.nvim_chan_send
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.api.nvim_chan_send = function(chan, data)
+    table.insert(calls, { chan = chan, data = data })
+  end
+
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.b[buf].terminal_job_id = 42
+
+  local key = terminal_keys()["nav_h"]
+  local terminal = {
+    is_floating = function()
+      return true
+    end,
+    buf = buf,
+  }
+
+  assert.truthy(key, "missing nav_h mapping")
+  assert.equal(key[2](terminal), "", "nav_h should return empty string when floating")
+
+  local called = vim.wait(100, function()
+    return #calls == 1
+  end)
+  assert.truthy(called, "nvim_chan_send was not called")
+  assert.equal(calls[1].chan, 42, "wrong channel — expected terminal_job_id")
+  assert.equal(calls[1].data, "2", "wrong byte sent to channel — expected '2' to trigger lazygit jumpToBlock[1]")
+
+  vim.api.nvim_chan_send = original
+  vim.api.nvim_buf_delete(buf, { force = true })
+end
+
 T["terminal <C-h> falls back to tmux on the left edge"] = function()
   assert_terminal_key_falls_back_to_tmux("nav_h", "<C-h>", "left")
 end

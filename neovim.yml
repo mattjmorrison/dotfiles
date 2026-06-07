@@ -12,3 +12,5 @@ globals:
       - type: any
   vim:
     any: true
+  Snacks:
+    any: true

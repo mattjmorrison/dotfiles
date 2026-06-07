@@ -21,8 +21,18 @@
       };
     };
   };
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      keybinding = {
+        universal = {
+          focusMainView = "<c-l>";
+        };
+      };
+    };
+  };
+
   home.packages = with pkgs; [
     gh
-    lazygit
   ];
 }

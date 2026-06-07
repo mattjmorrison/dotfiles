@@ -53,13 +53,35 @@ end
 return {
   {
     "folke/snacks.nvim",
+    keys = {
+      {
+        "<leader>gg",
+        function()
+          Snacks.lazygit()
+        end,
+        desc = "Open LazyGit",
+      },
+    },
     opts = {
+      lazygit = { enabled = true },
       terminal = {
         win = {
           keys = {
             nav_h = {
               "<C-h>",
-              terminal_smart_splits_action("<C-h>", "move_cursor_left"),
+              function(self)
+                if self:is_floating() then
+                  local chan = vim.b[self.buf].terminal_job_id
+                  vim.schedule(function()
+                    vim.api.nvim_chan_send(chan, "2")
+                  end)
+                else
+                  vim.schedule(function()
+                    require("smart-splits").move_cursor_left()
+                  end)
+                end
+                return ""
+              end,
               desc = "Go to Left Window",
               expr = true,
               mode = "t",

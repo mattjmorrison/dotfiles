@@ -5,7 +5,7 @@ NIX_DEVELOP ?= nix develop --command
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help bootstrap install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-homebrew-acceptance build switch validate-root
+.PHONY: help bootstrap install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config test-homebrew-acceptance build switch validate-root
 
 help:
 	@echo "Targets:"
@@ -27,6 +27,7 @@ help:
 	@echo "  test-homebrew Run Darwin/Homebrew declaration tests"
 	@echo "  test-home-manager Run Home Manager declaration tests"
 	@echo "  test-host-discovery Run host discovery tests"
+	@echo "  test-lazygit-config Run lazygit keybinding config validation tests"
 	@echo "  test-homebrew-acceptance Run host Homebrew acceptance tests"
 	@echo "  build        Build the nix-darwin configuration"
 	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
@@ -63,7 +64,7 @@ fmt-bats:
 	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/integration/*.bats
 
 lint: lint-nix lint-lua lint-bats
-test: test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery
+test: test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config
 
 lint-nix:
 	$(NIX_DEVELOP) statix check .
@@ -106,6 +107,9 @@ test-home-manager:
 
 test-host-discovery:
 	@nix develop --command bats tests/integration/host-discovery.bats
+
+test-lazygit-config:
+	@HOST=$(HOST) nix develop --command bats tests/integration/lazygit-config.bats
 
 test-homebrew-acceptance:
 	@nix develop --command bats tests/integration/homebrew-acceptance.bats
