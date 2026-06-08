@@ -1,6 +1,7 @@
 {
   imports = [
     ./ai.nix
+    ./docker.nix
     ./firefox.nix
     ./git.nix
     ./karabiner.nix

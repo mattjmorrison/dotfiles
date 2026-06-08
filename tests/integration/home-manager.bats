@@ -50,3 +50,19 @@ assert_true() {
   actual="$(config_expr "if config.home-manager.users ? \"${HOST}\" then \"true\" else \"false\"")"
   assert_true "$actual" "expected home-manager to have a user configured for ${HOST}"
 }
+
+@test "home-manager manages .docker/config.json" {
+  actual="$(config_expr "if config.home-manager.users.\"${HOST}\".home.file ? \".docker/config.json\" then \"true\" else \"false\"")"
+  [ "$actual" = "true" ]
+}
+
+@test ".docker/config.json registers homebrew compose plugin path" {
+  actual="$(config_expr "config.home-manager.users.\"${HOST}\".home.file.\".docker/config.json\".text")"
+  [[ "$actual" == *"cliPluginsExtraDirs"* ]]
+  [[ "$actual" == *"/opt/homebrew/lib/docker/cli-plugins"* ]]
+}
+
+@test "DOCKER_HOST is set to colima socket" {
+  actual="$(config_expr "config.home-manager.users.\"${HOST}\".home.sessionVariables.DOCKER_HOST")"
+  [ "$actual" = "unix:///Users/${HOST}/.colima/default/docker.sock" ]
+}
