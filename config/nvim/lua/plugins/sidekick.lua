@@ -10,6 +10,28 @@ end
 return {
   {
     "folke/sidekick.nvim",
+    config = function()
+      require("sidekick").setup({})
+      local saved_mouse = nil
+      -- this is really only NEEDED for windows
+      vim.api.nvim_create_autocmd("WinEnter", {
+        callback = function()
+          if vim.bo.filetype == "sidekick_termianl" then
+            saved_mouse = vim.o.mouse
+            vim.o.mouse = ""
+          end
+        end,
+      })
+      -- this is really only NEEDED for windows
+      vim.api.nvim_create_autocmd("WinLeave", {
+        callback = function()
+          if vim.bo.filetype == "sidekick_terminal" and saved_mouse ~= nil then
+            vim.o.mouse = saved_mouse
+            saved_mouse = nil
+          end
+        end,
+      })
+    end,
     keys = {
       {
         "<leader>ai",

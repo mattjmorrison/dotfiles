@@ -2,15 +2,19 @@ HOST ?= $(error HOST is required. Usage: make <target> HOST=<username>)
 FLAKE ?= .\#$(HOST)
 DARWIN_REBUILD ?= $(shell command -v darwin-rebuild 2>/dev/null || echo "nix run nix-darwin --")
 NIX_DEVELOP ?= nix develop --command
+
+# nix.enable = false in modules/darwin/nix.nix, so flakes are not enabled system-wide.
+export NIX_CONFIG = experimental-features = nix-command flakes
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help bootstrap install-nix update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config test-homebrew-acceptance build switch validate-root
+.PHONY: help install install-nix bootstrap update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config test-homebrew-acceptance build switch validate-root
 
 help:
 	@echo "Targets:"
-	@echo "  bootstrap    Install Nix (first-time setup)"
+	@echo "  install      First-time setup: install Nix and bootstrap nix-darwin"
 	@echo "  install-nix  Install Nix with the official multi-user installer"
+	@echo "  bootstrap    First-time nix-darwin activation; installs darwin-rebuild. Requires sudo"
 	@echo "  update-nixpkgs Update the pinned nixpkgs flake input"
 	@echo "  check        Check the flake"
 	@echo "  fmt          Format Nix, Lua, and Bats files"
@@ -32,22 +36,59 @@ help:
 	@echo "  build        Build the nix-darwin configuration"
 	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
 	@echo ""
-	@echo "Variables:"
+	@echo "Variables:" 
 	@echo "  HOST=$(HOST)"
 	@echo "  FLAKE=$(FLAKE)"
 	@echo "  DARWIN_REBUILD=$(DARWIN_REBUILD)"
 	@echo "  NIX_DEVELOP=$(NIX_DEVELOP)"
 
-bootstrap:
-	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
+install:
+	@if [ "$$(id -u)" -eq 0 ]; then \
+		echo "error: run 'make install' as your normal user (not with sudo)."; \
+		exit 1; \
+	fi
+	@if [ ! -x /nix/var/nix/profiles/default/bin/nix ]; then \
+		$(MAKE) install-nix; \
+	fi
+	@if command -v darwin-rebuild >/dev/null 2>&1; then \
+		echo "Already set up. Use 'sudo make switch' to apply updates."; \
+		exit 0; \
+	fi
+	sudo $(MAKE) bootstrap
 	@echo ""
-	@echo "Nix installed. Open a new shell, then run: sudo make switch HOST=<username>"
+	@echo "Done. Open a new shell so 'nix' and 'darwin-rebuild' are on PATH."
 
 install-nix:
 	curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh -s -- --daemon
 
 update-nixpkgs:
 	nix flake update nixpkgs
+
+bootstrap: validate-root
+	@if command -v darwin-rebuild >/dev/null 2>&1; then \
+		echo "darwin-rebuild is already installed; use 'sudo make switch' instead."; \
+		exit 0; \
+	fi
+	@for f in /etc/zshrc /etc/bashrc; do \
+		if [ -f "$$f" ] && [ ! -e "$$f.before-nix-darwin" ]; then \
+			echo "Moving $$f -> $$f.before-nix-darwin so nix-darwin can manage it"; \
+			mv "$$f" "$$f.before-nix-darwin"; \
+		fi; \
+	done
+	@user_home=$$(eval echo "~$$SUDO_USER"); \
+	for p in .tmux.conf .zshrc; do \
+		f="$$user_home/$$p"; \
+		if { [ -e "$$f" ] || [ -L "$$f" ]; } && [ ! -e "$$f.before-home-manager" ]; then \
+			echo "Moving $$f -> $$f.before-home-manager so home-manager can manage it"; \
+			mv "$$f" "$$f.before-home-manager"; \
+		fi; \
+	done
+	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
+		sudo -u "$$SUDO_USER" -H env "PATH=/nix/var/nix/profiles/default/bin:$$PATH" $(MAKE) preflight; \
+	else \
+		env "PATH=/nix/var/nix/profiles/default/bin:$$PATH" $(MAKE) preflight; \
+	fi
+	HOME=/var/root PATH="/nix/var/nix/profiles/default/bin:$$PATH" nix run github:nix-darwin/nix-darwin/master#darwin-rebuild -- switch --flake $(FLAKE)
 
 check:
 	nix flake check
