@@ -53,7 +53,7 @@ in
 {
   programs.firefox = {
     enable = true;
-    package = null;
+    package = if pkgs.stdenv.isLinux then pkgs.firefox else null;
     release = pkgs.firefox.version;
 
     profiles = lib.listToAttrs (lib.imap0 mkProfile settings.firefox.profileOrder);

@@ -21,6 +21,7 @@
 	};
 	
 	home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
 	home-manager.extraSpecialArgs = { inherit inputs settings; };
 	home-manager.users.${settings.username} = {
 		home.stateVersion = "24.05";
