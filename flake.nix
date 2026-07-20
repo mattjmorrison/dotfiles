@@ -42,6 +42,14 @@
         in
         {
           darwinConfigurations = lib.genAttrs hosts mkConfig;
+	  nixosConfigurations.imac = inputs.nixpkgs.lib.nixosSystem {
+	    system = "x86_64-linux";
+	    specialArgs = {
+ 	      inherit inputs;
+	      settings = import ./hosts/imac/settings.nix;
+          };
+	  modules = [ ./hosts/imac ];
         };
+      };
     };
 }

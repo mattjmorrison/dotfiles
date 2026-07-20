@@ -13,6 +13,7 @@
     marksman
     markdownlint-cli2
     markdown-toc
+    nerd-fonts.jetbrains-mono
   ];
 
   home.file.".config/nvim" = {
