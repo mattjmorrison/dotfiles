@@ -25,6 +25,14 @@ config_expr() {
   " --raw
 }
 
+@test "lazygit run does not corrupt terminal state" {
+  local before after
+  before="$(stty -g 2>/dev/null || echo 'no-tty')"
+  setsid timeout --kill-after=1 2 lazygit --use-config-file /dev/null </dev/null 2>&1 || true
+  after="$(stty -g 2>/dev/null || echo 'no-tty')"
+  [ "$before" = "$after" ]
+}
+
 @test "lazygit config has no custom keybindings that fail validation" {
   local tmpconfig
   tmpconfig="$(mktemp /tmp/lazygit-test-XXXXXX.yml)"
