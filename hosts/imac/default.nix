@@ -3,6 +3,7 @@
 	imports = [
 		./hardware-configuration.nix
 		inputs.home-manager.nixosModules.home-manager
+    ../../modules/nixos/ssh.nix
 	];
 
 	networking.hostName = "imac";
@@ -25,7 +26,9 @@
 	home-manager.extraSpecialArgs = { inherit inputs settings; };
 	home-manager.users.${settings.username} = {
 		home.stateVersion = "24.05";
-		imports = [ ../../modules/home ];
+		imports = [
+      ../../modules/home
+    ];
 	};
 
 }
