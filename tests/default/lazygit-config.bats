@@ -42,10 +42,7 @@ print(yaml.dump(data))
 ' >"$tmpconfig" 2>/dev/null || printf "{}\n" >"$tmpconfig"
 
   local output
-  local term_state
-  term_state="$(stty -g 2>/dev/null || true)"
-  output="$(timeout 2 lazygit --use-config-file "$tmpconfig" </dev/null 2>&1 || true)"
-  [ -n "$term_state" ] && stty "$term_state" 2>/dev/null || true
+  output="$(setsid timeout --kill-after=1 2 lazygit --use-config-file "$tmpconfig" </dev/null 2>&1 || true)"
   rm -f "$tmpconfig"
 
   if echo "$output" | grep -q "validation error"; then
