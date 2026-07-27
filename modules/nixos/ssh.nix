@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = false;
