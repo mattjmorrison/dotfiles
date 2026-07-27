@@ -1,0 +1,81 @@
+#!/usr/bin/env bats
+
+setup_file() {
+  ROOT_DIR="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
+  export ROOT_DIR
+
+  if [[ -z "$HOST" ]]; then
+    echo "HOST is required. Usage: HOST=<hostname> bats home-manager.bats" >&2
+    exit 1
+  fi
+
+  USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).username" --raw)"
+  export USERNAME
+}
+
+config_expr() {
+  local expr="$1"
+
+  nix eval --impure --expr "
+    let
+      flake = builtins.getFlake \"$ROOT_DIR\";
+      config = flake.configurations.${HOST}.config;
+    in
+      ${expr}
+  " --raw
+}
+
+assert_true() {
+  local actual="$1"
+  local message="$2"
+
+  if [[ "$actual" != "true" ]]; then
+    fail "$message (got: $actual)"
+  fi
+}
+
+@test "home-manager uses global pkgs" {
+  actual="$(config_expr 'if config.home-manager.useGlobalPkgs then "true" else "false"')"
+  assert_true "$actual" "expected useGlobalPkgs to be true"
+}
+
+@test "home-manager uses user packages" {
+  actual="$(config_expr 'if config.home-manager.useUserPackages then "true" else "false"')"
+  assert_true "$actual" "expected useUserPackages to be true"
+}
+
+@test "home-manager backup extension is set" {
+  actual="$(config_expr 'config.home-manager.backupFileExtension')"
+  [ "$actual" = "backup" ]
+}
+
+@test "home-manager user is configured for host" {
+  actual="$(config_expr "if config.home-manager.users ? \"${USERNAME}\" then \"true\" else \"false\"")"
+  assert_true "$actual" "expected home-manager to have a user configured for ${USERNAME}"
+}
+
+@test "home-manager manages .docker/config.json" {
+  actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.file ? \".docker/config.json\" then \"true\" else \"false\"")"
+  [ "$actual" = "true" ]
+}
+
+@test ".docker/config.json registers homebrew compose plugin path" {
+  actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.file.\".docker/config.json\".text")"
+  [[ "$actual" == *"cliPluginsExtraDirs"* ]]
+  [[ "$actual" == *"/opt/homebrew/lib/docker/cli-plugins"* ]]
+}
+
+@test "karabiner.json is not managed as a home.file symlink" {
+  actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.file ? \".config/karabiner/karabiner.json\" then \"true\" else \"false\"")"
+  [ "$actual" = "false" ]
+}
+
+@test "karabiner config is deployed via home.activation" {
+  actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.activation ? \"karabiner\" then \"true\" else \"false\"")"
+  assert_true "$actual" "expected karabiner activation script to exist"
+}
+
+@test "DOCKER_HOST is set to colima socket" {
+  actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.sessionVariables.DOCKER_HOST")"
+  [ "$actual" = "unix:///Users/${USERNAME}/.colima/default/docker.sock" ]
+}

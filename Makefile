@@ -8,7 +8,13 @@ export NIX_CONFIG = experimental-features = nix-command flakes
 NVIM_ARGS ?=
 NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvim-dev/state" XDG_CACHE_HOME="$(CURDIR)/.nvim-dev/cache"
 
-.PHONY: help install install-nix bootstrap update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config test-homebrew-acceptance build switch validate-root
+ifeq ($(shell uname), Darwin)
+TEST_DIRS = tests/default tests/darwin
+else
+TEST_DIRS = tests/default
+endif
+
+.PHONY: help install install-nix bootstrap update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim build switch validate-root
 
 help:
 	@echo "Targets:"
@@ -27,12 +33,6 @@ help:
 	@echo "  nvim-dev     Launch Neovim with this repo's config/nvim without switching"
 	@echo "  test         Run all tests"
 	@echo "  test-nvim    Run Neovim movement tests"
-	@echo "  test-tmux-nvim Run tmux/Neovim integration tests"
-	@echo "  test-homebrew Run Darwin/Homebrew declaration tests"
-	@echo "  test-home-manager Run Home Manager declaration tests"
-	@echo "  test-host-discovery Run host discovery tests"
-	@echo "  test-lazygit-config Run lazygit keybinding config validation tests"
-	@echo "  test-homebrew-acceptance Run host Homebrew acceptance tests"
 	@echo "  build        Build the nix-darwin configuration"
 	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
 	@echo ""
@@ -102,10 +102,12 @@ fmt-lua:
 	$(NIX_DEVELOP) stylua --config-path config/nvim/stylua.toml config/nvim
 
 fmt-bats:
-	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/integration/*.bats
+	$(NIX_DEVELOP) shfmt -w -i 2 -ln bats tests/default tests/darwin
 
 lint: lint-nix lint-lua lint-bats
-test: test-nvim test-tmux-nvim test-homebrew test-home-manager test-host-discovery test-lazygit-config
+
+test: test-nvim
+	HOST=$(HOST) $(NIX_DEVELOP) bats $(TEST_DIRS)
 
 lint-nix:
 	$(NIX_DEVELOP) statix check .
@@ -126,8 +128,8 @@ lint-lua-diagnostics:
 	exit $$status
 
 lint-bats:
-	$(NIX_DEVELOP) shfmt -d -i 2 -ln bats tests/integration/*.bats
-	$(NIX_DEVELOP) shellcheck tests/integration/*.bats
+	$(NIX_DEVELOP) shfmt -d -i 2 -ln bats tests/default tests/darwin
+	$(NIX_DEVELOP) shellcheck tests/default/*.bats tests/darwin/*.bats
 
 preflight: lint check test
 
@@ -136,24 +138,6 @@ nvim-dev:
 
 test-nvim:
 	@$(NIX_DEVELOP) env $(NVIM_DEV_ENV) nvim --headless -u config/nvim/tests/minitest.lua
-
-test-tmux-nvim:
-	@nix develop --command bats tests/integration/tmux-nvim-navigation.bats
-
-test-homebrew:
-	@HOST=$(HOST) nix develop --command bats tests/integration/darwin-homebrew.bats
-
-test-home-manager:
-	@HOST=$(HOST) nix develop --command bats tests/integration/home-manager.bats
-
-test-host-discovery:
-	@nix develop --command bats tests/integration/host-discovery.bats
-
-test-lazygit-config:
-	@HOST=$(HOST) nix develop --command bats tests/integration/lazygit-config.bats
-
-test-homebrew-acceptance:
-	@nix develop --command bats tests/integration/homebrew-acceptance.bats
 
 build: preflight
 	$(DARWIN_REBUILD) build --flake $(FLAKE)
@@ -166,9 +150,9 @@ switch: validate-root
 	fi
 	HOME=/var/root $(DARWIN_REBUILD) switch --flake $(FLAKE)
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
-		sudo -u "$$SUDO_USER" -H $(MAKE) test-homebrew-acceptance HOST=$(HOST); \
+		sudo -u "$$SUDO_USER" -H $(MAKE) test HOST=$(HOST); \
 	else \
-		$(MAKE) test-homebrew-acceptance HOST=$(HOST); \
+		$(MAKE) test HOST=$(HOST); \
 	fi
 
 validate-root:

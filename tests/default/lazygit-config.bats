@@ -5,9 +5,12 @@ setup_file() {
   export ROOT_DIR
 
   if [[ -z "$HOST" ]]; then
-    echo "HOST is required. Usage: HOST=<username> bats lazygit-config.bats" >&2
+    echo "HOST is required. Usage: HOST=<hostname> bats lazygit-config.bats" >&2
     exit 1
   fi
+
+  USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).username" --raw)"
+  export USERNAME
 }
 
 config_expr() {
@@ -16,7 +19,7 @@ config_expr() {
   nix eval --impure --expr "
     let
       flake = builtins.getFlake \"$ROOT_DIR\";
-      config = flake.darwinConfigurations.${HOST}.config;
+      config = flake.configurations.${HOST}.config;
     in
       ${expr}
   " --raw
@@ -28,7 +31,7 @@ config_expr() {
 
   config_expr "
     let
-      hmUser = config.home-manager.users.\"${HOST}\";
+      hmUser = config.home-manager.users.\"${USERNAME}\";
       cfg = hmUser.programs.lazygit.settings;
     in
       builtins.toJSON cfg
@@ -39,7 +42,10 @@ print(yaml.dump(data))
 ' >"$tmpconfig" 2>/dev/null || printf "{}\n" >"$tmpconfig"
 
   local output
+  local term_state
+  term_state="$(stty -g 2>/dev/null || true)"
   output="$(timeout 2 lazygit --use-config-file "$tmpconfig" </dev/null 2>&1 || true)"
+  [ -n "$term_state" ] && stty "$term_state" 2>/dev/null || true
   rm -f "$tmpconfig"
 
   if echo "$output" | grep -q "validation error"; then

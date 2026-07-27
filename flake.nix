@@ -18,38 +18,44 @@
   outputs =
     inputs:
     let
-      system = "aarch64-darwin";
+      darwin = "aarch64-darwin";
+      linux = "x86_64-linux";
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ system ];
+      systems = [ darwin linux ];
 
       imports = [ ./dev/shell.nix ];
 
       flake =
         let
           lib = inputs.nixpkgs.lib;
-          hosts = builtins.attrNames (lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./hosts));
+          allHosts = builtins.attrNames (lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./hosts));
+          darwinHosts = builtins.filter (h: h != "imac") allHosts;
           mkConfig =
             host:
             inputs.darwin.lib.darwinSystem {
-              inherit system;
+              system = darwin;
               specialArgs = {
                 inherit inputs;
                 settings = import ./hosts/${host}/settings.nix;
               };
               modules = [ ./hosts/${host} ];
             };
+          nixosConfigurations = {
+            imac = inputs.nixpkgs.lib.nixosSystem {
+              system = linux;
+              specialArgs = {
+                inherit inputs;
+                settings = import ./hosts/imac/settings.nix;
+              };
+              modules = [ ./hosts/imac ];
+            };
+          };
         in
         {
-          darwinConfigurations = lib.genAttrs hosts mkConfig;
-	  nixosConfigurations.imac = inputs.nixpkgs.lib.nixosSystem {
-	    system = "x86_64-linux";
-	    specialArgs = {
- 	      inherit inputs;
-	      settings = import ./hosts/imac/settings.nix;
-          };
-	  modules = [ ./hosts/imac ];
+          darwinConfigurations = lib.genAttrs darwinHosts mkConfig;
+          inherit nixosConfigurations;
+          configurations = (lib.genAttrs darwinHosts mkConfig) // nixosConfigurations;
         };
-      };
     };
 }

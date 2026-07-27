@@ -16,7 +16,7 @@ config_expr() {
   nix eval --impure --expr "
     let
       flake = builtins.getFlake \"$ROOT_DIR\";
-      config = flake.darwinConfigurations.${HOST}.config;
+      config = flake.configurations.${HOST}.config;
     in
       ${expr}
   " --raw
