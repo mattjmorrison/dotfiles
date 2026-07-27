@@ -37,6 +37,11 @@ assert_true() {
   fi
 }
 
+@test "settings.user.homeDirectory is configured for host" {
+  [ -n "$HOME_DIR" ]
+  [[ "$HOME_DIR" == /* ]]
+}
+
 @test "home-manager uses global pkgs" {
   actual="$(config_expr 'if config.home-manager.useGlobalPkgs then "true" else "false"')"
   assert_true "$actual" "expected useGlobalPkgs to be true"

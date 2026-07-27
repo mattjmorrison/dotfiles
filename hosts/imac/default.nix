@@ -11,9 +11,11 @@
 	nixpkgs.config.allowUnfree = true;
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	users.users.${settings.username} = {
@@ -21,15 +23,15 @@
 		extraGroups = [ "wheel" ];
 	};
 	
-	home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "backup";
-	home-manager.extraSpecialArgs = { inherit inputs settings; };
-	home-manager.users.${settings.username} = {
-		home.stateVersion = "24.05";
-		imports = [
-      ../../modules/home
-    ];
-	};
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs settings; };
+    users.${settings.username} = {
+      home.stateVersion = "24.05";
+      imports = [ ../../modules/home ];
+    };
+  };
 
 }
