@@ -11,6 +11,9 @@ setup_file() {
 
   USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).username" --raw)"
   export USERNAME
+
+  HOME_DIR="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).user.homeDirectory" --raw)"
+  export HOME_DIR
 }
 
 config_expr() {
@@ -67,5 +70,5 @@ assert_true() {
 
 @test "DOCKER_HOST is set to colima socket" {
   actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.sessionVariables.DOCKER_HOST")"
-  [ "$actual" = "unix:///Users/${USERNAME}/.colima/default/docker.sock" ]
+  [ "$actual" = "unix://${HOME_DIR}/.colima/default/docker.sock" ]
 }

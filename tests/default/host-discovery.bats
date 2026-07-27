@@ -6,7 +6,7 @@ setup_file() {
 }
 
 @test "flake discovers all host directories" {
-  host_dirs="$(find "$ROOT_DIR/hosts" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | sort | tr '\n' ' ' | sed 's/ $//')"
+  host_dirs="$(find "$ROOT_DIR/hosts" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | LC_ALL=C sort | tr '\n' ' ' | sed 's/ $//')"
   flake_hosts="$(nix eval --impure --expr "
     let flake = builtins.getFlake \"$ROOT_DIR\";
     in builtins.concatStringsSep \" \" (builtins.sort builtins.lessThan (builtins.attrNames flake.configurations))
