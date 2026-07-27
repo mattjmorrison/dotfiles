@@ -1,28 +1,31 @@
 { inputs, settings, ... }:
 {
-	imports = [
-		./hardware-configuration.nix
-		inputs.home-manager.nixosModules.home-manager
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
     ../../modules/nixos/ssh.nix
-	];
+  ];
 
-	networking.hostName = "imac";
-	system.stateVersion = "24.05";
-	nixpkgs.config.allowUnfree = true;
-	boot.loader.systemd-boot.enable = true;
-	boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostName = "imac";
+  system.stateVersion = "24.05";
+  nixpkgs.config.allowUnfree = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
-	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-	users.users.${settings.username} = {
-		isNormalUser = true;
-		extraGroups = [ "wheel" ];
-	};
-	
+  users.users.${settings.username} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;

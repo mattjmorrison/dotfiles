@@ -22,7 +22,10 @@
       linux = "x86_64-linux";
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ darwin linux ];
+      systems = [
+        darwin
+        linux
+      ];
 
       imports = [ ./dev/shell.nix ];
 
