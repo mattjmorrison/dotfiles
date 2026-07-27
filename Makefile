@@ -3,6 +3,14 @@ FLAKE ?= .\#$(HOST)
 DARWIN_REBUILD ?= $(shell command -v darwin-rebuild 2>/dev/null || echo "nix run nix-darwin --")
 NIX_DEVELOP ?= nix develop --command
 
+ifeq ($(shell uname), Darwin)
+REBUILD ?= $(DARWIN_REBUILD)
+SWITCH_CMD = HOME=/var/root $(REBUILD) switch --flake $(FLAKE)
+else
+REBUILD ?= nixos-rebuild
+SWITCH_CMD = $(REBUILD) switch --flake $(FLAKE)
+endif
+
 # nix.enable = false in modules/darwin/nix.nix, so flakes are not enabled system-wide.
 export NIX_CONFIG = experimental-features = nix-command flakes
 NVIM_ARGS ?=
@@ -33,13 +41,14 @@ help:
 	@echo "  nvim-dev     Launch Neovim with this repo's config/nvim without switching"
 	@echo "  test         Run all tests"
 	@echo "  test-nvim    Run Neovim movement tests"
-	@echo "  build        Build the nix-darwin configuration"
-	@echo "  switch       Apply the nix-darwin configuration; requires sudo"
+	@echo "  build        Build the NixOS or nix-darwin configuration"
+	@echo "  switch       Apply the NixOS or nix-darwin configuration; requires sudo"
 	@echo ""
 	@echo "Variables:" 
 	@echo "  HOST=$(HOST)"
 	@echo "  FLAKE=$(FLAKE)"
 	@echo "  DARWIN_REBUILD=$(DARWIN_REBUILD)"
+	@echo "  REBUILD=$(REBUILD)"
 	@echo "  NIX_DEVELOP=$(NIX_DEVELOP)"
 
 install:
@@ -140,7 +149,7 @@ test-nvim:
 	@$(NIX_DEVELOP) env $(NVIM_DEV_ENV) nvim --headless -u config/nvim/tests/minitest.lua
 
 build: preflight
-	$(DARWIN_REBUILD) build --flake $(FLAKE)
+	$(REBUILD) build --flake $(FLAKE)
 
 switch: validate-root
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
@@ -148,7 +157,7 @@ switch: validate-root
 	else \
 		$(MAKE) preflight HOST=$(HOST); \
 	fi
-	HOME=/var/root $(DARWIN_REBUILD) switch --flake $(FLAKE)
+	$(SWITCH_CMD)
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
 		sudo -u "$$SUDO_USER" -H $(MAKE) test HOST=$(HOST); \
 	else \
