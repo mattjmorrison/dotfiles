@@ -6,6 +6,10 @@
       tmux
     ];
 
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+
     sessionPath = [
       "/opt/homebrew/bin"
       "/opt/homebrew/sbin"

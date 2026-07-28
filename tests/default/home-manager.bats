@@ -87,3 +87,8 @@ assert_true() {
   actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.sessionVariables.DOCKER_HOST")"
   [ "$actual" = "unix://${HOME_DIR}/.colima/default/docker.sock" ]
 }
+
+@test "EDITOR is set to nvim" {
+  actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.sessionVariables.EDITOR")"
+  [ "$actual" = "nvim" ]
+}
