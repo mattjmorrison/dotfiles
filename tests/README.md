@@ -59,3 +59,9 @@ make test-host-discovery
 ```sh
 make test HOST=<username>
 ```
+
+If `make` is not available:
+
+```sh
+nix-shell -p gnumake --run "make test HOST=<username>"
+```
