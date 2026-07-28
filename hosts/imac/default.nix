@@ -13,6 +13,12 @@
 
   environment.systemPackages = [ pkgs.ghostty ];
 
+  programs.nano.enable = false;
+
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
   networking.hostName = "imac";
   system.stateVersion = "24.05";
   nixpkgs.config.allowUnfree = true;
