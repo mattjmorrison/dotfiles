@@ -1,10 +1,17 @@
-{ inputs, settings, ... }:
+{
+  inputs,
+  settings,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     ../../modules/nixos/ssh.nix
   ];
+
+  environment.systemPackages = [ pkgs.ghostty ];
 
   networking.hostName = "imac";
   system.stateVersion = "24.05";

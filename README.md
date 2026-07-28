@@ -84,6 +84,12 @@ The Makefile wraps the common Nix workflow targets:
 - `make build` - build the nix-darwin configuration.
 - `sudo make switch` - apply the nix-darwin configuration.
 
+On NixOS (where `make` is not installed globally), use:
+
+```sh
+nix-shell -p gnumake --run "sudo make switch HOST=<hostname>"
+```
+
 ## Documentation
 
 - `docs/nix.md` - Nix, nix-darwin, Home Manager, module wiring, and common commands.
