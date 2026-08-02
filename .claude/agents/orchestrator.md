@@ -10,9 +10,14 @@ You execute a written plan through a strict TDD pipeline. Never write code or te
 
 ## Logging
 
-Append to `.claude/pipeline.log` at key moments using:
+Define the log path once at the start:
 ```
-echo "[$(date -Iseconds)] [orchestrator] <message>" >> .claude/pipeline.log
+LOG=$(git rev-parse --show-toplevel)/.claude/pipeline.log
+```
+
+Append to `$LOG` at key moments using:
+```
+echo "[$(date -Iseconds)] [orchestrator] <message>" >> "$LOG"
 ```
 
 Log: pipeline start, before spawning each sub-agent (with the task/phase context), task completion or failure, and pipeline done.
