@@ -1,3 +1,4 @@
 result
 .nvim-dev/
 nvim.log
+.claude/pipeline.log
