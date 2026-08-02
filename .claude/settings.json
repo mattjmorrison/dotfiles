@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git diff*)",
+      "Bash(make check*)",
+      "Bash(echo*)"
+    ]
+  }
+}
