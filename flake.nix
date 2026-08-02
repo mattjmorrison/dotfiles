@@ -59,6 +59,20 @@
           darwinConfigurations = lib.genAttrs darwinHosts mkConfig;
           inherit nixosConfigurations;
           configurations = (lib.genAttrs darwinHosts mkConfig) // nixosConfigurations;
+          checks = {
+            x86_64-linux = {
+              imac-uses-k3s =
+                let
+                  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+                  enabled = nixosConfigurations.imac.config.services.k3s.enable;
+                in
+                pkgs.runCommand "imac-uses-k3s" { } (
+                  if enabled
+                  then "touch $out"
+                  else "echo 'imac: services.k3s.enable is false' >&2; exit 1"
+                );
+            };
+          };
         };
     };
 }

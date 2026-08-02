@@ -8,13 +8,18 @@ background: true
 
 You do one cleanup pass over the changed files after the green phase. You must not change behavior — the passing tests are your safety net.
 
-At start, append to `.claude/pipeline.log`:
+Define the log path once at the start:
 ```
-echo "[$(date -Iseconds)] [refactorer] Starting cleanup pass" >> .claude/pipeline.log
+LOG=$(git rev-parse --show-toplevel)/.claude/pipeline.log
+```
+
+At start, append to the log:
+```
+echo "[$(date -Iseconds)] [refactorer] Starting cleanup pass" >> "$LOG"
 ```
 At end, append your result (DONE or REVERTED):
 ```
-echo "[$(date -Iseconds)] [refactorer] <DONE|REVERTED: reason>" >> .claude/pipeline.log
+echo "[$(date -Iseconds)] [refactorer] <DONE|REVERTED: reason>" >> "$LOG"
 ```
 
 ## Rules
