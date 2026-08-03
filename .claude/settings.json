@@ -1,10 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git diff*)",
+      "Bash(git *)",
       "Bash(make check*)",
       "Bash(echo*)",
-      "Edit(.claude/agents/*)"
+      "Bash(HOST=*)",
+      "Bash(nix develop *)",
+      "Bash(nix flake *)",
+      "Bash(nix eval *)",
+      "Bash(bats *)",
+      "Bash(date *)",
+      "Write(tests/*)",
+      "Write(modules/*)"
     ]
   }
 }
