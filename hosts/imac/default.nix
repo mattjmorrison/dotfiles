@@ -9,7 +9,7 @@
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
     ../../modules/nixos/ssh.nix
-    ../../modules/nixos/k3s.nix
+    inputs.homelab.nixosModules.k3s-control-plane
   ];
 
   environment.systemPackages = [ pkgs.ghostty ];
@@ -51,7 +51,12 @@
     };
   };
 
-  swapDevices = [{ device = "/swapfile"; size = 16384; }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16384;
+    }
+  ];
 
   services.journald.extraConfig = ''
     Storage=persistent

@@ -13,6 +13,8 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
+
+    homelab.url = "github:mattjmorrison/homelab";
   };
 
   outputs =
@@ -67,9 +69,7 @@
                   enabled = nixosConfigurations.imac.config.services.k3s.enable;
                 in
                 pkgs.runCommand "imac-uses-k3s" { } (
-                  if enabled
-                  then "touch $out"
-                  else "echo 'imac: services.k3s.enable is false' >&2; exit 1"
+                  if enabled then "touch $out" else "echo 'imac: services.k3s.enable is false' >&2; exit 1"
                 );
             };
           };
