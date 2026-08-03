@@ -1,9 +1,9 @@
 {
-  username = "mattjmorrison";
   firefox = {
     profileOrder = [ ];
   };
   user = {
+    username = "mattjmorrison";
     homeDirectory = "/home/mattjmorrison";
     email = "mattjmorrison@mattjmorrison.com";
     fullName = "Matthew J. Morrison";

@@ -5,7 +5,7 @@
     settings.PasswordAuthentication = false;
   };
 
-  users.users.${settings.username}.openssh.authorizedKeys.keys = [
+  users.users.${settings.user.username}.openssh.authorizedKeys.keys = [
     settings.user.publicKey
   ];
 }

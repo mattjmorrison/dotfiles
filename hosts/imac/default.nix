@@ -35,7 +35,7 @@
     "flakes"
   ];
 
-  users.users.${settings.username} = {
+  users.users.${settings.user.username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };
@@ -45,7 +45,7 @@
     useUserPackages = true;
     backupFileExtension = "backup";
     extraSpecialArgs = { inherit inputs settings; };
-    users.${settings.username} = {
+    users.${settings.user.username} = {
       home.stateVersion = "24.05";
       imports = [ ../../modules/home ];
     };

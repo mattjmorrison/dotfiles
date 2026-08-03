@@ -1,3 +1,13 @@
+setup_file() {
+  ROOT_DIR="$(cd "$BATS_TEST_DIRNAME/../.." && pwd)"
+  export ROOT_DIR
+
+  if [[ -z "$HOST" ]]; then
+    echo "HOST is required. Usage: HOST=<hostname> bats nixos-packages.bats" >&2
+    exit 1
+  fi
+}
+
 @test "nano is disabled" {
   result=$(nix develop --command nix eval --impure --expr "
     let flake = builtins.getFlake \"path:$PWD\";

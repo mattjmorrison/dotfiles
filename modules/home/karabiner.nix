@@ -50,8 +50,10 @@ in
 {
   # Karabiner Elements must own its config file directly — it cannot follow symlinks
   # into the Nix store due to macOS sandbox restrictions. We copy on activation instead.
-  home.activation.karabiner = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD mkdir -p "$HOME/.config/karabiner"
-    $DRY_RUN_CMD cp --no-preserve=mode,ownership ${karabinerConfig} "$HOME/.config/karabiner/karabiner.json"
-  '';
+  home.activation.karabiner = lib.mkIf pkgs.stdenv.isDarwin (
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      $DRY_RUN_CMD mkdir -p "$HOME/.config/karabiner"
+      $DRY_RUN_CMD cp --no-preserve=mode,ownership ${karabinerConfig} "$HOME/.config/karabiner/karabiner.json"
+    ''
+  );
 }

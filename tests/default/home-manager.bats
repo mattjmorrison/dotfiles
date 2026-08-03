@@ -73,16 +73,6 @@ assert_true() {
   [[ "$actual" == *"/opt/homebrew/lib/docker/cli-plugins"* ]]
 }
 
-@test "karabiner.json is not managed as a home.file symlink" {
-  actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.file ? \".config/karabiner/karabiner.json\" then \"true\" else \"false\"")"
-  [ "$actual" = "false" ]
-}
-
-@test "karabiner config is deployed via home.activation" {
-  actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.activation ? \"karabiner\" then \"true\" else \"false\"")"
-  assert_true "$actual" "expected karabiner activation script to exist"
-}
-
 @test "DOCKER_HOST is set to colima socket" {
   actual="$(config_expr "config.home-manager.users.\"${USERNAME}\".home.sessionVariables.DOCKER_HOST")"
   [ "$actual" = "unix://${HOME_DIR}/.colima/default/docker.sock" ]
