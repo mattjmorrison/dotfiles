@@ -32,6 +32,6 @@ assert_true() {
 }
 
 @test "hosts file maps 192.168.86.72 to argocd.morrisons.site" {
-  actual="$(config_expr 'if builtins.isString config.environment.etc."hosts".text && (builtins.match ".*192\\.168\\.86\\.72 argocd\\.morrisons\\.site.*" config.environment.etc."hosts".text) != null then "true" else "false"')"
+  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 argocd\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
   assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to argocd.morrisons.site"
 }

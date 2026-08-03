@@ -19,7 +19,7 @@ NVIM_DEV_ENV = XDG_CONFIG_HOME="$(CURDIR)/config" XDG_STATE_HOME="$(CURDIR)/.nvi
 ifeq ($(shell uname), Darwin)
 TEST_DIRS = tests/default tests/darwin
 else
-TEST_DIRS = tests/default
+TEST_DIRS = tests/default tests/nixos
 endif
 
 .PHONY: help install install-nix bootstrap update-nixpkgs check fmt fmt-nix fmt-lua fmt-bats lint lint-nix lint-lua lint-lua-diagnostics lint-bats preflight nvim-dev test test-nvim build switch validate-root
@@ -78,20 +78,6 @@ bootstrap: validate-root
 		echo "darwin-rebuild is already installed; use 'sudo make switch' instead."; \
 		exit 0; \
 	fi
-	@for f in /etc/zshrc /etc/bashrc; do \
-		if [ -f "$$f" ] && [ ! -e "$$f.before-nix-darwin" ]; then \
-			echo "Moving $$f -> $$f.before-nix-darwin so nix-darwin can manage it"; \
-			mv "$$f" "$$f.before-nix-darwin"; \
-		fi; \
-	done
-	@user_home=$$(eval echo "~$$SUDO_USER"); \
-	for p in .tmux.conf .zshrc; do \
-		f="$$user_home/$$p"; \
-		if { [ -e "$$f" ] || [ -L "$$f" ]; } && [ ! -e "$$f.before-home-manager" ]; then \
-			echo "Moving $$f -> $$f.before-home-manager so home-manager can manage it"; \
-			mv "$$f" "$$f.before-home-manager"; \
-		fi; \
-	done
 	@if [ -n "$$SUDO_USER" ] && [ "$$SUDO_USER" != "root" ]; then \
 		sudo -u "$$SUDO_USER" -H env "PATH=/nix/var/nix/profiles/default/bin:$$PATH" $(MAKE) preflight; \
 	else \

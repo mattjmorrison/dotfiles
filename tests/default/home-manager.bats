@@ -9,7 +9,7 @@ setup_file() {
     exit 1
   fi
 
-  USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).username" --raw)"
+  USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).user.username" --raw)"
   export USERNAME
 
   HOME_DIR="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).user.homeDirectory" --raw)"
