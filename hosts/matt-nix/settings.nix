@@ -1,7 +1,7 @@
 {
   user = {
-    username = "mmorrison";
-    homeDirectory = "/Users/mmorrison";
+    username = "matt-nix";
+    homeDirectory = "/Users/matt-nix";
     fullName = "Matt Morrison";
     email = "mattjmorrison@mattjmorrison.com";
   };

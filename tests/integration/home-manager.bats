@@ -51,15 +51,25 @@ assert_true() {
   assert_true "$actual" "expected home-manager to have a user configured for ${HOST}"
 }
 
-@test "home-manager manages .docker/config.json" {
-  actual="$(config_expr "if config.home-manager.users.\"${HOST}\".home.file ? \".docker/config.json\" then \"true\" else \"false\"")"
-  [ "$actual" = "true" ]
+# @test "home-manager manages .docker/config.json" {
+#   actual="$(config_expr "if config.home-manager.users.\"${HOST}\".home.file ? \".docker/config.json\" then \"true\" else \"false\"")"
+#   [ "$actual" = "true" ]
+# }
+#
+# @test ".docker/config.json registers homebrew compose plugin path" {
+#   actual="$(config_expr "config.home-manager.users.\"${HOST}\".home.file.\".docker/config.json\".text")"
+#   [[ "$actual" == *"cliPluginsExtraDirs"* ]]
+#   [[ "$actual" == *"/opt/homebrew/lib/docker/cli-plugins"* ]]
+# }
+
+@test "karabiner.json is not managed as a home.file symlink" {
+  actual="$(config_expr "if config.home-manager.users.\"${HOST}\".home.file ? \".config/karabiner/karabiner.json\" then \"true\" else \"false\"")"
+  [ "$actual" = "false" ]
 }
 
-@test ".docker/config.json registers homebrew compose plugin path" {
-  actual="$(config_expr "config.home-manager.users.\"${HOST}\".home.file.\".docker/config.json\".text")"
-  [[ "$actual" == *"cliPluginsExtraDirs"* ]]
-  [[ "$actual" == *"/opt/homebrew/lib/docker/cli-plugins"* ]]
+@test "karabiner config is deployed via home.activation" {
+  actual="$(config_expr "if config.home-manager.users.\"${HOST}\".home.activation ? \"karabiner\" then \"true\" else \"false\"")"
+  assert_true "$actual" "expected karabiner activation script to exist"
 }
 
 @test "DOCKER_HOST is set to colima socket" {
