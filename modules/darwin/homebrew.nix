@@ -7,6 +7,7 @@
       "karabiner-elements"
       "rectangle"
       "firefox@developer-edition"
+      "discord"
     ];
   };
 }

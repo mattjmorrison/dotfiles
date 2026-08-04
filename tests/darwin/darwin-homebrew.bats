@@ -51,6 +51,11 @@ assert_true() {
   assert_true "$actual" "expected homebrew.casks to include firefox@developer-edition"
 }
 
+@test "homebrew installs discord" {
+  actual="$(config_expr 'if builtins.any (cask: cask.name == "discord") config.homebrew.casks then "true" else "false"')"
+  assert_true "$actual" "expected homebrew.casks to include discord"
+}
+
 @test "karabiner.json is not managed as a home.file symlink" {
   USERNAME="$(nix eval --impure --expr "(import $ROOT_DIR/hosts/$HOST/settings.nix).user.username" --raw)"
   actual="$(config_expr "if config.home-manager.users.\"${USERNAME}\".home.file ? \".config/karabiner/karabiner.json\" then \"true\" else \"false\"")"

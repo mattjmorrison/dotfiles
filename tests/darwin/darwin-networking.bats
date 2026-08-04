@@ -50,3 +50,8 @@ assert_true() {
   actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 grafana\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
   assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to grafana.morrisons.site"
 }
+
+@test "hosts file maps 192.168.86.72 to openbao.morrisons.site" {
+  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 openbao\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
+  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to openbao.morrisons.site"
+}

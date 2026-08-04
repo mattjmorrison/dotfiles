@@ -14,6 +14,7 @@
       echo '192.168.86.72 prometheus.morrisons.site'
       echo '192.168.86.72 alertmanager.morrisons.site'
       echo '192.168.86.72 grafana.morrisons.site'
+      echo '192.168.86.72 openbao.morrisons.site'
     } > /etc/hosts
   '';
 }
