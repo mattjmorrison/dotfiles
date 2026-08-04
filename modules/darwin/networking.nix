@@ -11,6 +11,9 @@
       echo '::1 localhost'
       echo
       echo '192.168.86.72 argocd.morrisons.site'
+      echo '192.168.86.72 prometheus.morrisons.site'
+      echo '192.168.86.72 alertmanager.morrisons.site'
+      echo '192.168.86.72 grafana.morrisons.site'
     } > /etc/hosts
   '';
 }
