@@ -15,6 +15,7 @@
       echo '192.168.86.72 alertmanager.morrisons.site'
       echo '192.168.86.72 grafana.morrisons.site'
       echo '192.168.86.72 openbao.morrisons.site'
+      echo '192.168.86.72 home-assistant.morrisons.site'
     } > /etc/hosts
   '';
 }
