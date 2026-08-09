@@ -31,27 +31,14 @@ assert_true() {
   fi
 }
 
-@test "hosts file maps 192.168.86.72 to argocd.morrisons.site" {
-  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 argocd\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
-  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to argocd.morrisons.site"
+@test "hosts file maps localhost" {
+  actual="$(config_expr 'if (builtins.match ".*127\\.0\\.0\\.1 localhost.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
+  assert_true "$actual" "expected /etc/hosts to map 127.0.0.1 to localhost"
 }
 
-@test "hosts file maps 192.168.86.72 to prometheus.morrisons.site" {
-  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 prometheus\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
-  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to prometheus.morrisons.site"
-}
-
-@test "hosts file maps 192.168.86.72 to alertmanager.morrisons.site" {
-  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 alertmanager\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
-  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to alertmanager.morrisons.site"
-}
-
-@test "hosts file maps 192.168.86.72 to grafana.morrisons.site" {
-  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 grafana\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
-  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to grafana.morrisons.site"
-}
-
-@test "hosts file maps 192.168.86.72 to openbao.morrisons.site" {
-  actual="$(config_expr 'if (builtins.match ".*192\\.168\\.86\\.72 openbao\\.morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
-  assert_true "$actual" "expected /etc/hosts to map 192.168.86.72 to openbao.morrisons.site"
+@test "hosts file no longer hardcodes morrisons.site entries" {
+  actual="$(config_expr 'if (builtins.match ".*morrisons\\.site.*" config.system.activationScripts.postActivation.text) != null then "true" else "false"')"
+  if [[ "$actual" != "false" ]]; then
+    fail "expected /etc/hosts to no longer hardcode morrisons.site entries now that Pi-hole serves them (got: $actual)"
+  fi
 }
