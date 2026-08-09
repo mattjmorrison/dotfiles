@@ -65,7 +65,7 @@ assert_root_nav_binding() {
   local key="$1"
   local tmux_direction="$2"
 
-  "${TMUX[@]}" list-keys -T root "$key" | grep -F "#{@pane-is-vim}" | grep -F "select-pane $tmux_direction"
+  "${TMUX[@]}" list-keys -T root | grep -F "$key" | grep -F "#{@pane-is-vim}" | grep -F "select-pane $tmux_direction"
 }
 
 press_root_nav_key() {

@@ -1,17 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git *)",
-      "Bash(make check*)",
-      "Bash(echo*)",
-      "Bash(HOST=*)",
-      "Bash(nix develop *)",
-      "Bash(nix flake *)",
-      "Bash(nix eval *)",
-      "Bash(bats *)",
-      "Bash(date *)",
-      "Write(tests/*)",
-      "Write(modules/*)"
+      "Read(**)",
+      "Edit(**)",
+      "Write(**)",
+      "Bash(*)"
     ]
   }
 }

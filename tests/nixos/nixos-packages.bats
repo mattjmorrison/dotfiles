@@ -70,3 +70,30 @@ setup_file() {
   ")
   [ "$result" = "server" ]
 }
+
+@test "firewall allows TCP port 53" {
+  result=$(nix develop --command nix eval --impure --expr "
+    let flake = builtins.getFlake \"path:$PWD\";
+      config = flake.configurations.${HOST}.config;
+    in builtins.elem 53 config.networking.firewall.allowedTCPPorts
+  ")
+  [ "$result" = "true" ]
+}
+
+@test "firewall allows UDP port 53" {
+  result=$(nix develop --command nix eval --impure --expr "
+    let flake = builtins.getFlake \"path:$PWD\";
+      config = flake.configurations.${HOST}.config;
+    in builtins.elem 53 config.networking.firewall.allowedUDPPorts
+  ")
+  [ "$result" = "true" ]
+}
+
+@test "firewall allows TCP port 8080" {
+  result=$(nix develop --command nix eval --impure --expr "
+    let flake = builtins.getFlake \"path:$PWD\";
+      config = flake.configurations.${HOST}.config;
+    in builtins.elem 8080 config.networking.firewall.allowedTCPPorts
+  ")
+  [ "$result" = "true" ]
+}
