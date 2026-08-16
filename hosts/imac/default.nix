@@ -23,12 +23,21 @@
   networking.hostName = "imac";
   system.stateVersion = "24.05";
   nixpkgs.config.allowUnfree = true;
+  virtualisation.docker.enable = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+  services = {
+    # Enable mDNS NSS module for .local hostname resolution (required by Prometheus and other apps to reach pi5-*.local)
+    avahi.nssmdns4 = true;
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
+    journald.extraConfig = ''
+      Storage=persistent
+      SyncIntervalSec=5s
+    '';
   };
   nix.settings.experimental-features = [
     "nix-command"
@@ -37,7 +46,11 @@
 
   users.users.${settings.user.username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    # Allow unprivileged access to the Docker daemon
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
   };
 
   home-manager = {
@@ -57,11 +70,6 @@
       size = 16384;
     }
   ];
-
-  services.journald.extraConfig = ''
-    Storage=persistent
-    SyncIntervalSec=5s
-  '';
 
   systemd.services.memory-monitor = {
     wantedBy = [ "multi-user.target" ];

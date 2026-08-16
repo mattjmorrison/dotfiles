@@ -81,11 +81,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1786232440,
-        "narHash": "sha256-5TaqfHog3JpKZ9lDfW7BIMhmiAFM2Kn1LUbiGZDJq9k=",
+        "lastModified": 1786862499,
+        "narHash": "sha256-XX4nZht0Y878xN/LT7alYcfszh8ZVAdzglSqj5A7HC0=",
         "owner": "mattjmorrison",
         "repo": "homelab",
-        "rev": "8ce60f19c19fd763ce708a23415f03f8cd4d85a4",
+        "rev": "4dd262695ac205da65f5de6795e8c8e76fa3a699",
         "type": "github"
       },
       "original": {
@@ -145,11 +145,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1786106723,
-        "narHash": "sha256-zDSUbpoeo/9ZmD2+wXnzxoo1+uhL8vxc0b8yuYMKYq0=",
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
         "type": "github"
       },
       "original": {
