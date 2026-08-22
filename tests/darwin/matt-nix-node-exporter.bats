@@ -40,3 +40,8 @@ assert_true() {
   actual="$(config_expr 'if builtins.any (f: builtins.match ".*mount-points-exclude.*" f != null) config.services.prometheus.exporters.node.extraFlags then "true" else "false"')"
   assert_true "$actual" "expected services.prometheus.exporters.node.extraFlags to contain a mount-points-exclude flag"
 }
+
+@test "node_exporter mount-points-exclude excludes /nix" {
+  actual="$(config_expr 'if builtins.match ".*(\\|nix\\||\\(nix\\||\\|nix\\)).*" (builtins.head (builtins.filter (f: builtins.match ".*mount-points-exclude.*" f != null) config.services.prometheus.exporters.node.extraFlags)) != null then "true" else "false"')"
+  assert_true "$actual" "expected mount-points-exclude flag to exclude the /nix volume"
+}
