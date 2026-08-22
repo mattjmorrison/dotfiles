@@ -35,3 +35,8 @@ assert_true() {
   actual="$(config_expr 'if config.services.prometheus.exporters.node.enable then "true" else "false"')"
   assert_true "$actual" "expected services.prometheus.exporters.node.enable to be true"
 }
+
+@test "node_exporter excludes mount points" {
+  actual="$(config_expr 'if builtins.any (f: builtins.match ".*mount-points-exclude.*" f != null) config.services.prometheus.exporters.node.extraFlags then "true" else "false"')"
+  assert_true "$actual" "expected services.prometheus.exporters.node.extraFlags to contain a mount-points-exclude flag"
+}
